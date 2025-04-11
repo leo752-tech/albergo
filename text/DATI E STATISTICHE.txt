@@ -1,0 +1,21 @@
+DATI E STATISTICHE
+
+Occupazione e ricettività
+-tasso di occupazione camere
+-numero medio di notti per soggiorno
+-media ospiti per camera
+-tasso cancellazione
+-percentuale di ritorno degli ospiti
+
+Finanza e ricavi
+-ricavi camere
+-ricavi accessori
+-occupazione per fascia di prezzo
+-tasso di conversione prenotazioni
+
+Recensioni
+-analisi(positive/negative/keywords frequenti)
+
+Altro
+-report giornalieri o mensili(occupazione, ricavi)
+-report clienti(nazionalità provenienza abitudini)
