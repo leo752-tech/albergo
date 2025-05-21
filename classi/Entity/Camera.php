@@ -5,6 +5,7 @@ class Camera{
 	private string $nome;
 	private int $posti;
 	//prezzo per ogni notte
+	//sto cazzo
 	private int $prezzo;
 	private $tipo;
 	//coppie Data=>bool
