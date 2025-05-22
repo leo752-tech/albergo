@@ -1,13 +1,22 @@
 <?php
-class ServizioExtra{
+class EServizioExtra{
+	private ?int $idServizio;
 	private $nome;
 	private $descrizione;
 	private $prezzo;
 
-	public function __constructor($nome, $descrizione, $prezzo){
+	public function __construct($nome, $descrizione, $prezzo){
+		$this->idServizio = null;
 		$this->nome = $nome;
 		$this->descrizione = $descrizione;
 		$this->prezzo = $prezzo;
+	}
+
+	public function setIdServizio($idServizio){
+		$this->idServizio = $idServizio;
+	}
+	public function getIdServizio(){
+		return $this->idServizio;
 	}
 
 	public function setNome($nome){
