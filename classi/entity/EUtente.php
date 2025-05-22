@@ -1,7 +1,8 @@
 <?php
 
-class Utente{
+class EUtente{
 	
+	private ?int $idUtente;
 	private string $mail;
 	private string $password;
 	private string $nome;
@@ -9,8 +10,10 @@ class Utente{
 	private string $dataN;
 	private string $comuneN;
 	private $prenotazioni = array();
+	private $recensioni = array();
 
 	public function __construct($mail, $password, $nome, $cognome, $dataN, $comuneN){
+		$this->idUtente = null;
 		$this->mail = $mail;
 		$this->password = $password;
 		$this->nome = $nome;
@@ -19,7 +22,12 @@ class Utente{
 		$this->comuneN = $comuneN;
 	}
 
-
+	public function setIdUtente($idUtente){
+		$this->idUtente = $idUtente;
+	}
+	public function getIdUtente(){
+		return $this->idUtente;
+	}
 
 	public function setMail(string $Mail){
 		$this->mail = $mail;
@@ -64,6 +72,13 @@ class Utente{
 	}
 	public function getPrenotazioni(){
 		return $this->prenotazioni;
+	}
+
+	public function setRecensioni($recensione){
+		$this->recensioni[] = $recensione;
+	}
+	public function getRecensioni(){
+		return $this->recensioni;	
 	}
 }
 
