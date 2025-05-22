@@ -1,16 +1,26 @@
 <?php
 
-class Recensione{
+class ERecensione{
+
+	private ?int $idRecensione;
 	private $titolo;
 	private $valutazione;
 	private $descrizione;
 	private $data;
 
 	public function __constructor($titolo, $valutazione, $descrizione, $data){
+		$idRecensione = null;
 		$this->titolo = $titolo;
 		$this->valutazione = $valutazione;
 		$this->descrizione = $descrizione;
 		$this->data = $data;
+	}
+
+	public function setIdRecensione($idRecensione){
+		$this->idRecensione = $idRecensione;
+	}
+	public function getIdRecensione(){
+		return $this->idRecensione;
 	}
 
 	public function setTitolo($titolo){
