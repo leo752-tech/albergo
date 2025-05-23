@@ -6,11 +6,15 @@ class FDataMapper{
     private static $instance;
 
     private static $db;
+    private $name = "my_database_prova";
+    private $host = "localhost";
+    private $user = "root";
+    private $password = "";
 
     //SINGLETON PATTERN
     private function __construct(){
        try{
-           self::$db = new PDO("mysql:dbname="$name";host="$host"; charset=utf8;", $user, $password);
+           self::$db = new PDO("mysql:host={$this->host};dbname={$this->name}", $this->user, $this->password);
        }catch(PDOException $e){
            echo "ERROR". $e->getMessage();
            die;
@@ -33,19 +37,20 @@ class FDataMapper{
         return self::$db;
     }
 
-    //metodo per verificare l'esistenza di una query
-    public static function esiste($queryRes){
-        if(count($queryRes) > 0){
-            return true;
-        }else{
-            return false;
-        }
+    //metodo per verificare l'esistenza di un oggetto nel db
+    public static function esiste($table, $id, $valore){
+    	try{
+	        $query = "SELECT COUNT(*) FROM " . $table . " WHERE " . $id . " = '" . $valore . "';";
+	        $stmt = self::$db->prepare($query);
+	        $stmt->execute();
+	        $numRighe = $stmt->fetchColumn();
+	        return $numRighe>0;
+    	}catch(PDOException $e){
+    		echo "ERRORE: " . $e->getMessage();
+    		return false;
+    	}
+
     }
-
-    public static function esisteOggetto($oggetto){
-    	$query = "SELECT * FROM " . $oggetto-> . " WHERE " . $campo . " = '" . $valore . "';";
-
-    }//DA FINIRE
 
     //metodo per recuperare un oggetto dal db
     public static function recuperaOggetto($table, $campo ,$valore){
@@ -80,7 +85,7 @@ class FDataMapper{
     public static function salvaOggetto($classe, $oggetto)
     {
         try{
-            $query = "INSERT INTO " . $classe::getTable() . " VALUES " . $classe::getValue();
+            $query = "INSERT INTO " . $classe::getTable() . " VALUES " . $classe::getValues();
             $stmt = self::$db->prepare($query);
             $classe::bind($stmt, $oggetto);
             $stmt->execute();
@@ -105,6 +110,7 @@ class FDataMapper{
         }
     }
 
+    //metodo che ritorna tutti gli elementi di una tabella
     public static function selectAll($table) {
         try{
             $query = "SELECT * FROM " . $table . ";";
