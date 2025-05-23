@@ -8,16 +8,15 @@ class FCamera{
    
     private static $table = "camera";
    
-    private static $values = "(:idCamera,:nome,:posti,:prezzo,:tipo)";
+    private static $values = "(NULL,:nome,:posti,:prezzo,:tipo)";
     public function __construct(){}
 
     //metodo che 
-    public static function bind($stmt,$camera) {
-        $stmt->bindValue(":idCamera", $camera->getIdCamera(), PDO::PARAM_INT); 
+    public static function bind($stmt,$camera) { 
         $stmt->bindValue(":nome", $camera->getNome(), PDO::PARAM_INT);
-        $stmt->bindValue("posti", $camera->getPosti(), PDO::PARAM_INT);
-        $stmt->bindValue("prezzo", $camera->getPrezzo(), PDO::PARAM_INT);
-        $stmt->bindValue("tipo", $camera->getTipo(), PDO::PARAM_STR);     
+        $stmt->bindValue(":posti", $camera->getPosti(), PDO::PARAM_INT);
+        $stmt->bindValue(":prezzo", $camera->getPrezzo(), PDO::PARAM_INT);
+        $stmt->bindValue(":tipo", $camera->getTipo(), PDO::PARAM_STR);     
     }
 
     public static function getKey(){
@@ -36,23 +35,29 @@ class FCamera{
         return self::$values;
     }
 
-    public static function creaOggetto($queryRes){
-        $camera = new ECamera($queryRes["idCamera"], $queryRes["nome"], $queryRes["posti"], $queryRes["prezzo"], $queryRes["tipo"]);
+    //crea un oggetto ECamera
+    public static function creaCamera($queryRes){
+        $camera = new ECamera($queryRes["nome"], $queryRes["posti"], $queryRes["prezzo"], $queryRes["tipo"]);
+        if (isset($queryRes["idCamera"])) { 
+            $camera->setIdCamera($queryRes["idCamera"]);
+        }
         return $camera;
     }
 
-    public static function getOggetto($id){
+    //recupera un oggetto ECamera tramite il suo id
+    public static function getCamera($id){
         $result = FDataMapper::getInstance()->recuperaOggetto(self::$table, self::$key, $id);
-        if(count($result) > 0){
-            $camera = self::creaOggetto($result);
+        if($result != false && $result != null){
+            $camera = self::creaCamera($result);
             return $camera;
         }else{
             return null;
         }
     }
 
-    public static function salvaOggetto($oggetto , $campi = null){
-        if($fieldArray === null){
+    //salva l'oggetto camera se non esiste, altrimenti fa un aggiornamento
+    public static function salvaCamera($oggetto , $campi = null){
+        if($campi === null){
             $camera = FDataMapper::getInstance()->salvaOggetto(self::$class, $oggetto);
             if($camera !== null){
                 return $camera;
@@ -63,7 +68,7 @@ class FCamera{
             try{
                 FDataMapper::getInstance()->getDb()->beginTransaction();
                 foreach($campi as $c){
-                    FDataMapper::getInstance()->aggiornaOggetto(self::$table, $c[0], $c[1], self::$key, $oggetto->getId());
+                    FDataMapper::getInstance()->aggiornaOggetto(self::$table, $c[0], $c[1], self::$key, $oggetto->getIdCamera());
                 }
                 FDataMapper::getInstance()->getDb()->commit();
                 return true;
@@ -71,17 +76,26 @@ class FCamera{
                 echo "ERROR " . $e->getMessage();
                 FDataMapper::getInstance()->getDb()->rollBack();
                 return false;
-            }finally{
-                FDataMapper::getInstance()->closeConnection();
-            }  
+            }
         }
     }
 
-    public static function cancellaCamera($oggetto){
-        FDataMapper::getInstance()->getDb()->beginTransaction();
-        if(FDataMapper::esiste())//DA FINIRE
-        FDataMapper::cancellaCamera(self::$table, self::$key, $oggetto->getId());
+    //cancella un oggetto dal db
+    public static function cancellaCamera($id){
+        try{
+            FDataMapper::getInstance()->getDb()->beginTransaction();
 
+            if(FDataMapper::esiste(self::$table, self::$key, $id)){
+                FDataMapper::cancellaOggetto(self::$table, self::$key, $id);
+                FDataMapper::getInstance()->getDb()->commit();
+                return true;
+            }else{
+                echo "Camera non esistente";
+                return false;
+            }
+        }catch(PDOException $e){
+            echo "ERRORE: " . $e->getMessage();
+        }
     }
 }
 
