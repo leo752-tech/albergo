@@ -42,32 +42,28 @@ class FDataMapper{
         }
     }
 
+    public static function esisteOggetto($oggetto){
+    	$query = "SELECT * FROM " . $oggetto-> . " WHERE " . $campo . " = '" . $valore . "';";
+
+    }//DA FINIRE
+
     //metodo per recuperare un oggetto dal db
-    public static function recuperaOggetto($table, $campo ,$id){
+    public static function recuperaOggetto($table, $campo ,$valore){
         try{
-            $query = "SELECT * FROM " . $table . " WHERE " . $campo . " = '" . $id . "';";
+            $query = "SELECT * FROM " . $table . " WHERE " . $campo . " = '" . $valore . "';";
             $stmt = self::$db->prepare($query);
             $stmt->execute();
-            $num = $stmt->rowCount();
-            if($num > 0){
-                $result = array();
-                $stmt->setFetchMode(PDO::FETCH_ASSOC);
-                while ($riga = $stmt->fetch()){
-                    $result[] = $riga;
-                }
-                return $result;
-            }else{
-                return array();
-            }
+            $oggetto = $stmt->fetch(PDO::FETCH_ASSOC);           
+            return $oggetto;
             
         }catch(PDOException $e){
             echo "ERROR: " . $e->getMessage();
-            return array();
+            return null;
         }
     }
 
     //metodo per aggiornare un oggetto
-    public static function updateObj($table, $campo, $valoreCampo, $condizione, $valoreCondizione){
+    public static function aggiornaOggetto($table, $campo, $valoreCampo, $condizione, $valoreCondizione){
         
         try{
             $query = "UPDATE " . $table . " SET ". $campo. " = '" . $valoreCampo . "' WHERE " . $condizione . " = '" . $valoreCondizione . "';";
