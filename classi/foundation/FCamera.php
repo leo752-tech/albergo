@@ -37,7 +37,8 @@ class FCamera{
     }
 
     public static function creaOggetto($queryRes){
-
+        $camera = new ECamera($queryRes["idCamera"], $queryRes["nome"], $queryRes["posti"], $queryRes["prezzo"], $queryRes["tipo"]);
+        return $camera;
     }
 
     public static function getOggetto($id){
@@ -48,6 +49,39 @@ class FCamera{
         }else{
             return null;
         }
+    }
+
+    public static function salvaOggetto($oggetto , $campi = null){
+        if($fieldArray === null){
+            $camera = FDataMapper::getInstance()->salvaOggetto(self::$class, $oggetto);
+            if($camera !== null){
+                return $camera;
+            }else{
+                return false;
+            }
+        }else{
+            try{
+                FDataMapper::getInstance()->getDb()->beginTransaction();
+                foreach($campi as $c){
+                    FDataMapper::getInstance()->aggiornaOggetto(self::$table, $c[0], $c[1], self::$key, $oggetto->getId());
+                }
+                FDataMapper::getInstance()->getDb()->commit();
+                return true;
+            }catch(PDOException $e){
+                echo "ERROR " . $e->getMessage();
+                FDataMapper::getInstance()->getDb()->rollBack();
+                return false;
+            }finally{
+                FDataMapper::getInstance()->closeConnection();
+            }  
+        }
+    }
+
+    public static function cancellaCamera($oggetto){
+        FDataMapper::getInstance()->getDb()->beginTransaction();
+        if(FDataMapper::esiste())//DA FINIRE
+        FDataMapper::cancellaCamera(self::$table, self::$key, $oggetto->getId());
+
     }
 }
 
