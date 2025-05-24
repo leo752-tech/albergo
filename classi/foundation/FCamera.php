@@ -6,14 +6,14 @@ class FCamera{
 
     private static $class = "FCamera";
    
-    private static $table = "camera";
+    private static $table = "camere";
    
-    private static $values = "(NULL,:nome,:posti,:prezzo,:tipo)";
+    private static $values = "(NULL,:nome,:posti,:prezzo,:tipo,NULL,NULL)";
     public function __construct(){}
 
     //metodo che 
     public static function bind($stmt,$camera) { 
-        $stmt->bindValue(":nome", $camera->getNome(), PDO::PARAM_STR);
+        $stmt->bindValue(":nome", $camera->getNome(), PDO::PARAM_INT);
         $stmt->bindValue(":posti", $camera->getPosti(), PDO::PARAM_INT);
         $stmt->bindValue(":prezzo", $camera->getPrezzo(), PDO::PARAM_INT);
         $stmt->bindValue(":tipo", $camera->getTipo(), PDO::PARAM_STR);     
@@ -58,9 +58,10 @@ class FCamera{
     //salva l'oggetto camera se non esiste, altrimenti fa un aggiornamento
     public static function salvaCamera($oggetto , $campi = null){
         if($campi === null){
-            $camera = FDataMapper::getInstance()->salvaOggetto(self::$class, $oggetto);
-            if($camera !== null){
-                return $camera;
+            $id = FDataMapper::getInstance()->salvaOggetto(self::$class, $oggetto);
+            if($id !== null){
+                $oggetto->setIdCamera($id);
+                return $id;
             }else{
                 return false;
             }
