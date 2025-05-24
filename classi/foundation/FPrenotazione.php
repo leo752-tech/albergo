@@ -8,21 +8,20 @@ class FPrenotazione{
    
     private static $table = "prenotazione";
    
-    private static $values = "(:idPrenotazione,:idUtente,:utenti,:idPeriodo,:idCamera,:idServizio,:prezzo,:cancellazione)";
+    private static $values = "(NULL,:idUtente,:utenti,:idPeriodo,:idCamera,:idServizio,:prezzo,:cancellazione)";
     public function __construct(){}
 
     //metodo che 
     public static function bind($stmt,$prenotazione) {
-        $stmt->bindValue("idPrenotazione", $prenotazione->getIdPrenotazione(), PDO::PARAM_INT);
         $stmt->bindValue("idUtente", $prenotazione->getUtente()->getId(), PDO::PARAM_INT);
         // Serializzazione dell'array 'utenti' in JSON per salvarlo in un campo TEXT/JSON nel DB
-        $utentiJson = json_encode($prenotazione->getUtenti());
+        $utenti = json_encode($prenotazione->getUtenti());
         //Controlla se la codifica JSON è fallita (es. array contiene risorse o oggetti ricorsivi)
-        if ($utentiJson === false) {
-            // Gestisci l'errore, magari logga o lancia un'eccezione
+        if ($utenti === false) {
+            // Gestisce l'errore, magari logga o lancia un'eccezione
             throw new \RuntimeException("Errore nella codifica JSON dell'array 'utenti'.");
         }
-        $stmt->bindValue(":utenti", $utentiJson, PDO::PARAM_STR);
+        $stmt->bindValue(":utenti", $utenti, PDO::PARAM_STR);
         $stmt->bindValue("idPeriodo", $prenotazione->getPeriodo()->getId(), PDO::PARAM_INT);
         $stmt->bindValue("idCamera", $prenotazione->getCamera()->getId(), PDO::PARAM_INT);
         $stmt->bindValue("idServizio", $prenotazione->getServizio()->getId(), PDO::PARAM_STR);    
@@ -46,23 +45,29 @@ class FPrenotazione{
         return self::$values;
     }
 
-    public static function creaOggetto($queryRes){
-        $prenotazione = new EPrenotazione($queryRes["idPrenotazione"], $queryRes["idUtente"], $queryRes["utenti"], $queryRes["idPeriodo"], $queryRes["idCamera"], $queryRes["idServizio"], $queryRes["prezzo"], $queryRes["cancellazione"]);
+    //crea un oggetto EPrenotazione
+    public static function creaPrenotazione($queryRes){
+        $prenotazione = new EPrenotazione($queryRes["idUtente"], $queryRes["utenti"], $queryRes["idPeriodo"], $queryRes["idCamera"], $queryRes["idServizio"], $queryRes["prezzo"], $queryRes["cancellazione"]);
+        if (isset($queryRes["idPrenotazione"])) { 
+            $prenotazione->setIdPrenotazione($queryRes["idPrenotazione"]);
+        }
         return $prenotazione;
     }
 
-    public static function getOggetto($id){
+    //recupera un oggetto EPrenotazione tramite il suo id
+    public static function getPrenotazione($id){
         $result = FDataMapper::getInstance()->recuperaOggetto(self::$table, self::$key, $id);
-        if(count($result) > 0){
-            $prenotazione = self::creaOggetto($result);
+        if($result != false && $result != null){
+            $prenotazione = self::creaPrenotazione($result);
             return $prenotazione;
         }else{
             return null;
         }
     }
 
-    public static function salvaOggetto($oggetto , $campi = null){
-        if($fieldArray === null){
+//salva l'oggetto prenotazione se non esiste, altrimenti fa un aggiornamento
+    public static function salvaPrenotazione($oggetto , $campi = null){
+        if($campi === null){
             $prenotazione = FDataMapper::getInstance()->salvaOggetto(self::$class, $oggetto);
             if($prenotazione !== null){
                 return $prenotazione;
@@ -73,7 +78,7 @@ class FPrenotazione{
             try{
                 FDataMapper::getInstance()->getDb()->beginTransaction();
                 foreach($campi as $c){
-                    FDataMapper::getInstance()->aggiornaOggetto(self::$table, $c[0], $c[1], self::$key, $oggetto->getId());
+                    FDataMapper::getInstance()->aggiornaOggetto(self::$table, $c[0], $c[1], self::$key, $oggetto->getIdCamera());
                 }
                 FDataMapper::getInstance()->getDb()->commit();
                 return true;
@@ -81,12 +86,10 @@ class FPrenotazione{
                 echo "ERROR " . $e->getMessage();
                 FDataMapper::getInstance()->getDb()->rollBack();
                 return false;
-            }finally{
-                FDataMapper::getInstance()->closeConnection();
-            }  
+            }
         }
     }
-
+    //cancella un oggetto dal db
     public static function cancellaPrenotazione($id){
        try{
             FDataMapper::getInstance()->getDb()->beginTransaction();

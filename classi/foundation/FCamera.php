@@ -13,7 +13,7 @@ class FCamera{
 
     //metodo che 
     public static function bind($stmt,$camera) { 
-        $stmt->bindValue(":nome", $camera->getNome(), PDO::PARAM_INT);
+        $stmt->bindValue(":nome", $camera->getNome(), PDO::PARAM_STR);
         $stmt->bindValue(":posti", $camera->getPosti(), PDO::PARAM_INT);
         $stmt->bindValue(":prezzo", $camera->getPrezzo(), PDO::PARAM_INT);
         $stmt->bindValue(":tipo", $camera->getTipo(), PDO::PARAM_STR);     

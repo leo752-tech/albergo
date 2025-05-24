@@ -8,12 +8,11 @@ class FRecensione{
    
     private static $table = "recensione";
    
-    private static $values = "(:idRecensione,:titolo,:valutazione,:descrizione,:data)";
+    private static $values = "(NULL,:titolo,:valutazione,:descrizione,:data)";
     public function __construct(){}
 
     //metodo che 
     public static function bind($stmt,$recensione) {
-        $stmt->bindValue(":idRecensione", $recensione->getIdRecensione(), PDO::PARAM_INT); 
         $stmt->bindValue(":titolo", $recensione->getTitolo(), PDO::PARAM_STR);
         $stmt->bindValue("valutazione", $recensione->getValutazione(), PDO::PARAM_INT);
         $stmt->bindValue("descrizione", $recensione->getDescrizione(), PDO::PARAM_STR);
@@ -36,23 +35,29 @@ class FRecensione{
         return self::$values;
     }
 
-    public static function creaOggetto($queryRes){
-        $recensione = new ERecensione($queryRes["idRecensione"], $queryRes["titolo"], $queryRes["valutazione"], $queryRes["descrizione"], $queryRes["data"]);
+    //crea un oggetto ERecensione
+    public static function creaRecensione($queryRes){
+        $recensione = new ERecensione($queryRes["titolo"], $queryRes["valutazione"], $queryRes["descrizione"], $queryRes["data"]);
+        if (isset($queryRes["idRecensione"])) { 
+            $recensione->setIdRecensione($queryRes["idRecensione"]);
+        }
         return $recensione;
     }
 
-    public static function getOggetto($id){
+    //recupera un oggetto ERecensione tramite il suo id
+    public static function getRecensione($id){
         $result = FDataMapper::getInstance()->recuperaOggetto(self::$table, self::$key, $id);
-        if(count($result) > 0){
-            $recensione = self::creaOggetto($result);
+        if($result != false && $result != null){
+            $recensione = self::creaRecensione($result);
             return $recensione;
         }else{
             return null;
         }
     }
 
-    public static function salvaOggetto($oggetto , $campi = null){
-        if($fieldArray === null){
+//salva l'oggetto recensione se non esiste, altrimenti fa un aggiornamento
+    public static function salvaRecensione($oggetto , $campi = null){
+        if($campi === null){
             $recensione = FDataMapper::getInstance()->salvaOggetto(self::$class, $oggetto);
             if($recensione !== null){
                 return $recensione;
@@ -63,7 +68,7 @@ class FRecensione{
             try{
                 FDataMapper::getInstance()->getDb()->beginTransaction();
                 foreach($campi as $c){
-                    FDataMapper::getInstance()->aggiornaOggetto(self::$table, $c[0], $c[1], self::$key, $oggetto->getId());
+                    FDataMapper::getInstance()->aggiornaOggetto(self::$table, $c[0], $c[1], self::$key, $oggetto->getIdCamera());
                 }
                 FDataMapper::getInstance()->getDb()->commit();
                 return true;
@@ -71,12 +76,11 @@ class FRecensione{
                 echo "ERROR " . $e->getMessage();
                 FDataMapper::getInstance()->getDb()->rollBack();
                 return false;
-            }finally{
-                FDataMapper::getInstance()->closeConnection();
-            }  
+            }
         }
     }
-
+    
+    //cancella un oggetto dal db
     public static function cancellaRecensione($id){
         try{
             FDataMapper::getInstance()->getDb()->beginTransaction();
