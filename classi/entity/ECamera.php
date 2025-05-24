@@ -8,9 +8,9 @@ class ECamera{
 	private int $prezzo;
 	private $tipo;
 	//lista di Periodi nei quali la camera è occupata
-	private $occupazioni = array();
+	private $idOccupazioni = array();
 	//elenco delle prenotazioni effettuate su questa camera
-	private $prenotazioni = array();
+	private $idPrenotazioni = array();
 
 	public function __construct($nome, $posti, $prezzo, $tipo){
 		$this->idCamera = null;
@@ -55,20 +55,18 @@ class ECamera{
 		return $this->tipo;
 	}
 
-	public function setOccupazioni($prenotazione){
-		$periodo = $prenotazione->getPeriodo();
-		$this->occupazioni[] = $periodo;
-		
+	public function setIdOccupazioni($idPeriodo){
+		$this->idOccupazioni[] = $idPeriodo;
 	}
-	public function getOccupazioni(){
-		return $this->occupazioni;
+	public function getIdOccupazioni(){
+		return $this->idOccupazioni;
 	}
 
-	public function setPrenotazioni($prenotazione){
-		$this->prenotazioni[] = $prenotazione;
+	public function setIdPrenotazioni($idPrenotazione){
+		$this->idPrenotazioni[] = $idPrenotazione;
 	}
-	public function getPrenotazioni(){
-		return $this->prenotazioni;
+	public function getIdPrenotazioni(){
+		return $this->idPrenotazioni;
 	}
 
 
