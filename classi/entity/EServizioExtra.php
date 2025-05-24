@@ -1,22 +1,24 @@
 <?php
 class EServizioExtra{
-	private ?int $idServizio;
+	private ?int $idServizioExtra;
 	private $nome;
 	private $descrizione;
 	private $prezzo;
+	private ?int $idPrenotazione;
 
 	public function __construct($nome, $descrizione, $prezzo){
-		$this->idServizio = null;
+		$this->idServizioExtra = null;
 		$this->nome = $nome;
 		$this->descrizione = $descrizione;
 		$this->prezzo = $prezzo;
+		$this->idPrenotazione = null;
 	}
 
-	public function setIdServizio($idServizio){
-		$this->idServizio = $idServizio;
+	public function setIdServizioExtra($idServizioExtra){
+		$this->idServizioExtra = $idServizioExtra;
 	}
-	public function getIdServizio(){
-		return $this->idServizio;
+	public function getIdServizioExtra(){
+		return $this->idServizioExtra;
 	}
 
 	public function setNome($nome){
@@ -38,6 +40,13 @@ class EServizioExtra{
 	}
 	public function getPrezzo(){
 		return $this->prezzo;
+	}
+
+	public function setIdPrenotazione($idPrenotazione){
+		$this->idPrenotazione = $idPrenotazione;
+	}
+	public function getIdPrenotazione(){
+		return $this->idPrenotazione;
 	}
 }
 
