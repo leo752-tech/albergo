@@ -12,9 +12,9 @@ class FPeriodo{
     public function __construct(){}
 
     //metodo che 
-    public static function bind($stmt,$periodo) { 
-        $stmt->bindValue(":inizio", $periodo->getInizio()->format('Y-m-d H:i:s'), PDO::PARAM_STR);
-        $stmt->bindValue("fine", $periodo->getFine()->format('Y-m-d H:i:s'), PDO::PARAM_STR);
+    public static function bind($stmt,$periodo) {
+        $stmt->bindValue(":inizio", $periodo->getInizio()->format('d-m-Y'), PDO::PARAM_STR);
+        $stmt->bindValue("fine", $periodo->getFine()->format('d-m-Y'), PDO::PARAM_STR);
         $stmt->bindValue("lunghezza", $periodo->getLunghezza(), PDO::PARAM_INT);
         $stmt->bindValue("tipo", $periodo->getTipo(), PDO::PARAM_STR);    
     }
@@ -34,33 +34,32 @@ class FPeriodo{
     public static function getValues(){
         return self::$values;
     }
-    
-    //crea un oggetto EPeriodo
-    public static function creaPeriodo($queryRes){
-        $periodo = new EPeriodo($queryRes["inizio"], $queryRes["fine"], $queryRes["lunghezza"], $queryRes["tipo"]);
+
+    public static function creaOggetto($queryRes){
+        $periodo = new EPeriodo(new DateTime($queryRes["inizio"]), new DateTime($queryRes["fine"]), $queryRes["lunghezza"], $queryRes["tipo"]);
         if (isset($queryRes["idPeriodo"])) { 
-            $periodo->setIdPeriodo($queryRes["idPeriodo"]);
+            $utente->setIdUtente($queryRes["idPeriodo"]);
         }
         return $periodo;
     }
-    
-    //recupera un oggetto EPeriodo tramite il suo id
+
     public static function getPeriodo($id){
         $result = FDataMapper::getInstance()->recuperaOggetto(self::$table, self::$key, $id);
         if($result != false && $result != null){
-            $periodo = self::creaPeriodo($result);
+            $periodo = self::creaOggetto($result);
             return $periodo;
         }else{
             return null;
         }
     }
 
-//salva l'oggetto periodo se non esiste, altrimenti fa un aggiornamento
     public static function salvaPeriodo($oggetto , $campi = null){
         if($campi === null){
-            $periodo = FDataMapper::getInstance()->salvaOggetto(self::$class, $oggetto);
-            if($periodo !== null){
-                return $periodo;
+            $id = FDataMapper::getInstance()->salvaOggetto(self::$class, $oggetto);
+
+            if($id !== null){
+                $oggetto->setIdPeriodo($id);
+                return $id;
             }else{
                 return false;
             }
@@ -68,7 +67,7 @@ class FPeriodo{
             try{
                 FDataMapper::getInstance()->getDb()->beginTransaction();
                 foreach($campi as $c){
-                    FDataMapper::getInstance()->aggiornaOggetto(self::$table, $c[0], $c[1], self::$key, $oggetto->getIdCamera());
+                    FDataMapper::getInstance()->aggiornaOggetto(self::$table, $c[0], $c[1], self::$key, $oggetto->getIdPeriodo());
                 }
                 FDataMapper::getInstance()->getDb()->commit();
                 return true;
@@ -80,7 +79,6 @@ class FPeriodo{
         }
     }
 
-    //cancella un oggetto dal db
     public static function cancellaPeriodo($id){
         try{
             FDataMapper::getInstance()->getDb()->beginTransaction();
@@ -90,7 +88,7 @@ class FPeriodo{
                 FDataMapper::getInstance()->getDb()->commit();
                 return true;
             }else{
-                echo "Periodo non esistente";
+                echo "Utente non esistente";
                 return false;
             }
         }catch(PDOException $e){
@@ -98,4 +96,5 @@ class FPeriodo{
         }
     }
 }
+
 ?>
