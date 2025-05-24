@@ -7,13 +7,15 @@ class ERecensione{
 	private $valutazione;
 	private $descrizione;
 	private $data;
+	private $idUtente;
 
-	public function __constructor($titolo, $valutazione, $descrizione, $data){
+	public function __construct($titolo, $valutazione, $descrizione, $data, $idUtente){
 		$idRecensione = null;
 		$this->titolo = $titolo;
 		$this->valutazione = $valutazione;
 		$this->descrizione = $descrizione;
 		$this->data = $data;
+		$this->idUtente = $idUtente;
 	}
 
 	public function setIdRecensione($idRecensione){
@@ -49,6 +51,13 @@ class ERecensione{
 	}
 	public function getData(){
 		return $this->data;
+	}
+
+	public function setIdUtente($idUtente){
+		$this->idUtente = $idUtente;
+	}
+	public function getIdUtente(){
+		return $this->idUtente;
 	}
 }
 
