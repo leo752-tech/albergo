@@ -1,6 +1,6 @@
 <?php
 
-class FCamera{
+class FUtente{
 
     private static $key = "idUtente";
 
