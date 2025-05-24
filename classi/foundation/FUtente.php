@@ -38,11 +38,13 @@ class FUtente{
         return self::$values;
     }
 
-    //crea un oggetto ECamera
+    //crea un oggetto EUtente
     public static function creaUtente($queryRes){
-        $utente = new EUtente($queryRes["idUtente"], $queryRes["mail"], $queryRes["password"], $queryRes["nome"], $queryRes["cognome"], $queryRes["dataN"], $queryRes["comuneN"]);
+        $utente = new EUtente($queryRes["idUtente"], $queryRes["mail"], $queryRes["password"], $queryRes["nome"], $queryRes["cognome"], 
+        new DateTime($queryRes["dataN"]), // Converte la stringa dataN in oggetto DateTime
+        $queryRes["comuneN"]);
         if (isset($queryRes["idUtente"])) { 
-            $utente->setIdCamera($queryRes["idUtente"]);
+            $utente->setIdUtente($queryRes["idUtente"]);
         }
         return $utente;
     }

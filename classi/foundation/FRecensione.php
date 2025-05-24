@@ -77,11 +77,21 @@ class FRecensione{
         }
     }
 
-    public static function cancellaRecensione($oggetto){
-        FDataMapper::getInstance()->getDb()->beginTransaction();
-        if(FDataMapper::esiste())//DA FINIRE
-        FDataMapper::cancellaRecensione(self::$table, self::$key, $oggetto->getId());
+    public static function cancellaRecensione($id){
+        try{
+            FDataMapper::getInstance()->getDb()->beginTransaction();
 
+            if(FDataMapper::esiste(self::$table, self::$key, $id)){
+                FDataMapper::cancellaOggetto(self::$table, self::$key, $id);
+                FDataMapper::getInstance()->getDb()->commit();
+                return true;
+            }else{
+                echo "Recensione non esistente";
+                return false;
+            }
+        }catch(PDOException $e){
+            echo "ERRORE: " . $e->getMessage();
+        }
     }
 }
 

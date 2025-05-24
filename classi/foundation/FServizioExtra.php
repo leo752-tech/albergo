@@ -17,7 +17,7 @@ class FServizioExtra{
         $stmt->bindValue("idServizioExtra", $servizioExtra->getIdServizioExtra(), PDO::PARAM_INT);
         $stmt->bindValue("nome", $servizioExtra->getNome(), PDO::PARAM_STR);
         $stmt->bindValue("descrizione", $servizioExtra->getDescrizione(), PDO::PARAM_STR);    
-        $stmt->bindValue("prezzo", $servizioExtra->getPrezzo(), PDO::PARAM_INT);
+        $stmt->bindValue("prezzo", $servizioExtra->getPrezzo(), PDO::PARAM_STR);
         $stmt->bindValue("idPrenotazione", $servizioExtra->getPrenotazione()->getId(), PDO::PARAM_INT);
     }
 
@@ -53,7 +53,7 @@ class FServizioExtra{
     }
 
     public static function salvaOggetto($oggetto , $campi = null){
-        if($fieldArray === null){
+        if($campi === null){
             $servizioExtra = FDataMapper::getInstance()->salvaOggetto(self::$class, $oggetto);
             if($servizioExtra !== null){
                 return $servizioExtra;
@@ -78,11 +78,21 @@ class FServizioExtra{
         }
     }
 
-    public static function cancellaServizioExtra($oggetto){
-        FDataMapper::getInstance()->getDb()->beginTransaction();
-        if(FDataMapper::esiste())//DA FINIRE
-        FDataMapper::cancellaServizioExtra(self::$table, self::$key, $oggetto->getId());
+    public static function cancellaServizioExtra($id){
+       try{
+            FDataMapper::getInstance()->getDb()->beginTransaction();
 
+            if(FDataMapper::esiste(self::$table, self::$key, $id)){
+                FDataMapper::cancellaOggetto(self::$table, self::$key, $id);
+                FDataMapper::getInstance()->getDb()->commit();
+                return true;
+            }else{
+                echo "ServizioExtra non esistente";
+                return false;
+            }
+        }catch(PDOException $e){
+            echo "ERRORE: " . $e->getMessage();
+        }
     }
 }
 

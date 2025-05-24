@@ -87,12 +87,23 @@ class FPrenotazione{
         }
     }
 
-    public static function cancellaPrenotazione($oggetto){
-        FDataMapper::getInstance()->getDb()->beginTransaction();
-        if(FDataMapper::esiste())//DA FINIRE
-        FDataMapper::cancellaPrenotazione(self::$table, self::$key, $oggetto->getId());
+    public static function cancellaPrenotazione($id){
+       try{
+            FDataMapper::getInstance()->getDb()->beginTransaction();
 
+            if(FDataMapper::esiste(self::$table, self::$key, $id)){
+                FDataMapper::cancellaOggetto(self::$table, self::$key, $id);
+                FDataMapper::getInstance()->getDb()->commit();
+                return true;
+            }else{
+                echo "Prenotazione non esistente";
+                return false;
+            }
+        }catch(PDOException $e){
+            echo "ERRORE: " . $e->getMessage();
+        }
     }
 }
+
 
 ?>

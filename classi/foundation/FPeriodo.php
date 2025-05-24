@@ -77,12 +77,21 @@ class FPeriodo{
         }
     }
 
-    public static function cancellaPeriodo($oggetto){
-        FDataMapper::getInstance()->getDb()->beginTransaction();
-        if(FDataMapper::esiste())//DA FINIRE
-        FDataMapper::cancellaPeriodo(self::$table, self::$key, $oggetto->getId());
+    public static function cancellaPeriodo($id){
+        try{
+            FDataMapper::getInstance()->getDb()->beginTransaction();
 
+            if(FDataMapper::esiste(self::$table, self::$key, $id)){
+                FDataMapper::cancellaOggetto(self::$table, self::$key, $id);
+                FDataMapper::getInstance()->getDb()->commit();
+                return true;
+            }else{
+                echo "Periodo non esistente";
+                return false;
+            }
+        }catch(PDOException $e){
+            echo "ERRORE: " . $e->getMessage();
+        }
     }
 }
-
 ?>
