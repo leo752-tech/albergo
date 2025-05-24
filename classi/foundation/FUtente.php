@@ -8,17 +8,14 @@ class FUtente{
    
     private static $table = "utente";
    
-    private static $values = "(:idUtente,:mail,:password,:nome,:cognome,:dataN,:comuneN)";
+    private static $values = "(NULL,:nome,:cognome,:dataN,:comuneN)";
     public function __construct(){}
 
     //metodo che 
     public static function bind($stmt,$utente) { 
-        $stmt->bindValue(":idUtente", $utente->getIdUtente(), PDO::PARAM_INT);
-        $stmt->bindValue(":mail", $utente->getMail(), PDO::PARAM_STR);
-        $stmt->bindValue(":password", $utente->getPassword(), PDO::PARAM_STR);
         $stmt->bindValue(":nome", $utente->getNome(), PDO::PARAM_STR);
         $stmt->bindValue(":cognome", $utente->getCognome(), PDO::PARAM_STR);
-        $stmt->bindValue(":dataN", $utente->getDataN()->format('Y-m-d H:i:s'), PDO::PARAM_STR);
+        $stmt->bindValue(":dataN", $utente->getDataN(), PDO::PARAM_STR);
         $stmt->bindValue(":comuneN", $utente->getComuneN(), PDO::PARAM_STR);     
     }
 
@@ -38,11 +35,9 @@ class FUtente{
         return self::$values;
     }
 
-    //crea un oggetto EUtente
+    //crea un oggetto ECamera
     public static function creaUtente($queryRes){
-        $utente = new EUtente($queryRes["idUtente"], $queryRes["mail"], $queryRes["password"], $queryRes["nome"], $queryRes["cognome"], 
-        new DateTime($queryRes["dataN"]), // Converte la stringa dataN in oggetto DateTime
-        $queryRes["comuneN"]);
+        $utente = new EUtente($queryRes["nome"], $queryRes["cognome"], $queryRes["dataN"], $queryRes["comuneN"]);
         if (isset($queryRes["idUtente"])) { 
             $utente->setIdUtente($queryRes["idUtente"]);
         }
@@ -63,17 +58,20 @@ class FUtente{
     //salva l'oggetto utente se non esiste, altrimenti fa un aggiornamento
     public static function salvaUtente($oggetto , $campi = null){
         if($campi === null){
-            $utente = FDataMapper::getInstance()->salvaOggetto(self::$class, $oggetto);
-            if($utente !== null){
-                return $utente;
+            $id = FDataMapper::getInstance()->salvaOggetto(self::$class, $oggetto);
+            if($id !== null){
+                $oggetto->setIdUtente($id);
+                return $id;
             }else{
                 return false;
             }
-        }else{
+            
+            }
+        else{
             try{
                 FDataMapper::getInstance()->getDb()->beginTransaction();
                 foreach($campi as $c){
-                    FDataMapper::getInstance()->aggiornaOggetto(self::$table, $c[0], $c[1], self::$key, $oggetto->getIdCamera());
+                    FDataMapper::getInstance()->aggiornaOggetto(self::$table, $c[0], $c[1], self::$key, $oggetto->getIdUtente());
                 }
                 FDataMapper::getInstance()->getDb()->commit();
                 return true;
