@@ -3,27 +3,23 @@
 class EPrenotazione{
 
 	private ?int $idPrenotazione;
-	private $utente;
+	private $idUtente;
 	//decidere se elenco di stringhe o elenco di Utenti
-	private $utenti = array();
-	private $periodo;
-	private $camera;
+	private $idUtenti = array();
+	private $idPeriodo;
+	private $idCamera;
+	private ?int $idServizioExtra;
 	private $prezzo;
-	private ?EServizioExtra $servizio;
 	private $cancellazione = false; 
 
-	public function __construct($utente, $utenti, $periodo, $camera, ?EServizioExtra $servizio = null){
+	public function __construct($idUtente, $idUtenti, $idPeriodo, $idCamera, ?int $idServizioExtra = null, ?int $prezzo = null){
 		$this->idPrenotazione = null;
-		$this->utente = $utente;
-		$this->utenti = $utenti;
-		$this->periodo = $periodo;
-		$this->camera = $camera;
-		$this->servizio = $servizio;
-		$this->prezzo = $this->setPrezzo($periodo, $camera, $servizio);
-		//collegamento di questo oggetto con le classi EUtente e ECamera
-		$utente->setPrenotazioni($this);
-		$camera->setPrenotazioni($this);
-		$camera->setOccupazioni($this);
+		$this->idUtente = $idUtente;
+		$this->idUtenti = $idUtenti;
+		$this->idPeriodo = $idPeriodo;
+		$this->idCamera = $idCamera;
+		if($idServizioExtra != null){$this->idServizioExtra = $idServizioExtra;}
+		if($prezzo != null){$this->prezzo = $prezzo;}	
 	}
 //non ci sono i metodi setter (fatta eccezione per il prezzo che varia in maniera dinamica) perchè la prenotazione quando viene effettuata non può essere modificata, ma solo cancellata
 	public function setIdPrenotazione($idPrenotazione){
@@ -33,34 +29,27 @@ class EPrenotazione{
 		return $this->idPrenotazione;
 	}
 
-	public function getUtente(){
-		return $this->utente;
+	public function getIdUtente(){
+		return $this->idUtente;
 	}
-	public function getUtenti(){
-		return $this->utenti;
+	
+	public function getIdUtenti(){
+		return $this->idUtenti;
 	}
-	public function getPeriodo(){
-		return $this->periodo;
+	public function getIdPeriodo(){
+		return $this->idPeriodo;
 	}
-	public function getCamera(){
-		return $this->camera;
+	public function getIdCamera(){
+		return $this->idCamera;
 	}
+
 	public function getPrezzo(){
 		return $this->prezzo;
 	}
-	private function setPrezzo($periodo, $camera, $servizio){
-		$incremento = 20;
-		$incrementoServizio =  0;
-		//se c'è un servizio l'incremento del prezzo viene aggiornato
-		if(isset($servizio)){$incrementoServizio = $servizio->getPrezzo();}
-		
-		$giorni = $periodo->getLunghezza();
-		$prezzoUnitario = $camera->getPrezzo();
-		if($periodo->getTipo()=="alta"){$prezzoUnitario += $incremento;}
-		if(isset($servizio)){$prezzoUnitario += $incrementoServizio;}
-
-		return $giorni*$prezzoUnitario;
+	public function setPrezzo($prezzo){
+		$this->prezzo = $prezzo;
 	}
+
 	public function getCancellazione(){
 		return $this->cancellazione;
 	}
@@ -68,8 +57,8 @@ class EPrenotazione{
 		$this->cancellazione = true;
 	}
 
-	public function getServizio(){
-		return $this->servizio;
+	public function getIdServizioExtra(){
+		return $this->idServizioExtra;
 	}
 	
 	 
