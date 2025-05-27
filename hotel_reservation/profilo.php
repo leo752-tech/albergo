@@ -16,21 +16,7 @@ require_once 'core/UHTTP.php';
 $pageTitle = "Il Mio Profilo - Nome Hotel";
 include 'includes/header.php';
 
-// Esempio: In un'applicazione reale, qui controlleresti se l'utente è loggato
-// Se non è loggato, reindirizzi a login.php
-// session_start();
-// if (!isset($_SESSION['user_id'])) {
-//     header('Location: login.php');
-//     exit;
-// }
 
-// Esempio: Recupero dei dati utente (dovresti usare FUtente)
-// $user = FUtente::getUtenteById($_SESSION['user_id']);
-// if (!$user) {
-//     // Utente non trovato, probabilmente sessione invalida
-//     header('Location: login.php?error=invalid_session');
-//     exit;
-// }
 
 // Variabili placeholder per dimostrazione
 $nomeUtente = "Mario";
