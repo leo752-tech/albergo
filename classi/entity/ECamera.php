@@ -1,4 +1,4 @@
-q<?php
+<?php
 
 class ECamera{
 	private ?int $idCamera;

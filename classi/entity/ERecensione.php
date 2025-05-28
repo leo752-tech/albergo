@@ -7,15 +7,15 @@ class ERecensione{
 	private $valutazione;
 	private $descrizione;
 	private DateTime $data;
-	private $idUtente;
+	private $idUtenteRegistrato;
 
-	public function __construct($titolo, $valutazione, $descrizione, $data, $idUtente){
+	public function __construct($titolo, $valutazione, $descrizione, $data, $idUtenteRegistrato){
 		$this->idRecensione = null;
 		$this->titolo = $titolo;
 		$this->valutazione = $valutazione;
 		$this->descrizione = $descrizione;
 		$this->data = $data;
-		$this->idUtente = $idUtente;
+		$this->idUtenteRegistrato = $idUtenteRegistrato;
 	}
 
 	public function setId($id){

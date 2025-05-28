@@ -13,11 +13,11 @@ class EPrenotazione{
 
 	public function __construct($idUtenteRegistrato, $dataCheckIn, $dataCheckOut, $idCamera, $prezzoTotale, ?string $dataPrenotazione = null){
 		$this->idPrenotazione = null;
-		$this->idUtente = $idUtente;
+		$this->idUtenteRegistrato = $idUtenteRegistrato;
 		$this->dataCheckIn = $dataCheckIn;
 		$this->dataCheckOut = $dataCheckOut;
 		$this->idCamera = $idCamera;
-		$this->prezzo = $prezzoTotale;
+		$this->prezzoTotale = $prezzoTotale;
 		$this->dataPrenotazione = $dataPrenotazione ?? date('Y-m-d');
 	}
 
@@ -53,7 +53,7 @@ class EPrenotazione{
 		return $this->idCamera;
 	}
 	public function setIdCamera($idCamera){
-		$this->prezzo = $idCamera;
+		$this->idCamera = $idCamera;
 	}
 
 	public function getPrezzoTotale(){
