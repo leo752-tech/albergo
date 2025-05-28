@@ -1,119 +1,127 @@
-# Creazione del Database
-CREATE DATABASE IF NOT EXISTS my_database_prova;
-USE my_database_prova;
+-- Creazione del Database (se non esiste già)
+CREATE DATABASE IF NOT EXISTS `hotel_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE `hotel_db`;
 
-/*
- * Tabella: utenti
- * Rappresenta gli utenti del sistema che sono registrati e effettuano prenotazioni
- */
-CREATE TABLE IF NOT EXISTS utenti_registrati (
-    idUtente INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(100) NOT NULL,
-    cognome VARCHAR(100) NOT NULL,
-    dataN DATE NOT NULL,
-    comuneN VARCHAR(100) NOT NULL
-    mail VARCHAR(255) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL, # Conserva l'hash della password. Assicurati che la tua Entity salvi un hash.
-    idPrenotazioni VARCHAR(255) # formato json che conserva uun array dove ogni elemento corrisponde all'id di una prenotazione effettuata
-    idRecensioni VARCHAR(255) # formato json che conserva uun array dove ogni elemento corrisponde all'id di una recensione effettuata   
-);
+-- --------------------------------------------------------
 
-/*
- * Tabella: utenti
- * Rappresenta gli utenti del sistema che soggiornano nella struttura
- */
-CREATE TABLE IF NOT EXISTS utenti (
-    idUtente INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(100) NOT NULL,
-    cognome VARCHAR(100) NOT NULL,
-    dataN DATE NOT NULL,
-    comuneN VARCHAR(100) NOT NULL
-);
+--
+-- Struttura della tabella `Utente` (Ospiti / Persone)
+-- Rappresenta qualsiasi persona, sia essa registrata o solo un ospite.
+--
+CREATE TABLE `Utente` (
+  `idUtente` INT(11) NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(100) NOT NULL,
+  `cognome` VARCHAR(100) NOT NULL,
+  `dataNascita` DATE NOT NULL,
+  `comuneNascita` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`idUtente`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-/*
- * Tabella: camere
- * Rappresenta le camere disponibili nell'hotel
- */
-CREATE TABLE IF NOT EXISTS camere (
-    idCamera INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(100) NOT NULL,
-    posti INT NOT NULL,
-    prezzo DECIMAL(10, 2) NOT NULL,
-    tipo VARCHAR(50) NOT NULL # Es: 'Singola', 'Doppia', 'Suite'
-    idOccupazioni TEXT, # formato json che memorizza gli id di tutti i periodi durante i quali la camera è occupata
-    idPrenotazioni TEXT # formato json che memorizza gli id di tutte le prenotazioni effettuate su quella camera 
-);
+-- --------------------------------------------------------
 
-/*
- * Tabella: servizi_extra
- * Rappresenta i servizi aggiuntivi che possono essere prenotati
- */
-CREATE TABLE IF NOT EXISTS servizi_extra (
-    id_servizio INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(100) NOT NULL UNIQUE,
-    descrizione TEXT,
-    prezzo DECIMAL(10, 2) NOT NULL
-    idPrenotazione INT #------------------DA VEDERE-----------------
+--
+-- Struttura della tabella `UtenteRegistrato` (Account utente)
+-- Rappresenta un account con credenziali di accesso, collegato a una persona in `Utente`.
+--
+CREATE TABLE `UtenteRegistrato` (
+  `idUtenteRegistrato` INT(11) NOT NULL AUTO_INCREMENT,
+  `idUtente` INT(11) NOT NULL, -- FK a Utente.idUtente
+  `email` VARCHAR(255) NOT NULL UNIQUE,
+  `password` VARCHAR(255) NOT NULL, -- Per la password hashata
+  `ruolo` VARCHAR(50) DEFAULT 'cliente', -- Es. 'cliente', 'admin' (opzionale)
+  PRIMARY KEY (`idUtenteRegistrato`),
+  UNIQUE KEY `idx_unique_idUtente` (`idUtente`), -- Assicura 1 account per persona
+  CONSTRAINT `fk_utente_registrato_utente` FOREIGN KEY (`idUtente`) REFERENCES `Utente` (`idUtente`) ON DELETE RESTRICT ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-);
+-- --------------------------------------------------------
 
-/*
- * Tabella: prenotazioni
- * Rappresenta le prenotazioni effettuate dai clienti
- */
-CREATE TABLE IF NOT EXISTS prenotazioni (
-    idPrenotazione INT PRIMARY KEY AUTO_INCREMENT,
-    idUtente INT NOT NULL, # Utente che ha effettuato la prenotazione
-    idUtenti VARCHAR(255), # Utenti ospiti che soggiornano nella camera
-    idCamera INT NOT NULL,
-    idPeriodo INT NOT NULL,
-    idServizioExtra INT NULL, # Può essere NULL se nessun servizio extra è stato scelto
-    prezzo DECIMAL(10, 2) NOT NULL, #------------------DA VEDERE----------------------
-    dataPrenotazione DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    cancellata BOOLEAN DEFAULT FALSE,
-    
-    FOREIGN KEY (idUtente) REFERENCES utenti_registrati(idUtente) ON DELETE RESTRICT ON UPDATE CASCADE,
-    FOREIGN KEY (idCamera) REFERENCES camere(idCamera) ON DELETE RESTRICT ON UPDATE CASCADE,
-    FOREIGN KEY (idServizioExtra) REFERENCES servizi_extra(idServizioExtra) ON DELETE SET NULL ON UPDATE CASCADE
-);
+--
+-- Struttura della tabella `Camera`
+--
+CREATE TABLE `Camera` (
+  `idCamera` INT(11) NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(100) NOT NULL UNIQUE,
+  `posti` INT(11) NOT NULL,
+  `prezzoNotte` DECIMAL(10, 2) NOT NULL, -- Prezzo per una notte
+  `tipo` VARCHAR(50) NOT NULL, -- Es. 'Singola', 'Doppia', 'Suite'
+  PRIMARY KEY (`idCamera`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-/*
- * Tabella di Join: prenotazioni_utenti
- * Gestisce la relazione tra prenotazioni e utenti (gli ospiti aggiuntivi)
- */
-CREATE TABLE IF NOT EXISTS prenotazioni_utenti (
-    idPrenotazione INT NOT NULL,
-    idUtente INT NOT NULL, # ID dell'utente che ha effettuato la prenotazione  -----------DA VEDERE------------------
-    PRIMARY KEY (idPrenotazione, idUtente), # Chiave primaria composta
-    
-    FOREIGN KEY (idPrenotazione) REFERENCES prenotazioni(idPrenotazione) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (idUtente) REFERENCES utenti_registrati(idUtente) ON DELETE CASCADE ON UPDATE CASCADE
-);
+-- --------------------------------------------------------
 
-/*
- * Tabella: recensioni
- * Rappresenta le recensioni scritte dagli utenti
- */
-CREATE TABLE IF NOT EXISTS recensioni (
-    idRecensione INT PRIMARY KEY AUTO_INCREMENT,
-    idUtente INT NOT NULL, # Utente che ha scritto la recensione
-    titolo VARCHAR(255),
-    valutazione INT NOT NULL, # Es: da 1 a 5
-    descrizione TEXT,
-    dataRecensione DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    
-    FOREIGN KEY (idUtente) REFERENCES utenti_registrati(idUtente) ON DELETE CASCADE ON UPDATE CASCADE
-);
+--
+-- Struttura della tabella `Prenotazione`
+--
+CREATE TABLE `Prenotazione` (
+  `idPrenotazione` INT(11) NOT NULL AUTO_INCREMENT,
+  `idUtenteRegistrato` INT(11) NOT NULL, -- FK all'utente che ha effettuato la prenotazione
+  `idCamera` INT(11) NOT NULL,           -- FK alla camera prenotata
+  `dataCheckIn` DATE NOT NULL,
+  `dataCheckOut` DATE NOT NULL,
+  `prezzoTotale` DECIMAL(10, 2) NOT NULL,
+  `dataPrenotazione` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, -- Timestamp della creazione della prenotazione
+  `cancellata` BOOLEAN NOT NULL DEFAULT FALSE, -- Flag per il soft delete
+  PRIMARY KEY (`idPrenotazione`),
+  CONSTRAINT `fk_prenotazione_utente_registrato` FOREIGN KEY (`idUtenteRegistrato`) REFERENCES `UtenteRegistrato` (`idUtenteRegistrato`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `fk_prenotazione_camera` FOREIGN KEY (`idCamera`) REFERENCES `Camera` (`idCamera`) ON DELETE RESTRICT ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-/*
- * Tabella: periodi
- * Rappresenta i periodi di tutte le prenotazioni
-*/
-CREATE TABLE IF NOT EXISTS periodi (
-    idPeriodo INT PRIMARY KEY AUTO_INCREMENT,
-    inizio DATE NOT NULL,
-    fine DATE NOT NULL,
-    lunghezza INT NOT NULL,
-    tipo VARCHAR(255),
-    idPrenotazione #---------------DA VEDERE-------------------------------- 
-)
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `ServizioExtra`
+--
+CREATE TABLE `ServizioExtra` (
+  `idServizioExtra` INT(11) NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(100) NOT NULL UNIQUE,
+  `descrizione` TEXT,
+  `prezzo` DECIMAL(10, 2) NOT NULL,
+  PRIMARY KEY (`idServizioExtra`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella di collegamento `Prenotazione_ServizioExtra`
+-- Relazione Molti-a-Molti tra Prenotazione e ServizioExtra.
+--
+CREATE TABLE `Prenotazione_ServizioExtra` (
+  `idPrenotazione` INT(11) NOT NULL,
+  `idServizioExtra` INT(11) NOT NULL,
+  `quantita` INT(11) NOT NULL DEFAULT 1, -- Quantità del servizio extra (es. 2 colazioni)
+  PRIMARY KEY (`idPrenotazione`, `idServizioExtra`), -- Chiave composta
+  CONSTRAINT `fk_ps_prenotazione` FOREIGN KEY (`idPrenotazione`) REFERENCES `Prenotazione` (`idPrenotazione`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_ps_servizio_extra` FOREIGN KEY (`idServizioExtra`) REFERENCES `ServizioExtra` (`idServizioExtra`) ON DELETE RESTRICT ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `Recensione`
+--
+CREATE TABLE `Recensione` (
+  `idRecensione` INT(11) NOT NULL AUTO_INCREMENT,
+  `idUtenteRegistrato` INT(11) NOT NULL, -- FK all'utente registrato che ha lasciato la recensione
+  `titolo` VARCHAR(255) NOT NULL,
+  `valutazione` INT(11) NOT NULL CHECK (`valutazione` >= 1 AND `valutazione` <= 5), -- Es. da 1 a 5 stelle
+  `descrizione` TEXT,
+  `dataRecensione` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`idRecensione`),
+  CONSTRAINT `fk_recensione_utente_registrato` FOREIGN KEY (`idUtenteRegistrato`) REFERENCES `UtenteRegistrato` (`idUtenteRegistrato`) ON DELETE RESTRICT ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella di collegamento `Prenotazione_OspiteAggiuntivo`
+-- Relazione Molti-a-Molti tra una Prenotazione e gli Utenti che sono ospiti aggiuntivi.
+-- (Non è necessariamente l'UtenteRegistrato che ha fatto la prenotazione)
+--
+CREATE TABLE `Prenotazione_OspiteAggiuntivo` (
+  `idPrenotazione` INT(11) NOT NULL,
+  `idUtente` INT(11) NOT NULL, -- FK all'Utente (persona) che è ospite aggiuntivo
+  PRIMARY KEY (`idPrenotazione`, `idUtente`), -- Chiave composta
+  CONSTRAINT `fk_po_prenotazione` FOREIGN KEY (`idPrenotazione`) REFERENCES `Prenotazione` (`idPrenotazione`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_po_utente` FOREIGN KEY (`idUtente`) REFERENCES `Utente` (`idUtente`) ON DELETE RESTRICT ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
