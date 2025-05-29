@@ -46,3 +46,5 @@ class EUser{
 	}
 	public function getBirthPlace(): string{
 		return $this->birthPlace;
+	}
+	}
