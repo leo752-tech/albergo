@@ -16,8 +16,8 @@ class FReview {
         $stmt->bindValue(":title", $review->getTitle(), PDO::PARAM_STR);
         $stmt->bindValue(":rating", $review->getRating(), PDO::PARAM_INT);
         $stmt->bindValue(":description", $review->getDescription(), PDO::PARAM_STR);
-        $stmt->bindValue(":date", $review->getDate(), PDO::PARAM_STR);
-        $stmt->bindValue(":idUser", $review->getIdUser(), PDO::PARAM_INT);      
+        $stmt->bindValue(":date", $review->getDate()->format("Y-m-d"), PDO::PARAM_STR);
+        $stmt->bindValue(":idUser", $review->getIdRegisteredUser(), PDO::PARAM_INT);      
     }
 
     public static function getKey(){
@@ -56,9 +56,9 @@ class FReview {
     // Saves the review object if it doesn't exist, otherwise updates it
     public static function saveObject($object, $fields = null){
         if($fields === null){
-            FDataMapper::getInstance()->beginTransaction();
+            FDataMapper::getInstance()->getDb()->beginTransaction();
             $id = FDataMapper::getInstance()->saveObject(self::$class, $object);
-            FDataMapper::getInstance()->commit();
+            FDataMapper::getInstance()->getDb()->commit();
             if($id !== null){
                 $object->setId($id);
                 return true;

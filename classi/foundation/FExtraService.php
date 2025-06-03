@@ -6,7 +6,7 @@ class FExtraService {
 
     private static $class = "FExtraService";
     
-    private static $table = "extra_services";
+    private static $table = "extraservice";
     
     private static $values = "(NULL,:name,:description,:price)";
     
@@ -51,9 +51,9 @@ class FExtraService {
 
     public static function saveObject($object, $fields = null){
         if($fields === null){
-            FDataMapper::getInstance()->beginTransaction();
+            FDataMapper::getInstance()->getDb()->beginTransaction();
             $id = FDataMapper::getInstance()->saveObject(self::$class, $object);
-            FDataMapper::getInstance()->commit();
+            FDataMapper::getInstance()->getDb()->commit();
             if($id !== null){
                 $object->setId($id);
                 return true;

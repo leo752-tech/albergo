@@ -6,19 +6,19 @@ class FBooking {
 
     private static $class = "FBooking";
     
-    private static $table = "bookings";
+    private static $table = "booking";
     
     private static $values = "(NULL,:idUser,:start,:end,:idRoom,:price,:bookingDate,:cancellation)";
     
     public function __construct(){}
 
     public static function bind($stmt, $booking) {
-        $stmt->bindValue(":idUser", $booking->getIdUser(), PDO::PARAM_INT);
-        $stmt->bindValue(":start", $booking->getStart(), PDO::PARAM_STR);
-        $stmt->bindValue(":end", $booking->getEnd(), PDO::PARAM_STR);
+        $stmt->bindValue(":idUser", $booking->getIdRegisteredUser(), PDO::PARAM_INT);
+        $stmt->bindValue(":start", $booking->getCheckInDate()->format("Y-m-d"), PDO::PARAM_STR);
+        $stmt->bindValue(":end", $booking->getCheckOutDate()->format("Y-m-d"), PDO::PARAM_STR);
         $stmt->bindValue(":idRoom", $booking->getIdRoom(), PDO::PARAM_INT);
-        $stmt->bindValue(":price", $booking->getPrice(), PDO::PARAM_INT);
-        $stmt->bindValue(":bookingDate", $booking->getBookingDate(), PDO::PARAM_STR);
+        $stmt->bindValue(":price", $booking->getTotalPrice(), PDO::PARAM_STR);
+        $stmt->bindValue(":bookingDate", $booking->getBookingDate()->format("Y-m-d"), PDO::PARAM_STR);
         $stmt->bindValue(":cancellation", $booking->getCancellation(), PDO::PARAM_BOOL);
     }
 
@@ -55,9 +55,9 @@ class FBooking {
 
     public static function saveObject($object, $fields = null){
         if($fields === null){
-            FDataMapper::getInstance()->beginTransaction();
+            FDataMapper::getInstance()->getDb()->beginTransaction();
             $id = FDataMapper::getInstance()->saveObject(self::$class, $object);
-            FDataMapper::getInstance()->commit();
+            FDataMapper::getInstance()->getDb()->commit();
             if($id !== null){
                 $object->setId($id);
                 return true;

@@ -13,11 +13,12 @@ class FRegisteredUser {
     public function __construct(){}
 
     public static function bind($stmt, $user) {
+        $stmt->bindValue(":userId", $user->getIdUser(), PDO::PARAM_INT);
         $stmt->bindValue(":email", $user->getEmail(), PDO::PARAM_STR);
         $stmt->bindValue(":password", $user->getPassword(), PDO::PARAM_STR);
         $stmt->bindValue(":firstName", $user->getFirstName(), PDO::PARAM_STR);
         $stmt->bindValue(":lastName", $user->getLastName(), PDO::PARAM_STR);
-        $stmt->bindValue(":birthDate", $user->getBirthDate(), PDO::PARAM_STR);
+        $stmt->bindValue(":birthDate", $user->getBirthDate()->format("Y-m-d"), PDO::PARAM_STR);
         $stmt->bindValue(":birthPlace", $user->getBirthPlace(), PDO::PARAM_STR);      
     }
 

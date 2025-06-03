@@ -55,9 +55,9 @@ class FRoom{
     // saves the room object if it doesn't exist, otherwise updates it
     public static function saveObject($room, $fields = null){
         if($fields === null){
-            FDataMapper::getInstance()->beginTransaction();
+            FDataMapper::getInstance()->getDb()->beginTransaction();
             $id = FDataMapper::getInstance()->saveObject(self::$class, $room);
-            FDataMapper::getInstance()->commit();
+            FDataMapper::getInstance()->getDb()->commit();
             if($id !== null){
                 $room->setId($id);
                 return true;
