@@ -2,25 +2,25 @@
 
 class EUser{
 	
-	protected ?int $id;
+	protected ?int $idUser;
 	protected string $firstName;
 	protected string $lastName;
-	protected DateTime $birthdDate;
+	protected DateTime $birthDate;
 	protected string $birthPlace;
 
-	public function __construct(?int $id = null, string $firstName, string $lastName, DateTime $birthdDate, string $birthPlace){
-		$this->id = $id;
+	public function __construct(?int $idUser = null, string $firstName, string $lastName, DateTime $birthDate, string $birthPlace){
+		$this->idUser = $idUser;
 		$this->firstName = $firstName;
 		$this->lastName = $lastName;
-		$this->$birthdDate = $birthdDate;
-		$this->$birthPlace = $birthPlace;
+		$this->birthDate = $birthDate;
+		$this->birthPlace = $birthPlace;
 	}
 
-	public function setId(?int $id){
-		$this->id = $id;
+	public function setIdUser(?int $id){
+		$this->idUser = $id;
 	}
-	public function getId(): ?int{
-		return $this->id;
+	public function getIdUser(): ?int{
+		return $this->idUser;
 	}
 
 	public function setFirstName(string $firstName){
@@ -35,11 +35,11 @@ class EUser{
 	public function getLastName(): string{
 		return $this->lastName;
 	}
-	public function setBirthdDate(DateTime $birthdDate){
-		$this->birthdDate = $birthdDate;
+	public function setBirthDate(DateTime $birthDate){
+		$this->birthDate = $birthDate;
 	}
-	public function getBirthdDate(): DateTime{
-		return $this->birthdDate;
+	public function getBirthDate(): DateTime{
+		return $this->birthDate;
 	}
 	public function setBirthPlace(string $birthPlace){
 		$this->birthPlace = $birthPlace;
@@ -47,4 +47,5 @@ class EUser{
 	public function getBirthPlace(): string{
 		return $this->birthPlace;
 	}
-	}
+
+}

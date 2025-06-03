@@ -2,24 +2,24 @@
 
 class ERegisteredUser extends EUser{
 	
-	private ?int $id;
+	private ?int $idRegisteredUser;
 	private string $email;
 	private string $password;
 
-	public function __construct(?int $id = null, ?int $userId = null, string $email, string $password, string $firstName, string $lastName, DateTime $dateOfBirth, string $placeOfBirth){
+	public function __construct(?int $idRegisteredUser = null, ?int $userId = null, string $email, string $password, string $firstName, string $lastName, DateTime $dateOfBirth, string $placeOfBirth){
 		parent::__construct($userId, $firstName, $lastName, $dateOfBirth, $placeOfBirth);
 
 		$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-		$this->id = $id;
+		$this->idRegisteredUser = $idRegisteredUser;
 		$this->email = $email;
 		$this->password = $hashedPassword;
 	}
 
-	public function setId(?int $id){
-		$this->id = $id;
+	public function setIdRegisteredUser(?int $id){
+		$this->idRegisteredUser = $id;
 	}
-	public function getId(): ?int{
-		return $this->id;
+	public function getIdRegisteredUser(): ?int{
+		return $this->idRegisteredUser;
 	}
 
 	public function setEmail(string $email){

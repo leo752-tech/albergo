@@ -3,77 +3,77 @@
 class EBooking {
 
 	private ?int $idBooking;
-	private $idRegisteredUser;
+	private int $idRegisteredUser;
 	private DateTime $checkInDate;
 	private DateTime $checkOutDate;
-	private $idRoom;
-	private $totalPrice;
+	private int $idRoom;
+	private float $totalPrice;
 	private DateTime $bookingDate;
-	private $cancellation = false;
+	private bool $cancellation = false;
 
-	public function __construct($idRegisteredUser, $checkInDate, $checkOutDate, $idRoom, $totalPrice, ?string $bookingDate = null){
-		$this->idBooking = null;
+	public function __construct(?int $idBooking = null, int $idRegisteredUser, DateTime $checkInDate, DateTime $checkOutDate, int $idRoom, float $totalPrice, ?DateTime $bookingDate = null){
+		$this->idBooking = $idBooking;
 		$this->idRegisteredUser = $idRegisteredUser;
 		$this->checkInDate = $checkInDate;
 		$this->checkOutDate = $checkOutDate;
 		$this->idRoom = $idRoom;
 		$this->totalPrice = $totalPrice;
-		$this->bookingDate = $bookingDate ?? date('Y-m-d');
+		$this->bookingDate = $bookingDate ?? new DateTime();
 	}
 
-	public function getId(){
+	public function getId(): ?int{
 		return $this->idBooking;
 	}
-	public function setId($idBooking){
+	public function setId(int $idBooking){
 		$this->idBooking = $idBooking;
 	}
 
-	public function getIdRegisteredUser(){
+	public function getIdRegisteredUser(): int{
 		return $this->idRegisteredUser;
 	}
-	public function setIdRegisteredUser($idRegisteredUser){
+	public function setIdRegisteredUser(int $idRegisteredUser){
 		$this->idRegisteredUser = $idRegisteredUser;
 	}
 
-	public function getCheckInDate(){
+	public function getCheckInDate(): DateTime{
 		return $this->checkInDate;
 	}
-	public function setCheckInDate($checkInDate){
+	public function setCheckInDate(DateTime $checkInDate){
 		$this->checkInDate = $checkInDate;
 	}
 
-	public function getCheckOutDate(){
+	public function getCheckOutDate(): DateTime{
 		return $this->checkOutDate;
 	}
-	public function setCheckOutDate($checkOutDate){
+	public function setCheckOutDate(DateTime $checkOutDate){
 		$this->checkOutDate = $checkOutDate;
 	}
 
-	public function getIdRoom(){
+	public function getIdRoom(): int{
 		return $this->idRoom;
 	}
-	public function setIdRoom($idRoom){
+	public function setIdRoom(int $idRoom){
 		$this->idRoom = $idRoom;
 	}
 
-	public function getTotalPrice(){
+	public function getTotalPrice(): float{
 		return $this->totalPrice;
 	}
-	public function setTotalPrice($totalPrice){
+	public function setTotalPrice(float $totalPrice){
 		$this->totalPrice = $totalPrice;
 	}
 
-	public function getBookingDate(){
+	public function getBookingDate(): DateTime{
 		return $this->bookingDate;
 	}
-	public function setBookingDate($bookingDate){
+	public function setBookingDate(DateTime $bookingDate){
 		$this->bookingDate = $bookingDate;
 	}
 
-	public function getCancellation(){
+	public function getCancellation(): bool{
 		return $this->cancellation;
 	}
-	public function setCancellation($cancellation){
+	public function setCancellation(bool $cancellation){
 		$this->cancellation = $cancellation;
 	}
 }

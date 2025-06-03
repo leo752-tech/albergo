@@ -1,23 +1,23 @@
 <?php
 
 class EExtraService{
-	private ?int $id;
+	private ?int $idExtraService;
 	private string $name;
 	private string $description;
 	private float $price;
 
-	public function __construct(string $name, string $description, float $price){
-		$this->id = null;
+	public function __construct(?int $idExtraService = null, string $name, string $description, float $price){
+		$this->idExtraService = $idExtraService;
 		$this->name = $name;
 		$this->description = $description;
 		$this->price = $price;
 	}
 
 	public function setId(int $id){
-		$this->id = $id;
+		$this->idExtraService = $id;
 	}
 	public function getId(): ?int{
-		return $this->id;
+		return $this->idExtraService;
 	}
 
 	public function setName(string $name){

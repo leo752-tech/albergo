@@ -1,14 +1,14 @@
 <?php
 
 class ERoom{
-    private ?int $id;
+    private ?int $idRoom;
     private string $name;
     private int $beds;
-    private int $price;
-    private $type;
+    private float $price;
+    private string $type;
 
-    public function __construct(string $name, int $beds, int $price, $type){
-        $this->id = null;
+    public function __construct(?int $idRoom = null, string $name, int $beds, float $price, string $type){
+        $this->idRoom = $idRoom;
         $this->name = $name;
         $this->beds = $beds;
         $this->price = $price;
@@ -16,10 +16,10 @@ class ERoom{
     }
 
     public function setId(int $id){
-        $this->id = $id;
+        $this->idRoom = $id;
     }
     public function getId(): ?int{
-        return $this->id;
+        return $this->idRoom;
     }
 
     public function setName(string $name){
@@ -36,17 +36,17 @@ class ERoom{
         return $this->beds;
     }
 
-    public function setPrice(int $price){
+    public function setPrice(float $price){
         $this->price = $price;
     }
-    public function getPrice(): int{
+    public function getPrice(): float{
         return $this->price;
     }
 
     public function setType(string $type){
         $this->type = $type;
     }
-    public function getType(){
+    public function getType(): string{
         return $this->type;
     }
 }

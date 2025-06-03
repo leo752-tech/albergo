@@ -2,27 +2,27 @@
 
 class EReview{
 
-	private ?int $id;
+	private ?int $idReview;
 	private string $title;
 	private int $rating;
 	private string $description;
 	private DateTime $date;
-	private int $userId;
+	private int $idRegisteredUser;
 
-	public function __construct(string $title, int $rating, string $description, DateTime $date, int $userId){
-		$this->id = null;
+	public function __construct(?int $idReview = null, string $title, int $rating, string $description, DateTime $date, int $idRegisteredUser){
+		$this->idReview = $idReview;
 		$this->title = $title;
 		$this->rating = $rating;
 		$this->description = $description;
 		$this->date = $date;
-		$this->userId = $userId;
+		$this->idRegisteredUser = $idRegisteredUser;
 	}
 
 	public function setId(int $id){
-		$this->id = $id;
+		$this->idReview = $id;
 	}
 	public function getId(): ?int{
-		return $this->id;
+		return $this->idReview;
 	}
 
 	public function setTitle(string $title){
@@ -53,11 +53,11 @@ class EReview{
 		return $this->date;
 	}
 
-	public function setUserId(int $userId){
-		$this->userId = $userId;
+	public function setIdRegisteredUser(int $idRegisteredUser){
+		$this->idRegisteredUser = $idRegisteredUser;
 	}
-	public function getUserId(): int{
-		return $this->userId;
+	public function getIdRegisteredUser(): int{
+		return $this->idRegisteredUser;
 	}
 }
 
