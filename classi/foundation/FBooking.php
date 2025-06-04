@@ -8,20 +8,10 @@ class FBooking {
     
     private static $table = "booking";
     
-    /*private static $values = "(NULL,:idRegisteredUser,:checkInDate,:checkOutDate,:idRoom,:totalPrice,:bookingDate,:cancellation)";
     
     public function __construct(){}
 
-    public static function bind($stmt, $booking) {
-        $stmt->bindValue(":idRegisteredUser", $booking->getIdRegisteredUser(), PDO::PARAM_INT);
-        $stmt->bindValue(":checkInDate", $booking->getCheckInDate()->format("Y-m-d"), PDO::PARAM_STR);
-        $stmt->bindValue(":checkOutDate", $booking->getCheckOutDate()->format("Y-m-d"), PDO::PARAM_STR);
-        $stmt->bindValue(":idRoom", $booking->getIdRoom(), PDO::PARAM_INT);
-        $stmt->bindValue(":totalPrice", $booking->getTotalPrice(), PDO::PARAM_STR);
-        $stmt->bindValue(":bookingDate", $booking->getBookingDate()->format("Y-m-d"), PDO::PARAM_STR);
-        $stmt->bindValue(":cancellation", $booking->getCancellation(), PDO::PARAM_BOOL);
-    }*/
-        private static $values = "(NULL, :idRegisteredUser, :idRoom, :checkInDate, :checkOutDate, :totalPrice, :bookingDate, :cancellation)";
+    private static $values = "(NULL, :idRegisteredUser, :idRoom, :checkInDate, :checkOutDate, :totalPrice, :bookingDate, :cancellation)";
 
     public static function bind($stmt, $booking) {
         $stmt->bindValue(":idRegisteredUser", $booking->getIdRegisteredUser(), PDO::PARAM_INT);
