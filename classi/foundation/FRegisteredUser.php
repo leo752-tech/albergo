@@ -95,7 +95,13 @@ class FRegisteredUser {
             try {
                 FDataMapper::getInstance()->getDb()->beginTransaction();
                 foreach($fields as $f){
-                    FDataMapper::getInstance()->updateObject(self::$table, $f[0], $f[1], self::$key, $object->getIdRegisteredUser());
+                    $fieldName = $f[0];   
+                    $fieldValue = $f[1];  
+
+                    if ($fieldValue instanceof DateTime) {
+                        $fieldValue = $fieldValue->format("Y-m-d"); 
+                    }
+                    FDataMapper::getInstance()->updateObject(self::$table, $fieldName, $fieldValue, self::$key, $object->getIdRegisteredUser());
                 }
                 FDataMapper::getInstance()->getDb()->commit();
                 return true;

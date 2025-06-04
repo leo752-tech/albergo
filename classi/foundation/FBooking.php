@@ -15,7 +15,7 @@ class FBooking {
 
     public static function bind($stmt, $booking) {
         $stmt->bindValue(":idRegisteredUser", $booking->getIdRegisteredUser(), PDO::PARAM_INT);
-        $stmt->bindValue(":idRoom", $booking->getIdRoom(), PDO::PARAM_INT); // <<< Spostato idRoom prima delle date
+        $stmt->bindValue(":idRoom", $booking->getIdRoom(), PDO::PARAM_INT); 
         $stmt->bindValue(":checkInDate", $booking->getCheckInDate()->format("Y-m-d"), PDO::PARAM_STR);
         $stmt->bindValue(":checkOutDate", $booking->getCheckOutDate()->format("Y-m-d"), PDO::PARAM_STR);
         $stmt->bindValue(":totalPrice", $booking->getTotalPrice(), PDO::PARAM_STR);
@@ -40,7 +40,7 @@ class FBooking {
     }
 
     public static function createObject($queryRes){
-        $booking = new EBooking($queryRes["idBooking"], $queryRes["idRegisteredUser"], $queryRes["checkInDate"], $queryRes["checkOutDate"], $queryRes["idRoom"], $queryRes["totalprice"], $queryRes["bookingDate"], $queryRes["cancellation"]);
+        $booking = new EBooking($queryRes["idBooking"], $queryRes["idRegisteredUser"], new dateTime($queryRes["checkInDate"]), new dateTime( $queryRes["checkOutDate"]), $queryRes["idRoom"], $queryRes["totalPrice"], new dateTime($queryRes["bookingDate"]), (bool)$queryRes["cancellation"]);
         return $booking;
     }
 
@@ -69,7 +69,13 @@ class FBooking {
             try {
                 FDataMapper::getInstance()->getDb()->beginTransaction();
                 foreach($fields as $f){
-                    FDataMapper::getInstance()->updateObject(self::$table, $f[0], $f[1], self::$key, $object->getId());
+                    $fieldName = $f[0];   
+                    $fieldValue = $f[1];  
+
+                if ($fieldValue instanceof DateTime) {
+                    $fieldValue = $fieldValue->format("Y-m-d"); 
+                }
+                    FDataMapper::getInstance()->updateObject(self::$table, $fieldName, $fieldValue, self::$key, $object->getId());
                 }
                 FDataMapper::getInstance()->getDb()->commit();
                 return true;

@@ -65,19 +65,26 @@ class FUser {
                 return false;
             }
         } else {
-            try {
-                FDataMapper::getInstance()->getDb()->beginTransaction();
-                foreach($fields as $c){
-                    FDataMapper::getInstance()->updateObject(self::$table, $c[0], $c[1], self::$key, $object->getIdUser());
-                }
-                FDataMapper::getInstance()->getDb()->commit();
-                return true;
-            } catch(PDOException $e){
-                echo "ERROR " . $e->getMessage();
-                FDataMapper::getInstance()->getDb()->rollBack();
-                return false;
+    try {
+        FDataMapper::getInstance()->getDb()->beginTransaction();
+        foreach($fields as $c){ 
+            $fieldName = $c[0];   
+            $fieldValue = $c[1];  
+
+            // Questo blocco converte l'oggetto DateTime in una stringa se è un oggetto DateTime
+            if ($fieldValue instanceof DateTime) {
+                $fieldValue = $fieldValue->format("Y-m-d"); 
             }
+            FDataMapper::getInstance()->updateObject(self::$table, $fieldName, $fieldValue, self::$key, $object->getIdUser());
         }
+        FDataMapper::getInstance()->getDb()->commit();
+        return true;
+    } catch(PDOException $e){
+        echo "ERROR " . $e->getMessage();
+        FDataMapper::getInstance()->getDb()->rollBack();
+        return false;
+    }
+}
     }
 
     // Deletes an object from the database
