@@ -82,7 +82,7 @@ class FReview {
     }
 
     // Deletes an object from the database
-    public static function deleteReview($id){
+    public static function deleteObject($id){
         try {
             FDataMapper::getInstance()->getDb()->beginTransaction();
 

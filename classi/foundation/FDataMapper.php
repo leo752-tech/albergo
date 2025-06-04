@@ -95,6 +95,7 @@ class FDataMapper {
             return null;
         }
     }
+    
 
     public static function deleteObject($table, $field, $id){
         try {

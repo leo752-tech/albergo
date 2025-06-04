@@ -81,7 +81,7 @@ class FRoom{
     }
 
     // deletes an object from the db
-    public static function deleteRoom($id){
+    public static function deleteObject($id){
         try {
             FDataMapper::getInstance()->getDb()->beginTransaction();
 

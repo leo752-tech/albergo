@@ -15,10 +15,10 @@ class ERoom{
         $this->type = $type;
     }
 
-    public function setId(int $id){
+    public function setIdRoom(int $id){
         $this->idRoom = $id;
     }
-    public function getId(): ?int{
+    public function getIdRoom(): ?int{
         return $this->idRoom;
     }
 

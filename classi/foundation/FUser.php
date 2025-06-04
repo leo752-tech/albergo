@@ -37,7 +37,7 @@ class FUser {
 
     // Creates an EUser object
     public static function createObject($queryRes){
-        $user = new EUser($queryRes["idUser"], $queryRes["firstName"], $queryRes["lastName"], $queryRes["birthDate"], $queryRes["birthPlace"]);
+        $user = new EUser($queryRes["idUser"], $queryRes["firstName"], $queryRes["lastName"], new dateTime ($queryRes["birthDate"]), $queryRes["birthPlace"]);
         return $user;
     }
 
@@ -68,7 +68,7 @@ class FUser {
             try {
                 FDataMapper::getInstance()->getDb()->beginTransaction();
                 foreach($fields as $c){
-                    FDataMapper::getInstance()->updateObject(self::$table, $c[0], $c[1], self::$key, $object->getId());
+                    FDataMapper::getInstance()->updateObject(self::$table, $c[0], $c[1], self::$key, $object->getIdUser());
                 }
                 FDataMapper::getInstance()->getDb()->commit();
                 return true;
@@ -81,7 +81,7 @@ class FUser {
     }
 
     // Deletes an object from the database
-    public static function deleteUser($id){
+    public static function deleteObject($id){
         try {
             FDataMapper::getInstance()->getDb()->beginTransaction();
 

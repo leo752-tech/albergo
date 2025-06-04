@@ -8,16 +8,27 @@ class FBooking {
     
     private static $table = "booking";
     
-    private static $values = "(NULL,:idUser,:start,:end,:idRoom,:price,:bookingDate,:cancellation)";
+    /*private static $values = "(NULL,:idRegisteredUser,:checkInDate,:checkOutDate,:idRoom,:totalPrice,:bookingDate,:cancellation)";
     
     public function __construct(){}
 
     public static function bind($stmt, $booking) {
-        $stmt->bindValue(":idUser", $booking->getIdRegisteredUser(), PDO::PARAM_INT);
-        $stmt->bindValue(":start", $booking->getCheckInDate()->format("Y-m-d"), PDO::PARAM_STR);
-        $stmt->bindValue(":end", $booking->getCheckOutDate()->format("Y-m-d"), PDO::PARAM_STR);
+        $stmt->bindValue(":idRegisteredUser", $booking->getIdRegisteredUser(), PDO::PARAM_INT);
+        $stmt->bindValue(":checkInDate", $booking->getCheckInDate()->format("Y-m-d"), PDO::PARAM_STR);
+        $stmt->bindValue(":checkOutDate", $booking->getCheckOutDate()->format("Y-m-d"), PDO::PARAM_STR);
         $stmt->bindValue(":idRoom", $booking->getIdRoom(), PDO::PARAM_INT);
-        $stmt->bindValue(":price", $booking->getTotalPrice(), PDO::PARAM_STR);
+        $stmt->bindValue(":totalPrice", $booking->getTotalPrice(), PDO::PARAM_STR);
+        $stmt->bindValue(":bookingDate", $booking->getBookingDate()->format("Y-m-d"), PDO::PARAM_STR);
+        $stmt->bindValue(":cancellation", $booking->getCancellation(), PDO::PARAM_BOOL);
+    }*/
+        private static $values = "(NULL, :idRegisteredUser, :idRoom, :checkInDate, :checkOutDate, :totalPrice, :bookingDate, :cancellation)";
+
+    public static function bind($stmt, $booking) {
+        $stmt->bindValue(":idRegisteredUser", $booking->getIdRegisteredUser(), PDO::PARAM_INT);
+        $stmt->bindValue(":idRoom", $booking->getIdRoom(), PDO::PARAM_INT); // <<< Spostato idRoom prima delle date
+        $stmt->bindValue(":checkInDate", $booking->getCheckInDate()->format("Y-m-d"), PDO::PARAM_STR);
+        $stmt->bindValue(":checkOutDate", $booking->getCheckOutDate()->format("Y-m-d"), PDO::PARAM_STR);
+        $stmt->bindValue(":totalPrice", $booking->getTotalPrice(), PDO::PARAM_STR);
         $stmt->bindValue(":bookingDate", $booking->getBookingDate()->format("Y-m-d"), PDO::PARAM_STR);
         $stmt->bindValue(":cancellation", $booking->getCancellation(), PDO::PARAM_BOOL);
     }
@@ -39,7 +50,7 @@ class FBooking {
     }
 
     public static function createObject($queryRes){
-        $booking = new EBooking($queryRes["idBooking"], $queryRes["userId"], $queryRes["start"], $queryRes["end"], $queryRes["roomId"], $queryRes["price"], $queryRes["bookingDate"], $queryRes["cancellation"]);
+        $booking = new EBooking($queryRes["idBooking"], $queryRes["idRegisteredUser"], $queryRes["checkInDate"], $queryRes["checkOutDate"], $queryRes["idRoom"], $queryRes["totalprice"], $queryRes["bookingDate"], $queryRes["cancellation"]);
         return $booking;
     }
 
@@ -82,7 +93,7 @@ class FBooking {
         }
     }
 
-    public static function deleteBooking($id){
+    public static function deleteObject($id){
         try {
             FDataMapper::getInstance()->getDb()->beginTransaction();
 

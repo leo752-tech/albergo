@@ -40,9 +40,9 @@ class FRegisteredUser {
 
     // Creates an ERegisteredUser object
     public static function createObject($queryRes){
-        $user = new ERegisteredUser($queryRes["idRegisteredUser"], $queryRes["userId"], $queryRes["email"], $queryRes["password"], $queryRes["firstName"], $queryRes["lastName"], $queryRes["birthDate"], $queryRes["birthCity"]);
+        $user = new ERegisteredUser($queryRes["idRegisteredUser"], $queryRes["idUser"], $queryRes["email"], $queryRes["password"], $queryRes["firstName"], $queryRes["lastName"], new dateTime($queryRes["birthDate"]), $queryRes["birthPlace"]);
         if (isset($queryRes["password"])) {
-            $user->setHashPassword($queryRes["password"]);
+            $user->setHashedPassword($queryRes["password"]);
         }
         return $user;
     }
@@ -108,7 +108,7 @@ class FRegisteredUser {
     }
 
     // Deletes an object from the database
-    public static function deleteUser($id){
+    public static function deleteObject($id){
         try {
             FDataMapper::getInstance()->getDb()->beginTransaction();
 

@@ -76,7 +76,7 @@ class FExtraService {
         }
     }
 
-    public static function deleteExtraService($id){
+    public static function deleteObject($id){
        try {
             FDataMapper::getInstance()->getDb()->beginTransaction();
 
