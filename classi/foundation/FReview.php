@@ -38,7 +38,7 @@ class FReview {
 
     // Creates an EReview object
     public static function createReview($queryRes){
-        $review = new EReview($queryRes["idReview"], $queryRes["title"], $queryRes["rating"], $queryRes["description"], $queryRes["date"], $queryRes["userId"]);
+        $review = new EReview($queryRes["idReview"], $queryRes["title"], $queryRes["rating"], $queryRes["description"], new dateTime($queryRes["date"]), $queryRes["idRegisteredUser"]);
         return $review;
     }
 
@@ -69,7 +69,13 @@ class FReview {
             try {
                 FDataMapper::getInstance()->getDb()->beginTransaction();
                 foreach($fields as $f){
-                    FDataMapper::getInstance()->updateObject(self::$table, $f[0], $f[1], self::$key, $object->getId());
+                    $fieldName = $f[0];   
+                    $fieldValue = $f[1];  
+
+                    if ($fieldValue instanceof DateTime) {
+                        $fieldValue = $fieldValue->format("Y-m-d"); 
+                    }
+                    FDataMapper::getInstance()->updateObject(self::$table, $fieldName, $fieldValue, self::$key, $object->getId());
                 }
                 FDataMapper::getInstance()->getDb()->commit();
                 return true;
