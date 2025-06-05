@@ -7,11 +7,6 @@ class CRoom{
         $result = FPersistentManager::getIstance()->saveObject($room);
         //reindirizzamento alla pagina precedente
 
-    }
-    
-
-=======
-class CRoom {
     public static function createRoom(){
         //oggetto view
         $room= new ERoom(null, UHTTP::post("name"), UHTTP::post("beds"), UHTTP::post("price"), UHTTP::post("type"));
