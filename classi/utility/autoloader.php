@@ -11,7 +11,10 @@ function my_autoloader($className) {
             break;
         case 'U':
             include_once(__DIR__ . "/../Utility/" . $className . '.php' );   
-        // ... altri casi ...
+        case 'C':
+            include_once(__DIR__ . '/../control/' . $className . '.php' );
+            break;
+        
         
     }
 }
