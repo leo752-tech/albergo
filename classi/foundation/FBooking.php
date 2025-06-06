@@ -119,7 +119,30 @@ class FBooking {
         }
     }
 
+    //da vedere se va bene
+    public static function getBookingsByUser(int $idRegisteredUser): array {
+        try {
+            $rawBookings = FDataMapper::getInstance()->select('booking','idRegisteredUser',$idRegisteredUser);
 
-}
+            $bookings = [];
+            if (!empty($rawBookings)) {
+                
+                foreach ($rawBookings as $row) {
+                    
+                    $booking = new EBooking($row['idBooking'],$row['idRegisteredUser'],$row['idRoom'],new DateTime($row['checkInDate']), new DateTime($row['checkOutDate']), $row['totalPrice'],new DateTime($row['bookingDate']), (bool)$row['cancellation'] );
+                    $bookings[] = $booking;
+                }
+            }
+            return $bookings; 
+            
+        } catch(PDOException $e){
+            echo "ERROR: " . $e->getMessage();
+        }
+        }
+    }
+
+
+
+
 
 ?>
