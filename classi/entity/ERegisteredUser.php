@@ -6,8 +6,8 @@ class ERegisteredUser extends EUser{
 	private string $email;
 	private string $password;
 
-	public function __construct(?int $idRegisteredUser = null, ?int $userId = null, string $email, string $password, string $firstName, string $lastName, DateTime $dateOfBirth, string $placeOfBirth){
-		parent::__construct($userId, $firstName, $lastName, $dateOfBirth, $placeOfBirth);
+	public function __construct(?int $idRegisteredUser = null, ?int $userId = null, string $email, string $password, string $firstName, string $lastName, DateTime $birthDate, string $birthPlace){
+		parent::__construct($userId, $firstName, $lastName, $birthDate, $birthPlace);
 
 		$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 		$this->idRegisteredUser = $idRegisteredUser;
