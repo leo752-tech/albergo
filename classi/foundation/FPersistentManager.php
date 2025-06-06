@@ -55,6 +55,11 @@ class FPersistentManager {
         $user = FRegisteredUser::getUserByEmail($email);
         return $user;
     }
+
+    public static function getAllUsers(){
+        $users = FUser::getAllUsers();
+        return $users;
+    }
 //------------------ROOM METHODS--------------------------------------
     public static function getAllRooms(){
         $rooms = FRoom::getAllRooms();
