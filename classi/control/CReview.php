@@ -10,22 +10,6 @@ class CReview {
         return $result;
     }
 
-    public static function updateReview($id) {
-        //oggetto view
-        $changes = array();
-        foreach(['text', 'rating'] as $field) {
-            $change = array();
-            if (UHTTP::post($field) !== null) {
-                $change[] = $field;
-                $change[] = UHTTP::post($field);
-                $changes[] = $change;
-            }
-        }
-        $review = FPersistentManager::getInstance()->getObject('EReview', $id);        
-        $result = FPersistentManager::getInstance()->updateObject($review, $changes);
-        //ritorna alla pagina precedente
-        return $result;
-    }
 
     public static function deleteReview($id) {
         //oggetto view
