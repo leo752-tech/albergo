@@ -104,6 +104,21 @@ class FReview {
             echo "ERROR: " . $e->getMessage();
         }
     }
+
+    public static function getAll(){
+        try{
+            FDataMapper::getInstance()->getDb()->beginTransaction();
+            $reviews = FDataMapper::getInstance()->selectAll(self::$table);
+            FDataMapper::getInstance()->getDb()->commit();
+            return $reviews;
+
+        }catch(PDOException $e){
+            echo "ERROR: " . $e-getMessage();
+        }
+    }
+
+
+
 }
 
 ?>

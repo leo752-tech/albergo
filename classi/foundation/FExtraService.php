@@ -92,6 +92,16 @@ class FExtraService {
             echo "ERROR: " . $e->getMessage();
         }
     }
+
+    public static function getAll(){
+        try{
+            $result = FDataMapper::getInstance()->selectAll(self::$table);
+            return $result;
+
+        }catch(PDOException $e){
+            echo "ERROR: " . $e->getMessage();
+        }
+    }
 }
 
 ?>

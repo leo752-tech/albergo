@@ -75,6 +75,7 @@ class FPersistentManager {
         $bookings = FBooking::getBookingsByRoom($idRoom);
         return $bookings;
     }
+<<<<<<< HEAD
        public static function getBookingsByUser(int $idRegisteredUser): array {
         return FBooking::getBookingsByUser($idRegisteredUser);
     }
@@ -82,6 +83,27 @@ class FPersistentManager {
         $bookings = self::getBookingsByUser($idRegisteredUser);
         return !empty($bookings); // Se l'array di prenotazioni non è vuoto, significa che ne ha.
     }
+=======
+
+//------------------BOOKING METHOD------------------------------------
+    public static function getBookingsByPrice($price1, $price2){
+        $bookings = FBooking::getBookingsByPrice($price1, $price2);
+        return $bookings;
+    }
+
+//----------------EXTRASERVICE AND BOOKING METHOD---------------------
+    public static function getBookingsExtraServices(){
+        $result = FExtraService::getAll();
+        return $result;
+    } 
+
+//-------------------REVIEW METHODS-----------------------------------
+    public static function getAllReview(){
+        $reviews = FReview::getAll();
+        return $reviews;
+    }
+
+>>>>>>> a695fc938aab7bcace002fd54960233b3c13be31
 }
 
 ?>

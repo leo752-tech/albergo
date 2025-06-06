@@ -153,6 +153,28 @@ class FDataMapper {
         }
     }
 
+    public static function selectBetween($table, $field, $id1, $id2) {
+        try {
+            $query = "SELECT * FROM " . $table . " WHERE " . $field . " BETWEEN " . $id1 . " AND " . $id2 . ";";
+            $stmt = self::$db->prepare($query);
+            $stmt->execute();
+            $num = $stmt->rowCount();
+            if($num > 0){
+                $result = array();
+                $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                while ($row = $stmt->fetch()){
+                    $result[] = $row;
+                }
+                return $result;
+            } else {
+                return array();
+            }
+        } catch(Exception $e){
+            echo "ERROR " . $e->getMessage();
+            return array();
+        }
+    }
+
 
 }
 

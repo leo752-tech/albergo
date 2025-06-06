@@ -119,6 +119,7 @@ class FBooking {
         }
     }
 
+<<<<<<< HEAD
     //da vedere se va bene
     public static function getBookingsByUser(int $idRegisteredUser): array {
         try {
@@ -143,6 +144,21 @@ class FBooking {
 
 
 
+=======
+    public static function getBookingsByPrice($price1,$price2){
+        try {
+            FDataMapper::getInstance()->getDb()->beginTransaction();
+
+            $bookings = FDataMapper::getInstance()->selectBetween(self::$table, "totalPrice", $price1, $price2);
+            FDataMapper::getInstance()->getDb()->commit();
+            if(count($bookings)>0){return $bookings;}
+            else{return $bookings = array();}
+        } catch(PDOException $e){
+            echo "ERROR: " . $e->getMessage();
+        }
+    }
+
+>>>>>>> a695fc938aab7bcace002fd54960233b3c13be31
 
 
 ?>
