@@ -76,6 +76,24 @@ class FPersistentManager {
         return $bookings;
     }
 
+//------------------BOOKING METHOD------------------------------------
+    public static function getBookingsByPrice($price1, $price2){
+        $bookings = FBooking::getBookingsByPrice($price1, $price2);
+        return $bookings;
+    }
+
+//----------------EXTRASERVICE AND BOOKING METHOD---------------------
+    public static function getBookingsExtraServices(){
+        $result = FExtraService::getAll();
+        return $result;
+    } 
+
+//-------------------REVIEW METHODS-----------------------------------
+    public static function getAllReview(){
+        $reviews = FReview::getAll();
+        return $reviews;
+    }
+
 }
 
 ?>
