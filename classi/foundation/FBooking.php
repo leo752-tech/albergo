@@ -119,7 +119,6 @@ class FBooking {
         }
     }
 
-<<<<<<< HEAD
     //da vedere se va bene
     public static function getBookingsByUser(int $idRegisteredUser): array {
         try {
@@ -140,11 +139,10 @@ class FBooking {
             echo "ERROR: " . $e->getMessage();
         }
         }
-    }
+    
 
 
 
-=======
     public static function getBookingsByPrice($price1,$price2){
         try {
             FDataMapper::getInstance()->getDb()->beginTransaction();
@@ -157,8 +155,7 @@ class FBooking {
             echo "ERROR: " . $e->getMessage();
         }
     }
-
->>>>>>> a695fc938aab7bcace002fd54960233b3c13be31
+}
 
 
 ?>
