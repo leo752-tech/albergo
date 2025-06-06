@@ -45,5 +45,15 @@ class CUser{
             return false;
         }
     }
+    public static function getAllUser(){
+        $users = FPersistentManager::getInstance()->getAllUsers();
+        //visualizzazione
+    }
+
+    public static function insertUser(){
+        //oggetto view
+        $user = new EUser(null, UHTTP::post("firstName"), UHTTP::post("lastName"), new DateTime(UHTTP::post("birthDate")), UHTTP::post("birthPlace"));
+        $result = FPersistentManager::getiInstance()->saveObject($user);
+    }
 	
 }
