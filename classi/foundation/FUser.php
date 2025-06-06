@@ -104,6 +104,11 @@ class FUser {
             echo "ERROR: " . $e->getMessage();
         }
     }
+
+    public static function getAllUsers(){
+        $users = FDataMapper::getInstance()->selectAll(self::$table);
+        return $users;
+    }
 }
 
 ?>

@@ -105,6 +105,21 @@ class FBooking {
             echo "ERROR: " . $e->getMessage();
         }
     }
+
+    public static function getBookingsByRoom($idRoom){
+        try {
+            FDataMapper::getInstance()->getDb()->beginTransaction();
+
+            $rooms = FDataMapper::getInstance()->select(self::$table, "idRoom", $idRoom);
+            FDataMapper::getInstance()->getDb()->commit();
+            if(count($rooms)>0){return $rooms;}
+            else{return $rooms = array();}
+        } catch(PDOException $e){
+            echo "ERROR: " . $e->getMessage();
+        }
+    }
+
+
 }
 
 ?>

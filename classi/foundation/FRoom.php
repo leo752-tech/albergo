@@ -13,9 +13,9 @@ class FRoom{
     public function __construct(){}
 
     public static function bind($stmt,$room) {
-        $stmt->bindValue(":name", $room->getName(), PDO::PARAM_INT);
+        $stmt->bindValue(":name", $room->getName(), PDO::PARAM_STR);
         $stmt->bindValue(":beds", $room->getBeds(), PDO::PARAM_INT);
-        $stmt->bindValue(":price", $room->getPrice(), PDO::PARAM_INT);
+        $stmt->bindValue(":price", $room->getPrice(), PDO::PARAM_STR);
         $stmt->bindValue(":type", $room->getType(), PDO::PARAM_STR);
     }
 
@@ -107,11 +107,12 @@ class FRoom{
         $rooms = self::getAllRooms();
         $availableRooms = array();
         foreach ($rooms as $queryRes){
-            if($queryRes["beds"]<=$beds){
+            if($beds <= $queryRes["beds"]){
                 $room = new ERoom($queryRes["idRoom"], $queryRes["name"], $queryRes["beds"], $queryRes["price"], $queryRes["type"]);
                 $availableRooms[] = $room;
             }
         }
+        echo "M: " . count($availableRooms);
         return $availableRooms;
     }
 }

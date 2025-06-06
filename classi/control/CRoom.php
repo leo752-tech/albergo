@@ -25,12 +25,14 @@ class CRoom{
         //ritorna alla pagina precedente
         return $result;
     }
+    
     public static function deleteRoom($id){
         //oggetto view
         $result=FPersistentManager::getInstance()->deleteObject('ERoom', $id);
         //ritorna alla pagina precedente
         return $result;
     }
+
     public static function getAllRooms(){
         //oggetto view
         $rooms=FPersistentManager::getInstance()->getAllRooms();

@@ -56,10 +56,26 @@ class FPersistentManager {
         return $user;
     }
 
+    public static function getAllUsers(){
+        $users = FUser::getAllUsers();
+        return $users;
+    }
+//------------------ROOM METHODS--------------------------------------
     public static function getAllRooms(){
         $rooms = FRoom::getAllRooms();
         return $rooms;
     }
+
+    public static function getRoomsByBeds($beds){
+        $rooms = FRoom::getRoomsByBeds($beds);
+        return $rooms;
+    }
+
+    public static function getBookingsByRoom($idRoom){
+        $bookings = FBooking::getBookingsByRoom($idRoom);
+        return $bookings;
+    }
+
 }
 
 ?>
