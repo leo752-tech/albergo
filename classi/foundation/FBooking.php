@@ -119,7 +119,6 @@ class FBooking {
         }
     }
 
-    //da vedere se va bene
     public static function getBookingsByUser(int $idRegisteredUser): array {
         try {
             $rawBookings = FDataMapper::getInstance()->select('booking','idRegisteredUser',$idRegisteredUser);
