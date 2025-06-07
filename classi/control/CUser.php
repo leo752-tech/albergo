@@ -29,11 +29,11 @@ class CUser{
         $email = UHTTP::post("email");
         $password = UHTTP::post("password");
 
-        if(FPersistentManager::userExists($email)){
-            $user = FPersistentManager::getInstance()->retrieveUser($email);
+        if(FPersistentManager::getInstance()->userExists($email)){
+            $registeredUser = FPersistentManager::getInstance()->retrieveUser($email);
             if(password_verify($password, $registeredUser->getPassword())){
                 USession::getInstance();
-                USession::setSessionElement("user", $registeredUser->getIdRegisteredUser());
+                USession::setSessionElement("idUser", $registeredUser->getIdRegisteredUser());
                 header("Location: home page path");
                 exit();
                 echo "LOGIN SUCCESSFUL";

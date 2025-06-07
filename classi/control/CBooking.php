@@ -51,4 +51,8 @@ class CBooking {
         return $isAvailable;
 
     }
+
+    public static function makeBooking(){
+        
+    }
 }

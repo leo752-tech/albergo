@@ -60,7 +60,7 @@ class FUser {
             FDataMapper::getInstance()->getDb()->commit();
             if($id !== null){
                 $object->setIdUser($id);
-                return true;
+                return $id;
             } else {
                 return false;
             }
