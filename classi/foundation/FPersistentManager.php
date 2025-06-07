@@ -78,15 +78,14 @@ class FPersistentManager {
         return $rooms;
     }
 
-    public static function getBookingsByRoom($idRoom){
-        $bookings = FBooking::getBookingsByRoom($idRoom);
-        return $bookings;
-    }
-
-
 //------------------BOOKING METHOD------------------------------------
     public static function getBookingsByPrice($price1, $price2){
         $bookings = FBooking::getBookingsByPrice($price1, $price2);
+        return $bookings;
+    }
+
+    public static function getBookingsByRoom($idRoom){
+        $bookings = FBooking::getBookingsByRoom($idRoom);
         return $bookings;
     }
 
