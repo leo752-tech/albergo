@@ -4,22 +4,20 @@ class CReview {
 
     public static function createReview() {
         //oggetto view
-        $review = new EReview(null, $title=UHTTP::post("title"), $rating=UHTTP::post("rating"),$description=UHTTP::post("description"),$date=new dateTime(UHTTP::post("date")), $idRegisteredUser=UHTTP::post("idRegisteredUser"));
-        if (empty($title) || empty($rating) ||empty($description) || empty($date) || empty($idRegisteredUser)) {
+        $review = new EReview(null, UHTTP::post("title"), UHTTP::post("rating"),UHTTP::post("description"), new DateTime(UHTTP::post("date")), USession::getSessionElement("idRegisteredUser"));
+        if (empty(UHTTP::post("title")) || empty(UHTTP::post("rating")) ||empty(UHTTP::post("description")) || empty(UHTTP::post("date"))) {
             echo "ERROR: All fields (title, rating, date, user ID) are required.";
             return false;
         }
-        $rating = (int)$rating; 
-        if ($rating < 1 || $rating > 5) {
-            echo "ERROR: The rating must be an integer between 1 and 5.";
-            return false;}
-        if (!FPersistentManager::getInstance()->hasBookings($idRegisteredUser)) {
-            echo "ERROR: You cannot leave a review because you have no registered bookings.";
-            return false;
+        else{
+            $rating = (int)UHTTP::post("rating"); 
+            if (FPersistentManager::getInstance()->hasBookings($idRegisteredUser)) {
+                $result = FPersistentManager::getInstance()->saveObject($review);
+                //ritorna alla pagina precedente
+                return $result;
+            }
         }
-        $result = FPersistentManager::getInstance()->saveObject($review);
-        //ritorna alla pagina precedente
-        return $result;
+        
     }
 
 

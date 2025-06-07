@@ -4,6 +4,7 @@ class CUser{
 
     public function __construct(){}
 
+    //TESTATO
     public static function registration(){
         //creazione oggetto view
         if(!FPersistentManager::userExists(UHTTP::post("email"))){
@@ -23,7 +24,7 @@ class CUser{
         }
     }
     
-
+    //TESTATO
     public static function login(){
         //oggetto view 
         $email = UHTTP::post("email");
@@ -34,7 +35,8 @@ class CUser{
             if(password_verify($password, $registeredUser->getPassword())){
                 USession::getInstance();
                 USession::setSessionElement("idUser", $registeredUser->getIdRegisteredUser());
-                header("Location: home page path");
+                //header("Location: home page path");
+                echo "LOGIN SUCCESSFUL";
                 exit();
                 echo "LOGIN SUCCESSFUL";
                 return true;

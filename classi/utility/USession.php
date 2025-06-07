@@ -1,5 +1,5 @@
 <?php
-require_once(__DIR__ . '/../../../../config/config.php');
+require_once  "C:\Users\momok\Documents\Programmazione_web\progetto\albergo2.0\albergo\classi\config\config.php";
 /**
  * class to access to the $_SESSION superglobal array, you Must use this class instead of using directly the array
  */

@@ -7,10 +7,10 @@ function my_autoloader($className) {
             include_once(__DIR__ . '/../entity/' . $className . '.php' );
             break;
         case 'F':
-            include_once(__DIR__ . "/../Foundation/" . $className . '.php' );
+            include_once(__DIR__ . "/../foundation/" . $className . '.php' );
             break;
         case 'U':
-            include_once(__DIR__ . "/../Utility/" . $className . '.php' );   
+            include_once(__DIR__ . "/../utility/" . $className . '.php' );   
             break;
         case 'C':
             include_once(__DIR__ . "/../control/" . $className . '.php' );
