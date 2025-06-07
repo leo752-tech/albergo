@@ -65,6 +65,7 @@ CREATE TABLE `Booking` (
   `totalPrice` DECIMAL(10, 2) NOT NULL,
   `bookingDate` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, -- Timestamp of booking creation
   `cancellation` BOOLEAN NOT NULL DEFAULT FALSE, -- Flag for soft delete
+  'idSpecialOffer' INT(11),
   PRIMARY KEY (`idBooking`),
   CONSTRAINT `fk_booking_registered_user` FOREIGN KEY (`idRegisteredUser`) REFERENCES `RegisteredUser` (`idRegisteredUser`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `fk_booking_room` FOREIGN KEY (`idRoom`) REFERENCES `Room` (`idRoom`) ON DELETE RESTRICT ON UPDATE CASCADE
@@ -111,4 +112,18 @@ CREATE TABLE `Review` (
   `idRegisteredUser` INT(11) NOT NULL -- FK to the registered user who left the review
   PRIMARY KEY (`idReview`),
   CONSTRAINT `fk_review_registered_user` FOREIGN KEY (`idRegisteredUser`) REFERENCES `RegisteredUser` (`idRegisteredUser`) ON DELETE RESTRICT ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- -------------------------------------------------------------
+
+-- Table structure for 'SpecialOffer'
+
+CREATE TABLE 'SpecialOffer'(
+  'idSpecialOffer' INT(11) NOT NULL AUTO_INCREMENT,
+  'title' VARCHAR(255) NOT NULL,
+  'description' TEXT NOT NULL,
+  'length' INT(11) NOT NULL,
+  'specialPrice' DECIMAL(10, 2) NOT NULL,
+  PRIMARY KEY('idSpecialOffer') 
+
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
