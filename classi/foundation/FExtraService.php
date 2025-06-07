@@ -102,6 +102,19 @@ class FExtraService {
             echo "ERROR: " . $e->getMessage();
         }
     }
+
+    public static function getExtraServiceByUsed($id){
+        try {
+            FDataMapper::getInstance()->getDb()->beginTransaction();
+
+            $extraServices = FDataMapper::getInstance()->select("booking_extraservice", "idExtraService", $id);
+            FDataMapper::getInstance()->getDb()->commit();
+            if(count($extraServices)>0){return $extraServices;}
+            else{return $extraServices = array();}
+        } catch(PDOException $e){
+            echo "ERROR: " . $e->getMessage();
+        }
+    }
 }
 
 ?>

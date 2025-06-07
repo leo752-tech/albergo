@@ -10,9 +10,10 @@ class CStatistics{
             $checkIn = new DateTime($book["checkInDate"]);
             $checkOut = new DateTime($book["checkOutDate"]);
             $length = $checkIn->diff($checkOut);
-            $occupied += $length;
+            $occupied += $length->days;
         }
         //decidere come impostare total
+        $total = 1;
         return $occupied/$total;
         //visualizzazione
     }
@@ -25,7 +26,7 @@ class CStatistics{
             $checkIn = new DateTime($book["checkInDate"]);
             $checkOut = new DateTime($book["checkOutDate"]);
             $length = $checkIn->diff($checkOut);
-            $occupied += $length;
+            $occupied += $length->days;
         }
         return $occupied/count($bookings);
         //visualizzazione
@@ -47,8 +48,10 @@ class CStatistics{
         $totalRevenue = 0;
         $bookings = FPersistentManager::getInstance()->getBookingsByRoom($id);
         foreach($bookings as $book){
-            $revenue = $book["totalPrice"];
-            $totalRevenue += $revenue;
+            if($book["cancellation"]!=true){
+                $revenue = $book["totalPrice"];
+                $totalRevenue += $revenue;
+            }
         }
         return $totalRevenue;
     }
@@ -58,6 +61,7 @@ class CStatistics{
         $service = FPersistentManager::getInstance()->getObject("EExtraService", $idExtraService);
         $nServices = count($result);
         $price = $service->getPrice();
+        echo "nServece: " . $nServices . " Price: " . $price;
         return $nServices*$price;
 
     }
@@ -94,22 +98,31 @@ class CStatistics{
     public static function frequentKeyword(){
         $reviews = FPersistentManager::getInstance()->getAllReview();
         $words = array();
+        $arrayWords = array();
+        //fetching all the description as phrases
         foreach($reviews as $review){
             $arrayWords[] = str_word_count($review["description"], 1);
-            foreach($arrayWords as $word){$words[] = $word;}
         }
+
+        //fetching all phrases as words
+        foreach($arrayWords as $phrase){
+            foreach($phrase as $word){
+                $words[] = $word;
+            }
+        }
+
         $frequentWords = array();
         foreach($words as $wordX){
             foreach($words as $word){
-                if($wordX == $word && $frequentWords[$wordX]==null){$frequentWords[$wordX] = 1;}
-                else{$frequentWords[$wordX] += 1;}
+                if($wordX == $word && !isset($frequentWords[$wordX])){$frequentWords[$wordX] = 1;}
+                elseif($wordX == $word && isset($frequentWords[$wordX])){$frequentWords[$wordX] += 1;}
             }
-        }
+        }/*
         foreach($frequentWords as $value){
             if($value < 10){
                 unset($value);
             }
-        }
+        }*/
 
         return $frequentWords;
 

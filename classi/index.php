@@ -2,13 +2,18 @@
 
 include_once "C:\Users\momok\Documents\Programmazione_web\progetto\albergo2.0\albergo\classi\utility\autoloader.php";
 
-$b1 = new EBooking(null,3, new DateTime("01-07-2025"), new DateTime("10-07-2025"),12, 100.0, null);
-//$result = FPersistentManager::getInstance()->saveObject($b1);
-$b2 = new EBooking(null,3, new DateTime("01-08-2025"), new DateTime("10-08-2025"),12, 150.0, null);
-//$result = FPersistentManager::getInstance()->saveObject($b2);
+$result = FPersistentManager::getInstance()->getObject("EBooking",18);
+$checkIn = $result->getCheckInDate(); 
+$checkOut = $result->getCheckOutDate(); 
+$requestIn = new DateTime("2026-01-25");
+$requestOut = new DateTime("2026-02-02");
 
-//$rooms = CBooking::getAvailableRooms(new DateTime("2025-07-05"), new DateTime("2025-08-05"), 3);
+$rooms = CBooking::getAvailableRooms($requestIn, $requestOut, 4);
+foreach($rooms as $room){
+    echo $room->getName() . "<br>";
+}
 
-//foreach($rooms as $room){echo $room->getName();}
-
-$data1 = new DateTime("2025-01-01");
+/*
+$r = CBooking::isAvailableRoom($requestIn, $requestOut, $checkIn, $checkOut);
+if($r==true){echo "DISPONIBILE";}
+else{echo "OCCUPATA";}*/

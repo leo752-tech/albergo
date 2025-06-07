@@ -90,8 +90,8 @@ class FPersistentManager {
     }
 
 //----------------EXTRASERVICE AND BOOKING METHOD---------------------
-    public static function getBookingsExtraServices(){
-        $result = FExtraService::getAll();
+    public static function getBookingsExtraServices($idExtraService){
+        $result = FExtraService::getExtraServiceByUsed($idExtraService);
         return $result;
     } 
 
