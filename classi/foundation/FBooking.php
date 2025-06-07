@@ -11,7 +11,7 @@ class FBooking {
     
     public function __construct(){}
 
-    private static $values = "(NULL, :idRegisteredUser, :idRoom, :checkInDate, :checkOutDate, :totalPrice, :bookingDate, :cancellation)";
+    private static $values = "(NULL, :idRegisteredUser, :idRoom, :checkInDate, :checkOutDate, :totalPrice, :bookingDate, :cancellation, :idSpecialOffer)";
 
     public static function bind($stmt, $booking) {
         $stmt->bindValue(":idRegisteredUser", $booking->getIdRegisteredUser(), PDO::PARAM_INT);
@@ -21,6 +21,7 @@ class FBooking {
         $stmt->bindValue(":totalPrice", $booking->getTotalPrice(), PDO::PARAM_STR);
         $stmt->bindValue(":bookingDate", $booking->getBookingDate()->format("Y-m-d"), PDO::PARAM_STR);
         $stmt->bindValue(":cancellation", $booking->getCancellation(), PDO::PARAM_BOOL);
+        $stmt->bindValue(":idSpecialOffer", $booking->getIdSpecialOffer(), PDO::PARAM_INT);
     }
 
     public static function getKey(){
@@ -40,7 +41,7 @@ class FBooking {
     }
 
     public static function createObject($queryRes){
-        $booking = new EBooking($queryRes["idBooking"], $queryRes["idRegisteredUser"], new dateTime($queryRes["checkInDate"]), new dateTime( $queryRes["checkOutDate"]), $queryRes["idRoom"], $queryRes["totalPrice"], new dateTime($queryRes["bookingDate"]), (bool)$queryRes["cancellation"]);
+        $booking = new EBooking($queryRes["idBooking"], $queryRes["idRegisteredUser"], new DateTime($queryRes["checkInDate"]), new DateTime( $queryRes["checkOutDate"]), $queryRes["idRoom"], $queryRes["totalPrice"], new DateTime($queryRes["bookingDate"]), $queryRes["idSpecialOffer"]);
         return $booking;
     }
 

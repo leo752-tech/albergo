@@ -10,8 +10,9 @@ class EBooking {
 	private float $totalPrice;
 	private DateTime $bookingDate;
 	private bool $cancellation = false;
+	private ?int $idSpecialOffer;
 
-	public function __construct(?int $idBooking = null, int $idRegisteredUser, DateTime $checkInDate, DateTime $checkOutDate, int $idRoom, float $totalPrice, ?DateTime $bookingDate = null){
+	public function __construct(?int $idBooking = null, int $idRegisteredUser, DateTime $checkInDate, DateTime $checkOutDate, int $idRoom, float $totalPrice, ?DateTime $bookingDate = null, ?int $idSpecialOffer = null){
 		$this->idBooking = $idBooking;
 		$this->idRegisteredUser = $idRegisteredUser;
 		$this->checkInDate = $checkInDate;
@@ -19,6 +20,7 @@ class EBooking {
 		$this->idRoom = $idRoom;
 		$this->totalPrice = $totalPrice;
 		$this->bookingDate = $bookingDate ?? new DateTime();
+		$this->idSpecialOffer = $idSpecialOffer;
 	}
 
 	public function getId(): ?int{
@@ -75,6 +77,13 @@ class EBooking {
 	}
 	public function setCancellation(bool $cancellation){
 		$this->cancellation = $cancellation;
+	}
+
+	public function getIdSpecialOffer(): ?int{
+		return $this->idSpecialOffer;
+	}
+	public function setIdSpecialOffer(int $idSpecialOffer){
+		$this->idSpecialOffer = $idSpecialOffer;
 	}
 }
 
