@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dettagli Giorno</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #e6f7ff;
+            margin: 0;
+            color: #333;
+        }
+        .content-container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+        }
+        h1 {
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .back-link {
+            margin-top: 30px;
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .back-link:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="content-container">
+        <h1 id="pageTitle"></h1>
+        <div id="dayDetails">
+            </div>
+    </div>
+    <a href="index.html" class="back-link">Torna al Calendario</a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const dateString = params.get('date'); // Ottiene la data dal parametro URL
+
+            const pageTitle = document.getElementById('pageTitle');
+            const dayDetails = document.getElementById('dayDetails');
+
+            if (dateString) {
+                const [year, month, day] = dateString.split('-').map(Number);
+                const dateObj = new Date(year, month - 1, day); // Month è 0-indexed in JS
+
+                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                const readableDate = dateObj.toLocaleDateString('it-IT', options);
+
+                pageTitle.textContent = `Dettagli per il ${readableDate}`;
+
+                // --- Generazione di dati fittizi in base alla data ---
+                let content = `
+                    <p>Oggi, ${readableDate}, i dati fittizi per questa data sono:</p>
+                    <ul>
+                        <li>**Evento:** Controllo generale degli impianti dell'albergo.</li>
+                        <li>**Note:** Preparazione per la stagione estiva.</li>
+                        <li>**Temperatura prevista:** ${18 + (day % 10)}°C, ${day % 2 === 0 ? 'parzialmente nuvoloso' : 'soleggiato'}.</li>
+                        <li>**Prenotazioni Albergo:** ${5 + (day % 7)} check-in, ${2 + (day % 5)} check-out.</li>
+                    </ul>
+                `;
+
+                // Puoi aggiungere logica più complessa per dati fittizi, ad esempio:
+                if (day === 15 && month === 6) { // 15 Giugno
+                    content += `<p><strong>Oggi è la Giornata Mondiale del Vento!</strong></p>`;
+                }
+                if (day === 25 && month === 12) { // 25 Dicembre
+                    content = `<p><strong>Buon Natale!</strong> Oggi l'albergo è in festa.</p>`;
+                }
+                if (year === 2028 && month === 2 && day === 29) { // 29 Febbraio 2028 (anno bisestile)
+                    content += `<p>È un giorno speciale: oggi è il 29 Febbraio!</p>`;
+                }
+
+
+                dayDetails.innerHTML = content;
+
+            } else {
+                pageTitle.textContent = "Nessuna data selezionata.";
+                dayDetails.innerHTML = "<p>Per visualizzare i dettagli, seleziona un giorno dal calendario.</p>";
+            }
+        });
+    </script>
+</body>
+</html>
