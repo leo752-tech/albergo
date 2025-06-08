@@ -1,3 +1,13 @@
+<?php
+// File: C:\xampp\htdocs\albergo2.0\albergo\index.php
+
+// Includi il file di configurazione per ottenere la chiave pubblica di Stripe
+require_once "C:\Users\momok\Documents\Programmazione_web\progetto\albergo2.0\albergo\classi\config\config.php";
+
+// Ottieni la chiave pubblica da usare nel JavaScript
+$publicKey = publicKey;
+?>
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -50,7 +60,7 @@
     <script>
         // Inizializza Stripe con la tua CHIAVE PUBBLICA di test
         // SOSTITUISCI 'pk_test_YOUR_PUBLISHABLE_KEY' con la tua chiave pubblica di test reale di Stripe
-        var stripe = Stripe('publicKey');
+        var stripe = Stripe('<?php echo htmlspecialchars($publicKey); ?>');
 
         // Crea un'istanza di Elements.
         var elements = stripe.elements();

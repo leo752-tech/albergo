@@ -1,5 +1,6 @@
 <?php
 require_once 'C:\Users\momok\Documents\Programmazione_web\progetto\albergo2.0\albergo\classi\config\config.php'; // Includi il file di configurazione
+$publicKey = publicKey;
 ?>
 
 <form action="/process-payment.php" method="post" id="payment-form">
@@ -12,7 +13,7 @@ require_once 'C:\Users\momok\Documents\Programmazione_web\progetto\albergo2.0\al
 <script src="https://js.stripe.com/v3/"></script>
 <script>
   // Inizializza Stripe con la tua chiave pubblica
-  var stripe = Stripe('publicKey'); // Chiave pubblica di test
+  var stripe = Stripe('<?php echo htmlspecialchars($publicKey); ?>'); // Chiave pubblica di test
 
   var elements = stripe.elements();
   var card = elements.create('card');

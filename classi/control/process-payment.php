@@ -2,7 +2,8 @@
 require_once 'vendor/autoload.php'; // Carica le dipendenze di Composer
 require_once "C:\Users\momok\Documents\Programmazione_web\progetto\albergo2.0\albergo\classi\config\config.php";
 
-\Stripe\Stripe::setApiKey('privateKey'); // Chiave segreta (DEVE essere protetta)
+
+\Stripe\Stripe::setApiKey(privateKey); // Chiave segreta (DEVE essere protetta)
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $paymentMethodId = $_POST['paymentMethodId'] ?? null;
