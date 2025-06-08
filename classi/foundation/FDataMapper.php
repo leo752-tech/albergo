@@ -95,6 +95,22 @@ class FDataMapper {
             return null;
         }
     }
+
+    public static function saveBookingsExtraServices($booking, $extraService)
+    {
+        try {
+            $query = "INSERT INTO " . "booking_extraservice" . " VALUES " . "(NULL,:idBooking,:idExtraService)";
+            $stmt = self::$db->prepare($query);
+            $stmt->bindValue("idBooking", $booking->getId(), PDO::PARAM_INT);
+            $stmt->bindValue("idExtraService", $extraService->getId(), PDO::PARAM_INT);    
+            $stmt->execute();
+            $id = self::$db->lastInsertId();
+            return $id;
+        } catch(Exception $e){
+            echo "ERROR: " . $e->getMessage();
+            return null;
+        }
+    }
     
 
     public static function deleteObject($table, $field, $id){

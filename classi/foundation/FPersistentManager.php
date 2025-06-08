@@ -93,7 +93,12 @@ class FPersistentManager {
     public static function getBookingsExtraServices($idExtraService){
         $result = FExtraService::getExtraServiceByUsed($idExtraService);
         return $result;
-    } 
+    }
+    
+    public static function setBookingsExtraServices($idBooking, $idExtraService){
+        $result = FExtraService::saveBookingsExtraServices($idBooking, $idExtraService);
+        return $result;
+    }
 
 //-------------------REVIEW METHODS-----------------------------------
     public static function getAllReview(){

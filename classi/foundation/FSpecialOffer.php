@@ -58,7 +58,7 @@ class FSpecialOffer{
             FDataMapper::getInstance()->getDb()->commit();
             if($id !== null){
                 $object->setId($id);
-                return true;
+                return $id;
             } else {
                 return false;
             }

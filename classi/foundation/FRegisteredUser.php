@@ -86,7 +86,7 @@ class FRegisteredUser {
             FDataMapper::getInstance()->getDb()->commit();
             if($id !== null){
                 $object->setIdRegisteredUser($id);
-                return true;
+                return $id;
             } else {
                 return false;
             }

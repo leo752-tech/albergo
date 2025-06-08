@@ -76,6 +76,24 @@ class FExtraService {
         }
     }
 
+    public static function saveBookingsExtraServices($booking, $extraService){
+        try{
+            FDataMapper::getInstance()->getDb()->beginTransaction();
+            $id = FDataMapper::getInstance()->saveBookingsExtraServices($booking, $extraService);
+            FDataMapper::getInstance()->getDb()->commit();
+            if($id !== null){
+                return $id;
+            } else {
+                return null;
+            }
+
+        }catch(PDOException $e){
+            echo "ERROR: " . $e->getMessage();
+        }
+    }
+
+    
+
     public static function deleteObject($id){
        try {
             FDataMapper::getInstance()->getDb()->beginTransaction();
@@ -104,6 +122,19 @@ class FExtraService {
     }
 
     public static function getExtraServiceByUsed($id){
+        try {
+            FDataMapper::getInstance()->getDb()->beginTransaction();
+
+            $extraServices = FDataMapper::getInstance()->select("booking_extraservice", "idExtraService", $id);
+            FDataMapper::getInstance()->getDb()->commit();
+            if(count($extraServices)>0){return $extraServices;}
+            else{return $extraServices = array();}
+        } catch(PDOException $e){
+            echo "ERROR: " . $e->getMessage();
+        }
+    }
+
+    public static function setExtraServiceByUsed($idBooking, $idExtraService){
         try {
             FDataMapper::getInstance()->getDb()->beginTransaction();
 

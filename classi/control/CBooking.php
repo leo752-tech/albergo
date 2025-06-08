@@ -56,15 +56,17 @@ class CBooking {
 
     }
 
-    //DA MODIFICARE IN BASE ALA GRAFICA
     public static function makeBooking(){
-        $totalPrice = self::calculatePrice(DateTime $checkIn, DateTime $checkOut, $price, $idExtraService, $idSpecialOffer);
-        $book = new EBooking(null, USession::getSessionElement("idRegisteredUser"), DateTime $checkInDate, DateTime $checkOutDate, int $idRoom, float $totalPrice, ?DateTime $bookingDate = null, ?int $idSpecialOffer = null);
-        $result = FPersistentManager::getInstance()->saveObject($book);
-        if($extraService!=null){
-            $result = FPersistentManager::getInstance()->saveObject($book);
-            //continua...
+        if(CUser::isLogged()){
+            $booking = new EBooking(null, USession::getSessionElement("idUser"), new DateTime(UHTTP::post("checkIn")), new DateTime(UHTTP::post("checkOut")), UHTTP::post("idRoom"), $totalPrice, null, null);
+            $idBooking = FPersistentManager::getInstance()->saveObject($booking);
+            if(UHTTP::post("idExtraService")!=null){
+                $result1 = FPersistentManager::getInstance()->setBookingsExtraService($idBooking, UHTTP::post("idExtraService"));        
+            }
         }
+
+        
+
     }
 
     private static function calculatePrice(DateTime $checkIn, DateTime $checkOut, float $price, ?int $idExtraService = null, ?int $idSpecialOffer){

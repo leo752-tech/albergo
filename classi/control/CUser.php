@@ -4,6 +4,25 @@ class CUser{
 
     public function __construct(){}
 
+    public static function isLogged()
+    {
+        $logged = false;
+
+        if(UCookie::isSet("PHPSESSID")){
+            if(session_status() == PHP_SESSION_NONE){
+                USession::getInstance();
+            }
+        }
+        if(USession::isSetSessionElement("user")){
+            $logged = true;
+        }
+        if(!$logged){
+            header("Location: /Agora/User/login");
+            exit;
+        }
+        return true;
+    }
+
     //TESTATO
     public static function registration(){
         //creazione oggetto view
@@ -36,9 +55,8 @@ class CUser{
                 USession::getInstance();
                 USession::setSessionElement("idUser", $registeredUser->getIdRegisteredUser());
                 //header("Location: home page path");
-                echo "LOGIN SUCCESSFUL";
+                echo "LOGIN SUCCESSFUL  USER LOGGED WITH ID: " . USession::getSessionElement("idUser");
                 exit();
-                echo "LOGIN SUCCESSFUL";
                 return true;
             }else{echo "WRONG PASSWORD";
                 return false;}
