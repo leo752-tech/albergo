@@ -15,6 +15,9 @@ function my_autoloader($className) {
         case 'C':
             include_once(__DIR__ . "/../control/" . $className . '.php' );
             break;
+        case 'V':
+            include_once(__DIR__ . '/../view/' . $className . '.php');
+            break;
         
     }
 }

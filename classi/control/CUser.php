@@ -1,5 +1,5 @@
 <?php
-
+include_once('C:\Users\momok\Documents\Programmazione_web\progetto\albergo2.0\albergo\classi\view\VUserschizz.php');
 class CUser{
 
     public function __construct(){}
@@ -65,6 +65,12 @@ class CUser{
             return false;
         }
     }
+
+    public static function home(){
+        $user = new VUserschizz();
+        $user->home();
+    }
+    
     public static function getAllUser(){
         $users = FPersistentManager::getInstance()->getAllUsers();
         //visualizzazione
