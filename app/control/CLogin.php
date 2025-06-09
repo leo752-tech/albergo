@@ -1,0 +1,4 @@
+<?php
+
+
+$result=CUser::home();
