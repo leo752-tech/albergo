@@ -3,7 +3,7 @@
 //require('C:\Users\momok\Documents\Programmazione_web\slide\20_Smarty\20_Smarty\20_smarty-esercitazione\View\smarty\libs\Smarty.class.php');
 
 
-class VUserschizz{
+class VUser{
 
     private $smarty;
     private $path;
@@ -21,15 +21,17 @@ class VUserschizz{
         $this->smarty->display('home.tpl');
     }
 
-    /**
-     * Funzione che indirizza alla pagina con il form di login.
-     * @throws SmartyException
-     */
-    /*
-    public function showLoginForm(){
-        $this->smarty->assign('error', false);
-        $this->smarty->assign('ban',false);
-        $this->smarty->assign('regErr',false);
+    public function showFormsLogin(){
         $this->smarty->display('login.tpl');
-    }*/
+    }
+
+    public function showUsers($users){
+        $this->smarty->assign('users', $users);
+        $this->smarty->display();
+    }
+
+    public function insertUser($user){
+        $this->smarty->assign('user', $user);
+        $this->smarty->display();
+    }
 }

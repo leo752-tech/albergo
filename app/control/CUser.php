@@ -42,6 +42,11 @@ class CUser{
             return false;
         }
     }
+
+    public static function showFormsLogin(){
+        $view = new VUser();
+        $view->showFormsLogin();
+    }
     
     //TESTATO
     public static function login(){
@@ -65,21 +70,23 @@ class CUser{
             return false;
         }
     }
-
+    //DA VEDERE
     public static function home(){
-        $user = new VUserschizz();
+        $user = new VUser();
         $user->home();
     }
     
     public static function getAllUser(){
+        $view = new VUser();
         $users = FPersistentManager::getInstance()->getAllUsers();
-        //visualizzazione
+        $view->showUsers($users);
     }
 
     public static function insertUser(){
-        //oggetto view
+        $view = new VUser();
         $user = new EUser(null, UHTTP::post("firstName"), UHTTP::post("lastName"), new DateTime(UHTTP::post("birthDate")), UHTTP::post("birthPlace"));
         $result = FPersistentManager::getiInstance()->saveObject($user);
+        $view->insertUser($user);
     }
 	
 }

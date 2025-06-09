@@ -3,14 +3,14 @@
 class CRoom{
 
     public static function createRoom(){
-        //oggetto view
+        $view = new VRoom();
         $room= new ERoom(null, UHTTP::post("name"), UHTTP::post("beds"), UHTTP::post("price"), UHTTP::post("type"));
         $result=FPersistentManager::getInstance()->saveObject($room);
-        //ritorna alla pagina precedente
+        $view->createRoom();
         return $result;
     }
     public static function updateRoom($id){
-        //oggetto view
+        $view = new VRoom();
         $changes= array();
         foreach(['name', 'beds', 'price', 'type'] as $field) {
             $change=array();
@@ -22,21 +22,21 @@ class CRoom{
         }
         $room=FPersistentManager::getInstance()->getObject('ERoom', $id);        
         $result=FPersistentManager::getInstance()->updateObject($room, $changes);
-        //ritorna alla pagina precedente
+        $view->createRoom();
         return $result;
     }
     
     public static function deleteRoom($id){
-        //oggetto view
+        $view = new VRoom();
         $result=FPersistentManager::getInstance()->deleteObject('ERoom', $id);
-        //ritorna alla pagina precedente
+        $view->deleteRoom($id);
         return $result;
     }
 
     public static function getAllRooms(){
-        //oggetto view
+        $view = new VRoom();
         $rooms=FPersistentManager::getInstance()->getAllRooms();
         return $rooms;
-        //pagina con tutte le camere
+        $view->showRooms($rooms);
     }
 }

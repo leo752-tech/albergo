@@ -21,7 +21,7 @@
                     <li><a href="prenota.php">Prenota Ora</a></li>
                     <li><a href="recensioni.php">Recensioni</a></li>
                     <li><a href="contatti.php">Contatti</a></li>
-                    <li><a href="login.php" class="btn btn-primary">Accedi/Registrati</a></li>
+                    <li><a href="~momok/Programmazione_web/progetto/albergoPulito/public/User/showFormsLogin" class="btn btn-primary">Accedi/Registrati</a></li>
                 </ul>
             </nav>
             <button class="mobile-menu-toggle">☰</button>

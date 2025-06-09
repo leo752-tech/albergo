@@ -3,7 +3,7 @@
 class CStatistics{
 
     public static function roomOccupancyRate($id){
-        //oggetto view
+        $view = new VStatistics();
         $occupied = 0;
         $bookings = FPersistentManager::getInstance()->getBookingsByRoom($id);
         foreach($bookings as $book){
@@ -14,12 +14,12 @@ class CStatistics{
         }
         //decidere come impostare total
         $total = 1;
+        $view->roomOccupancyRate($occupied, $total);
         return $occupied/$total;
-        //visualizzazione
     }
 
     public static function nightsPerStay($id){
-        //oggetto view
+        $view = new VStatistics();
         $occupied = 0;
         $bookings = FPersistentManager::getInstance()->getBookingsByRoom($id);
         foreach($bookings as $book){
@@ -28,11 +28,13 @@ class CStatistics{
             $length = $checkIn->diff($checkOut);
             $occupied += $length->days;
         }
+        $view->nightsPerStay($occupied, count($bookings));
         return $occupied/count($bookings);
-        //visualizzazione
+        
     }
 
     public static function cancellationRate($id){
+        $view = new VStatistics();
         $cancellated = 0;
         $bookings = FPersistentManager::getInstance()->getBookingsByRoom($id);
         foreach($bookings as $book){
@@ -40,11 +42,13 @@ class CStatistics{
                 $cancellated += 1;
             }
         }
+        $view->cancellationRate($cancellation, count($bookings));
         return $cancellated/count($bookings);
        
     }
 
     public static function roomRevenue($id){
+        $view = new VStatistics();
         $totalRevenue = 0;
         $bookings = FPersistentManager::getInstance()->getBookingsByRoom($id);
         foreach($bookings as $book){
@@ -53,16 +57,20 @@ class CStatistics{
                 $totalRevenue += $revenue;
             }
         }
+        $view->roomRevenue($totalRevenue);
         return $totalRevenue;
     }
 
     public static function extraServiceRevenue($idExtraService){
+        $view = new VStatistics();
         $result = FPersistentManager::getInstance()->getBookingsExtraServices($idExtraService);
         $service = FPersistentManager::getInstance()->getObject("EExtraService", $idExtraService);
         $nServices = count($result);
         $price = $service->getPrice();
         echo "nServece: " . $nServices . " Price: " . $price;
-        return $nServices*$price;
+        $totalRevenue = $nServices*$price;
+        $view->extraServiceRevenue($totalRevenue);
+        return $totalRevenue;
 
     }
 
@@ -71,6 +79,7 @@ class CStatistics{
     }
 
     public static function reviewRating(){
+        $view = new VStatistics();
         $rating = [0,0,0,0,0];
         $reviews = FPersistentManager::getInstance()->getAllReview();
         foreach($reviews as $review){
@@ -92,10 +101,12 @@ class CStatistics{
                     break;
             }
         }
+        $view->reviewRating($rating);
         return $rating;
     }
 
     public static function frequentKeyword(){
+        $view = new VStatistics();
         $reviews = FPersistentManager::getInstance()->getAllReview();
         $words = array();
         $arrayWords = array();
@@ -124,6 +135,7 @@ class CStatistics{
             }
         }*/
 
+        $view->frequentKeyWord($frequentKeywords);
         return $frequentWords;
 
     }
