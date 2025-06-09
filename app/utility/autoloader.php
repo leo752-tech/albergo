@@ -1,8 +1,8 @@
 <?php
  
 function my_autoloader($className) {
-    if($className=="Smarty"){
-        include_once(__DIR__ . '/../../smarty/smarty/libs/Smarty.class.php');
+    if($className=="StartSmarty"){
+        include_once(__DIR__ . '/../installation/StartSmarty.php');
     }else{
         $firstLetter = $className[0];
         switch ($firstLetter) {
