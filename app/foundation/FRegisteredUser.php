@@ -130,6 +130,8 @@ class FRegisteredUser {
             echo "ERROR: " . $e->getMessage();
         }
     }
+
+
 }
 
 ?>

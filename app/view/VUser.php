@@ -34,4 +34,20 @@ class VUser{
         $this->smarty->assign('user', $user);
         $this->smarty->display();
     }
+
+    public function showUserProfile(EUser $user, array $bookings = [], array $reviews = []){
+        $this->smarty->assign('user', $user);
+        $this->smarty->assign('bookings', $bookings);
+        $this->smarty->assign('reviews', $reviews);
+        $this->smarty->display(''); 
+}
+
+    public function showLoginForm(array $formData = [], ?string $error = null): void {
+        $this->smarty->assign('formData', $formData);
+        $this->smarty->assign('error', $error);
+        $this->smarty->display('login.tpl');
+    }
+
+
+
 }
