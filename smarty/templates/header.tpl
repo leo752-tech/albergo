@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $pageTitle ?? 'Nome Hotel - Il Tuo Soggiorno Perfetto'; ?></title>
-    <link rel="stylesheet" href="public/assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     </head>
 <body>
@@ -21,7 +21,7 @@
                     <li><a href="prenota.php">Prenota Ora</a></li>
                     <li><a href="recensioni.php">Recensioni</a></li>
                     <li><a href="contatti.php">Contatti</a></li>
-                    <li><a href="~momok/Programmazione_web/progetto/albergoPulito/public/User/showFormsLogin" class="btn btn-primary">Accedi/Registrati</a></li>
+                    <li><a href="/~momok/dummy/User/showFormsLogin" class="btn btn-primary">Accedi/Registrati</a></li>
                 </ul>
             </nav>
             <button class="mobile-menu-toggle">☰</button>
