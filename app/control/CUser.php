@@ -75,6 +75,11 @@ class CUser{
         $user = new VUser();
         $user->home();
     }
+    public static function showLoginForm(){
+        $view = new VUser();
+        $view->showFormsLogin(); 
+    }
+
     
     public static function getAllUser(){
         $view = new VUser();

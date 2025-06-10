@@ -2,4 +2,5 @@
 
 require(__DIR__ . '/../app/utility/autoloader.php');
 
-$result = CUser::home();
+//$result = CUser::home();
+$result = CUser::showLoginForm();
