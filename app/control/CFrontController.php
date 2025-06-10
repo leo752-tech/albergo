@@ -11,16 +11,16 @@ class CFrontController{
 
         $richiestaUrl = trim($richiestaUrl, '/');
         $partiUrl = explode('/', $richiestaUrl);
-
+        array_shift($partiUrl);
+        array_shift($partiUrl);
+/*
         array_shift($partiUrl);
         array_shift($partiUrl);
         array_shift($partiUrl);
         array_shift($partiUrl);
-        array_shift($partiUrl);
-        array_shift($partiUrl);
-       
+  */     
         //estrazione classe di controllo
-        if(!empty($partiUrl[0])){$controller = ucfirst($partiUrl[0]);}
+        if(!empty($partiUrl[0])){echo $partiUrl[0]; $controller = ucfirst($partiUrl[0]);}
         else{$controller = "User";}
         
         //estrazione metodo di controllo
@@ -28,11 +28,9 @@ class CFrontController{
         else{$metodo = "home";}
 
         $controller = 'C' . $controller;
-        echo $controller;
         $controllerFile = __DIR__ . "/{$controller}.php";
 
         if (file_exists($controllerFile)) {
-            echo "EXIST";
             require_once $controllerFile;
 
             // Check if the method exists in the controller
