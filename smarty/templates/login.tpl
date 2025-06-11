@@ -2,7 +2,7 @@
 
 <section id="auth-forms" class="container section-padding">
     <h2>Accedi al Tuo Account</h2>
-    <form action="process_login.php" method="POST" class="auth-form">
+    <form action="/~momok/dummy/User/login" method="POST" class="auth-form">
         <div class="form-group">
             <label for="login-email">Email:</label>
             <input type="email" id="login-email" name="email" required>
@@ -15,7 +15,7 @@
     </form>
 
     <h2 class="mt-5">Nuovo Utente? Registrati</h2>
-    <form action="process_register.php" method="POST" class="auth-form">
+    <form action="/~momok/dummy/User/registration" method="POST" class="auth-form">
         <div class="form-group">
             <label for="reg-nome">Nome:</label>
             <input type="text" id="reg-nome" name="nome" required>

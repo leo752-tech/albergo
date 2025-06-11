@@ -17,7 +17,8 @@ class VUser{
     /**
      * @throws SmartyException
      */
-    public function home(){
+    public function home(?EUser $user=null){
+        $this->smarty->assign('user', $user);
         $this->smarty->display('home.tpl');
     }
 
@@ -40,12 +41,6 @@ class VUser{
         $this->smarty->assign('bookings', $bookings);
         $this->smarty->assign('reviews', $reviews);
         $this->smarty->display(''); 
-}
-
-    public function showLoginForm(array $formData = [], ?string $error = null): void {
-        $this->smarty->assign('formData', $formData);
-        $this->smarty->assign('error', $error);
-        $this->smarty->display('login.tpl');
     }
 
 

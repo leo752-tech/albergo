@@ -16,16 +16,13 @@ class CUser{
         if(USession::isSetSessionElement("user")){
             $logged = true;
         }
-        if(!$logged){
-            header("Location: /Agora/User/login");
-            exit;
-        }
-        return true;
+        
+        return $logged;
     }
 
     //TESTATO
     public static function registration(){
-        //creazione oggetto view
+        $view = new VUser();
         if(!FPersistentManager::userExists(UHTTP::post("email"))){
             $user= new EUser(null,UHTTP::post('firstName'), UHTTP::post('lastName'), new DateTime(UHTTP::post('birthDate')), UHTTP::post('birthPlace'));
             $id=FPersistentManager::getInstance()->saveObject($user);
@@ -33,7 +30,7 @@ class CUser{
             $result = FPersistentManager::getInstance()->saveObject($registeredUser);
             echo "OPERATION SUCCESSFUL";
 
-            //visualizzazione schermata di login
+            $view->showFormsLogin();
             return $result;
 
         }else{
@@ -50,7 +47,7 @@ class CUser{
     
     //TESTATO
     public static function login(){
-        //oggetto view 
+        $view = new VUser();
         $email = UHTTP::post("email");
         $password = UHTTP::post("password");
 
@@ -58,9 +55,10 @@ class CUser{
             $registeredUser = FPersistentManager::getInstance()->retrieveUser($email);
             if(password_verify($password, $registeredUser->getPassword())){
                 USession::getInstance();
-                USession::setSessionElement("idUser", $registeredUser->getIdRegisteredUser());
-                //header("Location: home page path");
-                echo "LOGIN SUCCESSFUL  USER LOGGED WITH ID: " . USession::getSessionElement("idUser");
+                USession::setSessionElement("user", serialize($registeredUser));
+                
+                header("Location: /dummy/dummy/User/home");
+                //echo "LOGIN SUCCESSFUL  USER LOGGED WITH ID: " . USession::getSessionElement("idUser");
                 exit();
                 return true;
             }else{echo "WRONG PASSWORD";
@@ -70,10 +68,17 @@ class CUser{
             return false;
         }
     }
+
     //DA VEDERE
     public static function home(){
-        $user = new VUser();
-        $user->home();
+        $view = new VUser();
+        if(self::isLogged()){
+            $user = unserialize(USession::getSessionElement('user'));
+            $view->home($user);
+        }else{
+            $view->home();
+        }
+        
     }
     public static function showLoginForm(){
         $view = new VUser();
