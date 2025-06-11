@@ -22,6 +22,13 @@ class FPersistentManager {
         return $result;
     }
 
+    public static function getAll($class){
+        $class = "F" . substr($class, 1);
+        $method = "getAll";
+        $result = call_user_func([$class, $method]);
+        return $result;
+    }
+
     public static function saveObject($object){
         $class = "F" . substr(get_class($object), 1);
         $method = "saveObject";

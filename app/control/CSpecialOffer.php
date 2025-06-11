@@ -7,4 +7,12 @@ class CSpecialOffer{
         $result = FPersistentManager::getInstance()->saveObject($specialOffer);
     }
 
+    public static function getAllSpecialOffer(){
+        $specialOffer = FDataMapper::getInstance()->getAll("CSpecialOffer");
+    }
+
+    public static function deleteSpecialOffer($id){
+        $result = FPersistentManager::getInstance()->deleteObject($id);
+    }
+
 }

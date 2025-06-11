@@ -35,7 +35,7 @@ class CRoom{
 
     public static function getAllRooms(){
         $view = new VRoom();
-        $rooms=FPersistentManager::getInstance()->getAllRooms();
+        $rooms=FPersistentManager::getInstance()->getAll("ERoom");
         return $rooms;
         $view->showRooms($rooms);
     }

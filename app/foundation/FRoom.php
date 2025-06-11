@@ -98,7 +98,7 @@ class FRoom{
         }
     }
 
-    public static function getAllRooms(){
+    public static function getAll(){
         $rooms = FDataMapper::getInstance()->selectAll(self::$table);
         return $rooms;
     }

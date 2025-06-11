@@ -4,7 +4,7 @@ class CCalendar{
 
     public static function getBookingsByDate(DateTime $date){
         $bookingsDate = array();
-        $rooms = FPersistentManager::getInstance()->getAllRooms();
+        $rooms = FPersistentManager::getInstance()->getAll("ERoom");
         foreach($rooms as $room){
             $bookings = FPersistentManager::getInstance()->getBookingsByRoom($room["idRoom"]);
             foreach($bookings as $book){

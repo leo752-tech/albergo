@@ -88,7 +88,7 @@ class CUser{
     
     public static function getAllUser(){
         $view = new VUser();
-        $users = FPersistentManager::getInstance()->getAllUsers();
+        $users = FPersistentManager::getInstance()->getAll("EUser");
         $view->showUsers($users);
     }
 

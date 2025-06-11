@@ -105,7 +105,7 @@ class FUser {
         }
     }
 
-    public static function getAllUsers(){
+    public static function getAll(){
         $users = FDataMapper::getInstance()->selectAll(self::$table);
         return $users;
     }

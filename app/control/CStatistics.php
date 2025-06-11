@@ -81,7 +81,7 @@ class CStatistics{
     public static function reviewRating(){
         $view = new VStatistics();
         $rating = [0,0,0,0,0];
-        $reviews = FPersistentManager::getInstance()->getAllReview();
+        $reviews = FPersistentManager::getInstance()->getAll("EReview");
         foreach($reviews as $review){
             switch($review["rating"]){
                 case 1:
@@ -107,7 +107,7 @@ class CStatistics{
 
     public static function frequentKeyword(){
         $view = new VStatistics();
-        $reviews = FPersistentManager::getInstance()->getAllReview();
+        $reviews = FPersistentManager::getInstance()->getAll("EReview");
         $words = array();
         $arrayWords = array();
         //fetching all the description as phrases
