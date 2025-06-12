@@ -47,11 +47,20 @@ class CUser{
     
     //TESTATO
     public static function login(){
-        $view = new VUser();
         $email = UHTTP::post("email");
         $password = UHTTP::post("password");
-
-        if(FPersistentManager::getInstance()->userExists($email)){
+        if($email == EMAIL_ADMIN){
+            if(password_verify($password, PASSWORD_ADMIN)){
+                USession::getInstance();
+                USession::setSessionElement("admin", EMAIL_ADMIN);
+                
+                header("Location: /dummy/dummy/User/homeAdmin");
+                //echo "LOGIN SUCCESSFUL  USER LOGGED WITH ID: " . USession::getSessionElement("idUser");
+                exit();
+                return true;
+            }else{echo "WRONG PASSWORD";
+                return false;}
+        }elseif(FPersistentManager::getInstance()->userExists($email)){
             $registeredUser = FPersistentManager::getInstance()->retrieveUser($email);
             if(password_verify($password, $registeredUser->getPassword())){
                 USession::getInstance();
