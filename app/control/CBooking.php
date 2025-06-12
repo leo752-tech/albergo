@@ -69,7 +69,7 @@ class CBooking {
 
     }
 
-    private static function calculatePrice(DateTime $checkIn, DateTime $checkOut, float $price, ?int $idExtraService = null, ?int $idSpecialOffer){
+    private static function calculatePrice(DateTime $checkIn, DateTime $checkOut, float $price, ?int $idExtraService = null, ?int $idSpecialOffer = null){
         if($idSpecialOffer!=null){
             //CALCOLARE IN BASE ALL'OFFERTA 
         }elseif($idExtraService!=null){

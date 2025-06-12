@@ -24,13 +24,14 @@ class CUser{
     public static function registration(){
         $view = new VUser();
         if(!FPersistentManager::userExists(UHTTP::post("email"))){
+
             $user= new EUser(null,UHTTP::post('firstName'), UHTTP::post('lastName'), new DateTime(UHTTP::post('birthDate')), UHTTP::post('birthPlace'));
             $id=FPersistentManager::getInstance()->saveObject($user);
             $registeredUser = new ERegisteredUser(null,$id,UHTTP::post('email'), UHTTP::post('password'),UHTTP::post('firstName'), UHTTP::post('lastName'),new dateTime(UHTTP::post('birthDate')),UHTTP::post('birthPlace'));
             $result = FPersistentManager::getInstance()->saveObject($registeredUser);
-            echo "OPERATION SUCCESSFUL";
+            //echo "OPERATION SUCCESSFUL";
 
-            $view->showFormsLogin();
+            header('Location: /~momok/dummy/User/showFormsLogin');
             return $result;
 
         }else{
@@ -51,13 +52,14 @@ class CUser{
         $password = UHTTP::post("password");
         if($email == EMAIL_ADMIN){
             if(password_verify($password, PASSWORD_ADMIN)){
-                USession::getInstance();
+                /*USession::getInstance();
                 USession::setSessionElement("admin", EMAIL_ADMIN);
-                
-                header("Location: /dummy/dummy/User/homeAdmin");
-                //echo "LOGIN SUCCESSFUL  USER LOGGED WITH ID: " . USession::getSessionElement("idUser");
+                echo "ADMINNNNNNN";
+                header("Location: /~momok/dummy/User/home");
+                echo "ADMINNNNNNN";
                 exit();
-                return true;
+                return true;*/
+                echo '----------------------------------------------------------';
             }else{echo "WRONG PASSWORD";
                 return false;}
         }elseif(FPersistentManager::getInstance()->userExists($email)){
@@ -66,7 +68,7 @@ class CUser{
                 USession::getInstance();
                 USession::setSessionElement("user", serialize($registeredUser));
                 
-                header("Location: /dummy/dummy/User/home");
+                header("Location: /~momok/dummy/User/home");
                 //echo "LOGIN SUCCESSFUL  USER LOGGED WITH ID: " . USession::getSessionElement("idUser");
                 exit();
                 return true;

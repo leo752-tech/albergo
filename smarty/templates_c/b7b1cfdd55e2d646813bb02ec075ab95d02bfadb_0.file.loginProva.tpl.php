@@ -1,4 +1,30 @@
-{include file = 'header.tpl'}
+<?php
+/* Smarty version 4.3.2, created on 2025-06-12 22:18:08
+  from 'C:\Users\momok\Documents\Programmazione_web\progetto\albergoPulito\smarty\templates\loginProva.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.3.2',
+  'unifunc' => 'content_684b36009c4eb0_89703262',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    'b7b1cfdd55e2d646813bb02ec075ab95d02bfadb' => 
+    array (
+      0 => 'C:\\Users\\momok\\Documents\\Programmazione_web\\progetto\\albergoPulito\\smarty\\templates\\loginProva.tpl',
+      1 => 1749759379,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+    'file:header.tpl' => 1,
+    'file:footer.tpl' => 1,
+  ),
+),false)) {
+function content_684b36009c4eb0_89703262 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->_subTemplateRender('file:header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
 <section id="auth-forms" class="container section-padding">
     <h2>Accedi al Tuo Account</h2>
     <form action="/~momok/dummy/User/login" method="POST" class="auth-form">
@@ -43,4 +69,6 @@
     </form>
 </section>
 
-{include file = 'footer.tpl'}
+<?php $_smarty_tpl->_subTemplateRender('file:footer.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+}
+}
