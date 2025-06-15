@@ -9,18 +9,18 @@ class ESpecialOffer{
     private float $specialPrice;
 
     public function __construct(?int $idSpecialOffer = null, string $title, string $description, int $length, float $specialPrice){
-        $this->idSpecialBooking = $idSpecialBooking;
+        $this->idSpecialOffer = $idSpecialOffer;
         $this->title = $title;
         $this->description = $description;
         $this->length = $length;
         $this->specialPrice = $specialPrice;
     }
 
-    public function setIdSpecialBooking(int $id){
-        $this->idSpecialBooking = $id;
+    public function setIdSpecialOffer(?int $id){
+        $this->idSpecialOffer = $id;
     }
-    public function getIdSpecialBooking(): int{
-        return $this->idSpecialBooking;
+    public function getIdSpecialOffer(): ?int{
+        return $this->idSpecialOffer;
     }
 
     public function setTitle(string $title){
