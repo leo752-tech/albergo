@@ -59,6 +59,11 @@ class CBooking {
     public static function makeBooking(){
         if(CUser::isLogged()){
             $totalPrice = self::calculatePrice(new DateTime(UHTTP::post('checkIn')), new DateTime(UHTTP::post('checkOut')), $price, $idExtraService, $idSpecialOffer);
+            if($idSpecialOffer!= null){
+                $booking = new EBooking(null, USession::getSessionElement("idUser"), new DateTime(UHTTP::post("checkIn")), new DateTime(UHTTP::post("checkOut")), UHTTP::post("idRoom"), $totalPrice, null, $idSpecialOffer);
+                $idBooking = FPersistentManager::getInstance()->saveObject($booking);
+            }
+            elseif($idExtraService)
             $booking = new EBooking(null, USession::getSessionElement("idUser"), new DateTime(UHTTP::post("checkIn")), new DateTime(UHTTP::post("checkOut")), UHTTP::post("idRoom"), $totalPrice, null, null);
             $idBooking = FPersistentManager::getInstance()->saveObject($booking);
             if(UHTTP::post("idExtraService")!=null){

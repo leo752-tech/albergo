@@ -1,4 +1,34 @@
-{include file = 'header.tpl'}
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?php echo $pageTitle ?? 'Nome Hotel - Il Tuo Soggiorno Perfetto'; ?></title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    </head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.php"><h1>Nome Hotel</h1></a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.php">Home</a></li>
+                    <li><a href="camere.php">Camere</a></li>
+                    <li><a href="servizi.php">Servizi</a></li>
+                    <li><a href="prenota.php">Prenota Ora</a></li>
+                    <li><a href="recensioni.php">Recensioni</a></li>
+                    <li><a href="contatti.php">Contatti</a></li>
+                    <li><a href="/~momok/dummy/User/showFormsLogin" class="btn btn-primary">Accedi/Registrati</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-toggle">☰</button>
+        </div>
+    </header>
+    <main>
+    
 <section id="auth-forms" class="container section-padding">
     <h2>Accedi al Tuo Account</h2>
     <form action="/~momok/dummy/User/login" method="POST" class="auth-form">
@@ -43,4 +73,37 @@
     </form>
 </section>
 
-{include file = 'footer.tpl'}
+</main>
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section about">
+                        <h3>Nome Hotel</h3>
+                        <p>Benvenuti nel vostro rifugio di lusso. Offriamo il massimo comfort e servizi impeccabili per rendere il vostro soggiorno indimenticabile.</p>
+                    </div>
+                    <div class="footer-section links">
+                        <h3>Link Utili</h3>
+                        <ul>
+                            <li><a href="index.php">Home</a></li>
+                            <li><a href="camere.php">Camere</a></li>
+                            <li><a href="servizi.php">Servizi</a></li>
+                            <li><a href="prenota.php">Prenota Ora</a></li>
+                            <li><a href="recensioni.php">Recensioni</a></li>
+                            <li><a href="contatti.php">Contatti</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section contact">
+                        <h3>Contatti</h3>
+                        <p><i class="fa fa-map-marker"></i> Coppito, L'Aquila Italia</p>
+                        <p><i class="fa fa-phone"></i> +39 3423453456</p>
+                        <p><i class="fa fa-envelope"></i> info@nomehotel.it</p>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    © 2025 Nome Hotel. Tutti i diritti riservati.
+                </div>
+            </div>
+        </footer>
+        <script src="assets/js/script.js"></script>
+        </body>
+</html>

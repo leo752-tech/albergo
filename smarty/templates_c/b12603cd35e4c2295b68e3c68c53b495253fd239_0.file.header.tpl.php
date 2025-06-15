@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-10 15:47:22
+/* Smarty version 4.3.2, created on 2025-06-15 13:03:36
   from 'C:\Users\momok\Documents\Programmazione_web\progetto\albergoPulito\smarty\templates\header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_6848376aa17fb6_60584287',
+  'unifunc' => 'content_684ea8884b26e2_25855279',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b12603cd35e4c2295b68e3c68c53b495253fd239' => 
     array (
       0 => 'C:\\Users\\momok\\Documents\\Programmazione_web\\progetto\\albergoPulito\\smarty\\templates\\header.tpl',
-      1 => 1749563188,
+      1 => 1749985403,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6848376aa17fb6_60584287 (Smarty_Internal_Template $_smarty_tpl) {
+function content_684ea8884b26e2_25855279 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="it">
 <head>
