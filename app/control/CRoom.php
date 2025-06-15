@@ -35,8 +35,14 @@ class CRoom{
 
     public static function getAllRooms(){
         $view = new VRoom();
-        $rooms=FPersistentManager::getInstance()->getAll("ERoom");
-        return $rooms;
+        $roomsQuery = FPersistentManager::getInstance()->getAll("ERoom");
+        print_r($roomsQuery);
+        $rooms = array();
+        foreach($roomsQuery as $room){
+            $rooms[] = new ERoom($room['idRoom'], $room['name'], $room['beds'], $room['price'], $room['type']);
+        }
+        echo 'CAMERE: ' . count($rooms);
         $view->showRooms($rooms);
+        echo 'HERE';
     }
 }

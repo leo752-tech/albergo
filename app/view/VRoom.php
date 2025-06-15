@@ -7,8 +7,9 @@ class VRoom{
     }
 
     public function showRooms($rooms){
-        $this->smarty->assing('rooms', $rooms);
-        $this->smarty->display('');
+        $this->smarty->assign('rooms', $rooms);
+        echo 'CAMERE: ' . count($rooms);
+        $this->smarty->display('rooms.tpl');
     }
 
     public function createRoom(){
@@ -17,7 +18,7 @@ class VRoom{
     }
 
     public function deleteRoom($room){
-        $this->smarty->assing('room', $room);
+        $this->smarty->assign('room', $room);
         $this->smarty->display('');
     }
 

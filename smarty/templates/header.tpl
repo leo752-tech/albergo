@@ -16,7 +16,7 @@
             <nav>
                 <ul>
                     <li><a href="index.php">Home</a></li>
-                    <li><a href="camere.php">Camere</a></li>
+                    <li><a href="/~momok/dummy/Room/getAllRooms">Camere</a></li>
                     <li><a href="servizi.php">Servizi</a></li>
                     <li><a href="prenota.php">Prenota Ora</a></li>
                     <li><a href="recensioni.php">Recensioni</a></li>
