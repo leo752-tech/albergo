@@ -9,7 +9,7 @@ class VRoom{
     public function showRooms($rooms){
         $this->smarty->assign('rooms', $rooms);
         echo 'CAMERE: ' . count($rooms);
-        $this->smarty->display('rooms.tpl');
+        $this->smarty->display('createRoom.tpl');
     }
 
     public function createRoom(){

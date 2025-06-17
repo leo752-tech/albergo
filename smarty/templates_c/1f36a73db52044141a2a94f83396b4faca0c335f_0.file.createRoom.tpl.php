@@ -1,4 +1,27 @@
-<!DOCTYPE html>
+<?php
+/* Smarty version 4.3.2, created on 2025-06-17 16:41:13
+  from 'C:\Users\momok\Documents\Programmazione_web\progetto\albergoPulito\smarty\templates\createRoom.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.3.2',
+  'unifunc' => 'content_68517e895daca8_10754561',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '1f36a73db52044141a2a94f83396b4faca0c335f' => 
+    array (
+      0 => 'C:\\Users\\momok\\Documents\\Programmazione_web\\progetto\\albergoPulito\\smarty\\templates\\createRoom.tpl',
+      1 => 1750166043,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_68517e895daca8_10754561 (Smarty_Internal_Template $_smarty_tpl) {
+?><!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
@@ -104,4 +127,5 @@
         </form>
     </div>
 </body>
-</html>
+</html><?php }
+}

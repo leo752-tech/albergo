@@ -1,7 +1,7 @@
 <?php
 class EImage{
 
-    private int $idImage;
+    private ?int $idImage;
     private int $idRoom;
     private string $name;
     private $imageData;
@@ -46,7 +46,7 @@ class EImage{
     public function getMimeType(){
         return $this->mimeType;
     }
-    public function setMimeType($mimeType){
+    public function set($mimeType){
         $this->mimeType = $mimeType;
     }
 

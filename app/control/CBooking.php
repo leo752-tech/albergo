@@ -7,53 +7,55 @@ class CBooking {
 
     public static function getAvailableRooms($requestedCheckIn, $requestedCheckOut, $requestedBeds) {
         $availableRooms = array();
+        
         $rooms = FPersistentManager::getInstance()->getRoomsByBeds($requestedBeds);
-        if(!empty($rooms)){
-            foreach($rooms as $room){
-                $isAvailable = true;
-                $bookings = FPersistentManager::getInstance()->getBookingsByRoom($room->getId());
-                
-                if(!empty($bookings)){
+
+        if (empty($rooms)) { 
+            echo "THERE IS NO ROOM WITH BEDS SELECTED";
+            return $availableRooms; 
+        }
+
+        foreach ($rooms as $room) {
+            $isRoomCurrentlyAvailable = true; 
+            $bookingsForThisRoom = FPersistentManager::getInstance()->getBookingsByRoom($room->getId());
+
+            if (!empty($bookingsForThisRoom)) { 
+                foreach ($bookingsForThisRoom as $book) {
+                    $occupiedCheckIn  = $book["checkInDate"];
+                    $occupiedCheckOut = $book["checkOutDate"];
+
                     
-                    foreach($bookings as $book){
-                        $occupiedCheckIn = $book["checkInDate"];
-                        $occupiedCheckOut = $book["checkOutDate"];
-                        if(self::isAvailableRoom($requestedCheckIn, $requestedCheckOut, $occupiedCheckIn, $occupiedCheckOut)){
-                            echo "THIS PERIOD IS ALREADY OCCUPIED";
-                            $isAvailable = false; 
-                            break;
-                        }
+                    if (!self::isAvailableRoom($requestedCheckIn, $requestedCheckOut, $occupiedCheckIn, $occupiedCheckOut)) {
+                       
+                        $isRoomCurrentlyAvailable = false;
+                        
+                        break; 
                     }
                 }
-                if($isAvailable){$availableRooms[] = $room;}
-                
-            
             }
-            
-            if(!empty($availableRooms)){return $availableRooms;}
-            else{echo "NESSUNA CAMERA DISPONIBILE PER LE DATE SELEZIONATE"; return $availableRooms;}
-
-            
-        }else{
-            echo "THERE IS NO ROOM WITH BEDS SELECTED";
-            return $availableRooms;
+           
+            if ($isRoomCurrentlyAvailable) {
+                $availableRooms[] = $room;
+            }
         }
-        
+
+     
+        if (empty($availableRooms)) {
+            echo "NESSUNA CAMERA DISPONIBILE PER LE DATE SELEZIONATE";
+        }
+        return $availableRooms; 
     }
 
     public static function isAvailableRoom($requestedCheckIn, $requestedCheckOut, $occupiedCheckIn, $occupiedCheckOut){
-        $isAvailable = true;
-        $cond1_1 = $occupiedCheckIn <= $requestedCheckIn && $requestedCheckIn <= $occupiedCheckOut;
-        $cond1_2 = $occupiedCheckIn <= $requestedCheckOut && $requestedCheckOut <= $occupiedCheckOut;
-        $cond1 = $cond1_1 || $cond1_2;
+        
+        $reqIn = $requestedCheckIn;
+        $reqOut = $requestedCheckOut;
+        $occIn = new DateTime($occupiedCheckIn);
+        $occOut = new DateTime($occupiedCheckOut);
 
-        $cond2 = $requestedCheckIn <= $occupiedCheckIn && $requestedCheckOut >= $occupiedCheckOut;
-        if($cond1 == true || $cond2 == true){
-            $isAvailable = false;
-        }
-        echo "BOOL: " . $isAvailable;
-        return $isAvailable;
+        $overlaps = ($reqOut >= $occIn && $reqIn <= $occOut);
 
+        return !$overlaps;
     }
 
     public static function makeBooking(){

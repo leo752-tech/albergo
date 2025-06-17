@@ -77,7 +77,7 @@ class CBookingGemini {
         // Condizione di sovrapposizione:
         // Se la fine della prenotazione richiesta è maggiore o uguale all'inizio della prenotazione esistente
         // E l'inizio della prenotazione richiesta è minore o uguale alla fine della prenotazione esistente
-        $overlaps = ($reqOut > $occIn && $reqIn < $occOut);
+        $overlaps = ($reqOut >= $occIn && $reqIn <= $occOut);
 
         // Se $overlaps è true, significa che NON è disponibile, quindi ritorniamo false
         // Se $overlaps è false, significa che è disponibile, quindi ritorniamo true
