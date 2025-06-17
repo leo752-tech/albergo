@@ -14,7 +14,7 @@ class VRoom{
 
     public function createRoom(){
         
-        $this->smarty->display('');
+        $this->smarty->display('home.tpl');
     }
 
     public function deleteRoom($room){

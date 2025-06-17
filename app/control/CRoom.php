@@ -1,13 +1,14 @@
 <?php
 
+
 class CRoom{
 
     public static function createRoom(){
         $view = new VRoom();
         $room= new ERoom(null, UHTTP::post("name"), UHTTP::post("beds"), UHTTP::post("price"), UHTTP::post("type"));
-        $result=FPersistentManager::getInstance()->saveObject($room);
+        $idRoom = FPersistentManager::getInstance()->saveObject($room);
+        $resultImage = CImage::upload($idRoom);
         $view->createRoom();
-        return $result;
     }
     public static function updateRoom($id){
         $view = new VRoom();
@@ -45,4 +46,6 @@ class CRoom{
         $view->showRooms($rooms);
         echo 'HERE';
     }
+
+    
 }

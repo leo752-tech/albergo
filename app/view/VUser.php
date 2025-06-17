@@ -1,8 +1,5 @@
 <?php
 
-//require('C:\Users\momok\Documents\Programmazione_web\slide\20_Smarty\20_Smarty\20_smarty-esercitazione\View\smarty\libs\Smarty.class.php');
-
-
 class VUser{
 
     private $smarty;

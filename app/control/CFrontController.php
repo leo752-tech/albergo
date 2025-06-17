@@ -4,7 +4,7 @@ class CFrontController{
     
     //punto di accesso principale dell'applicazione
     //fa il parsing della URL per capire quali metodi controller chiamare e con quali parametri
-    // le url sui button di ogni template devono esserestrutturate in questo modo /~momok/dummy/Class/method
+    // le url sui button di ogni template devono esserestrutturate in questo modo /~momok/Class/method
     public function run($richiestaUrl){
     
         
@@ -13,7 +13,7 @@ class CFrontController{
         $richiestaUrl = trim($richiestaUrl, '/');
         $partiUrl = explode('/', $richiestaUrl);
         array_shift($partiUrl);
-        array_shift($partiUrl);
+        //array_shift($partiUrl);
 /*
         array_shift($partiUrl);
         array_shift($partiUrl);

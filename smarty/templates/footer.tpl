@@ -29,6 +29,6 @@
                 </div>
             </div>
         </footer>
-        <script src="assets/js/script.js"></script>
-        </body>
+        <script src="~momok/Documents/Programmazione_web/progetto/albergoPulito/smarty/assets/js/script.js"></script>
+    </body>
 </html>

@@ -1,22 +1,22 @@
 <?php
 
-class FRoom{
+class FImage{
 
-    private static $key = "idRoom";
+    private static $key = "idImage";
 
-    private static $class = "FRoom";
+    private static $class = "FImage";
     
-    private static $table = "room";
+    private static $table = "image";
     
-    private static $values = "(NULL,:name,:beds,:price,:type)";
+    private static $values = "(NULL,:idRoom,:name,:imageData,:mimeType)";
     
     public function __construct(){}
 
-    public static function bind($stmt,$room) {
-        $stmt->bindValue(":name", $room->getName(), PDO::PARAM_STR);
-        $stmt->bindValue(":beds", $room->getBeds(), PDO::PARAM_INT);
-        $stmt->bindValue(":price", $room->getPrice(), PDO::PARAM_STR);
-        $stmt->bindValue(":type", $room->getType(), PDO::PARAM_STR);
+    public static function bind($stmt,$image) {
+        $stmt->bindValue(":idRoom", $image->getIdRoom(), PDO::PARAM_INT);
+        $stmt->bindValue(":name", $image->getName(), PDO::PARAM_STR);
+        $stmt->bindValue(":imageData", $image->getImageData(), PDO::PARAM_LOB);
+        $stmt->bindValue(":mimeType", $image->getMimeType(), PDO::PARAM_STR);
     }
 
     public static function getKey(){
@@ -37,29 +37,29 @@ class FRoom{
 
     // creates an ERoom object
     public static function createObject($queryRes){
-        $room = new ERoom($queryRes["idRoom"], $queryRes["name"], $queryRes["beds"], $queryRes["price"], $queryRes["type"]);
-        return $room;
+        $image = new EImage($queryRes["idImage"], $queryRes["idRooma"], $queryRes["name"], $queryRes["imageData"], $queryRes["mimeType"]);
+        return $image;
     }
 
     // retrieves an ERoom object by its id
     public static function getObject($id){
         $result = FDataMapper::getInstance()->retrieveObject(self::$table, self::$key, $id);
         if($result != false && $result != null){
-            $room = self::createObject($result);
-            return $room;
+            $image = self::createObject($result);
+            return $image;
         } else {
             return null;
         }
     }
 
     // saves the room object if it doesn't exist, otherwise updates it
-    public static function saveObject($room, $fields = null){
+    public static function saveObject($image, $fields = null){
         if($fields === null){
             FDataMapper::getInstance()->getDb()->beginTransaction();
-            $id = FDataMapper::getInstance()->saveObject(self::$class, $room);
+            $id = FDataMapper::getInstance()->saveObject(self::$class, $image);
             FDataMapper::getInstance()->getDb()->commit();
             if($id !== null){
-                $room->setId($id);
+                $image->setId($id);
                 return $id;
             } else {
                 return false;
@@ -68,7 +68,7 @@ class FRoom{
             try {
                 FDataMapper::getInstance()->getDb()->beginTransaction();
                 foreach($fields as $f){
-                    FDataMapper::getInstance()->updateObject(self::$table, $f[0], $f[1], self::$key, $room->getId());
+                    FDataMapper::getInstance()->updateObject(self::$table, $f[0], $f[1], self::$key, $image->getId());
                 }
                 FDataMapper::getInstance()->getDb()->commit();
                 return true;
@@ -88,7 +88,7 @@ class FRoom{
             if(FDataMapper::getInstance()->exists(self::$table, self::$key, $id)){
                 FDataMapper::getInstance()->deleteObject(self::$table, self::$key, $id);
                 FDataMapper::getInstance()->getDb()->commit();
-                return true;            
+                return true;
             } else {
                 echo "Room does not exist";
                 return false;
@@ -100,20 +100,19 @@ class FRoom{
 
     public static function getAll(){
         $rooms = FDataMapper::getInstance()->selectAll(self::$table);
-        return $rooms;
+        return $image;
     }
 
-    public static function getRoomsByBeds($beds){
-        $rooms = self::getAllRooms();
-        $availableRooms = array();
-        foreach ($rooms as $queryRes){
-            if($beds <= $queryRes["beds"]){
-                $room = new ERoom($queryRes["idRoom"], $queryRes["name"], $queryRes["beds"], $queryRes["price"], $queryRes["type"]);
-                $availableRooms[] = $room;
+    public static function getImageByRoom($room){
+        $images = self::getAll();
+        $imagesRoom = array();
+        foreach ($images as $queryRes){
+            if($room == $queryRes["idRoom"]){
+                $image = self::createObject($queryRes);
+                $imagesRoom[] = $image;
             }
         }
-        echo "M: " . count($availableRooms);
-        return $availableRooms;
+        return $imagesRoom;
     }
 }
 
