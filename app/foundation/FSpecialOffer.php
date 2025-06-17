@@ -13,11 +13,11 @@ class FSpecialOffer{
 
     private static $values = "(NULL, :title, :description, :length, :specialPrice)";
 
-    public static function bind($stmt, $booking) {
-        $stmt->bindValue(":title", $booking->getTitle(), PDO::PARAM_STR);
-        $stmt->bindValue(":description", $booking->getDescription(), PDO::PARAM_STR);
-        $stmt->bindValue(":length", $booking->getLength(), PDO::PARAM_INT);        
-        $stmt->bindValue(":specialPrice", $booking->getSpecialPrice(), PDO::PARAM_STR);
+    public static function bind($stmt, $specialOffer) {
+        $stmt->bindValue(":title", $specialOffer->getTitle(), PDO::PARAM_STR);
+        $stmt->bindValue(":description", $specialOffer->getDescription(), PDO::PARAM_STR);
+        $stmt->bindValue(":length", $specialOffer->getLength(), PDO::PARAM_INT);
+        $stmt->bindValue(":specialPrice", $specialOffer->getSpecialPrice(), PDO::PARAM_STR);
     }
 
     public static function getKey(){
@@ -37,7 +37,7 @@ class FSpecialOffer{
     }
 
     public static function createObject($queryRes){
-        $booking = new ESpecialBooking($queryRes["idSpecialOffer"], $queryRes["title"], $queryRes["description"], $queryRes["length"], $queryRes["SpecialPrice"]);
+        $booking = new ESpecialOffer($queryRes["idSpecialOffer"], $queryRes["title"], $queryRes["description"], $queryRes["length"], $queryRes["SpecialPrice"]);
         return $booking;
     }
 
@@ -95,7 +95,7 @@ class FSpecialOffer{
                 FDataMapper::getInstance()->getDb()->commit();
                 return true;
             } else {
-                echo "Booking does not exist";
+                echo "Special offer does not exist";
                 return false;
             }
         } catch(PDOException $e){

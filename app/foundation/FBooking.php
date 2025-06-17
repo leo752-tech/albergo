@@ -129,7 +129,7 @@ class FBooking {
                 
                 foreach ($rawBookings as $row) {
                     
-                    $booking = new EBooking($row['idBooking'],$row['idRegisteredUser'],$row['idRoom'],new DateTime($row['checkInDate']), new DateTime($row['checkOutDate']), $row['totalPrice'],new DateTime($row['bookingDate']), (bool)$row['cancellation'] );
+                    $booking = new EBooking($row['idBooking'],$row['idRegisteredUser'],new DateTime($row['checkInDate']), new DateTime($row['checkOutDate']),$row['idRoom'], $row['totalPrice'],new DateTime($row['bookingDate']), (bool)$row['cancellation'] );
                     $bookings[] = $booking;
                 }
             }
