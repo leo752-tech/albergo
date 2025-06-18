@@ -52,14 +52,11 @@ class CUser{
         $password = UHTTP::post("password");
         if($email == EMAIL_ADMIN){
             if(password_verify($password, PASSWORD_ADMIN)){
-                /*USession::getInstance();
+                USession::getInstance();
                 USession::setSessionElement("admin", EMAIL_ADMIN);
-                echo "ADMINNNNNNN";
-                header("Location: /~momok/dummy/User/home");
-                echo "ADMINNNNNNN";
+                header("Location: /~momok/Admin/home");
                 exit();
-                return true;*/
-                echo '----------------------------------------------------------';
+                
             }else{echo "WRONG PASSWORD";
                 return false;}
         }elseif(FPersistentManager::getInstance()->userExists($email)){

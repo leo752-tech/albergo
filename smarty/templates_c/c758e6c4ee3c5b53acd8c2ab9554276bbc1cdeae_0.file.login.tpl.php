@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-16 10:54:51
+/* Smarty version 4.3.2, created on 2025-06-18 18:17:33
   from 'C:\Users\momok\Documents\Programmazione_web\progetto\albergoPulito\smarty\templates\login.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_684fdbdbdb6d27_83456233',
+  'unifunc' => 'content_6852e69d8a5a51_52500554',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c758e6c4ee3c5b53acd8c2ab9554276bbc1cdeae' => 
     array (
       0 => 'C:\\Users\\momok\\Documents\\Programmazione_web\\progetto\\albergoPulito\\smarty\\templates\\login.tpl',
-      1 => 1750064084,
+      1 => 1750263445,
       2 => 'file',
     ),
   ),
@@ -21,13 +21,13 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:header.tpl' => 1,
   ),
 ),false)) {
-function content_684fdbdbdb6d27_83456233 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6852e69d8a5a51_52500554 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender('file:header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
     
 <section id="auth-forms" class="container section-padding">
     <h2>Accedi al Tuo Account</h2>
-    <form action="/~momok/dummy/User/login" method="POST" class="auth-form">
+    <form action="/~momok/User/login" method="POST" class="auth-form">
         <div class="form-group">
             <label for="login-email">Email:</label>
             <input type="email" id="login-email" name="email" required>
@@ -40,7 +40,7 @@ $_smarty_tpl->_subTemplateRender('file:header.tpl', $_smarty_tpl->cache_id, $_sm
     </form>
 
     <h2 class="mt-5">Nuovo Utente? Registrati</h2>
-    <form action="/~momok/dummy/User/registration" method="POST" class="auth-form">
+    <form action="/~momok/User/registration" method="POST" class="auth-form">
         <div class="form-group">
             <label for="reg-nome">Nome:</label>
             <input type="text" id="reg-nome" name="firstName" required>

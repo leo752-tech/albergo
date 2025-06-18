@@ -9,7 +9,7 @@ class VAdmin {
 
     // Home amministratore
     public function home() {
-        $this->smarty->display('admin_home.tpl');
+        $this->smarty->display('dashboardAdmin2.tpl');
     }
     // Dashboard amministratore
     public function dashboard(array $stats = []) {

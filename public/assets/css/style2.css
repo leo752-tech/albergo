@@ -1,0 +1,293 @@
+/* public/css/admin_dashboard.css */
+
+/* Stili per l'intero corpo della pagina */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Un font moderno e leggibile */
+    margin: 0; /* Rimuove i margini predefiniti del browser */
+    padding: 0;
+    background-color: #f0f2f5; /* Sfondo più neutro e moderno */
+    color: #333; /* Colore del testo principale */
+    line-height: 1.6; /* Spaziatura tra le righe */
+    display: flex; /* Utilizza flexbox per il layout principale (header, wrapper, footer) */
+    flex-direction: column; /* Imposta la direzione dei figli in colonna */
+    min-height: 100vh; /* Assicura che il body occupi almeno l'altezza della viewport */
+}
+
+/* Stili per l'header */
+header {
+    background-color: #0056b3; /* Blu scuro elegante */
+    color: white; /* Testo bianco */
+    padding: 15px 0; /* Spazio sopra e sotto ridotto */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); /* Ombra più pronunciata */
+    width: 100%; /* Occupa tutta la larghezza */
+}
+
+.header-content {
+    max-width: 1200px; /* Larghezza massima del contenuto nell'header */
+    margin: 0 auto;
+    display: flex; /* Flexbox per allineare titolo e nav */
+    justify-content: space-between; /* Sposta il nav a destra */
+    align-items: center; /* Allinea verticalmente al centro */
+    padding: 0 20px;
+}
+
+header h1 {
+    margin: 0; /* Rimuove i margini predefiniti dell'h1 */
+    font-size: 2.2em; /* Dimensione del font leggermente ridotta */
+    letter-spacing: 0.5px; /* Spaziatura tra le lettere */
+}
+
+.main-nav ul {
+    list-style: none; /* Rimuove i pallini dalle liste */
+    margin: 0;
+    padding: 0;
+    display: flex; /* Allinea gli elementi del nav orizzontalmente */
+}
+
+.main-nav ul li {
+    margin-left: 20px; /* Spazio tra gli elementi del nav */
+}
+
+.main-nav ul li a {
+    color: white;
+    text-decoration: none; /* Rimuove la sottolineatura */
+    font-weight: bold;
+    transition: color 0.3s ease; /* Transizione fluida al passaggio del mouse */
+}
+
+.main-nav ul li a:hover {
+    color: #a7d9ff; /* Colore più chiaro al passaggio del mouse */
+}
+
+/* --- LAYOUT PRINCIPALE: Sidebar e Contenuto --- */
+.main-wrapper {
+    display: flex; /* Abilita Flexbox per la sidebar e il contenuto */
+    max-width: 1200px; /* Larghezza massima del wrapper */
+    margin: 30px auto; /* Centra il wrapper orizzontalmente */
+    background-color: white; /* Sfondo bianco per l'intera area di contenuto */
+    border-radius: 10px; /* Angoli arrotondati per il wrapper */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombra più marcata */
+    flex-grow: 1; /* Permette al wrapper di espandersi per occupare lo spazio disponibile */
+    overflow: hidden; /* Nasconde overflow se il contenuto è troppo largo */
+}
+
+/* Stili per la Sidebar */
+.sidebar {
+    width: 250px; /* Larghezza fissa della sidebar */
+    background-color: #2c3e50; /* Grigio scuro/blu navy per la sidebar */
+    color: white;
+    padding: 20px 0; /* Padding verticale */
+    flex-shrink: 0; /* Impedisce alla sidebar di ridursi */
+    border-right: 1px solid #3c4f60; /* Separatore sottile */
+}
+
+.sidebar h2 {
+    color: #e0f2f7; /* Colore più chiaro per il titolo della sidebar */
+    text-align: center;
+    padding-bottom: 15px;
+    margin-top: 0;
+    margin-bottom: 25px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Linea separatrice */
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-nav ul li a {
+    display: block; /* Rende l'intera area del link cliccabile */
+    color: white;
+    text-decoration: none;
+    padding: 15px 25px; /* Padding interno ai link */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.sidebar-nav ul li a:hover,
+.sidebar-nav ul li a.active { /* Aggiungi una classe 'active' per la pagina corrente */
+    background-color: #007bff; /* Blu brillante al passaggio del mouse o se attivo */
+    color: white;
+    box-shadow: inset 3px 0 0 #e0f2f7; /* Piccola linea a sinistra per evidenziare */
+}
+
+/* Stili per l'area del contenuto principale */
+.content-area {
+    flex-grow: 1; /* Permette all'area contenuto di occupare lo spazio rimanente */
+    padding: 30px; /* Padding interno generoso */
+    background-color: #ffffff; /* Sfondo bianco pulito */
+}
+
+.content-area h2 {
+    color: #0056b3; /* Blu più scuro per i titoli principali */
+    margin-top: 0;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+}
+
+/* Stili per le sezioni interne all'area del contenuto */
+section {
+    background-color: #fcfcfc; /* Sfondo quasi bianco per le sezioni */
+    margin-bottom: 25px;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* Ombra più definita */
+    border: 1px solid #eee; /* Bordo sottile */
+}
+
+section h3 {
+    color: #007bff; /* Blu brillante per i sottotitoli delle sezioni */
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed #cce7ff; /* Linea tratteggiata sotto il sottotitolo */
+}
+
+section p {
+    font-size: 1.05em; /* Dimensione del font leggermente più grande */
+    margin-bottom: 15px;
+}
+
+/* Stili per il testo in grassetto */
+strong {
+    color: #0056b3; /* Colore blu per il testo forte */
+}
+
+/* Stili per le Stat Cards */
+.stat-cards {
+    display: flex; /* Layout orizzontale per le card */
+    flex-wrap: wrap; /* Permette alle card di andare a capo su schermi piccoli */
+    gap: 20px; /* Spazio tra le card */
+    margin-top: 20px;
+}
+
+.card {
+    background-color: #e6f3ff; /* Sfondo azzurro chiaro per le card */
+    padding: 20px;
+    border-radius: 8px;
+    flex: 1 1 calc(50% - 20px); /* Due card per riga con spazio */
+    min-width: 200px; /* Larghezza minima per evitare che si schiaccino troppo */
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: 1px solid #cce7ff; /* Bordo azzurro chiaro */
+}
+
+.card h4 {
+    color: #007bff;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.3em;
+}
+
+.card p {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #0056b3;
+    margin: 0;
+}
+
+/* Stili per l'attività recente */
+.recent-activity ul {
+    list-style: none; /* Rimuove i pallini */
+    padding: 0;
+}
+
+.recent-activity ul li {
+    background-color: #f9f9f9; /* Sfondo leggermente grigio per ogni voce */
+    border: 1px solid #eee;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    font-size: 0.95em;
+    color: #555;
+}
+
+.recent-activity ul li:before {
+    content: "•"; /* Aggiunge un punto come icona */
+    color: #007bff;
+    font-size: 1.5em;
+    line-height: 1;
+    margin-right: 10px;
+}
+
+
+/* Stili per il footer */
+footer {
+    background-color: #2c3e50; /* Stesso colore della sidebar per coerenza */
+    color: #aaa; /* Grigio chiaro per il testo */
+    text-align: center;
+    padding: 20px 0;
+    margin-top: auto; /* Spinge il footer in fondo alla pagina se il contenuto è poco */
+    font-size: 0.9em;
+}
+
+/* Media Queries per la responsività */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column; /* Impila titolo e nav su schermi piccoli */
+        text-align: center;
+    }
+    .main-nav ul {
+        margin-top: 15px;
+        justify-content: center; /* Centra gli elementi del nav */
+    }
+    .main-nav ul li {
+        margin: 0 10px;
+    }
+
+    .main-wrapper {
+        flex-direction: column; /* La sidebar va sopra il contenuto */
+        margin: 20px auto;
+        border-radius: 0; /* Rimuove gli angoli arrotondati sui bordi se mobile */
+        box-shadow: none; /* Rimuove l'ombra sul mobile */
+    }
+
+    .sidebar {
+        width: 100%; /* La sidebar occupa tutta la larghezza */
+        border-right: none;
+        border-bottom: 1px solid #3c4f60; /* Bordo sotto la sidebar */
+    }
+
+    .sidebar h2 {
+        text-align: left;
+        padding-left: 20px;
+    }
+
+    .sidebar-nav ul li a {
+        text-align: center; /* Centra i link nella sidebar su mobile */
+        padding: 12px 15px;
+    }
+
+    .sidebar-nav ul li a:hover,
+    .sidebar-nav ul li a.active {
+        box-shadow: inset 0 3px 0 #e0f2f7; /* Sottolineatura in basso per mobile */
+        border-left: none; /* Rimuove la linea a sinistra */
+    }
+
+    .content-area {
+        padding: 20px;
+    }
+
+    .stat-cards {
+        flex-direction: column; /* Le card vanno in colonna su schermi piccoli */
+    }
+
+    .card {
+        flex: 1 1 100%; /* Ogni card occupa il 100% della larghezza */
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.8em;
+    }
+    .main-nav ul li {
+        margin: 0 5px;
+    }
+    .content-area h2 {
+        font-size: 1.8em;
+    }
+}
