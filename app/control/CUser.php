@@ -67,11 +67,16 @@ class CUser{
             if(password_verify($password, $registeredUser->getPassword())){
                 USession::getInstance();
                 USession::setSessionElement("user", serialize($registeredUser));
-                
-                header("Location: /~momok/dummy/User/home");
-                //echo "LOGIN SUCCESSFUL  USER LOGGED WITH ID: " . USession::getSessionElement("idUser");
-                exit();
-                return true;
+                if(UCOOKIE::isSet('redirectSelectedRoom')){
+                    $redirect = UCOOKIE::getElement('redirectSelectedRoom');
+                    setcookie('redirectSelectedRoom', '', time() - 3600, '/');
+                    header('Location: ' . $redirect);
+                    exit(); 
+                }else{
+                    header("Location: /~momok/dummy/User/home");
+                    exit();
+                }
+
             }else{echo "WRONG PASSWORD";
                 return false;}
         }else{

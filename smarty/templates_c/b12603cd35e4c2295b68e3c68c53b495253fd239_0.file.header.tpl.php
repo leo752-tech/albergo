@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-16 12:58:39
+/* Smarty version 4.3.2, created on 2025-06-18 13:21:31
   from 'C:\Users\momok\Documents\Programmazione_web\progetto\albergoPulito\smarty\templates\header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_684ff8df9c98c8_62387126',
+  'unifunc' => 'content_6852a13b8111b8_70737193',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b12603cd35e4c2295b68e3c68c53b495253fd239' => 
     array (
       0 => 'C:\\Users\\momok\\Documents\\Programmazione_web\\progetto\\albergoPulito\\smarty\\templates\\header.tpl',
-      1 => 1750071508,
+      1 => 1750245687,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_684ff8df9c98c8_62387126 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6852a13b8111b8_70737193 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="it">
 <head>
@@ -36,14 +36,14 @@ function content_684ff8df9c98c8_62387126 (Smarty_Internal_Template $_smarty_tpl)
     <header>
         <div class="container">
             <div class="logo">
-                <a href="index.php"><h1>Nome Hotel</h1></a>
+                <a href="/~momok/"><h1>Nome Hotel</h1></a>
             </div>
             <nav>
                 <ul>
                     <li><a href="/~momok/">Home</a></li>
                     <li><a href="/~momok/Room/getAllRooms">Camere</a></li>
                     <li><a href="servizi.php">Servizi</a></li>
-                    <li><a href="prenota.php">Prenota Ora</a></li>
+                    <li><a href="/~momok/Booking/selectDate">Prenota Ora</a></li>
                     <li><a href="recensioni.php">Recensioni</a></li>
                     <li><a href="contatti.php">Contatti</a></li>
                     <li><a href="/~momok/User/showFormsLogin" class="btn btn-primary">Accedi/Registrati</a></li>

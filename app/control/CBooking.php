@@ -2,10 +2,19 @@
 
 class CBooking {
 
-    public function __construct() {}
+    public static function selectDate(){
+        $view = new VBooking();
+        $view->showSelect();
+    }
+
+
     //DA VERIDICARE
 
-    public static function getAvailableRooms($requestedCheckIn, $requestedCheckOut, $requestedBeds) {
+    public static function getAvailableRooms() {
+        $requestedCheckIn = UHTTP::post('data_check_in');
+        $requestedCheckOut = UHTTP::post('data_check_out');
+        $requestedBeds = UHTTP::post('num_adulti');
+        print_r($_POST);
         $availableRooms = array();
         
         $rooms = FPersistentManager::getInstance()->getRoomsByBeds($requestedBeds);
@@ -26,6 +35,7 @@ class CBooking {
 
                     
                     if (!self::isAvailableRoom($requestedCheckIn, $requestedCheckOut, $occupiedCheckIn, $occupiedCheckOut)) {
+                        echo 'OOCUPIED';
                        
                         $isRoomCurrentlyAvailable = false;
                         
@@ -43,13 +53,15 @@ class CBooking {
         if (empty($availableRooms)) {
             echo "NESSUNA CAMERA DISPONIBILE PER LE DATE SELEZIONATE";
         }
+        echo '----------------' . '<br>';
+        print_r($availableRooms);
         return $availableRooms; 
     }
 
     public static function isAvailableRoom($requestedCheckIn, $requestedCheckOut, $occupiedCheckIn, $occupiedCheckOut){
         
-        $reqIn = $requestedCheckIn;
-        $reqOut = $requestedCheckOut;
+        $reqIn = new DateTime($requestedCheckIn);
+        $reqOut = new DateTime($requestedCheckOut);
         $occIn = new DateTime($occupiedCheckIn);
         $occOut = new DateTime($occupiedCheckOut);
 
@@ -71,6 +83,10 @@ class CBooking {
             if(UHTTP::post("idExtraService")!=null){
                 $result1 = FPersistentManager::getInstance()->setBookingsExtraService($idBooking, UHTTP::post("idExtraService"));        
             }
+        }else{
+            setcookie('redirectSelectedRoom', UHTTP::getReferer(), time() + 900,  "/"); //15 minuti
+            header('Location: /~momok/User/showFormLogin');
+            exit();
         }
 
         

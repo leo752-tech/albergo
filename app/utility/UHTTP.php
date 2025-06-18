@@ -13,6 +13,10 @@ class UHTTP{
         return $_POST[$key] ?? null;
     }*/
 
+    public static function getReferer(){
+        return $_SERVER['HTTP_REFERER'];
+    }
+
     public static function files($parametri){
         print_r($_FILES);
         if(is_array($_FILES[$parametri[0]][$parametri[1]])){

@@ -4,7 +4,12 @@ class CBookingGemini {
 
     public function __construct() {}
 
-    public static function getAvailableRooms($requestedCheckIn, $requestedCheckOut, $requestedBeds) {
+    public static function getAvailableRooms() {
+        echo 'GEEEEEEMMMMMMMMMMIIIIIIIIIINNNNNNNNNIIIIIIIIIII' . '<br>';
+        $requestedCheckIn = UHTTP::post('data_check_in');
+        $requestedCheckOut = UHTTP::post('data_check_out');
+        $requestedBeds = UHTTP::post('num_adulti');
+
         $availableRooms = array();
         
         // 1. Recupera tutte le stanze con il numero di letti richiesto
@@ -55,14 +60,15 @@ class CBookingGemini {
         if (empty($availableRooms)) {
             echo "NESSUNA CAMERA DISPONIBILE PER LE DATE SELEZIONATE";
         }
+        print_r($availableRooms);
         return $availableRooms; // Restituisce sempre un array (vuoto o con le stanze disponibili)
     }
 
     public static function isAvailableRoom($requestedCheckIn, $requestedCheckOut, $occupiedCheckIn, $occupiedCheckOut){
         // Converto le stringhe data in oggetti DateTime per confronti precisi
         // Assicurati che le date siano nel formato corretto per DateTime
-        $reqIn = $requestedCheckIn;
-        $reqOut = $requestedCheckOut;
+        $reqIn = new DateTime($requestedCheckIn);
+        $reqOut = new DateTime($requestedCheckOut);
         $occIn = new DateTime($occupiedCheckIn);
         $occOut = new DateTime($occupiedCheckOut);
 

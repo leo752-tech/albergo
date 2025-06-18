@@ -11,14 +11,14 @@
     <header>
         <div class="container">
             <div class="logo">
-                <a href="index.php"><h1>Nome Hotel</h1></a>
+                <a href="/~momok/"><h1>Nome Hotel</h1></a>
             </div>
             <nav>
                 <ul>
                     <li><a href="/~momok/">Home</a></li>
                     <li><a href="/~momok/Room/getAllRooms">Camere</a></li>
                     <li><a href="servizi.php">Servizi</a></li>
-                    <li><a href="prenota.php">Prenota Ora</a></li>
+                    <li><a href="/~momok/Booking/selectDate">Prenota Ora</a></li>
                     <li><a href="recensioni.php">Recensioni</a></li>
                     <li><a href="contatti.php">Contatti</a></li>
                     <li><a href="/~momok/User/showFormsLogin" class="btn btn-primary">Accedi/Registrati</a></li>

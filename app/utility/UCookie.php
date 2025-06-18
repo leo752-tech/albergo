@@ -15,4 +15,8 @@ class UCookie{
         }
     }
 
+    public static function getElement($id){
+        return $_COOKIE[$id];
+    }
+
 }

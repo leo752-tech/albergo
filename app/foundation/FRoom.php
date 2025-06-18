@@ -104,7 +104,7 @@ class FRoom{
     }
 
     public static function getRoomsByBeds($beds){
-        $rooms = self::getAllRooms();
+        $rooms = self::getAll();
         $availableRooms = array();
         foreach ($rooms as $queryRes){
             if($beds <= $queryRes["beds"]){
