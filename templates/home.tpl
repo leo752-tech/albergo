@@ -38,7 +38,7 @@
         ---
 
         <h2>Esplorate L'Aquila e Dintorni</h2>
-        <p>Dalla nostra posizione, potrete facilmente avventurarvi alla scoperta delle bellezze naturali dell'Abruzzo, dal <strong>Parco Nazionale del Gran Sasso e Monti della Laga</strong> alle affascinanti vette appenniniche. Saremo lieti di aiutarvi a organizzare escursioni e itinerari per vivere al meglio la vostra esperienza abruzzese.</p>
+        <p>Dalla nostra posizione, potrete facilmente avventurarvi alla scoperta delle bellezze naturali dell'Abruzzo, dal <strong>Parco Nazionale del Gran Sasso e Monti della Laga</strong> alle affascinanti vette appenniniche. Saremo lieti di aiutarvi a aiutarvi a organizzare escursioni e itinerari per vivere al meglio la vostra esperienza abruzzese.</p>
 </section>
 
 <section id="featured-rooms" class="container section-padding">
@@ -56,7 +56,7 @@
             <p>Il massimo del lusso con vista panoramica.</p>
             <a href="camere.php#suite" class="btn btn-secondary">Scopri di più</a>
         </div>
-        </div>
+    </div>
     <div class="text-center">
         <a href="camere.php" class="btn btn-primary">Vedi tutte le Camere</a>
     </div>
@@ -79,4 +79,4 @@
     </div>
 </section>
 
-<?php include 'includes/footer.php'; ?>
+{include file='footer.tpl'}
