@@ -64,7 +64,7 @@ class FPersistentManager {
     }
 
     public static function getAllUsers(){
-        $users = FUser::getAllUsers();
+        $users = FUser::getAll();
         return $users;
     }
     public static function getBookingsByUser(int $idRegisteredUser): array {

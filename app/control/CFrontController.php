@@ -21,6 +21,7 @@ class CFrontController{
         array_shift($partiUrl);
   */     
         //estrazione classe di controllo
+        print_r($partiUrl);
         if(!empty($partiUrl[0])){ $controller = ucfirst($partiUrl[0]);}
         else{$controller = "User";}
         
@@ -37,6 +38,7 @@ class CFrontController{
             // Check if the method exists in the controller
             if (method_exists($controller, $metodo)) {
                 $parametri = array_slice($partiUrl, 2); 
+                print_r($parametri);
                 call_user_func_array([$controller, $metodo], $parametri);
             } else {
                 // show 404 page

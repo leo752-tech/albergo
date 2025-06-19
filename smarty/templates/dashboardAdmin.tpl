@@ -1,74 +1,29 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Admin - Hotel Management</title>
-    <link rel="stylesheet" href="/~momok/assets/css/style.css">
-    </head>
-<body>
-    <header>
-        <h1>Dashboard Amministratore</h1>
-        <nav>
-            <ul>
-                <li><a href="dashboard_admin.html">Home</a></li>
-                <li><a href="logout.html">Logout</a></li>
-            </ul>
-        </nav>
-    </header>
+{include file='header_admin.tpl' pageTitle='Dashboard Amministrazione'}
 
-    <div class="container">
-        <aside class="sidebar">
-            <h2>Menu Principale</h2>
-            <ul>
-                <li><a href="setup_camere.html">Setup Camere</a></li>
-                <li><a href="utenti.html">Utenti</a></li>
-                <li><a href="calendario.html">Calendario Prenotazioni</a></li>
-                <li><a href="dati_statistiche.html">Dati e Statistiche</a></li>
-                <li><a href="offerte_speciali.html">Offerte Speciali</a></li>
-            </ul>
-        </aside>
+<h2>Benvenuto nel Pannello di Amministrazione</h2>
+<p>Qui puoi gestire tutti gli aspetti del tuo hotel.</p>
 
-        <main class="content">
-            <h2>Benvenuto nella tua Dashboard</h2>
-            <p>Qui puoi gestire tutti gli aspetti del tuo albergo. Utilizza il menu a sinistra per navigare tra le diverse sezioni.</p>
-
-            <section class="quick-stats">
-                <h3>Riepilogo Rapido</h3>
-                <div class="stat-cards">
-                    <div class="card">
-                        <h4>Prenotazioni Oggi</h4>
-                        <p><strong>5</strong></p>
-                    </div>
-                    <div class="card">
-                        <h4>Camere Disponibili</h4>
-                        <p><strong>12</strong></p>
-                    </div>
-                    <div class="card">
-                        <h4>Arrivi Previsti</h4>
-                        <p><strong>3</strong></p>
-                    </div>
-                    <div class="card">
-                        <h4>Partenze Previste</h4>
-                        <p><strong>2</strong></p>
-                    </div>
-                </div>
-            </section>
-
-            <section class="recent-activity">
-                <h3>Attività Recenti</h3>
-                <ul>
-                    <li>Prenotazione #1234 di Mario Rossi per Camera 101 (20/07 - 25/07)</li>
-                    <li>Nuovo utente registrato: Anna Verdi</li>
-                    <li>Modifica disponibilità Camera 203</li>
-                    <li>Offerta speciale "Sconto Estivo" attivata</li>
-                </ul>
-            </section>
-        </main>
+<div class="admin-widgets">
+    <div class="widget">
+        <h3><i class="fas fa-users"></i> Utenti Registrati</h3>
+        <p>Totale: {$totalUsers|default:0}</p>
+        <a href="/~momok/Admin/manageUsers" class="btn btn-info">Gestisci Utenti</a>
+    </div>
+    <div class="widget">
+        <h3><i class="fas fa-bed"></i> Camere Disponibili</h3>
+        <p>Totale: {$availableRooms|default:0}</p>
+        <a href="/hotel_reservation/admin/rooms.php" class="btn btn-info">Gestisci Camere</a>
+    </div>
+    <div class="widget">
+        <h3><i class="fas fa-calendar-alt"></i> Prenotazioni Attive</h3>
+        <p>Totale: {$activeBookings|default:0}</p>
+        <a href="/hotel_reservation/admin/bookings.php" class="btn btn-info">Gestisci Prenotazioni</a>
+    </div>
+    <div class="widget">
+        <h3><i class="fas fa-concierge-bell"></i> Servizi Extra</h3>
+        <p>Totale: {$totalServices|default:0}</p>
+        <a href="/hotel_reservation/admin/services.php" class="btn btn-info">Gestisci Servizi</a>
+    </div>
     </div>
 
-    <footer>
-        <p>&copy; 2025 Hotel Management System. Tutti i diritti riservati.</p>
-    </footer>
-</body>
-</html>
+{include file='footer_admin.tpl'}

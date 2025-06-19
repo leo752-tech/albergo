@@ -40,6 +40,11 @@ class VUser{
         $this->smarty->display(''); 
     }
 
+    public function manageUsers($users){
+        $this->smarty->assign('users', $users);
+        $this->smarty->display();
+    }
+
 
 
 }

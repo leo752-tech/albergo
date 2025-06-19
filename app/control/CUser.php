@@ -70,7 +70,7 @@ class CUser{
                     header('Location: ' . $redirect);
                     exit(); 
                 }else{
-                    header("Location: /~momok/dummy/User/home");
+                    header("Location: /~momok/User/home");
                     exit();
                 }
 

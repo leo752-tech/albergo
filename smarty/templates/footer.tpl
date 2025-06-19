@@ -9,7 +9,7 @@
                     <div class="footer-section links">
                         <h3>Link Utili</h3>
                         <ul>
-                            <li><a href="index.php">Home</a></li>
+                            <li><a href="/~momok/">Home</a></li>
                             <li><a href="camere.php">Camere</a></li>
                             <li><a href="servizi.php">Servizi</a></li>
                             <li><a href="prenota.php">Prenota Ora</a></li>
@@ -29,6 +29,6 @@
                 </div>
             </div>
         </footer>
-        <script src="~momok/Documents/Programmazione_web/progetto/albergoPulito/smarty/assets/js/script.js"></script>
-    </body>
+        <script src="assets/js/script.js"></script>
+        </body>
 </html>

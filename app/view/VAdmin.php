@@ -8,8 +8,22 @@ class VAdmin {
     }
 
     // Home amministratore
-    public function home() {
-        $this->smarty->display('dashboardAdmin2.tpl');
+    public function home($totalUsers) {
+        $this->smarty->assign('totalUsers', $totalUsers);
+        $this->smarty->display('dashboardAdmin.tpl');
+    }
+
+    public function manageUsers($users){
+        $this->smarty->assign('users', $users);
+        $this->smarty->display('manageUsers.tpl');
+    }
+
+    public function showInsertUser(){
+        $this->smarty->display('insertUser.tpl');
+    }
+
+    public function showUpdateUser(){
+        $this->smarty->display('updateUser.tpl');
     }
     // Dashboard amministratore
     public function dashboard(array $stats = []) {

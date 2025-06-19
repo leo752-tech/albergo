@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-09 20:11:23
+/* Smarty version 4.3.2, created on 2025-06-19 21:30:56
   from 'C:\Users\momok\Documents\Programmazione_web\progetto\albergoPulito\smarty\templates\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_684723cbc70f58_37024092',
+  'unifunc' => 'content_68546570c6ba82_52657649',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'def4968f24e9481ee263d8dafe41fd252cbb9ee5' => 
     array (
       0 => 'C:\\Users\\momok\\Documents\\Programmazione_web\\progetto\\albergoPulito\\smarty\\templates\\home.tpl',
-      1 => 1749492648,
+      1 => 1750361236,
       2 => 'file',
     ),
   ),
@@ -22,9 +22,10 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_684723cbc70f58_37024092 (Smarty_Internal_Template $_smarty_tpl) {
-$_smarty_tpl->_subTemplateRender('file:header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+function content_68546570c6ba82_52657649 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->_subTemplateRender('file:header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('pageTitle'=>'Pagina Iniziale'), 0, false);
 ?>
+
 <section id="hero">
     <div class="hero-content">
         <h2>Benvenuti al Nome Hotel</h2>
@@ -62,7 +63,7 @@ $_smarty_tpl->_subTemplateRender('file:header.tpl', $_smarty_tpl->cache_id, $_sm
         ---
 
         <h2>Esplorate L'Aquila e Dintorni</h2>
-        <p>Dalla nostra posizione, potrete facilmente avventurarvi alla scoperta delle bellezze naturali dell'Abruzzo, dal <strong>Parco Nazionale del Gran Sasso e Monti della Laga</strong> alle affascinanti vette appenniniche. Saremo lieti di aiutarvi a organizzare escursioni e itinerari per vivere al meglio la vostra esperienza abruzzese.</p>
+        <p>Dalla nostra posizione, potrete facilmente avventurarvi alla scoperta delle bellezze naturali dell'Abruzzo, dal <strong>Parco Nazionale del Gran Sasso e Monti della Laga</strong> alle affascinanti vette appenniniche. Saremo lieti di aiutarvi a aiutarvi a organizzare escursioni e itinerari per vivere al meglio la vostra esperienza abruzzese.</p>
 </section>
 
 <section id="featured-rooms" class="container section-padding">
@@ -80,7 +81,7 @@ $_smarty_tpl->_subTemplateRender('file:header.tpl', $_smarty_tpl->cache_id, $_sm
             <p>Il massimo del lusso con vista panoramica.</p>
             <a href="camere.php#suite" class="btn btn-secondary">Scopri di più</a>
         </div>
-        </div>
+    </div>
     <div class="text-center">
         <a href="camere.php" class="btn btn-primary">Vedi tutte le Camere</a>
     </div>

@@ -37,7 +37,7 @@ class FUser {
 
     // Creates an EUser object
     public static function createObject($queryRes){
-        $user = new EUser($queryRes["idUser"], $queryRes["firstName"], $queryRes["lastName"], new dateTime ($queryRes["birthDate"]), $queryRes["birthPlace"]);
+        $user = new EUser($queryRes["idUser"], $queryRes["firstName"], $queryRes["lastName"], new DateTime ($queryRes["birthDate"]), $queryRes["birthPlace"]);
         return $user;
     }
 

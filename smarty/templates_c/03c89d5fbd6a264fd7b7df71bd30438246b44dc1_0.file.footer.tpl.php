@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-16 09:47:32
+/* Smarty version 4.3.2, created on 2025-06-19 21:30:56
   from 'C:\Users\momok\Documents\Programmazione_web\progetto\albergoPulito\smarty\templates\footer.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_684fcc142886a6_89417145',
+  'unifunc' => 'content_68546570e143f8_70672486',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '03c89d5fbd6a264fd7b7df71bd30438246b44dc1' => 
     array (
       0 => 'C:\\Users\\momok\\Documents\\Programmazione_web\\progetto\\albergoPulito\\smarty\\templates\\footer.tpl',
-      1 => 1750060043,
+      1 => 1750361449,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_684fcc142886a6_89417145 (Smarty_Internal_Template $_smarty_tpl) {
+function content_68546570e143f8_70672486 (Smarty_Internal_Template $_smarty_tpl) {
 ?></main>
         <footer>
             <div class="container">
@@ -32,7 +32,7 @@ function content_684fcc142886a6_89417145 (Smarty_Internal_Template $_smarty_tpl)
                     <div class="footer-section links">
                         <h3>Link Utili</h3>
                         <ul>
-                            <li><a href="index.php">Home</a></li>
+                            <li><a href="/~momok/">Home</a></li>
                             <li><a href="camere.php">Camere</a></li>
                             <li><a href="servizi.php">Servizi</a></li>
                             <li><a href="prenota.php">Prenota Ora</a></li>
@@ -53,8 +53,8 @@ function content_684fcc142886a6_89417145 (Smarty_Internal_Template $_smarty_tpl)
             </div>
         </footer>
         <?php echo '<script'; ?>
- src="~momok/Documents/Programmazione_web/progetto/albergoPulito/smarty/assets/js/script.js"><?php echo '</script'; ?>
+ src="assets/js/script.js"><?php echo '</script'; ?>
 >
-    </body>
+        </body>
 </html><?php }
 }
