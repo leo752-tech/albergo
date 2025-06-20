@@ -11,11 +11,12 @@ class FSpecialOffer{
     
     public function __construct(){}
 
-    private static $values = "(NULL, :title, :description, :length, :specialPrice)";
+    private static $values = "(NULL, :title, :description, :beds, :length, :specialPrice)";
 
     public static function bind($stmt, $specialOffer) {
         $stmt->bindValue(":title", $specialOffer->getTitle(), PDO::PARAM_STR);
         $stmt->bindValue(":description", $specialOffer->getDescription(), PDO::PARAM_STR);
+        $stmt->bindValue(":beds", $specialOffer->getBeds(), PDO::PARAM_INT);
         $stmt->bindValue(":length", $specialOffer->getLength(), PDO::PARAM_INT);
         $stmt->bindValue(":specialPrice", $specialOffer->getSpecialPrice(), PDO::PARAM_STR);
     }
@@ -37,15 +38,15 @@ class FSpecialOffer{
     }
 
     public static function createObject($queryRes){
-        $booking = new ESpecialOffer($queryRes["idSpecialOffer"], $queryRes["title"], $queryRes["description"], $queryRes["length"], $queryRes["SpecialPrice"]);
-        return $booking;
+        $specialOffer = new ESpecialOffer($queryRes["idSpecialOffer"], $queryRes["title"], $queryRes["description"], $queryRes["beds"], $queryRes["length"], $queryRes["SpecialPrice"]);
+        return $specialOffer;
     }
 
     public static function getObject($id){
         $result = FDataMapper::getInstance()->retrieveObject(self::$table, self::$key, $id);
         if(count($result) > 0){
-            $booking = self::createObject($result);
-            return $booking;
+            $specialOffer = self::createObject($result);
+            return $specialOffer;
         } else {
             return null;
         }
@@ -69,9 +70,9 @@ class FSpecialOffer{
                     $fieldName = $f[0];   
                     $fieldValue = $f[1];  
 
-                if ($fieldValue instanceof DateTime) {
-                    $fieldValue = $fieldValue->format("Y-m-d"); 
-                }
+                    if ($fieldValue instanceof DateTime) {
+                        $fieldValue = $fieldValue->format("Y-m-d"); 
+                    }
                     FDataMapper::getInstance()->updateObject(self::$table, $fieldName, $fieldValue, self::$key, $object->getId());
                 }
                 FDataMapper::getInstance()->getDb()->commit();
@@ -102,6 +103,13 @@ class FSpecialOffer{
             echo "ERROR: " . $e->getMessage();
         }
     }
+
+    public static function getAll(){
+        $specialOffers = FDataMapper::getInstance()->selectAll(self::$table);
+        return $specialOffers;
+    }
+
+
 
 }
 

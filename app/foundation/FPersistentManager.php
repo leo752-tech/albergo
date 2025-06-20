@@ -118,6 +118,13 @@ class FPersistentManager {
         return $reviews;
     }
 
+    public static function getAllSpecialOffer(){
+        $specialOffer = FSpecialOffer::getAll();
+        return $specialOffer;
+    }
+
+
+
 }
 
 ?>

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-19 21:35:42
+/* Smarty version 4.3.2, created on 2025-06-20 22:39:10
   from 'C:\Users\momok\Documents\Programmazione_web\progetto\albergoPulito\smarty\templates\header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_6854668e897741_82312781',
+  'unifunc' => 'content_6855c6ee53aa70_67026875',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b12603cd35e4c2295b68e3c68c53b495253fd239' => 
     array (
       0 => 'C:\\Users\\momok\\Documents\\Programmazione_web\\progetto\\albergoPulito\\smarty\\templates\\header.tpl',
-      1 => 1750361500,
+      1 => 1750451468,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6854668e897741_82312781 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6855c6ee53aa70_67026875 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="it">
 <head>
@@ -43,9 +43,10 @@ function content_6854668e897741_82312781 (Smarty_Internal_Template $_smarty_tpl)
                     <li><a href="/~momok/">Home</a></li>
                     <li><a href="/~momok/Room/">Camere</a></li>
                     <li><a href="servizi.php">Servizi</a></li>
-                    <li><a href="prenota.php">Prenota Ora</a></li>
+                    <li><a href="/~momok/Booking/selectDate">Prenota Ora</a></li>
                     <li><a href="recensioni.php">Recensioni</a></li>
                     <li><a href="contatti.php">Contatti</a></li>
+                    <li><a href="/~momok/Booking/showSpecialOffer">Offerte Speciali</a></li>
                     <li><a href="/~momok/User/showFormsLogin" class="btn btn-primary">Accedi/Registrati</a></li>
                 </ul>
             </nav>

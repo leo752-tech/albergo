@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-18 14:26:49
+/* Smarty version 4.3.2, created on 2025-06-20 21:39:04
   from 'C:\Users\momok\Documents\Programmazione_web\progetto\albergoPulito\smarty\templates\selectDate.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_6852b089a257d3_46033352',
+  'unifunc' => 'content_6855b8d8d03551_44185170',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e34f99f27a3809a47261f35bd5a42c7c4747b317' => 
     array (
       0 => 'C:\\Users\\momok\\Documents\\Programmazione_web\\progetto\\albergoPulito\\smarty\\templates\\selectDate.tpl',
-      1 => 1750249590,
+      1 => 1750448336,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_6852b089a257d3_46033352 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6855b8d8d03551_44185170 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender('file:header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
