@@ -8,52 +8,53 @@ class VAdmin {
     }
 
     // Home amministratore
-    public function home($totalUsers) {
+    public function dashboard($admin_is_logged, $totalUsers) {
+        $this->smarty->assign('admin_logged_in', $admin_is_logged);
         $this->smarty->assign('totalUsers', $totalUsers);
         $this->smarty->display('dashboardAdmin.tpl');
     }
-
-    public function manageUsers($users){
+//-----------------------------USER----------------------------------------------
+    public function manageUsers($admin_logged_in, $users){
+        $this->smarty->assign('admin_logged_in', $admin_logged_in);
         $this->smarty->assign('users', $users);
         $this->smarty->display('manageUsers.tpl');
     }
 
-    public function showInsertUser(){
+    public function showInsertUser($admin_logged_in){
+        $this->smarty->assign('admin_logged_in', $admin_logged_in);
         $this->smarty->display('insertUser.tpl');
     }
 
-    public function showUpdateUser(){
+    public function showUpdateUser($admin_logged_in){
+        $this->smarty->assign('admin_logged_in', $admin_logged_in);
         $this->smarty->display('updateUser.tpl');
-    }
-    // Dashboard amministratore
-    public function dashboard(array $stats = []) {
-        $this->smarty->assign('stats', $stats);
-        $this->smarty->display('admin_dashboard.tpl');
-    }
-
-    // Visualizza lista utenti
-    public function showUsers(array $users) {
-        $this->smarty->assign('users', $users);
-        $this->smarty->display('admin_users.tpl');
     }
 
     // Visualizza lista prenotazioni
-    public function showBookings(array $bookings) {
-        $this->smarty->assign('bookings', $bookings);
-        $this->smarty->display('admin_bookings.tpl');
+    public function manageBookings($admin_logged_in, $books) {
+        $this->smarty->assign('admin_logged_in', $admin_logged_in);
+        $this->smarty->assign('bookings', $books);
+        $this->smarty->display('manageBookings.tpl');
     }
 
     // Visualizza lista camere
-    public function showRooms(array $rooms) {
+    public function manageRooms($admin_logged_in, $rooms) {
+        $this->smarty->assign('admin_logged_in', $admin_logged_in);
         $this->smarty->assign('rooms', $rooms);
-        $this->smarty->display('admin_rooms.tpl');
+        $this->smarty->display('manageRooms.tpl');
     }
 
     // Mostra form per aggiungere/modificare una camera
-    public function showRoomForm(array $roomData = [], ?string $error = null) {
+    public function showUpdateRoom($admin_logged_in) {
         $this->smarty->assign('roomData', $roomData);
-        $this->smarty->assign('error', $error);
+        $this->smarty->assign('admin_logged_in', $admin_logged_in);
         $this->smarty->display('admin_room_form.tpl');
+    }
+
+    public function manageExtraSevices($admin_logged_in, $services){
+        $this->smarty->assign('admin_logged_in', $admin_logged_in);
+        $this->smarty->assign('services', $services);
+        $this->smarty->display('manageUsers.tpl');
     }
 
     // Mostra messaggio di errore

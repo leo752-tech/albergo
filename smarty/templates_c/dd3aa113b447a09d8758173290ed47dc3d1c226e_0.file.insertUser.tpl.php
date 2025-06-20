@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-19 22:47:17
+/* Smarty version 4.3.2, created on 2025-06-20 11:46:00
   from 'C:\Users\momok\Documents\Programmazione_web\progetto\albergoPulito\smarty\templates\insertUser.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_685477557574c7_71805506',
+  'unifunc' => 'content_68552dd8f21f04_53165739',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'dd3aa113b447a09d8758173290ed47dc3d1c226e' => 
     array (
       0 => 'C:\\Users\\momok\\Documents\\Programmazione_web\\progetto\\albergoPulito\\smarty\\templates\\insertUser.tpl',
-      1 => 1750365964,
+      1 => 1750412758,
       2 => 'file',
     ),
   ),
@@ -22,26 +22,14 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer_admin.tpl' => 1,
   ),
 ),false)) {
-function content_685477557574c7_71805506 (Smarty_Internal_Template $_smarty_tpl) {
-$_smarty_tpl->_subTemplateRender('file:header_admin.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('pageTitle'=>$_smarty_tpl->tpl_vars['pageTitle']->value), 0, false);
+function content_68552dd8f21f04_53165739 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->_subTemplateRender('file:header_admin.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('pageTitle'=>'Inserisci un utente'), 0, false);
 ?>
 
 <div class="container">
-    <h2><?php echo $_smarty_tpl->tpl_vars['pageTitle']->value;?>
-</h2>
+    <h2>Inserisci un utente</h2>
 
-    <?php if ($_smarty_tpl->tpl_vars['errorMessage']->value) {?>
-        <div class="alert alert-danger" role="alert">
-            <?php echo $_smarty_tpl->tpl_vars['errorMessage']->value;?>
-
-        </div>
-    <?php }?>
-    <?php if ($_smarty_tpl->tpl_vars['successMessage']->value) {?>
-        <div class="alert alert-success" role="alert">
-            <?php echo $_smarty_tpl->tpl_vars['successMessage']->value;?>
-
-        </div>
-    <?php }?>
+    
 
     <form action="/~momok/Admin/insertUser" method="post">
         <div class="form-group">

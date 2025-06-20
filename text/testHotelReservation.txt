@@ -1,0 +1,7 @@
+tabella con utenti registrati, con il numero di prenotazione effettuate
+manca template per creazione camera
+modifica al calendario, visualizzazione in base alla data
+manca template per creazione prenotazione
+manca template per visualizzazione e creazione servizi 
+manca template per visualizzazione di dati e statistiche
+manca template per visualizzazione e creazione di politiche di prezzo

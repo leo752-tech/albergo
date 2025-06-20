@@ -3,6 +3,8 @@
 
 <h2>Gestione Utenti</h2>
 
+
+
 <a href="/~momok/Admin/showInsertUser" class="btn btn-success mb-3"><i class="fas fa-plus"></i> Aggiungi Nuovo Utente</a>
 
 <table class="admin-table">
@@ -25,7 +27,7 @@
             <td>{$user->getBirthDate()->format('Y-m-d')}</td>
             <td>{$user->getBirthPlace()}</td>
             <td>
-                <a href="/~momok/Admin/showInsertUserpdateUser" class="btn btn-sm btn-primary">Modifica</a>
+                <a href="/~momok/Admin/showUpdateUser/{$user->getIdUser()}" class="btn btn-sm btn-primary">Modifica</a>
                 <a href="/~momok/Admin/deleteUser/{$user->getIdUser()}" class="btn btn-sm btn-danger">Elimina</a>
             </td>
         </tr>

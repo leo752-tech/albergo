@@ -1,18 +1,9 @@
-{include file='header_admin.tpl' pageTitle=$pageTitle}
+{include file='header_admin.tpl' pageTitle='Inserisci un utente'}
 
 <div class="container">
-    <h2>{$pageTitle}</h2>
+    <h2>Inserisci un utente</h2>
 
-    {if $errorMessage}
-        <div class="alert alert-danger" role="alert">
-            {$errorMessage}
-        </div>
-    {/if}
-    {if $successMessage}
-        <div class="alert alert-success" role="alert">
-            {$successMessage}
-        </div>
-    {/if}
+    
 
     <form action="/~momok/Admin/insertUser" method="post">
         <div class="form-group">

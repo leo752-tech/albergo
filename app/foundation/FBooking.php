@@ -96,6 +96,7 @@ class FBooking {
 
             if(FDataMapper::getInstance()->exists(self::$table, self::$key, $id)){
                 FDataMapper::getInstance()->deleteObject(self::$table, self::$key, $id);
+                self::deleteBookingExtraService($id);
                 FDataMapper::getInstance()->getDb()->commit();
                 return true;
             } else {
@@ -105,6 +106,11 @@ class FBooking {
         } catch(PDOException $e){
             echo "ERROR: " . $e->getMessage();
         }
+    }
+
+    public static function getAll(){
+        $bookings = FDataMapper::getInstance()->selectAll(self::$table);
+        return $bookings;
     }
 
     public static function getBookingsByRoom($idRoom){
@@ -153,6 +159,23 @@ class FBooking {
             else{return $bookings = array();}
         } catch(PDOException $e){
             echo "ERROR: " . $e->getMessage();
+        }
+    }
+
+    public static function deleteBookingExtraService($id){
+        try{
+            FDataMapper::getInstance()->getDb()->beginTransaction();
+            if(FDataMapper::getInstance()->exists(self::$table, self::$key, $id)){
+                $result = FDataMapper::getInstance()->deleteObject('booking_extraservice', 'idBooking', $id);
+                FDataMapper::getInstance()->getDb()->commit();
+                return $result;
+            } else {
+                echo "Booking does not exist";
+                return false;
+            }
+            
+        }catch(PDOException $e){
+            echo 'ERROR: ' . $e->getMessage();
         }
     }
 }

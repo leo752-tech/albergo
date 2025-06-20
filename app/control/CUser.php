@@ -13,7 +13,7 @@ class CUser{
                 USession::getInstance();
             }
         }
-        if(USession::isSetSessionElement("user")){
+        if(USession::getInstance()->isSetSessionElement("user")){
             $logged = true;
         }
         
@@ -54,8 +54,8 @@ class CUser{
             if(password_verify($password, PASSWORD_ADMIN)){
                 USession::getInstance();
                 USession::setSessionElement("admin", EMAIL_ADMIN);
-                header("Location: /~momok/Admin/home");
-                exit();
+                header("Location: /~momok/Admin/dashboard");
+                exit;
                 
             }else{echo "WRONG PASSWORD";
                 return false;}

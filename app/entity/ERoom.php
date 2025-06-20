@@ -51,4 +51,4 @@ class ERoom{
     }
 }
 
-?>o
+?>

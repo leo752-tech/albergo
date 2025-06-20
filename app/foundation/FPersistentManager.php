@@ -76,7 +76,7 @@ class FPersistentManager {
     }
 //------------------ROOM METHODS--------------------------------------
     public static function getAllRooms(){
-        $rooms = FRoom::getAllRooms();
+        $rooms = FRoom::getAll();
         return $rooms;
     }
 
@@ -93,6 +93,11 @@ class FPersistentManager {
 
     public static function getBookingsByRoom($idRoom){
         $bookings = FBooking::getBookingsByRoom($idRoom);
+        return $bookings;
+    }
+
+    public static function getAllBookings(){
+        $bookings = FBooking::getAll();
         return $bookings;
     }
 

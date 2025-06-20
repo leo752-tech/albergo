@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-19 23:17:04
+/* Smarty version 4.3.2, created on 2025-06-20 12:13:52
   from 'C:\Users\momok\Documents\Programmazione_web\progetto\albergoPulito\smarty\templates\manageUsers.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_68547e509d51c6_99340310',
+  'unifunc' => 'content_68553460f3a999_68849151',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2adfc068abc08224193b0753a708227de913d648' => 
     array (
       0 => 'C:\\Users\\momok\\Documents\\Programmazione_web\\progetto\\albergoPulito\\smarty\\templates\\manageUsers.tpl',
-      1 => 1750367821,
+      1 => 1750413895,
       2 => 'file',
     ),
   ),
@@ -22,11 +22,13 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer_admin.tpl' => 1,
   ),
 ),false)) {
-function content_68547e509d51c6_99340310 (Smarty_Internal_Template $_smarty_tpl) {
+function content_68553460f3a999_68849151 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender('file:header_admin.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('pageTitle'=>'Gestione Utenti'), 0, false);
 ?>
 
 <h2>Gestione Utenti</h2>
+
+
 
 <a href="/~momok/Admin/showInsertUser" class="btn btn-success mb-3"><i class="fas fa-plus"></i> Aggiungi Nuovo Utente</a>
 
@@ -60,7 +62,8 @@ $_smarty_tpl->tpl_vars['user']->do_else = false;
             <td><?php echo $_smarty_tpl->tpl_vars['user']->value->getBirthPlace();?>
 </td>
             <td>
-                <a href="/~momok/Admin/showInsertUserpdateUser" class="btn btn-sm btn-primary">Modifica</a>
+                <a href="/~momok/Admin/showUpdateUser/<?php echo $_smarty_tpl->tpl_vars['user']->value->getIdUser();?>
+" class="btn btn-sm btn-primary">Modifica</a>
                 <a href="/~momok/Admin/deleteUser/<?php echo $_smarty_tpl->tpl_vars['user']->value->getIdUser();?>
 " class="btn btn-sm btn-danger">Elimina</a>
             </td>

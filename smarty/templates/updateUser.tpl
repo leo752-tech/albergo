@@ -1,22 +1,13 @@
 
-{include file='header_admin.tpl' pageTitle=$pageTitle}
+{include file='header_admin.tpl'}
 
 <div class="container">
-    <h2>{$pageTitle}</h2>
+    <h2>Aggiorna i dati dell'utente</h2>
 
-    {if $errorMessage}
-        <div class="alert alert-danger" role="alert">
-            {$errorMessage}
-        </div>
-    {/if}
-    {if $successMessage}
-        <div class="alert alert-success" role="alert">
-            {$successMessage}
-        </div>
-    {/if}
+    
 
     <form action="/~momok/Admin/updateUser" method="post">
-        <input type="hidden" name="idUser" value="{$idUser}">
+        <input type="hidden" name="idUser" >
         
         <div class="form-group">
             <label for="firstName">Nome:</label>

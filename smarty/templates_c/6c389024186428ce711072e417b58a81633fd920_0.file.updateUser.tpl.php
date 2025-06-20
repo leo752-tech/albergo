@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-19 23:02:03
+/* Smarty version 4.3.2, created on 2025-06-20 12:14:01
   from 'C:\Users\momok\Documents\Programmazione_web\progetto\albergoPulito\smarty\templates\updateUser.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_68547acb106e65_17977320',
+  'unifunc' => 'content_685534691e3cd6_62076208',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '6c389024186428ce711072e417b58a81633fd920' => 
     array (
       0 => 'C:\\Users\\momok\\Documents\\Programmazione_web\\progetto\\albergoPulito\\smarty\\templates\\updateUser.tpl',
-      1 => 1750366918,
+      1 => 1750414427,
       2 => 'file',
     ),
   ),
@@ -22,30 +22,17 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer_admin.tpl' => 1,
   ),
 ),false)) {
-function content_68547acb106e65_17977320 (Smarty_Internal_Template $_smarty_tpl) {
-$_smarty_tpl->_subTemplateRender('file:header_admin.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('pageTitle'=>$_smarty_tpl->tpl_vars['pageTitle']->value), 0, false);
+function content_685534691e3cd6_62076208 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->_subTemplateRender('file:header_admin.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
 <div class="container">
-    <h2><?php echo $_smarty_tpl->tpl_vars['pageTitle']->value;?>
-</h2>
+    <h2>Aggiorna i dati dell'utente</h2>
 
-    <?php if ($_smarty_tpl->tpl_vars['errorMessage']->value) {?>
-        <div class="alert alert-danger" role="alert">
-            <?php echo $_smarty_tpl->tpl_vars['errorMessage']->value;?>
-
-        </div>
-    <?php }?>
-    <?php if ($_smarty_tpl->tpl_vars['successMessage']->value) {?>
-        <div class="alert alert-success" role="alert">
-            <?php echo $_smarty_tpl->tpl_vars['successMessage']->value;?>
-
-        </div>
-    <?php }?>
+    
 
     <form action="/~momok/Admin/updateUser" method="post">
-        <input type="hidden" name="idUser" value="<?php echo $_smarty_tpl->tpl_vars['idUser']->value;?>
-">
+        <input type="hidden" name="idUser" >
         
         <div class="form-group">
             <label for="firstName">Nome:</label>
