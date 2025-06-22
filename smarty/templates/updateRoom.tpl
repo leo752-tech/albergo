@@ -9,29 +9,29 @@
 
     <div class="form-grid">
         {* IMPORTANTE: Aggiungere enctype="multipart/form-data" per l'upload di file *}
-        <form action="/albergoPulito/public/Admin/insertRoom" method="POST" enctype="multipart/form-data">
+        <form action="/albergoPulito/public/Admin/updateRoom" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="name">Nome Camera:</label>
-                <input type="text" class="form-control" id="name" name="name" value="{$formData.name|default:''}" required>
+                <input type="text" class="form-control" id="name" name="name">
             </div>
             
             <div class="form-group">
                 <label for="beds">Posti Letto:</label>
-                <input type="number" class="form-control" id="beds" name="beds" value="{$formData.beds|default:''}" required min="1">
+                <input type="number" class="form-control" id="beds" name="beds">
             </div>
             
             <div class="form-group">
                 <label for="price">Prezzo Notte (€):</label>
-                <input type="number" step="0.01" class="form-control" id="price" name="price" value="{$formData.price|default:''}" required min="0">
+                <input type="number" step="0.01" class="form-control" id="price" name="price">
             </div>
             
             <div class="form-group">
                 <label for="name">Tipo:</label>
-                <input type="text" class="form-control" id="name" name="type" value="{$formData.type|default:''}" required>
+                <input type="text" class="form-control" id="name" name="type">
             </div>
 
             <div class="form-group full-width">
-                <label for="description">Descrizione (Opzionale):</label>
+                <label for="description">Descrizione:</label>
                 <textarea class="form-control" id="description" name="description" rows="5">{$formData.description|default:''}</textarea>
             </div>
 

@@ -8,14 +8,14 @@
 <table class="admin-table">
     <thead>
         <tr>
-            <th>ID Camera</th>      <th>Nome</th>          <th>Posti Letto</th>   <th>Prezzo Notte</th>  <th>Tipo</th>          <th>Azioni</th>
+            <th>ID Camera</th>      <th>Nome</th>          <th>Posti Letto</th>   <th>Prezzo Notte</th>  <th>Tipo</th>     <th>Descrizione</th>          <th>Azioni</th>
         </tr>
     </thead>
     <tbody>
         {if $rooms}
             {foreach $rooms as $room}
             <tr>
-                <td>{$room->getId()}</td>           <td>{$room->getName()}</td>         <td>{$room->getBeds()}</td>         <td>{$room->getPrice()|string_format:"%.2f"} €</td> <td>{$room->getType()}</td>         <td>
+                <td>{$room->getId()}</td>           <td>{$room->getName()}</td>         <td>{$room->getBeds()}</td>         <td>{$room->getPrice()|string_format:"%.2f"} €</td> <td>{$room->getType()}</td>  <td>{$room->getDescription()}</td>        <td>
                     <a href="/albergoPulito/public/Admin/showUpdateRoom/{$room->getId()}" class="btn btn-sm btn-primary">Modifica</a>
                     <a href="/albergoPulito/public/Admin/deleteRoom/{$room->getId()}" class="btn btn-sm btn-danger">Elimina</a>
                 </td>

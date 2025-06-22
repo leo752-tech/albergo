@@ -40,8 +40,9 @@
 </table>
 
 <div class="container">
-    <h2>Utenti Registrati e Prenotazioni</h2>
+    <h2>Utenti Registrati</h2>
 
+    <a href="/albergoPulito/public/Admin/showInsertRegisteredUser" class="btn btn-success mb-3"><i class="fas fa-plus"></i> Aggiungi Nuovo Utente Registrato</a>
 
     <div class="table-responsive">
         <table class="admin-table">
@@ -51,7 +52,6 @@
                     <th>NOME</th>
                     <th>COGNOME</th>
                     <th>EMAIL</th>
-                    <th>NUM. PRENOTAZIONI</th>
                     <th>AZIONI</th>
                 </tr>
             </thead>
@@ -65,10 +65,10 @@
                             <td>{$user->getLastName()|default:$user.lastName}</td>
                             <td>{$user->getEmail()|default:$user.email}</td>
                             <td>
-                                <a href="{$user->getIdUser()}" class="btn btn-primary btn-sm">Modifica</a>
+                                <a href="/albergoPulito/public/Admin/showUpdateRegisteredUser/{$user->getIdRegisteredUser()}" class="btn btn-primary btn-sm">Modifica</a>
                                 <form action="/albergoPulito/public/Admin/banRegisteredUser/{$user->getIdRegisteredUser()}" method="POST" style="display:inline-block;">
                                     <input type="hidden" name="idUser">
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Sei sicuro di voler eliminare questo utente? Tutte le sue prenotazioni saranno cancellate.');">Elimina</button>
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Sei sicuro di voler eliminare questo utente? Tutte le sue prenotazioni saranno cancellate.');">Banna</button>
                                 </form>
                             </td>
                         </tr>

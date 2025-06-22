@@ -1,4 +1,7 @@
-modifica sull'utente, numero di prenotzioni,  operazione di ban sull'utente
-inserimento delle foto nelle camere difficoltoso
+UTENTI ok
 
 serve un template per l'aggiornamento delle camere, dove si visualizzano le immagini e si possono selezionare, modificandole o eliminandole
+
+inserimento prenotazioni da sostituire con quelo per gli utenti
+
+/albergoPulito/public/User/showFormsLogin

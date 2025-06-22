@@ -1,8 +1,8 @@
 <?php
 
-class ESpecialOffer{
+class ESpecialOffer{  
 
-    private int $idSpecialOffer;
+    private ?int $idSpecialOffer;
     private string $title;
     private string $description;
     private int $beds;

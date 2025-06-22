@@ -1,5 +1,30 @@
+<?php
+/* Smarty version 4.3.2, created on 2025-06-22 22:25:10
+  from 'C:\xampp\htdocs\albergoPulito\smarty\templates\updateUser.tpl' */
 
-{include file='header_admin.tpl'}
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.3.2',
+  'unifunc' => 'content_685866a626f001_47135124',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    'eb2097982ce43015d67c3418a9277b9b11ee7db6' => 
+    array (
+      0 => 'C:\\xampp\\htdocs\\albergoPulito\\smarty\\templates\\updateUser.tpl',
+      1 => 1750623895,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+    'file:header_admin.tpl' => 1,
+    'file:footer_admin.tpl' => 1,
+  ),
+),false)) {
+function content_685866a626f001_47135124 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->_subTemplateRender('file:header_admin.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
 
 <div class="container">
     <h2>Aggiorna i dati dell'utente</h2>
@@ -30,4 +55,6 @@
     </form>
 </div>
 
-{include file='footer_admin.tpl'}
+<?php $_smarty_tpl->_subTemplateRender('file:footer_admin.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+}
+}

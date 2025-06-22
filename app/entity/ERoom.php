@@ -6,13 +6,15 @@ class ERoom{
     private int $beds;
     private float $price;
     private string $type;
+    private string $description;
 
-    public function __construct(?int $idRoom = null, string $name, int $beds, float $price, string $type){
+    public function __construct(?int $idRoom = null, string $name, int $beds, float $price, string $type, string $description){
         $this->idRoom = $idRoom;
         $this->name = $name;
         $this->beds = $beds;
         $this->price = $price;
         $this->type = $type;
+        $this->description = $description;
     }
 
     public function setId(int $id){
@@ -48,6 +50,13 @@ class ERoom{
     }
     public function getType(): string{
         return $this->type;
+    }
+
+    public function setDescription(string $description){
+        $this->description = $description;
+    }
+    public function getDescription(): string{
+        return $this->description;
     }
 }
 

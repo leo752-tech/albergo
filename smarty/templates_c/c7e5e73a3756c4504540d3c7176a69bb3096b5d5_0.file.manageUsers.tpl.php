@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-22 16:55:42
+/* Smarty version 4.3.2, created on 2025-06-22 21:44:36
   from 'C:\xampp\htdocs\albergoPulito\smarty\templates\manageUsers.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_6858196e02ad42_94067519',
+  'unifunc' => 'content_68585d240f9777_17427158',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c7e5e73a3756c4504540d3c7176a69bb3096b5d5' => 
     array (
       0 => 'C:\\xampp\\htdocs\\albergoPulito\\smarty\\templates\\manageUsers.tpl',
-      1 => 1750604137,
+      1 => 1750621005,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer_admin.tpl' => 1,
   ),
 ),false)) {
-function content_6858196e02ad42_94067519 (Smarty_Internal_Template $_smarty_tpl) {
+function content_68585d240f9777_17427158 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender('file:header_admin.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('pageTitle'=>'Gestione Utenti'), 0, false);
 ?>
 
@@ -82,8 +82,9 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 </table>
 
 <div class="container">
-    <h2>Utenti Registrati e Prenotazioni</h2>
+    <h2>Utenti Registrati</h2>
 
+    <a href="/albergoPulito/public/Admin/showInsertRegisteredUser" class="btn btn-success mb-3"><i class="fas fa-plus"></i> Aggiungi Nuovo Utente Registrato</a>
 
     <div class="table-responsive">
         <table class="admin-table">
@@ -93,7 +94,6 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                     <th>NOME</th>
                     <th>COGNOME</th>
                     <th>EMAIL</th>
-                    <th>NUM. PRENOTAZIONI</th>
                     <th>AZIONI</th>
                 </tr>
             </thead>
@@ -115,12 +115,12 @@ $_smarty_tpl->tpl_vars['user']->do_else = false;
                             <td><?php echo (($tmp = $_smarty_tpl->tpl_vars['user']->value->getEmail() ?? null)===null||$tmp==='' ? $_smarty_tpl->tpl_vars['user']->value['email'] ?? null : $tmp);?>
 </td>
                             <td>
-                                <a href="<?php echo $_smarty_tpl->tpl_vars['user']->value->getIdUser();?>
+                                <a href="/albergoPulito/public/Admin/showUpdateRegisteredUser/<?php echo $_smarty_tpl->tpl_vars['user']->value->getIdRegisteredUser();?>
 " class="btn btn-primary btn-sm">Modifica</a>
                                 <form action="/albergoPulito/public/Admin/banRegisteredUser/<?php echo $_smarty_tpl->tpl_vars['user']->value->getIdRegisteredUser();?>
 " method="POST" style="display:inline-block;">
                                     <input type="hidden" name="idUser">
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Sei sicuro di voler eliminare questo utente? Tutte le sue prenotazioni saranno cancellate.');">Elimina</button>
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Sei sicuro di voler eliminare questo utente? Tutte le sue prenotazioni saranno cancellate.');">Banna</button>
                                 </form>
                             </td>
                         </tr>

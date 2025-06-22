@@ -9,38 +9,26 @@
 
     <h3>Aggiungi Nuova Politica di Prezzo / Offerta</h3>
     <div class="form-grid mb-4">
-        <form action="/albergoPulito/public/Admin/showInsertOffer" method="POST">
+        <form action="/albergoPulito/public/Admin/insertOffer" method="POST">
             <div class="form-group">
                 <label for="policyName">Nome Politica/Offerta:</label>
-                <input type="text" class="form-control" id="policyName" name="policyName" value="{$formData.policyName|default:''}" required>
+                <input type="text" class="form-control" id="policyName" name="title" value="{$formData.policyName|default:''}" required>
             </div>
             <div class="form-group">
-                <label for="discountType">Tipo di Sconto:</label>
-                <select class="form-control" id="discountType" name="discountType" required>
-                    <option value="">Seleziona tipo</option>
-                    <option value="percentage" {if $formData.discountType eq 'percentage'}selected{/if}>Percentuale (%)</option>
-                    <option value="fixed_amount" {if $formData.discountType eq 'fixed_amount'}selected{/if}>Importo Fisso (€)</option>
-                </select>
+                <label for="Description">Descrizione:</label>
+                <input type="text" class="form-control" id="Descrizione" name="description" required>
             </div>
             <div class="form-group">
-                <label for="discountValue">Valore Sconto:</label>
-                <input type="number" step="0.01" class="form-control" id="discountValue" name="discountValue" value="{$formData.discountValue|default:''}" required min="0">
-            </div>
-            <div class="form-group">
-                <label for="startDate">Data Inizio:</label>
-                <input type="date" class="form-control" id="startDate" name="startDate" value="{$formData.startDate|default:''}" required>
-            </div>
-            <div class="form-group">
-                <label for="endDate">Data Fine:</label>
-                <input type="date" class="form-control" id="endDate" name="endDate" value="{$formData.endDate|default:''}" required>
+                <label for="minNights">Numero di posti letto:</label>
+                <input type="number" class="form-control" id="beds" name="beds" min="0">
             </div>
             <div class="form-group">
                 <label for="minNights">Notti Minime (Opzionale):</label>
-                <input type="number" class="form-control" id="minNights" name="minNights" value="{$formData.minNights|default:''}" min="0">
+                <input type="number" class="form-control" id="length" name="length" min="0">
             </div>
             <div class="form-group full-width">
-                <label for="description">Descrizione (Opzionale):</label>
-                <textarea class="form-control" id="description" name="description" rows="3">{$formData.description|default:''}</textarea>
+                <label for="price">Prezzo:</label>
+                <input type="number" class="form-control" id="specialPrice" name="specialPrice" min="0">
             </div>
             <div class="form-group full-width">
                 <button type="submit" class="btn btn-success">Aggiungi Politica</button>
@@ -78,9 +66,9 @@
                             </td>
                            <td>{$policy->getLength()|default:$policy.length|default:'N/A'}</td>
                             <td>
-                                <a href="/albergoPulito/public/Admin/showUpdate{$policy->getIdSpecialOffer()|default:$policy.idPolicy}" class="btn btn-primary btn-sm">Modifica</a>
+                                <a href="/albergoPulito/public/Admin/showUpdate{$policy->getIdSpecialOffer()}" class="btn btn-primary btn-sm">Modifica</a>
                                 <form action="/albergoPulito/public/Admin/deleteOffer" method="POST" style="display:inline-block;">
-                                    <input type="hidden" name="idPolicy" value="{$policy->getIdSpecialOffer()|default:$policy.idPolicy}">
+                                    <input type="hidden" name="idPolicy" value="{$policy->getIdSpecialOffer()}">
                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Sei sicuro di voler eliminare questa politica di prezzo?');">Elimina</button>
                                 </form>
                             </td>

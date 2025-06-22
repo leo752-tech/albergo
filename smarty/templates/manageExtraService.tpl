@@ -11,22 +11,15 @@
         <form action="/albergoPulito/public/Admin/insertService" method="POST">
             <div class="form-group">
                 <label for="name">Nome Servizio:</label>
-                <input type="text" class="form-control" id="name" name="name" value="{$formData.name|default:''}" required>
+                <input type="text" class="form-control" id="name" name="name" required>
             </div>
             <div class="form-group">
-                <label for="description">Descrizione (Opzionale):</label>
-                <textarea class="form-control" id="description" name="description" rows="3">{$formData.description|default:''}</textarea>
+                <label for="description">Descrizione:</label>
+                <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
             </div>
             <div class="form-group">
                 <label for="price">Prezzo (€):</label>
-                <input type="number" step="0.01" class="form-control" id="price" name="price" value="{$formData.price|default:''}" min="0">
-            </div>
-            <div class="form-group">
-                <label for="available">Disponibile:</label>
-                <select class="form-control" id="available" name="available" required>
-                    <option value="1" {if $formData.available eq 1}selected{/if}>Sì</option>
-                    <option value="0" {if $formData.available eq 0}selected{/if}>No</option>
-                </select>
+                <input type="number" step="0.01" class="form-control" id="price" name="price"  min="0">
             </div>
             <div class="form-group full-width">
                 <button type="submit" class="btn btn-success">Aggiungi Servizio</button>
@@ -43,7 +36,6 @@
                     <th>NOME</th>
                     <th>DESCRIZIONE</th>
                     <th>PREZZO</th>
-                    <th>DISPONIBILE</th>
                     <th>AZIONI</th>
                 </tr>
             </thead>
@@ -52,14 +44,14 @@
                 {if !empty($services)}
                     {foreach $services as $service}
                         <tr>
-                            <td>{$service->getId()|default:$service.idService}</td>
-                            <td>{$service->getName()|default:$service.name}</td>
-                            <td>{$service->getDescription()|default:$service.description}</td>
-                            <td>{$service->getPrice()|string_format:"%.2f"|default:'N/A'} €</td>
+                            <td>{$service->getId()}</td>
+                            <td>{$service->getName()}</td>
+                            <td>{$service->getDescription()}</td>
+                            <td>{$service->getPrice()|string_format:"%.2f"} €</td>
                             <td>
                                 <a href="/albergoPulito/public/Admin/showUpdateService/{$service->getId()}" class="btn btn-primary btn-sm">Modifica</a>
-                                <form action="/albergoPulito/public/Admin/deleteService" method="POST" style="display:inline-block;">
-                                    <input type="hidden" name="idService" value="{$service->getId()|default:$service.idService}">
+                                <form action="/albergoPulito/public/Admin/deleteService/{$service->getId()}" method="POST" style="display:inline-block;">
+                                    <input type="hidden" name="idService" value="{$service->getId()}">
                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Sei sicuro di voler eliminare questo servizio?');">Elimina</button>
                                 </form>
                             </td>

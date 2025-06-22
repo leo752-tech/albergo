@@ -8,7 +8,7 @@ class FRoom{
     
     private static $table = "room";
     
-    private static $values = "(NULL,:name,:beds,:price,:type)";
+    private static $values = "(NULL,:name,:beds,:price,:type,:description)";
     
     public function __construct(){}
 
@@ -17,6 +17,7 @@ class FRoom{
         $stmt->bindValue(":beds", $room->getBeds(), PDO::PARAM_INT);
         $stmt->bindValue(":price", $room->getPrice(), PDO::PARAM_STR);
         $stmt->bindValue(":type", $room->getType(), PDO::PARAM_STR);
+        $stmt->bindValue(":description", $room->getDescription(), PDO::PARAM_STR);
     }
 
     public static function getKey(){
@@ -37,7 +38,7 @@ class FRoom{
 
     // creates an ERoom object
     public static function createObject($queryRes){
-        $room = new ERoom($queryRes["idRoom"], $queryRes["name"], $queryRes["beds"], $queryRes["price"], $queryRes["type"]);
+        $room = new ERoom($queryRes["idRoom"], $queryRes["name"], $queryRes["beds"], $queryRes["price"], $queryRes["type"], $queryRes["description"]);
         return $room;
     }
 

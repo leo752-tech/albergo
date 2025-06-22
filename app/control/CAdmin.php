@@ -24,6 +24,7 @@ class CAdmin{
         $view->dashboard($admin_logged_in, $totUsers);
     }
 
+//-----------------------USER--------------------------------------------------------------------------------
     public static function manageUsers(){
         $view = new VAdmin();
         $usersQuery = FPersistentManager::getInstance()->getAllUsers();
@@ -70,6 +71,26 @@ class CAdmin{
         
     }
 
+    public static function showInsertRegisteredUser(){
+
+        $view = new VAdmin();
+        $admin_logged_in = CAdmin::isAdminLogged();
+        $view->showInsertRegisteredUser($admin_logged_in);
+    }
+
+    public static function insertRegisteredUser(){
+        $view = new VUser();
+        $user = new EUser(null, UHTTP::post("firstName"), UHTTP::post("lastName"), new DateTime(UHTTP::post("birthDate")), UHTTP::post("birthPlace"));
+        $idUser = FPersistentManager::getInstance()->saveObject($user);
+        $regUser = new ERegisteredUser(null, $idUser, UHTTP::post("email"), UHTTP::post("password"), UHTTP::post("firstName"), UHTTP::post("lastName"), new DateTime(UHTTP::post("birthDate")), UHTTP::post("birthPlace"), UHTTP::post("email"));
+        $result = FPersistentManager::getInstance()->saveObject($regUser);
+        if($result == false){
+            echo 'UTENTE GIA ESISTENTE';
+        }else{
+            header('Location: /albergoPulito/public/Admin/manageUsers');
+        }
+    }
+
     public static function banRegisteredUser($idUser){
         $regUser = FPersistentManager::getInstance()->getObject('ERegisteredUser', $idUser);
         $mod = array(['isBanned', true]);
@@ -90,21 +111,57 @@ class CAdmin{
     public static function updateUser(){
         
         $idUser = USession::getInstance()->getSessionElement('idUserModified');
-        echo $idUser;
         $user = FPersistentManager::getInstance()->getObject('EUser', $idUser);
-        $mod = array(['firstName', UHTTP::post("firstName")], ['lastName', UHTTP::post("lastName")], ['birthDate', new DateTime(UHTTP::post("birthDate"))], ['birthPlace', UHTTP::post("birthPlace")]);
+        $mod = array();
+        if( UHTTP::post("firstName") != ''){$mod[] = ['firstName', UHTTP::post("firstName")];}
+        if( UHTTP::post("lastName") != ''){$mod[] = ['lastName', UHTTP::post("lastName")];}
+        if( UHTTP::post("birthDate") != null){$mod[] = ['birthDate', new DateTime(UHTTP::post("birthDate"))];}
+        if( UHTTP::post("birthPlace") != ''){$mod[] = ['birthPlace', UHTTP::post("birthPlace")];}
         $result = FPersistentManager::getInstance()->updateObject($user, $mod);
         header('Location: /albergoPulito/public/Admin/manageUsers');
         exit;
 
     }
 
+    public static function showUpdateRegisteredUser($idUser){
+        $view = new VAdmin();
+        
+        USession::getInstance()->setSessionElement('idRegisteredUserModified', $idUser);
+
+        $admin_logged_in = CAdmin::isAdminLogged();
+        $view->showUpdateRegisteredUser($admin_logged_in);
+    }
+
+    public static function updateRegisteredUser(){
+        
+        $idRegisteredUser = USession::getInstance()->getSessionElement('idRegisteredUserModified');
+        $registeredUser = FPersistentManager::getInstance()->getObject('ERegisteredUser', $idRegisteredUser);
+        $mod = array();
+        if( UHTTP::post("firstName") != ''){$mod[] = ['firstName', UHTTP::post("firstName")];}
+        if( UHTTP::post("lastName") != ''){$mod[] = ['lastName', UHTTP::post("lastName")];}
+        if( UHTTP::post("birthDate") != null){$mod[] = ['birthDate', new DateTime(UHTTP::post("birthDate"))];}
+        if( UHTTP::post("birthPlace") != ''){$mod[] = ['birthPlace', UHTTP::post("birthPlace")];}
+        if( UHTTP::post("email") != ''){$mod[] = ['email', UHTTP::post("email")];}
+        if( UHTTP::post("password") != ''){$mod[] = ['password', UHTTP::post("password")];}
+        $result = FPersistentManager::getInstance()->updateObject($registeredUser, $mod);
+        $idUser = $registeredUser->getIdUser();
+        $user = FPersistentManager::getInstance()->getObject('EUser', $idUser);
+        $mod = array(['firstName', UHTTP::post("firstName")], ['lastName', UHTTP::post("lastName")], ['birthDate', new DateTime(UHTTP::post("birthDate"))], ['birthPlace', UHTTP::post("birthPlace")]);
+        $result = FPersistentManager::getInstance()->updateObject($user, $mod);
+
+        header('Location: /albergoPulito/public/Admin/manageUsers');
+        exit;
+
+    }
+
+//----------------------------------------ROOM-----------------------------------------------------------------
+
     public static function manageRooms(){
         $view = new VAdmin();
         $rooms = FPersistentManager::getInstance()->getAllRooms();
         $roomsObj = array();
         foreach($rooms as $queryRes){
-            $roomsObj[] = new ERoom($queryRes["idRoom"], $queryRes["name"], $queryRes["beds"], $queryRes["price"], $queryRes["type"]);
+            $roomsObj[] = new ERoom($queryRes["idRoom"], $queryRes["name"], $queryRes["beds"], $queryRes["price"], $queryRes["type"], $queryRes["description"]);
         }
        
         $admin_logged_in = CAdmin::isAdminLogged();
@@ -114,7 +171,7 @@ class CAdmin{
     public static function showUpdateRoom($idRoom){
         $view = new VAdmin();
         
-        USession::getInstance()->setSessionElement('idRoomModified', $idRoomModified);
+        USession::getInstance()->setSessionElement('idRoomModified', $idRoom);
 
         $admin_logged_in = CAdmin::isAdminLogged();
         $view->showUpdateRoom($admin_logged_in);
@@ -127,8 +184,7 @@ class CAdmin{
         $view->showInsertRoom($admin_logged_in);
     }
     public static function insertRoom(){
-        $view = new VUser();
-        $room = new ERoom(null, UHTTP::post("name"), UHTTP::post("beds"), UHTTP::post("price"), UHTTP::post("type"));
+        $room = new ERoom(null, UHTTP::post("name"), UHTTP::post("beds"), UHTTP::post("price"), UHTTP::post("type"), UHTTP::post("description"));
         $idRoom = FPersistentManager::getInstance()->saveObject($room);
         $images = UHTTP::files('room_images');
         foreach($images as $queryRes){
@@ -148,14 +204,27 @@ class CAdmin{
         
         $idRoom = USession::getInstance()->getSessionElement('idRoomModified');
         $room = FPersistentManager::getInstance()->getObject('ERoom', $idRoom);
-        $mod = array(['name', UHTTP::post("name")], ['beds', UHTTP::post("beds")], ['price', UHTTP::post("price")], ['type', UHTTP::post("type")]);
+        $mod = array();
+        if( UHTTP::post("name") != ''){$mod[] = ['name', UHTTP::post("name")];}
+        if( UHTTP::post("beds") != null){$mod[] = ['beds', UHTTP::post("beds")];}
+        if( UHTTP::post("type") != ''){$mod[] = ['type', UHTTP::post("type")];}
+        if( UHTTP::post("price") != null){$mod[] = ['price', UHTTP::post("price")];}
+        if( UHTTP::post("description") != ''){$mod[] = ['description', UHTTP::post("description")];}
+
         $result = FPersistentManager::getInstance()->updateObject($room, $mod);
         
-        $result = FPersistentManager::getInstance()->updateObject();
         header('Location: /albergoPulito/public/Admin/manageRooms');
         exit;
 
     }
+
+    public static function deleteRoom($idRoom){
+        $result = FPersistentManager::getInstance()->deleteObject('ERoom', $idRoom);
+        header('Location: /albergoPulito/public/Admin/manageRooms');
+        exit;
+    }
+
+//--------------------------------------BOOKING-----------------------------------------------------------------
 
     public static function manageBookings(){
         $view = new VAdmin();
@@ -166,7 +235,7 @@ class CAdmin{
         }
        
         $admin_logged_in = CAdmin::isAdminLogged();
-        $view->manageBookings($admin_logged_in, $booksObj);
+        $view->manageBookings();
     }
 
     public static function showInsertBooking(){
@@ -177,13 +246,49 @@ class CAdmin{
         $view->showInsertBooking($admin_logged_in);
     }
 
+    public static function showBookingDetail($date){
+
+        $view = new VAdmin();
+        //$books = FPersistentManager::getInstance()->getAllBookings();
+        $books = self::getBookingsByDate($date);
+        $booksObj = array();
+        foreach($books as $queryRes){
+            $booksObj[] = new EBooking($queryRes["idBooking"], $queryRes["idRegisteredUser"], new DateTime($queryRes["checkInDate"]), new DateTime( $queryRes["checkOutDate"]), $queryRes["idRoom"], $queryRes["totalPrice"], new DateTime($queryRes["bookingDate"]), $queryRes["idSpecialOffer"]);
+        }
+        $admin_logged_in = CAdmin::isAdminLogged();
+        $view->showBookingDetail($booksObj, $date);
+    }
+
     public static function deleteBooking($idBooking){
         $result = FPersistentManager::getInstance()->deleteObject('EBooking',$idBooking);
         if($result){header('Location: /albergoPulito/public/Admin/manageBookings'); exit();}
         
     }
 
-    public static function manageExtraServices(){
+    public static function getBookingsByDate($date){
+        $bookingsDate = array();
+        $rooms = FPersistentManager::getInstance()->getAllRooms();
+        foreach($rooms as $room){
+            $bookings = FPersistentManager::getInstance()->getBookingsByRoom($room["idRoom"]);
+            foreach($bookings as $book){
+                $occupied = self::isInMiddle($book["checkInDate"], $book["checkOutDate"], $date);
+                if($occupied){$bookingsDate[] = $book;}
+            }
+        }
+        return $bookingsDate;
+    }
+
+    public static function isInMiddle($checkIn, $checkOut, $date){
+        $cI = new DateTime($checkIn);
+        $cO = new DateTime($checkOut);
+        $dateM = new DateTime($date);
+        if($cI <= $dateM && $dateM <= $cO){return true;}
+        else{return false;}
+    }
+
+//----------------------------------------------EXTRASERVICE--------------------------------------------------------
+
+    public static function manageExtraService(){
         $view = new VAdmin();
         $services = FPersistentManager::getInstance()->getAllExtraServices();
         $servicesObj = array();
@@ -195,6 +300,15 @@ class CAdmin{
         $view->manageExtraServices($admin_logged_in, $servicesObj);
     }
 
+    public static function insertService(){
+        $extraService = new EExtraService(null, UHTTP::post('name'), UHTTP::post('description'), UHTTP::post('price'));
+        $result = FPersistentManager::getInstance()->saveObject($extraService);
+        if($result == false){
+            echo 'UTENTE GIA ESISTENTE';
+        }else{
+            header('Location: /albergoPulito/public/Admin/manageExtraService');
+        }
+    }
 
     public static function showUpdateService($idService){
         $view = new VAdmin();
@@ -210,7 +324,10 @@ class CAdmin{
         
         $idService = USession::getInstance()->getSessionElement('idServiceModified');
         $service = FPersistentManager::getInstance()->getObject('EExtraService', $idService);
-        $mod = array(['name', UHTTP::post("name")], ['description', UHTTP::post("description")], ['price', UHTTP::post("price")]);
+        $mod = array();
+        if( UHTTP::post("name") != ''){$mod[] = ['name', UHTTP::post("name")];}
+        if( UHTTP::post("description") != ''){$mod[] = ['description', UHTTP::post("description")];}
+        if( UHTTP::post("price") != null){$mod[] = ['price', UHTTP::post("price")];}
         $result = FPersistentManager::getInstance()->updateObject($service, $mod);
         
         
@@ -218,6 +335,14 @@ class CAdmin{
         exit;
 
     }
+
+    public static function deleteService($idService){
+        $result = FPersistentManager::getInstance()->deleteObject('EExtraService', $idService);
+        header('Location: /albergoPulito/public/Admin/manageExtraService');
+        exit;
+    }
+
+//--------------------------------------------------SPECIALOFFER----------------------------------------------------------
 
     public static function manageSpecialOffer(){
         $view = new VAdmin();
@@ -230,4 +355,14 @@ class CAdmin{
         $admin_logged_in = CAdmin::isAdminLogged();
         $view->manageOffers($admin_logged_in, $offersObj);
     }
+
+    public static function insertOffer(){
+        $offer = new ESpecialOffer(null, UHTTP::post('title'), UHTTP::post('description'), UHTTP::post('beds'), UHTTP::post('length'), UHTTP::post('specialPrice'));
+        $result = FPersistentManager::getInstance()->saveObject($offer);
+        if($result == false){
+            echo 'UTENTE GIA ESISTENTE';
+        }else{
+            header('Location: /albergoPulito/public/Admin/manageSpecialOffer');
+        }
+    }  
 }

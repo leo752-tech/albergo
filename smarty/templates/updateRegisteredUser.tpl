@@ -1,14 +1,11 @@
-
-{include file='header_admin.tpl'}
+{include file='header_admin.tpl' pageTitle='Inserisci un utente'}
 
 <div class="container">
-    <h2>Aggiorna i dati dell'utente</h2>
+    <h2>Aggiorna account</h2>
 
     
 
-    <form action="/albergoPulito/public/Admin/updateUser" method="post">
-        <input type="hidden" name="idUser" >
-        
+    <form action="/albergoPulito/public/Admin/updateRegisteredUser" method="post">
         <div class="form-group">
             <label for="firstName">Nome:</label>
             <input type="text" class="form-control" id="firstName" name="firstName">
@@ -25,7 +22,11 @@
             <label for="birthPlace">Luogo di Nascita:</label>
             <input type="text" class="form-control" id="birthPlace" name="birthPlace">
         </div>
-        <button type="submit" class="btn btn-primary">Salva Modifiche</button>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email">
+        </div>
+        <button type="submit" class="btn btn-primary">Aggiorna Utente</button>
         <a href="/albergoPulito/public/Admin/manageUsers" class="btn btn-secondary">Annulla</a>
     </form>
 </div>

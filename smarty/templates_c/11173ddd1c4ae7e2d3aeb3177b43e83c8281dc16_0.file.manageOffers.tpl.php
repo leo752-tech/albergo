@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-22 19:12:44
+/* Smarty version 4.3.2, created on 2025-06-23 00:59:37
   from 'C:\xampp\htdocs\albergoPulito\smarty\templates\manageOffers.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_6858398c54eff4_32251318',
+  'unifunc' => 'content_68588ad9c00b90_59058252',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '11173ddd1c4ae7e2d3aeb3177b43e83c8281dc16' => 
     array (
       0 => 'C:\\xampp\\htdocs\\albergoPulito\\smarty\\templates\\manageOffers.tpl',
-      1 => 1750612361,
+      1 => 1750633160,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer_admin.tpl' => 1,
   ),
 ),false)) {
-function content_6858398c54eff4_32251318 (Smarty_Internal_Template $_smarty_tpl) {
+function content_68588ad9c00b90_59058252 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
 <?php $_smarty_tpl->_subTemplateRender('file:header_admin.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
@@ -35,44 +35,27 @@ function content_6858398c54eff4_32251318 (Smarty_Internal_Template $_smarty_tpl)
 
     <h3>Aggiungi Nuova Politica di Prezzo / Offerta</h3>
     <div class="form-grid mb-4">
-        <form action="/albergoPulito/public/Admin/showInsertOffer" method="POST">
+        <form action="/albergoPulito/public/Admin/insertOffer" method="POST">
             <div class="form-group">
                 <label for="policyName">Nome Politica/Offerta:</label>
-                <input type="text" class="form-control" id="policyName" name="policyName" value="<?php echo (($tmp = $_smarty_tpl->tpl_vars['formData']->value['policyName'] ?? null)===null||$tmp==='' ? '' ?? null : $tmp);?>
+                <input type="text" class="form-control" id="policyName" name="title" value="<?php echo (($tmp = $_smarty_tpl->tpl_vars['formData']->value['policyName'] ?? null)===null||$tmp==='' ? '' ?? null : $tmp);?>
 " required>
             </div>
             <div class="form-group">
-                <label for="discountType">Tipo di Sconto:</label>
-                <select class="form-control" id="discountType" name="discountType" required>
-                    <option value="">Seleziona tipo</option>
-                    <option value="percentage" <?php if ($_smarty_tpl->tpl_vars['formData']->value['discountType'] == 'percentage') {?>selected<?php }?>>Percentuale (%)</option>
-                    <option value="fixed_amount" <?php if ($_smarty_tpl->tpl_vars['formData']->value['discountType'] == 'fixed_amount') {?>selected<?php }?>>Importo Fisso (€)</option>
-                </select>
+                <label for="Description">Descrizione:</label>
+                <input type="text" class="form-control" id="Descrizione" name="description" required>
             </div>
             <div class="form-group">
-                <label for="discountValue">Valore Sconto:</label>
-                <input type="number" step="0.01" class="form-control" id="discountValue" name="discountValue" value="<?php echo (($tmp = $_smarty_tpl->tpl_vars['formData']->value['discountValue'] ?? null)===null||$tmp==='' ? '' ?? null : $tmp);?>
-" required min="0">
-            </div>
-            <div class="form-group">
-                <label for="startDate">Data Inizio:</label>
-                <input type="date" class="form-control" id="startDate" name="startDate" value="<?php echo (($tmp = $_smarty_tpl->tpl_vars['formData']->value['startDate'] ?? null)===null||$tmp==='' ? '' ?? null : $tmp);?>
-" required>
-            </div>
-            <div class="form-group">
-                <label for="endDate">Data Fine:</label>
-                <input type="date" class="form-control" id="endDate" name="endDate" value="<?php echo (($tmp = $_smarty_tpl->tpl_vars['formData']->value['endDate'] ?? null)===null||$tmp==='' ? '' ?? null : $tmp);?>
-" required>
+                <label for="minNights">Numero di posti letto:</label>
+                <input type="number" class="form-control" id="beds" name="beds" min="0">
             </div>
             <div class="form-group">
                 <label for="minNights">Notti Minime (Opzionale):</label>
-                <input type="number" class="form-control" id="minNights" name="minNights" value="<?php echo (($tmp = $_smarty_tpl->tpl_vars['formData']->value['minNights'] ?? null)===null||$tmp==='' ? '' ?? null : $tmp);?>
-" min="0">
+                <input type="number" class="form-control" id="length" name="length" min="0">
             </div>
             <div class="form-group full-width">
-                <label for="description">Descrizione (Opzionale):</label>
-                <textarea class="form-control" id="description" name="description" rows="3"><?php echo (($tmp = $_smarty_tpl->tpl_vars['formData']->value['description'] ?? null)===null||$tmp==='' ? '' ?? null : $tmp);?>
-</textarea>
+                <label for="price">Prezzo:</label>
+                <input type="number" class="form-control" id="specialPrice" name="specialPrice" min="0">
             </div>
             <div class="form-group full-width">
                 <button type="submit" class="btn btn-success">Aggiungi Politica</button>
@@ -120,10 +103,10 @@ $_smarty_tpl->tpl_vars['policy']->do_else = false;
                            <td><?php echo (($tmp = (($tmp = $_smarty_tpl->tpl_vars['policy']->value->getLength() ?? null)===null||$tmp==='' ? $_smarty_tpl->tpl_vars['policy']->value['length'] ?? null : $tmp) ?? null)===null||$tmp==='' ? 'N/A' ?? null : $tmp);?>
 </td>
                             <td>
-                                <a href="/albergoPulito/public/Admin/showUpdate<?php echo (($tmp = $_smarty_tpl->tpl_vars['policy']->value->getIdSpecialOffer() ?? null)===null||$tmp==='' ? $_smarty_tpl->tpl_vars['policy']->value['idPolicy'] ?? null : $tmp);?>
+                                <a href="/albergoPulito/public/Admin/showUpdate<?php echo $_smarty_tpl->tpl_vars['policy']->value->getIdSpecialOffer();?>
 " class="btn btn-primary btn-sm">Modifica</a>
                                 <form action="/albergoPulito/public/Admin/deleteOffer" method="POST" style="display:inline-block;">
-                                    <input type="hidden" name="idPolicy" value="<?php echo (($tmp = $_smarty_tpl->tpl_vars['policy']->value->getIdSpecialOffer() ?? null)===null||$tmp==='' ? $_smarty_tpl->tpl_vars['policy']->value['idPolicy'] ?? null : $tmp);?>
+                                    <input type="hidden" name="idPolicy" value="<?php echo $_smarty_tpl->tpl_vars['policy']->value->getIdSpecialOffer();?>
 ">
                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Sei sicuro di voler eliminare questa politica di prezzo?');">Elimina</button>
                                 </form>
