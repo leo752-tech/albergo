@@ -8,7 +8,7 @@ class FRegisteredUser {
     
     private static $table = "registereduser";
     
-    private static $values = "(NULL,:userId,:email,:password,:firstName,:lastName,:birthDate,:birthPlace)";
+    private static $values = "(NULL,:userId,:email,:password,:firstName,:lastName,:birthDate,:birthPlace,:isBanned)";
     
     public function __construct(){}
 
@@ -19,7 +19,9 @@ class FRegisteredUser {
         $stmt->bindValue(":firstName", $user->getFirstName(), PDO::PARAM_STR);
         $stmt->bindValue(":lastName", $user->getLastName(), PDO::PARAM_STR);
         $stmt->bindValue(":birthDate", $user->getBirthDate()->format("Y-m-d"), PDO::PARAM_STR);
-        $stmt->bindValue(":birthPlace", $user->getBirthPlace(), PDO::PARAM_STR);      
+        $stmt->bindValue(":birthPlace", $user->getBirthPlace(), PDO::PARAM_STR);
+        $stmt->bindValue(":isBanned", $user->getisBanned(), PDO::PARAM_BOOL);      
+      
     }
 
     public static function getKey(){
@@ -40,7 +42,7 @@ class FRegisteredUser {
 
     // Creates an ERegisteredUser object
     public static function createObject($queryRes){
-        $user = new ERegisteredUser($queryRes["idRegisteredUser"], $queryRes["idUser"], $queryRes["email"], $queryRes["password"], $queryRes["firstName"], $queryRes["lastName"], new dateTime($queryRes["birthDate"]), $queryRes["birthPlace"]);
+        $user = new ERegisteredUser($queryRes["idRegisteredUser"], $queryRes["idUser"], $queryRes["email"], $queryRes["password"], $queryRes["firstName"], $queryRes["lastName"], new dateTime($queryRes["birthDate"]), $queryRes["birthPlace"], $queryRes["isBanned"]);
         if (isset($queryRes["password"])) {
             $user->setHashedPassword($queryRes["password"]);
         }

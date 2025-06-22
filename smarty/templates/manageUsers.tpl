@@ -65,9 +65,9 @@
                             <td>{$user->getLastName()|default:$user.lastName}</td>
                             <td>{$user->getEmail()|default:$user.email}</td>
                             <td>
-                                <a href="{$base_url}admin/edit_user.php?id={$user->getIdUser()|default:$user.idUser}" class="btn btn-primary btn-sm">Modifica</a>
-                                <form action="/albergoPulito/public/Admin/delete_user.php" method="POST" style="display:inline-block;">
-                                    <input type="hidden" name="idUser" value="{$user->getIdUser()|default:$user.idUser}">
+                                <a href="{$user->getIdUser()}" class="btn btn-primary btn-sm">Modifica</a>
+                                <form action="/albergoPulito/public/Admin/banRegisteredUser/{$user->getIdRegisteredUser()}" method="POST" style="display:inline-block;">
+                                    <input type="hidden" name="idUser">
                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Sei sicuro di voler eliminare questo utente? Tutte le sue prenotazioni saranno cancellate.');">Elimina</button>
                                 </form>
                             </td>

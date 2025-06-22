@@ -131,6 +131,13 @@ class FPersistentManager {
         return $specialOffer;
     }
 
+    public static function getAllExtraServices(){
+        $services = FExtraService::getAll();
+        return $services;
+    }
+
+    
+
 
 
 }

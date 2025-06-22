@@ -16,7 +16,7 @@
             {foreach $rooms as $room}
             <tr>
                 <td>{$room->getId()}</td>           <td>{$room->getName()}</td>         <td>{$room->getBeds()}</td>         <td>{$room->getPrice()|string_format:"%.2f"} €</td> <td>{$room->getType()}</td>         <td>
-                    <a href="/albergoPulito/public/Admin/updateRoom/{$room->getId()}" class="btn btn-sm btn-primary">Modifica</a>
+                    <a href="/albergoPulito/public/Admin/showUpdateRoom/{$room->getId()}" class="btn btn-sm btn-primary">Modifica</a>
                     <a href="/albergoPulito/public/Admin/deleteRoom/{$room->getId()}" class="btn btn-sm btn-danger">Elimina</a>
                 </td>
             </tr>

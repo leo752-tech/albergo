@@ -1,6 +1,3 @@
-
-
-
 {include file='header_admin.tpl'}
 
 <div class="container">
@@ -75,4 +72,4 @@
     </div>
 </div>
 
-{include file='admin/footer_admin.tpl'}
+{include file='footer_admin.tpl'}

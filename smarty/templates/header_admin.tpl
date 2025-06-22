@@ -18,6 +18,8 @@
                     <li><a href="/albergoPulito/public/Admin/manageRooms"><i class="fas fa-bed"></i> Camere</a></li>
                     <li><a href="/albergoPulito/public/Admin/manageBookings"><i class="fas fa-calendar-alt"></i> Prenotazioni</a></li>
                     <li><a href="/albergoPulito/public/Admin/manageExtraServices"><i class="fas fa-concierge-bell"></i> Servizi</a></li>
+                    <li><a href="/albergoPulito/public/Admin/manageSpecialOffer"><i class="fas fa-concierge-bell"></i> Offerte Speciali</a></li>
+
                     {if $admin_logged_in}
                     <li><a href="/albergoPulito/public/Admin/logout.php" class="btn btn-danger btn-sm"><i class="fas fa-sign-out-alt"></i> Logout ({$admin_username|default:'Admin'})</a></li>
                     {/if}

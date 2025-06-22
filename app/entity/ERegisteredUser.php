@@ -5,6 +5,7 @@ class ERegisteredUser extends EUser{
 	private ?int $idRegisteredUser;
 	private string $email;
 	private string $password;
+	private bool $isBanned = false;
 
 	public function __construct(?int $idRegisteredUser = null, ?int $userId = null, string $email, string $password, string $firstName, string $lastName, DateTime $birthDate, string $birthPlace){
 		parent::__construct($userId, $firstName, $lastName, $birthDate, $birthPlace);
@@ -39,6 +40,13 @@ class ERegisteredUser extends EUser{
 	}
 	public function getPassword(): string{
 		return $this->password;
+	}
+
+	public function setIsBanned(bool $isBanned){
+		$this->isBanned = $isBanned;
+	}
+	public function getIsBanned(): bool{
+		return $this->isBanned;
 	}
 }
 

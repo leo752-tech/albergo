@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-22 12:39:18
+/* Smarty version 4.3.2, created on 2025-06-22 16:55:42
   from 'C:\xampp\htdocs\albergoPulito\smarty\templates\manageUsers.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_6857dd56387640_22510910',
+  'unifunc' => 'content_6858196e02ad42_94067519',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c7e5e73a3756c4504540d3c7176a69bb3096b5d5' => 
     array (
       0 => 'C:\\xampp\\htdocs\\albergoPulito\\smarty\\templates\\manageUsers.tpl',
-      1 => 1750588539,
+      1 => 1750604137,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer_admin.tpl' => 1,
   ),
 ),false)) {
-function content_6857dd56387640_22510910 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6858196e02ad42_94067519 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender('file:header_admin.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('pageTitle'=>'Gestione Utenti'), 0, false);
 ?>
 
@@ -115,12 +115,11 @@ $_smarty_tpl->tpl_vars['user']->do_else = false;
                             <td><?php echo (($tmp = $_smarty_tpl->tpl_vars['user']->value->getEmail() ?? null)===null||$tmp==='' ? $_smarty_tpl->tpl_vars['user']->value['email'] ?? null : $tmp);?>
 </td>
                             <td>
-                                <a href="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
-admin/edit_user.php?id=<?php echo (($tmp = $_smarty_tpl->tpl_vars['user']->value->getIdUser() ?? null)===null||$tmp==='' ? $_smarty_tpl->tpl_vars['user']->value['idUser'] ?? null : $tmp);?>
+                                <a href="<?php echo $_smarty_tpl->tpl_vars['user']->value->getIdUser();?>
 " class="btn btn-primary btn-sm">Modifica</a>
-                                <form action="/albergoPulito/public/Admin/delete_user.php" method="POST" style="display:inline-block;">
-                                    <input type="hidden" name="idUser" value="<?php echo (($tmp = $_smarty_tpl->tpl_vars['user']->value->getIdUser() ?? null)===null||$tmp==='' ? $_smarty_tpl->tpl_vars['user']->value['idUser'] ?? null : $tmp);?>
-">
+                                <form action="/albergoPulito/public/Admin/banRegisteredUser/<?php echo $_smarty_tpl->tpl_vars['user']->value->getIdRegisteredUser();?>
+" method="POST" style="display:inline-block;">
+                                    <input type="hidden" name="idUser">
                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Sei sicuro di voler eliminare questo utente? Tutte le sue prenotazioni saranno cancellate.');">Elimina</button>
                                 </form>
                             </td>

@@ -62,16 +62,21 @@ class VAdmin {
         $this->smarty->display('showInsertBooking.tpl');
     }
 
-    public function manageExtraSevices($admin_logged_in, $services){
+    public function manageExtraServices($admin_logged_in, $services){
         $this->smarty->assign('admin_logged_in', $admin_logged_in);
         $this->smarty->assign('services', $services);
-        $this->smarty->display('manageUsers.tpl');
+        $this->smarty->display('showExtraService.tpl');
     }
 
-    // Mostra messaggio di errore
-    public function showError(string $message) {
-        $this->smarty->assign('error', $message);
-        $this->smarty->display('admin_error.tpl');
+    public function showUpdateService($admin_logged_in) {
+        $this->smarty->assign('admin_logged_in', $admin_logged_in);
+        $this->smarty->display('showUpdateService.tpl');
+    }
+
+    public function manageOffers($admin_logged_in, $offers) {
+        $this->smarty->assign('admin_logged_in', $admin_logged_in);
+        $this->smarty->assign('policies', $offers);
+        $this->smarty->display('manageOffers.tpl');
     }
 
     // Mostra messaggio di successo

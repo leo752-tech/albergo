@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-22 12:39:09
+/* Smarty version 4.3.2, created on 2025-06-22 19:06:51
   from 'C:\xampp\htdocs\albergoPulito\smarty\templates\header_admin.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_6857dd4d1e83c9_44451163',
+  'unifunc' => 'content_6858382b2898d9_23387493',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ac90197b9fb1586ec2c38f3b11cfe5fffd674290' => 
     array (
       0 => 'C:\\xampp\\htdocs\\albergoPulito\\smarty\\templates\\header_admin.tpl',
-      1 => 1750588067,
+      1 => 1750610768,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6857dd4d1e83c9_44451163 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6858382b2898d9_23387493 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="it">
 <head>
@@ -42,6 +42,8 @@ function content_6857dd4d1e83c9_44451163 (Smarty_Internal_Template $_smarty_tpl)
                     <li><a href="/albergoPulito/public/Admin/manageRooms"><i class="fas fa-bed"></i> Camere</a></li>
                     <li><a href="/albergoPulito/public/Admin/manageBookings"><i class="fas fa-calendar-alt"></i> Prenotazioni</a></li>
                     <li><a href="/albergoPulito/public/Admin/manageExtraServices"><i class="fas fa-concierge-bell"></i> Servizi</a></li>
+                    <li><a href="/albergoPulito/public/Admin/manageSpecialOffer"><i class="fas fa-concierge-bell"></i> Offerte Speciali</a></li>
+
                     <?php if ($_smarty_tpl->tpl_vars['admin_logged_in']->value) {?>
                     <li><a href="/albergoPulito/public/Admin/logout.php" class="btn btn-danger btn-sm"><i class="fas fa-sign-out-alt"></i> Logout (<?php echo (($tmp = $_smarty_tpl->tpl_vars['admin_username']->value ?? null)===null||$tmp==='' ? 'Admin' ?? null : $tmp);?>
 )</a></li>

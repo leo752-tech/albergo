@@ -58,7 +58,7 @@ class FRoom{
             FDataMapper::getInstance()->getDb()->beginTransaction();
             $id = FDataMapper::getInstance()->saveObject(self::$class, $room);
             FDataMapper::getInstance()->getDb()->commit();
-            if($id !== null){
+            if($id != null){
                 $room->setId($id);
                 return $id;
             } else {
