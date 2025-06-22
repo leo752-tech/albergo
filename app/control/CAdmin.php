@@ -105,6 +105,23 @@ class CAdmin{
         $view->showUpdateRoom($admin_logged_in);
     }
 
+    public static function showInsertRoom(){
+
+        $view = new VAdmin();
+        $admin_logged_in = CAdmin::isAdminLogged();
+        $view->showInsertRoom($admin_logged_in);
+    }
+    public static function insertRoom(){
+        $view = new VUser();
+        $room = new ERoom(null, UHTTP::post("name"), UHTTP::post("beds"), UHTTP::post("price"), UHTTP::post("type"));
+        $result = FPersistentManager::getInstance()->saveObject($room);
+        if($result == false){
+            echo 'ROOM GIA ESISTENTE';
+        }else{
+            header('Location: /~momok/Admin/manageRoom');
+        }
+    }
+
     public static function updateRoom($idRoom){
         $view = new VAdmin();
         
@@ -128,6 +145,14 @@ class CAdmin{
        
         $admin_logged_in = CAdmin::isAdminLogged();
         $view->manageBookings($admin_logged_in, $booksObj);
+    }
+
+    public static function showInsertBooking(){
+
+        $view = new VAdmin();
+        $users = FPersistentManager::getInstance()->getAllUsers
+        $admin_logged_in = CAdmin::isAdminLogged();
+        $view->showInsertBooking($admin_logged_in);
     }
 
     public static function deleteBooking($idBooking){

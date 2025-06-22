@@ -2,7 +2,7 @@
 
 <h2>Gestione Prenotazioni</h2>
 
-<a href="/hotel_reservation/admin/add_booking.php" class="btn btn-success mb-3"><i class="fas fa-plus"></i> Aggiungi Nuova Prenotazione</a>
+<a href="/~momok/Admin/showInsertBooking" class="btn btn-success mb-3"><i class="fas fa-plus"></i> Aggiungi Nuova Prenotazione</a>
 
 
 <table class="admin-table">

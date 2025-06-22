@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-20 15:19:38
+/* Smarty version 4.3.2, created on 2025-06-21 15:25:08
   from 'C:\Users\momok\Documents\Programmazione_web\progetto\albergoPulito\smarty\templates\manageRooms.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_68555fea77b332_13455960',
+  'unifunc' => 'content_6856b2b4b9e111_11408896',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '4f4ccbd69dc1ead0f294f02a21d34fa877d9740b' => 
     array (
       0 => 'C:\\Users\\momok\\Documents\\Programmazione_web\\progetto\\albergoPulito\\smarty\\templates\\manageRooms.tpl',
-      1 => 1750425225,
+      1 => 1750512302,
       2 => 'file',
     ),
   ),
@@ -22,13 +22,13 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer_admin.tpl' => 1,
   ),
 ),false)) {
-function content_68555fea77b332_13455960 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6856b2b4b9e111_11408896 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender('file:header_admin.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
 <h2>Gestione Camere</h2>
 
-<a href="/hotel_reservation/admin/add_room.php" class="btn btn-success mb-3"><i class="fas fa-plus"></i> Aggiungi Nuova Camera</a>
+<a href="/~momok/Admin/showInsertRoom" class="btn btn-success mb-3"><i class="fas fa-plus"></i> Aggiungi Nuova Camera</a>
 
 
 <table class="admin-table">

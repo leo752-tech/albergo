@@ -2,7 +2,7 @@
 
 <h2>Gestione Camere</h2>
 
-<a href="/hotel_reservation/admin/add_room.php" class="btn btn-success mb-3"><i class="fas fa-plus"></i> Aggiungi Nuova Camera</a>
+<a href="/~momok/Admin/showInsertRoom" class="btn btn-success mb-3"><i class="fas fa-plus"></i> Aggiungi Nuova Camera</a>
 
 
 <table class="admin-table">

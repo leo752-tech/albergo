@@ -22,5 +22,7 @@ class VRoom{
         $this->smarty->display('');
     }
 
+    
+
 
 }

@@ -51,6 +51,16 @@ class VAdmin {
         $this->smarty->display('admin_room_form.tpl');
     }
 
+    public function showInsertRoom($admin_logged_in){
+        $this->smarty->assign('admin_logged_in', $admin_logged_in);
+        $this->smarty->display('showInsertRoom.tpl');
+    }
+
+    public function showInsertBooking($admin_logged_in){
+        $this->smarty->assign('admin_logged_in', $admin_logged_in);
+        $this->smarty->display('showInsertBooking.tpl');
+    }
+
     public function manageExtraSevices($admin_logged_in, $services){
         $this->smarty->assign('admin_logged_in', $admin_logged_in);
         $this->smarty->assign('services', $services);
