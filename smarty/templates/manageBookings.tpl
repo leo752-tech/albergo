@@ -2,7 +2,7 @@
 
 <h2>Gestione Prenotazioni</h2>
 
-<a href="/~momok/Admin/showInsertBooking" class="btn btn-success mb-3"><i class="fas fa-plus"></i> Aggiungi Nuova Prenotazione</a>
+<a href="/albergoPulito/public/Admin/showInsertBooking" class="btn btn-success mb-3"><i class="fas fa-plus"></i> Aggiungi Nuova Prenotazione</a>
 
 
 <table class="admin-table">
@@ -43,7 +43,7 @@
                 {* Mostra l'ID dell'offerta speciale o N/A se è null *}
                 <td>{if $booking->getIdSpecialOffer()}{$booking->getIdSpecialOffer()}{else}N/A{/if}</td>
                 <td>
-                    <a href="/~momok/Admin/deleteBooking/{$booking->getId()}" class="btn btn-sm btn-danger">Elimina</a>
+                    <a href="/albergoPulito/public/deleteBooking/{$booking->getId()}" class="btn btn-sm btn-danger">Elimina</a>
                 </td>
             </tr>
             {/foreach}

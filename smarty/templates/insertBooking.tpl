@@ -9,7 +9,7 @@
    
 
     <div class="form-grid">
-        <form action="/~momok/Admin/insertBooking" method="POST">
+        <form action="/albergoPulito/public/Admin/insertBooking" method="POST">
             <div class="form-group">
                 <label for="idUser">Utente:</label>
                 {* Presuppone che $usersList sia un array di utenti (ID, Nome Cognome) per popolare la select *}
@@ -69,7 +69,7 @@
             
             <div class="form-group full-width">
                 <button type="submit" class="btn btn-success">Crea Prenotazione</button>
-                <a href="{$base_url}admin/bookings.php" class="btn btn-secondary">Annulla</a>
+                <a href="/albergoPulito/public/Admin/bookings.php" class="btn btn-secondary">Annulla</a>
             </div>
         </form>
     </div>

@@ -7,13 +7,13 @@ class CFrontController{
     // le url sui button di ogni template devono esserestrutturate in questo modo /~momok/Class/method
     public function run($richiestaUrl){
     
-        
+        //le URL devono essere organizzate in questo modo: /albergoPulito/public/ControlClass/methodClass    
         
 
         $richiestaUrl = trim($richiestaUrl, '/');
         $partiUrl = explode('/', $richiestaUrl);
         array_shift($partiUrl);
-        //array_shift($partiUrl);
+        array_shift($partiUrl);
 /*
         array_shift($partiUrl);
         array_shift($partiUrl);

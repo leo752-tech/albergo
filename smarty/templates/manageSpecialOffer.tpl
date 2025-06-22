@@ -2,7 +2,7 @@
 
 <h2>Gestione OfferteSpeciali</h2>
 
-<a href="/hotel_reservation/admin/add_room.php" class="btn btn-success mb-3"><i class="fas fa-plus"></i> Aggiungi Nuova Camera</a>
+<a href="/albergoPulito/public/Admin/add_room.php" class="btn btn-success mb-3"><i class="fas fa-plus"></i> Aggiungi Nuova Camera</a>
 
 
 <table class="admin-table">
@@ -16,8 +16,8 @@
             {foreach $specialOffers as $specialOffer}
             <tr>
                 <td>{$specialOffer->getIdSpecialOffer()}</td>           <td>{$specialOffer->getTitle()}</td>         <td>{$specialOffer->getDescription()}</td>           <td>{$specialOffer->getBeds()}</td>       <td>{$specialOffer->getLength()}</td>        <td>{$specialOffer->getSpecialPrice()|string_format:"%.2f"} €</td>          <td>
-                    <a href="/~momok/Booking/getAvailableRoomsBySpecialOffer/{$specialOffer->getIdSpecialOffer()}" class="btn btn-sm btn-primary">Vai</a>
-                    <a href="/~momok/Admin/deleteRoom/{$specialOffer->getIdSpecialOffer()}" class="btn btn-sm btn-danger">Elimina</a>
+                    <a href="/albergoPulito/public/Booking/getAvailableRoomsBySpecialOffer/{$specialOffer->getIdSpecialOffer()}" class="btn btn-sm btn-primary">Vai</a>
+                    <a href="/albergoPulito/public/Admin/deleteRoom/{$specialOffer->getIdSpecialOffer()}" class="btn btn-sm btn-danger">Elimina</a>
                 </td>
             </tr>
             {/foreach}

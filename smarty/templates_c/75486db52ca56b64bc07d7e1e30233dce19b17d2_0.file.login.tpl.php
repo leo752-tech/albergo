@@ -1,4 +1,29 @@
-{include file='header.tpl'}
+<?php
+/* Smarty version 4.3.2, created on 2025-06-22 12:37:29
+  from 'C:\xampp\htdocs\albergoPulito\smarty\templates\login.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.3.2',
+  'unifunc' => 'content_6857dce9e99f63_16135302',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '75486db52ca56b64bc07d7e1e30233dce19b17d2' => 
+    array (
+      0 => 'C:\\xampp\\htdocs\\albergoPulito\\smarty\\templates\\login.tpl',
+      1 => 1750588372,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+    'file:header.tpl' => 1,
+  ),
+),false)) {
+function content_6857dce9e99f63_16135302 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->_subTemplateRender('file:header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
     
 <section id="auth-forms" class="container section-padding">
     <h2>Accedi al Tuo Account</h2>
@@ -47,6 +72,9 @@
                 </div>
             </div>
         </footer>
-        <script src="/~momok/assets/js/script.js"></script>
+        <?php echo '<script'; ?>
+ src="/~momok/assets/js/script.js"><?php echo '</script'; ?>
+>
         </body>
-</html>
+</html><?php }
+}

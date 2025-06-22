@@ -9,7 +9,7 @@
                     <div class="footer-section links">
                         <h3>Link Utili</h3>
                         <ul>
-                            <li><a href="/~momok/">Home</a></li>
+                            <li><a href="/albergoPulito/public/">Home</a></li>
                             <li><a href="camere.php">Camere</a></li>
                             <li><a href="servizi.php">Servizi</a></li>
                             <li><a href="prenota.php">Prenota Ora</a></li>

@@ -4,6 +4,6 @@
             <p>&copy; {date("Y")} Hotel Reservation Admin. Tutti i diritti riservati.</p>
         </div>
     </footer>
-    <script src="/hotel_reservation/assets/js/admin.js"></script>
+    <script src="/albergoPulito/public/assets/js/admin.js"></script>
 </body>
 </html>

@@ -1,22 +1,27 @@
-{include file='header.tpl'}
-    
-<section id="auth-forms" class="container section-padding">
-    <h2>Accedi al Tuo Account</h2>
-    <form action="/albergoPulito/public/User/login" method="POST" class="auth-form">
-        <div class="form-group">
-            <label for="login-email">Email:</label>
-            <input type="email" id="login-email" name="email" required>
-        </div>
-        <div class="form-group">
-            <label for="login-password">Password:</label>
-            <input type="password" id="login-password" name="password" required>
-        </div>
-        <button type="submit" class="btn btn-primary full-width">Accedi</button>
-    </form>
+<?php
+/* Smarty version 4.3.2, created on 2025-06-22 12:27:56
+  from 'C:\xampp\htdocs\albergoPulito\smarty\templates\footer.tpl' */
 
-    
-
-</main>
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.3.2',
+  'unifunc' => 'content_6857daaccbec08_81011604',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '5e21c8def87f8993884b3e27dec80a024e423621' => 
+    array (
+      0 => 'C:\\xampp\\htdocs\\albergoPulito\\smarty\\templates\\footer.tpl',
+      1 => 1750587986,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_6857daaccbec08_81011604 (Smarty_Internal_Template $_smarty_tpl) {
+?></main>
         <footer>
             <div class="container">
                 <div class="footer-content">
@@ -27,7 +32,7 @@
                     <div class="footer-section links">
                         <h3>Link Utili</h3>
                         <ul>
-                            <li><a href="index.php">Home</a></li>
+                            <li><a href="/albergoPulito/public/">Home</a></li>
                             <li><a href="camere.php">Camere</a></li>
                             <li><a href="servizi.php">Servizi</a></li>
                             <li><a href="prenota.php">Prenota Ora</a></li>
@@ -47,6 +52,9 @@
                 </div>
             </div>
         </footer>
-        <script src="/~momok/assets/js/script.js"></script>
+        <?php echo '<script'; ?>
+ src="assets/js/script.js"><?php echo '</script'; ?>
+>
         </body>
-</html>
+</html><?php }
+}

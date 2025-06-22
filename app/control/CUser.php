@@ -31,7 +31,7 @@ class CUser{
             $result = FPersistentManager::getInstance()->saveObject($registeredUser);
             //echo "OPERATION SUCCESSFUL";
 
-            header('Location: /~momok/dummy/User/showFormsLogin');
+            header('Location: /albergoPulito/public/User/showFormsLogin');
             return $result;
 
         }else{
@@ -54,7 +54,7 @@ class CUser{
             if(password_verify($password, PASSWORD_ADMIN)){
                 USession::getInstance();
                 USession::setSessionElement("admin", EMAIL_ADMIN);
-                header("Location: /~momok/Admin/dashboard");
+                header("Location: /albergoPulito/public/Admin/dashboard");
                 exit;
                 
             }else{echo "WRONG PASSWORD";
@@ -70,7 +70,7 @@ class CUser{
                     header('Location: ' . $redirect);
                     exit(); 
                 }else{
-                    header("Location: /~momok/User/home");
+                    header("Location: /albergoPulito/public/User/home");
                     exit();
                 }
 

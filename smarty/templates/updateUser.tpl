@@ -6,7 +6,7 @@
 
     
 
-    <form action="/~momok/Admin/updateUser" method="post">
+    <form action="/albergoPulito/public/Admin/updateUser" method="post">
         <input type="hidden" name="idUser" >
         
         <div class="form-group">
@@ -26,7 +26,7 @@
             <input type="text" class="form-control" id="birthPlace" name="birthPlace" required>
         </div>
         <button type="submit" class="btn btn-primary">Salva Modifiche</button>
-        <a href="/~momok/Admin/manageUsers" class="btn btn-secondary">Annulla</a>
+        <a href="/albergoPulito/public/Admin/manageUsers" class="btn btn-secondary">Annulla</a>
     </form>
 </div>
 

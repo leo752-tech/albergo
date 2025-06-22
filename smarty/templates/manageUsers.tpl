@@ -5,7 +5,7 @@
 
 
 
-<a href="/~momok/Admin/showInsertUser" class="btn btn-success mb-3"><i class="fas fa-plus"></i> Aggiungi Nuovo Utente</a>
+<a href="/albergoPulito/public/Admin/showInsertUser" class="btn btn-success mb-3"><i class="fas fa-plus"></i> Aggiungi Nuovo Utente</a>
 
 <table class="admin-table">
     <thead>
@@ -27,8 +27,8 @@
             <td>{$user->getBirthDate()->format('Y-m-d')}</td>
             <td>{$user->getBirthPlace()}</td>
             <td>
-                <a href="/~momok/Admin/showUpdateUser/{$user->getIdUser()}" class="btn btn-sm btn-primary">Modifica</a>
-                <a href="/~momok/Admin/deleteUser/{$user->getIdUser()}" class="btn btn-sm btn-danger">Elimina</a>
+                <a href="/albergoPulito/public/Admin/showUpdateUser/{$user->getIdUser()}" class="btn btn-sm btn-primary">Modifica</a>
+                <a href="/albergoPulito/public/Admin/deleteUser/{$user->getIdUser()}" class="btn btn-sm btn-danger">Elimina</a>
             </td>
         </tr>
         {foreachelse}
@@ -66,7 +66,7 @@
                             <td>{$user->getEmail()|default:$user.email}</td>
                             <td>
                                 <a href="{$base_url}admin/edit_user.php?id={$user->getIdUser()|default:$user.idUser}" class="btn btn-primary btn-sm">Modifica</a>
-                                <form action="{$base_url}admin/delete_user.php" method="POST" style="display:inline-block;">
+                                <form action="/albergoPulito/public/Admin/delete_user.php" method="POST" style="display:inline-block;">
                                     <input type="hidden" name="idUser" value="{$user->getIdUser()|default:$user.idUser}">
                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Sei sicuro di voler eliminare questo utente? Tutte le sue prenotazioni saranno cancellate.');">Elimina</button>
                                 </form>

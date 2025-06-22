@@ -2,7 +2,7 @@
 
 <section id="booking-form" class="container section-padding">
     <h2>Prenota il Tuo Soggiorno</h2>
-    <form action="/~momok/Booking/getAvailableRooms" method="POST" class="form-grid">
+    <form action="/albergoPulito/public/Booking/getAvailableRooms" method="POST" class="form-grid">
         <div class="form-group">
             <label for="check-in">Data Check-in:</label>
             <input type="date" id="check-in" name="data_check_in" required>

@@ -2,7 +2,7 @@
 
 <h2>Gestione Camere</h2>
 
-<a href="/~momok/Admin/showInsertRoom" class="btn btn-success mb-3"><i class="fas fa-plus"></i> Aggiungi Nuova Camera</a>
+<a href="/albergoPulito/public/Admin/showInsertRoom" class="btn btn-success mb-3"><i class="fas fa-plus"></i> Aggiungi Nuova Camera</a>
 
 
 <table class="admin-table">
@@ -16,8 +16,8 @@
             {foreach $rooms as $room}
             <tr>
                 <td>{$room->getId()}</td>           <td>{$room->getName()}</td>         <td>{$room->getBeds()}</td>         <td>{$room->getPrice()|string_format:"%.2f"} €</td> <td>{$room->getType()}</td>         <td>
-                    <a href="/~momok/Admin/updateRoom/{$room->getId()}" class="btn btn-sm btn-primary">Modifica</a>
-                    <a href="/~momok/Admin/deleteRoom/{$room->getId()}" class="btn btn-sm btn-danger">Elimina</a>
+                    <a href="/albergoPulito/public/Admin/updateRoom/{$room->getId()}" class="btn btn-sm btn-primary">Modifica</a>
+                    <a href="/albergoPulito/public/Admin/deleteRoom/{$room->getId()}" class="btn btn-sm btn-danger">Elimina</a>
                 </td>
             </tr>
             {/foreach}

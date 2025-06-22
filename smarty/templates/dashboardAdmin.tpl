@@ -7,22 +7,22 @@
     <div class="widget">
         <h3><i class="fas fa-users"></i> Utenti Registrati</h3>
         <p>Totale: {$totalUsers|default:0}</p>
-        <a href="/~momok/Admin/manageUsers" class="btn btn-info">Gestisci Utenti</a>
+        <a href="/albergoPulito/public/Admin/manageUsers" class="btn btn-info">Gestisci Utenti</a>
     </div>
     <div class="widget">
         <h3><i class="fas fa-bed"></i> Camere Disponibili</h3>
         <p>Totale: {$availableRooms|default:0}</p>
-        <a href="/hotel_reservation/admin/rooms.php" class="btn btn-info">Gestisci Camere</a>
+        <a href="/albergoPulito/public/admin/rooms.php" class="btn btn-info">Gestisci Camere</a>
     </div>
     <div class="widget">
         <h3><i class="fas fa-calendar-alt"></i> Prenotazioni Attive</h3>
         <p>Totale: {$activeBookings|default:0}</p>
-        <a href="/hotel_reservation/admin/bookings.php" class="btn btn-info">Gestisci Prenotazioni</a>
+        <a href="/albergoPulito/public/admin/bookings.php" class="btn btn-info">Gestisci Prenotazioni</a>
     </div>
     <div class="widget">
         <h3><i class="fas fa-concierge-bell"></i> Servizi Extra</h3>
         <p>Totale: {$totalServices|default:0}</p>
-        <a href="/hotel_reservation/admin/services.php" class="btn btn-info">Gestisci Servizi</a>
+        <a href="/albergoPulito/public/Admin/services.php" class="btn btn-info">Gestisci Servizi</a>
     </div>
     </div>
 

@@ -5,7 +5,7 @@
 
     
 
-    <form action="/~momok/Admin/insertUser" method="post">
+    <form action="/albergoPulito/public/Admin/insertUser" method="post">
         <div class="form-group">
             <label for="firstName">Nome:</label>
             <input type="text" class="form-control" id="firstName" name="firstName" value="{$firstName|default:''}" required>

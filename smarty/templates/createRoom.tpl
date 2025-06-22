@@ -66,7 +66,7 @@
 <body>
     <div class="container">
         <h1>Inserisci Dettagli Camera</h1>
-        <form action="/~momok/Room/createRoom" method="POST" enctype="multipart/form-data">
+        <form action="/albergoPulito/public/Room/createRoom" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="nomeCamera">Nome Camera:</label>
                 <input type="text" id="nomeCamera" name="name" required>

@@ -9,7 +9,7 @@
 
     <div class="form-grid">
         {* IMPORTANTE: Aggiungere enctype="multipart/form-data" per l'upload di file *}
-        <form action="/~momok/Admin/insertRoom" method="POST" enctype="multipart/form-data">
+        <form action="/albergoPulito/public/Admin/insertRoom" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="name">Nome Camera:</label>
                 <input type="text" class="form-control" id="name" name="name" value="{$formData.name|default:''}" required>
@@ -52,7 +52,7 @@
 
             <div class="form-group full-width">
                 <button type="submit" class="btn btn-success">Crea Camera</button>
-                <a href="{$base_url}admin/rooms.php" class="btn btn-secondary">Annulla</a>
+                <a href="/albergoPulito/public/Admin/rooms.php" class="btn btn-secondary">Annulla</a>
             </div>
         </form>
     </div>
