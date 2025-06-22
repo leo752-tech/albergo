@@ -131,6 +131,11 @@ class FRegisteredUser {
         }
     }
 
+    public static function getAll(){
+        $users = FDataMapper::getInstance()->selectAll(self::$table);
+        return $users;
+    }
+
 
 }
 

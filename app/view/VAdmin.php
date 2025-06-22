@@ -14,9 +14,10 @@ class VAdmin {
         $this->smarty->display('dashboardAdmin.tpl');
     }
 //-----------------------------USER----------------------------------------------
-    public function manageUsers($admin_logged_in, $users){
+    public function manageUsers($admin_logged_in, $users, $regUsers){
         $this->smarty->assign('admin_logged_in', $admin_logged_in);
         $this->smarty->assign('users', $users);
+        $this->smarty->assign('registeredUsers', $regUsers);
         $this->smarty->display('manageUsers.tpl');
     }
 

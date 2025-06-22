@@ -63,10 +63,18 @@ class FPersistentManager {
         return $user;
     }
 
+    
+
     public static function getAllUsers(){
         $users = FUser::getAll();
         return $users;
     }
+
+    public static function getAllRegisteredUsers(){
+        $users = FRegisteredUser::getAll();
+        return $users;
+    }
+
     public static function getBookingsByUser(int $idRegisteredUser): array {
         return FBooking::getBookingsByUser($idRegisteredUser);
     }

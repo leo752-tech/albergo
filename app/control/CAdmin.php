@@ -27,14 +27,21 @@ class CAdmin{
     public static function manageUsers(){
         $view = new VAdmin();
         $usersQuery = FPersistentManager::getInstance()->getAllUsers();
+        $regUsersQuery = FPersistentManager::getInstance()->getAllRegisteredUsers();
+        
         $users = array();
+        $regUsers = array();
         foreach($usersQuery as $queryRes){
             $user = new EUser($queryRes["idUser"], $queryRes["firstName"], $queryRes["lastName"], new DateTime ($queryRes["birthDate"]), $queryRes["birthPlace"]);
             $users[] = $user;
         }
 
+        foreach($regUsersQuery as $queryRes){
+            $regUsers[] = new ERegisteredUser($queryRes["idRegisteredUser"], $queryRes["idUser"], $queryRes["email"], $queryRes["password"], $queryRes["firstName"], $queryRes["lastName"], new dateTime($queryRes["birthDate"]), $queryRes["birthPlace"]);
+        }
+
         $admin_logged_in = CAdmin::isAdminLogged();
-        $view->manageUsers($admin_logged_in, $users);
+        $view->manageUsers($admin_logged_in, $users, $regUsers);
     }
 
     public static function showInsertUser(){
@@ -150,8 +157,8 @@ class CAdmin{
     public static function showInsertBooking(){
 
         $view = new VAdmin();
-        $users = FPersistentManager::getInstance()->getAllUsers
-        $admin_logged_in = CAdmin::isAdminLogged();
+        $users = FPersistentManager::getInstance()->getAllUsers();
+        //$admin_logged_in = CAdmin::isAdminLogged();
         $view->showInsertBooking($admin_logged_in);
     }
 
