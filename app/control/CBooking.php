@@ -72,11 +72,16 @@ class CBooking {
         }
 
         $roomsImages = array();
+        $allImagesForAvailableRooms = array();
         foreach($availableRooms as $room){
             $images = FPersistentManager::getInstance()->getImagesByRoom($room->getId());
-            $roomsImages[] = array($room, $images); 
+            $roomsImages[] = array($room, $images);
+            $allImagesForAvailableRooms = array_merge($allImagesForAvailableRooms, $images);
+ 
 
         }
+        
+        USession::getInstance()->setSessionElement('searchedRoomImages', $allImagesForAvailableRooms);
         
         $view->showAvailableRooms($isLoggedIn, $roomsImages);
     }
@@ -157,12 +162,19 @@ class CBooking {
         return !$overlaps;
     }
 
-    public static function showDetailRoom($room, $images){
+    public static function showDetailRoom($idRoom){
         $isLoggedIn = CUser::isLogged();
         if($isLoggedIn){
             $view = new VBooking();
-
-            $view->showDetailBooking($room, $images);
+            $room = FPersistentManager::getInstance()->getObject('ERoom', $idRoom);
+            $allImages = USession::getInstance()->getSessionElement('searchedRoomImages');
+            $images = array();
+            foreach($allImages as $image){
+                if($image->getId() == $idRoom){
+                    $images[] = $image;
+                }
+            }
+            $view->showDetailBooking($isLoggedIn, $room, $images);
         }else{
             header('Location: /albergoPulito/public/Admin/manageRooms');
             exit;

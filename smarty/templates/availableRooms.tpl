@@ -11,7 +11,7 @@
     
 
     {* LISTA DELLE CAMERE DISPONIBILI *}
-    <h3>Camere Disponibili {if $searchData.check_in_date && $searchData.check_out_date}(dal {$searchData.check_in_date|date_format:"%d/%m/%Y"} al {$searchData.check_out_date|date_format:"%d/%m/%Y"}) {/if}</h3>
+    <h3>Camere Disponibili </h3>
 
     {if !empty($rooms)}
         <div class="rooms-grid">
@@ -32,7 +32,7 @@
                     
                   
                   
-                    <a href="/albergoPulito/public/Booking/showDetailRoom/{$room[0]->getId()}/{$room[1]}" class="btn btn-success btn-block mt-3">Prenota Ora</a>
+                    <a href="/albergoPulito/public/Booking/showDetailRoom/{$room[0]->getId()}" class="btn btn-success btn-block mt-3">Prenota Ora</a>
                     
                 </div>
             {/foreach}

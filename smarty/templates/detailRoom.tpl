@@ -1,27 +1,25 @@
-{include file='header.tpl}
+{include file='header.tpl'}
     <section class="section-padding room-detail-page">
         <div class="container">
             <div class="room-detail-card card">
-                <h1 class="card-title">{$room->getName()|escape:'html'}</h1>
+                <h1 class="card-title">{$room->getName()|escape}</h1>
 
                 <div class="room-gallery">
-                    {* Cicla sull'array di oggetti EImage passate dal controller *}
                     {if !empty($images)}
                         <div class="main-image">
-                            {* Usa getFilePath() per l'URL dell'immagine principale *}
                             <img src="{$images[0]->getFilePath()|default:'images/placeholder.jpg'}" alt="Immagine principale di {$room->getName()|escape:'html'}">
                         </div>
                         {if count($images) > 1}
                             <div class="thumbnail-gallery">
                                 {foreach $images as $index => $image}
                                     {* Usa getFilePath() per le miniature e getName() per l'alt text *}
-                                    <img src="{$base_url}/{$image->getFilePath()}" alt="Immagine {$index+1} di {$image->getName()|escape:'html'}" data-full-src="{$base_url}/{$image->getFilePath()}">
+                                    <img src="{$image->getFilePath()}" alt="Immagine {$index+1} di {$image->getName()|escape:'html'}" data-full-src="{$image->getFilePath()}">
                                 {/foreach}
                             </div>
                         {/if}
                     {else}
                         <div class="main-image">
-                            <img src="{$base_url}/images/placeholder.jpg" alt="Nessuna immagine disponibile per {$room->getName()|escape:'html'}">
+                            <img src="albergoPulito/public/assets/img/camera1.jpg" alt="Nessuna immagine disponibile per {$room->getName()|escape:'html'}">
                         </div>
                     {/if}
                 </div>
@@ -44,7 +42,7 @@
 
                 <div class="room-actions">
                     <a href="{$base_url}/prenota/{$room->getId()}" class="btn btn-primary">Prenota Ora</a>
-                    <a href="{$base_url}/camere" class="btn btn-secondary">Torna alle Camere</a>
+                    <a href="albergoPulito/public/Booking/showAvailableRooms" class="btn btn-secondary">Torna alle Camere</a>
                 </div>
             </div>
         </div>

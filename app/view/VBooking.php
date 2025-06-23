@@ -24,10 +24,11 @@ class VBooking{
         $this->smarty->display('manageSpecialOffer.tpl');
     }
 
-    public function showDetailBooking($admin_logged_in, $room, $){
-        $this->smarty->assign('admin_logged_in', $admin_logged_in);
-        $this->smarty->assign('specialOffers', $specialOffers);
-        $this->smarty->display('manageSpecialOffer.tpl');
+    public function showDetailBooking($isLoggedIn, $room, $images){
+        $this->smarty->assign('isLoggedIn', $isLoggedIn);
+        $this->smarty->assign('room', $room);
+        $this->smarty->assign('images', $images);
+        $this->smarty->display('detailRoom.tpl');
     }
 
 }

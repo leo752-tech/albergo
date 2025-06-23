@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-23 23:31:54
+/* Smarty version 4.3.2, created on 2025-06-24 00:48:22
   from 'C:\xampp\htdocs\albergoPulito\smarty\templates\availableRooms.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_6859c7ca806f88_60781800',
+  'unifunc' => 'content_6859d9b69af434_01409746',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e1a13cf787a490ed6eccd537c42f9847be58bd48' => 
     array (
       0 => 'C:\\xampp\\htdocs\\albergoPulito\\smarty\\templates\\availableRooms.tpl',
-      1 => 1750714309,
+      1 => 1750718899,
       2 => 'file',
     ),
   ),
@@ -22,8 +22,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_6859c7ca806f88_60781800 (Smarty_Internal_Template $_smarty_tpl) {
-$_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\xampp\\htdocs\\albergoPulito\\smarty\\libs\\plugins\\modifier.date_format.php','function'=>'smarty_modifier_date_format',),1=>array('file'=>'C:\\xampp\\htdocs\\albergoPulito\\smarty\\libs\\plugins\\modifier.truncate.php','function'=>'smarty_modifier_truncate',),));
+function content_6859d9b69af434_01409746 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\xampp\\htdocs\\albergoPulito\\smarty\\libs\\plugins\\modifier.truncate.php','function'=>'smarty_modifier_truncate',),));
 ?>
 
 
@@ -37,9 +37,7 @@ $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\xampp\\htdocs\\albergoPu
 
         
 
-        <h3>Camere Disponibili <?php if ($_smarty_tpl->tpl_vars['searchData']->value['check_in_date'] && $_smarty_tpl->tpl_vars['searchData']->value['check_out_date']) {?>(dal <?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['searchData']->value['check_in_date'],"%d/%m/%Y");?>
- al <?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['searchData']->value['check_out_date'],"%d/%m/%Y");?>
-) <?php }?></h3>
+        <h3>Camere Disponibili </h3>
 
     <?php if (!empty($_smarty_tpl->tpl_vars['rooms']->value)) {?>
         <div class="rooms-grid">
@@ -72,7 +70,8 @@ $_smarty_tpl->tpl_vars['room']->do_else = false;
                     
                   
                   
-                    <a href="/albergoPulito/public/Booking/showSummuary" class="btn btn-success btn-block mt-3">Prenota Ora</a>
+                    <a href="/albergoPulito/public/Booking/showDetailRoom/<?php echo $_smarty_tpl->tpl_vars['room']->value[0]->getId();?>
+" class="btn btn-success btn-block mt-3">Prenota Ora</a>
                     
                 </div>
             <?php
