@@ -4,7 +4,7 @@
         <div>
             <div>
                 <h3 class="card-title mt-5">Modifica Password</h3>
-                <form action="albergoPulito/public/User/updatePassword" method="POST">
+                <form action="/albergoPulito/public/User/updatePassword" method="POST">
                     <div class="form-group">
                         <label for="currentPassword">Password Attuale:</label>
                         <input type="password" class="form-control" id="currentPassword" name="currentPassword" required>

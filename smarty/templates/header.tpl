@@ -53,11 +53,6 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/albergoPulito/public/Booking/myBookings" class="user-action-item">
-                            <i class="fas fa-book-hotel"></i> <span>Le Mie Prenervazioni</span>
-                        </a>
-                    </li>
-                    <li>
                         <a href="/albergoPulito/public/User/logout" class="user-action-item">
                             <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
                         </a>

@@ -64,6 +64,12 @@ class VUser{
         $this->smarty->display('updatePassword.tpl');
     }
 
+    public function showMyBookings($isLoggedIn, $bookings){
+        $this->smarty->assign('is_logged_in', $isLoggedIn);
+        $this->smarty->assign('bookings', $bookings);
+        $this->smarty->display('myBookings.tpl');
+    }
+
 
 
 }

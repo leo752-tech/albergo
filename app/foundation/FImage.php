@@ -8,14 +8,14 @@ class FImage{
     
     private static $table = "image";
     
-    private static $values = "(NULL,:idRoom,:name,:imageData,:mimeType)";
+    private static $values = "(NULL,:idRoom,:name,:filePath,:mimeType)";
     
     public function __construct(){}
 
     public static function bind($stmt,$image) {
         $stmt->bindValue(":idRoom", $image->getIdRoom(), PDO::PARAM_INT);
         $stmt->bindValue(":name", $image->getName(), PDO::PARAM_STR);
-        $stmt->bindValue(":imageData", $image->getImageData(), PDO::PARAM_LOB);
+        $stmt->bindValue(":filePath", $image->getFilePath(), PDO::PARAM_STR);
         $stmt->bindValue(":mimeType", $image->getMimeType(), PDO::PARAM_STR);
     }
 
@@ -37,7 +37,7 @@ class FImage{
 
     // creates an ERoom object
     public static function createObject($queryRes){
-        $image = new EImage($queryRes["idImage"], $queryRes["idRooma"], $queryRes["name"], $queryRes["imageData"], $queryRes["mimeType"]);
+        $image = new EImage($queryRes["idImage"], $queryRes["idRoom"], $queryRes["name"], $queryRes["filePath"], $queryRes["mimeType"]);
         return $image;
     }
 
@@ -99,20 +99,25 @@ class FImage{
     }
 
     public static function getAll(){
-        $rooms = FDataMapper::getInstance()->selectAll(self::$table);
-        return $image;
+        $images = FDataMapper::getInstance()->selectAll(self::$table);
+        return $images;
     }
 
-    public static function getImageByRoom($room){
-        $images = self::getAll();
-        $imagesRoom = array();
-        foreach ($images as $queryRes){
-            if($room == $queryRes["idRoom"]){
-                $image = self::createObject($queryRes);
-                $imagesRoom[] = $image;
+    public static function getImagesByRoom($idRoom){
+        try{
+            $images = self::getAll();
+            $imagesRoom = array();
+            foreach ($images as $queryRes){
+                if($idRoom == $queryRes["idRoom"]){
+                    $image = new EImage($queryRes["idImage"], $queryRes["idRoom"], $queryRes["name"], $queryRes["filePath"], $queryRes["mimeType"]);
+                    $imagesRoom[] = $image;
+                }
             }
+            return $imagesRoom;
+
+        }catch(PDOException $e){
+            echo 'ERROR: ' . $e->getMessage();
         }
-        return $imagesRoom;
     }
 }
 

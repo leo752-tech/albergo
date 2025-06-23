@@ -38,7 +38,7 @@
         <div class="profile-actions">
             <a href="/albergoPulito/public/User/showUpdateAccount" class="btn btn-primary">Modifica Profilo</a>
             <a href="/albergoPulito/public/User/showUpdatePassword" class="btn btn-secondary">Cambia Password</a>
-            <a href="/albergoPulito/public/Booking/myBookings" class="btn btn-primary">Le Mie Prenotazioni</a>
+            <a href="/albergoPulito/public/User/showMyBookings" class="btn btn-primary">Le Mie Prenotazioni</a>
         </div>
     </div>
 </main>

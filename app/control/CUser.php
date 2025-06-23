@@ -162,8 +162,7 @@ class CUser{
         $mod = array(['firstName', UHTTP::post("firstName")], ['lastName', UHTTP::post("lastName")], ['birthDate', new DateTime(UHTTP::post("birthDate"))], ['birthPlace', UHTTP::post("birthPlace")]);
         $result = FPersistentManager::getInstance()->updateObject($user, $mod);
         USession::getInstance()->unsetSessionElement('user');
-        $registeredUser = serialize($registeredUser);
-        USession::getInstance()->setSessionElement('user', $registeredUser);
+        USession::getInstance()->setSessionElement('user', serialize($registeredUser));
 
         header('Location: /albergoPulito/public/User/showAccountDetails');
         exit;
@@ -179,14 +178,33 @@ class CUser{
         
             if(password_verify(UHTTP::post('currentPassword'), $registeredUser->getPassword())){
                 if(UHTTP::post('newPassword')==UHTTP::post('confirmNewPassword')){
-                    $registeredUser->setPassword(UHTTP::post('newPasswordPassword'));
+                    $registeredUser->setPassword(UHTTP::post('newPassword'));
                     $mod = array(['password', $registeredUser->getPassword()]);
                     $result = FPersistentManager::getInstance()->updateObject($registeredUser, $mod);
                     USession::getInstance()->unsetSessionElement('user');
-                    USession::getInstance()->setSessionElement('user', $registeredUser);
+                    USession::getInstance()->setSessionElement('user', serialize($registeredUser));
                     header('Location: /albergoPulito/public/User/showAccountDetails');
+                }else{
+                    echo 'PAASWORD NON COMBACIANO';
                 }
+            }else{
+                echo 'PASSWORD ERRATA';
             }
+        }else{
+            header('Location: /albergoPulito/public/');
+            exit;
+        }
+    }
+
+    public static function showMyBookings(){
+        $isLoggedIn = self::isLogged();
+        if($isLoggedIn){
+            $view = new VUser();
+            $user = USession::getInstance()->getSessionElement('user');
+            $user = unserialize($user);
+            $bookings = FPersistentManager::getInstance()->getBookingsByUser($user->getIdRegisteredUser());
+            $view->showMyBookings($isLoggedIn, $user, $bookings);
+
         }else{
             header('Location: /albergoPulito/public/');
             exit;

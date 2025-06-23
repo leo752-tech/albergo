@@ -22,7 +22,10 @@ class CBooking {
 
     //PER LE PRENOTAZIONI STANDARD
     public static function getAvailableRooms() {
-        echo 'GEEEEEEMMMMMMMMMMIIIIIIIIIINNNNNNNNNIIIIIIIIIII' . '<br>';
+        //echo 'GEEEEEEMMMMMMMMMMIIIIIIIIIINNNNNNNNNIIIIIIIIIII' . '<br>';
+
+        $view = new VBooking();
+        $isLoggedIn = CUser::isLogged();
         $requestedCheckIn = UHTTP::post('data_check_in');
         $requestedCheckOut = UHTTP::post('data_check_out');
         $requestedBeds = UHTTP::post('num_adulti');
@@ -67,8 +70,15 @@ class CBooking {
         if (empty($availableRooms)) {
             echo "NESSUNA CAMERA DISPONIBILE PER LE DATE SELEZIONATE";
         }
-        print_r($availableRooms);
-        return $availableRooms; 
+
+        $roomsImages = array();
+        foreach($availableRooms as $room){
+            $images = FPersistentManager::getInstance()->getImagesByRoom($room->getId());
+            $roomsImages[] = array($room, $images); 
+
+        }
+        
+        $view->showAvailableRooms($isLoggedIn, $roomsImages);
     }
 
     public static function isRightLength($reqCheckIn, $reqCheckOut, $reqLength){
@@ -145,6 +155,18 @@ class CBooking {
         $overlaps = ($reqOut >= $occIn && $reqIn <= $occOut);
 
         return !$overlaps;
+    }
+
+    public static function showDetailRoom($room, $images){
+        $isLoggedIn = CUser::isLogged();
+        if($isLoggedIn){
+            $view = new VBooking();
+
+            $view->showDetailBooking($room, $images);
+        }else{
+            header('Location: /albergoPulito/public/Admin/manageRooms');
+            exit;
+        }
     }
 
     public static function showSummary($booking){

@@ -136,6 +136,11 @@ class FPersistentManager {
         return $services;
     }
 
+    public static function getImagesByRoom($idRoom){
+        $images = FImage::getImagesByRoom($idRoom);
+        return $images;
+    }
+
     
 
 

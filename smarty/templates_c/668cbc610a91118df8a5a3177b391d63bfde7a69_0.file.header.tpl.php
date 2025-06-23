@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-23 18:52:30
+/* Smarty version 4.3.2, created on 2025-06-23 21:33:42
   from 'C:\xampp\htdocs\albergoPulito\smarty\templates\header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_6859864e9eb4e9_04594673',
+  'unifunc' => 'content_6859ac16b42c04_04763284',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '668cbc610a91118df8a5a3177b391d63bfde7a69' => 
     array (
       0 => 'C:\\xampp\\htdocs\\albergoPulito\\smarty\\templates\\header.tpl',
-      1 => 1750693055,
+      1 => 1750707172,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6859864e9eb4e9_04594673 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6859ac16b42c04_04763284 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="it">
 <head>
@@ -74,11 +74,6 @@ function content_6859864e9eb4e9_04594673 (Smarty_Internal_Template $_smarty_tpl)
                                         <li>
                         <a href="/albergoPulito/public/User/showAccountDetails" class="user-action-item">
                             <i class="fas fa-user"></i> <span>Visualizza Account</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/albergoPulito/public/Booking/myBookings" class="user-action-item">
-                            <i class="fas fa-book-hotel"></i> <span>Le Mie Prenervazioni</span>
                         </a>
                     </li>
                     <li>

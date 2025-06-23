@@ -187,16 +187,34 @@ class CAdmin{
         $room = new ERoom(null, UHTTP::post("name"), UHTTP::post("beds"), UHTTP::post("price"), UHTTP::post("type"), UHTTP::post("description"));
         $idRoom = FPersistentManager::getInstance()->saveObject($room);
         $images = UHTTP::files('room_images');
-        foreach($images as $queryRes){
-            $image = new EImage(null, $idRoom, $queryRes["name"], $queryRes["tmp_name"], $queryRes["type"]);
+        $uploadDir = __DIR__ . '/../../public/assets/img/';
+        if(isset($images)){
+            foreach($images as $queryRes){
+                $destPath = $uploadDir . $queryRes['name'];
+                if(move_uploaded_file($queryRes['tmp_name'], $destPath)){
+                
+                    $uploadPath = 'albergoPulito/public/assets/img/' . $queryRes['name'];
+                    $image = new EImage(null, $idRoom, $queryRes["name"], $uploadPath, $queryRes["type"]);
 
-            $result = FPersistentManager::getInstance()->saveObject($image);
+                    $result = FPersistentManager::getInstance()->saveObject($image);
+                }else{
+                echo 'ERRORI NELLO SPOSTAMENTO';
+                }
+            }
+
+
+        }else{
+            echo 'ERRORE NEL CARICAMENTO';
         }
-        if($result == false){
+        header('Location: /albergoPulito/public/Admin/manageRooms');
+        exit;
+ 
+        /*
+        if($idRoom == false){
             echo 'ROOM GIA ESISTENTE';
         }else{
             header('Location: /albergoPulito/public/Admin/manageRooms');
-        }
+        }*/
     }
 
     public static function updateRoom(){
