@@ -109,7 +109,7 @@ class FRoom{
         $availableRooms = array();
         foreach ($rooms as $queryRes){
             if($beds <= $queryRes["beds"]){
-                $room = new ERoom($queryRes["idRoom"], $queryRes["name"], $queryRes["beds"], $queryRes["price"], $queryRes["type"]);
+                $room = new ERoom($queryRes["idRoom"], $queryRes["name"], $queryRes["beds"], $queryRes["price"], $queryRes["type"], $queryRes["description"]);
                 $availableRooms[] = $room;
             }
         }
