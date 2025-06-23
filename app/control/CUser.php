@@ -82,15 +82,18 @@ class CUser{
         }
     }
 
+    public static function logout(){
+        USession::getInstance();
+        USession::unsetSession();
+        USession::destroySession();
+        header('Location: /albergoPulito/public/User/home');
+    }
+
     //DA VEDERE
     public static function home(){
         $view = new VUser();
-        if(self::isLogged()){
-            $user = unserialize(USession::getSessionElement('user'));
-            $view->home($user);
-        }else{
-            $view->home();
-        }
+        $isLoggedIn = self::isLogged();
+        $view->home($isLoggedIn);  
         
     }
     public static function showLoginForm(){
@@ -99,17 +102,97 @@ class CUser{
     }
 
     
-    public static function getAllUser(){
-        $view = new VUser();
-        $users = FPersistentManager::getInstance()->getAll("EUser");
-        $view->showUsers($users);
+    public static function showAccountDetails(){
+        $isLoggedIn = self::isLogged();
+        if($isLoggedIn){
+            $view = new VUser();
+            $user = USession::getInstance()->getSessionElement('user');
+            $user = unserialize($user);
+            $birthDate = $user->getBirthDate();
+            $birthDate = $birthDate->format('d-m-Y');
+            $view->showAccountDetail($isLoggedIn, $user, $birthDate);
+        }else{
+            header('Location: /albergoPulito/public/');
+            exit;
+        }
     }
 
-    public static function insertUser(){
-        $view = new VUser();
-        $user = new EUser(null, UHTTP::post("firstName"), UHTTP::post("lastName"), new DateTime(UHTTP::post("birthDate")), UHTTP::post("birthPlace"));
-        $result = FPersistentManager::getiInstance()->saveObject($user);
-        $view->insertUser($user);
+    public static function showUpdateAccount(){
+        $isLoggedIn = self::isLogged();
+        if($isLoggedIn){
+            $view = new VUser();
+            $user = USession::getInstance()->getSessionElement('user');
+            $user = unserialize($user);
+            $view->showUpdateAccount($isLoggedIn, $user);
+
+        }else{
+            header('Location: /albergoPulito/public/');
+            exit;
+        }
     }
+
+    public static function showUpdatePassword(){
+        $isLoggedIn = self::isLogged();
+        if($isLoggedIn){
+            $view = new VUser();
+            $user = USession::getInstance()->getSessionElement('user');
+            $user = unserialize($user);
+            $view->showUpdatePassword($isLoggedIn, $user);
+
+        }else{
+            header('Location: /albergoPulito/public/');
+            exit;
+        }
+    }
+
+    public static function updateAccount(){
+        
+        $registeredUser = USession::getInstance()->getSessionElement('user');
+        $registeredUser = unserialize($registeredUser);
+        $mod = array();
+        if( UHTTP::post("firstName") != ''){$mod[] = ['firstName', UHTTP::post("firstName")];}
+        if( UHTTP::post("lastName") != ''){$mod[] = ['lastName', UHTTP::post("lastName")];}
+        if( UHTTP::post("birthDate") != null){$mod[] = ['birthDate', new DateTime(UHTTP::post("birthDate"))];}
+        if( UHTTP::post("birthPlace") != ''){$mod[] = ['birthPlace', UHTTP::post("birthPlace")];}
+        if( UHTTP::post("email") != ''){$mod[] = ['email', UHTTP::post("email")];}
+        $result = FPersistentManager::getInstance()->updateObject($registeredUser, $mod);
+        $registeredUser = FPersistentManager::getInstance()->getObject('ERegisteredUser', $registeredUser->getIdRegisteredUser());
+        $idUser = $registeredUser->getIdUser();
+        $user = FPersistentManager::getInstance()->getObject('EUser', $idUser);
+        $mod = array(['firstName', UHTTP::post("firstName")], ['lastName', UHTTP::post("lastName")], ['birthDate', new DateTime(UHTTP::post("birthDate"))], ['birthPlace', UHTTP::post("birthPlace")]);
+        $result = FPersistentManager::getInstance()->updateObject($user, $mod);
+        USession::getInstance()->unsetSessionElement('user');
+        $registeredUser = serialize($registeredUser);
+        USession::getInstance()->setSessionElement('user', $registeredUser);
+
+        header('Location: /albergoPulito/public/User/showAccountDetails');
+        exit;
+
+    }
+
+    public static function updatePassword(){
+        $isLoggedIn = self::isLogged();
+        if($isLoggedIn){
+            $view = new VUser();
+            $registeredUser = USession::getInstance()->getSessionElement('user');
+            $registeredUser = unserialize($registeredUser);
+        
+            if(password_verify(UHTTP::post('currentPassword'), $registeredUser->getPassword())){
+                if(UHTTP::post('newPassword')==UHTTP::post('confirmNewPassword')){
+                    $registeredUser->setPassword(UHTTP::post('newPasswordPassword'));
+                    $mod = array(['password', $registeredUser->getPassword()]);
+                    $result = FPersistentManager::getInstance()->updateObject($registeredUser, $mod);
+                    USession::getInstance()->unsetSessionElement('user');
+                    USession::getInstance()->setSessionElement('user', $registeredUser);
+                    header('Location: /albergoPulito/public/User/showAccountDetails');
+                }
+            }
+        }else{
+            header('Location: /albergoPulito/public/');
+            exit;
+        }
+    }
+
+    
 	
 }

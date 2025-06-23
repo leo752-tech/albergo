@@ -1,3 +1,4 @@
+/* Generale */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -15,39 +16,42 @@ header {
     background-color: #333;
     color: #fff;
     padding: 1rem 0;
+    position: relative; /* Importante per posizionare il menu a discesa */
 }
 header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-header h1 {
+.logo h1 {
     margin: 0;
     font-size: 1.8rem;
 }
-header h1 a {
+.logo a {
     color: #fff;
     text-decoration: none;
 }
-nav ul {
+/* Navigazione Desktop */
+.desktop-nav ul {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
 }
-nav ul li {
+.desktop-nav ul li {
     margin-left: 20px;
 }
-nav ul li a {
+.desktop-nav ul li a {
     color: #fff;
     text-decoration: none;
     padding: 5px 10px;
     transition: background-color 0.3s ease;
 }
-nav ul li a:hover {
+.desktop-nav ul li a:hover {
     background-color: #555;
     border-radius: 4px;
 }
+/* Pulsanti generali */
 .btn {
     display: inline-block;
     padding: 10px 20px;
@@ -69,9 +73,11 @@ nav ul li a:hover {
 .btn-secondary:hover {
     background-color: #5a6268;
 }
+/* Sezioni Pagina */
 .section-padding {
     padding: 60px 0;
 }
+/* Footer */
 footer {
     background-color: #333;
     color: #fff;
@@ -120,7 +126,7 @@ footer {
     padding-top: 20px;
     font-size: 0.9rem;
 }
-/* Aggiungi altri stili per card, form, ecc. come vuoi */
+/* Aggiungi altri stili per card, form, ecc. */
 .room-card, .service-card, .review-card {
     background-color: #fff;
     border: 1px solid #ddd;
@@ -159,8 +165,262 @@ footer {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-sizing: border-box; /* Include padding in width */
+    box-sizing: border-box;
 }
 .full-width {
-    grid-column: 1 / -1; /* Spanning full width in grid */
+    grid-column: 1 / -1;
 }
+
+/* --- STILI PER I MENU A DISCESA (ORIZZONTALE) E RESPONSIVITÀ --- */
+
+/* Bottoni di attivazione dei menu (Hamburger e User) */
+.user-menu-toggle,
+.mobile-menu-toggle {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.8em;
+    cursor: pointer;
+    padding: 5px;
+    display: none; /* Nascosti di default, mostrati via media query */
+    margin-left: 15px; /* Spazio tra i bottoni se entrambi visibili */
+}
+
+/* Mostra il bottone utente su tutti gli schermi dove la desktop-nav non ha già login */
+.user-menu-toggle {
+    display: block; /* Visibile di default (ad esempio, a fianco della desktop-nav) */
+}
+
+/* Menu Utente (Login/Registrazione) a discesa */
+.user-actions-menu {
+    display: none; /* Nascosto di default */
+    position: absolute; /* Posizionato rispetto all'header (o all'elemento posizionato più vicino) */
+    top: 100%; /* Appare appena sotto l'header */
+    right: 20px; /* Allineato a destra, sotto il bottone utente */
+    background-color: #333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    z-index: 1000; /* Assicurati che sia sopra altri contenuti */
+    min-width: 180px; /* Larghezza minima per le voci */
+    padding: 10px 0;
+}
+
+.user-actions-menu.active {
+    display: block; /* Mostra il menu quando ha la classe 'active' */
+}
+
+.user-actions-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.user-actions-menu ul li {
+    border-bottom: 1px solid #555; /* Separatore tra le voci */
+}
+
+.user-actions-menu ul li:last-child {
+    border-bottom: none;
+}
+
+.user-actions-menu .user-action-item {
+    display: flex; /* Per allineare icona e testo */
+    align-items: center; /* Centra verticalmente */
+    padding: 10px 15px;
+    color: white;
+    text-decoration: none;
+    font-size: 1em;
+    transition: background-color 0.2s ease;
+}
+
+.user-actions-menu .user-action-item i {
+    margin-right: 10px; /* Spazio tra icona e testo */
+    font-size: 1.2em;
+}
+
+.user-actions-menu .user-action-item:hover {
+    background-color: #555;
+}
+
+/* Menu di Navigazione Mobile (hamburger) */
+.mobile-nav-menu {
+    display: none; /* Nascosto di default */
+    background-color: #333;
+    width: 100%;
+    position: absolute;
+    top: 100%; /* Appare appena sotto l'header */
+    left: 0;
+    z-index: 999; /* Leggermente inferiore al menu utente, se si aprono entrambi */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 15px 0;
+}
+
+.mobile-nav-menu.active {
+    display: block; /* Mostra il menu quando ha la classe 'active' */
+}
+
+.mobile-nav-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+.mobile-nav-menu ul li {
+    padding: 12px 0;
+    border-bottom: 1px solid #555;
+}
+
+.mobile-nav-menu ul li:last-child {
+    border-bottom: none;
+}
+
+.mobile-nav-menu ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+    display: block;
+    padding: 5px 0;
+}
+
+.mobile-nav-menu ul li a:hover {
+    background-color: #555;
+}
+
+/* Media Queries per la Responsività */
+@media (max-width: 768px) { /* Sui tablet e mobile */
+    .desktop-nav {
+        display: none; /* Nasconde la navigazione desktop */
+    }
+    .mobile-menu-toggle {
+        display: block; /* Mostra il bottone hamburger */
+    }
+    /* Se vuoi che userMenuToggle sia visibile anche su mobile */
+    .user-menu-toggle {
+        display: block;
+    }
+    /* Se vuoi che i bottoni siano vicini sui mobile, usa flex per la div che li contiene */
+    header .container {
+        justify-content: space-between; /* Spinge logo a sinistra, bottoni a destra */
+    }
+}
+
+@media (min-width: 769px) { /* Sui desktop */
+    .mobile-menu-toggle {
+        display: none; /* Nasconde il bottone hamburger */
+    }
+    .mobile-nav-menu {
+        display: none !important; /* Forza la chiusura del menu mobile su desktop */
+    }
+}
+
+/* Aggiungi o aggiorna questi stili nel tuo file style.css */
+
+/* Stile per il container principale della pagina profilo */
+.user-profile {
+    margin-top: 30px; /* Spazio dall'header */
+    margin-bottom: 30px; /* Spazio dal footer */
+}
+
+.user-profile h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+/* Stile per la "card" dei dettagli del profilo */
+.profile-details.card { /* Questo selettore ora si adatta al tuo HTML modificato */
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 30px; /* Padding interno della card */
+    margin-bottom: 30px; /* Spazio sotto la card, prima dei bottoni */
+}
+
+/* Stile per il titolo all'interno della card */
+.profile-details .card-title {
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+    color: #007bff;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    text-align: center; /* Centra il titolo della card */
+}
+
+/* Stili per i singoli elementi di dettaglio */
+.profile-details .detail-item {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    display: flex; /* Usa flexbox per allineare forte e valore */
+    justify-content: space-between; /* Spinge forte a sinistra e valore a destra */
+    align-items: center;
+}
+
+.profile-details .detail-item:last-child {
+    border-bottom: none; /* Rimuove il bordo inferiore sull'ultimo elemento */
+}
+
+.profile-details .detail-item strong {
+    flex-shrink: 0; /* Impedisce al "strong" di restringersi */
+    margin-right: 15px; /* Spazio tra label e valore */
+}
+
+/* Rimuovi questi stili se non usi più .form-group e .form-control direttamente qui */
+/* Se questa card verrà usata anche per un form di modifica, mantienili */
+/*
+.profile-details .form-group {
+    margin-bottom: 20px;
+}
+.profile-details label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+.profile-details .form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+*/
+
+/* Stili per le azioni (bottoni) */
+.profile-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px; /* Spazio tra i bottoni */
+    justify-content: center; /* Centra i bottoni */
+    margin-top: 20px;
+}
+
+/* Media query per layout a due colonne sui dettagli */
+@media (min-width: 768px) {
+    .profile-details {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* Dettagli su due colonne su schermi più grandi */
+        gap: 30px; /* Spazio tra le colonne */
+    }
+    .profile-details.card {
+        padding: 40px; /* Più padding su schermi grandi */
+    }
+}
+
+/* L'overlay non è strettamente necessario per questo tipo di menu a discesa */
+/* Se lo vuoi comunque per oscurare la pagina, i suoi stili sarebbero: */
+/*
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 998; // Sotto i menu a discesa
+}
+.overlay.active {
+    display: block;
+}
+*/

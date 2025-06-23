@@ -14,8 +14,8 @@ class VUser{
     /**
      * @throws SmartyException
      */
-    public function home(?EUser $user=null){
-        $this->smarty->assign('user', $user);
+    public function home($isLoggedIn){
+        $this->smarty->assign('is_logged_in', $isLoggedIn);
         $this->smarty->display('home.tpl');
     }
 
@@ -43,6 +43,25 @@ class VUser{
     public function manageUsers($users){
         $this->smarty->assign('users', $users);
         $this->smarty->display();
+    }
+
+    public function showAccountDetail($isLoggedIn, $user, $birthDate){
+        $this->smarty->assign('birthDate', $birthDate);
+        $this->smarty->assign('is_logged_in', $isLoggedIn);
+        $this->smarty->assign('user', $user);
+        $this->smarty->display('manageAccountDetail.tpl');
+    }
+
+    public function showUpdateAccount($isLoggedIn, $user){
+        $this->smarty->assign('is_logged_in', $isLoggedIn);
+        $this->smarty->assign('user', $user);
+        $this->smarty->display('updateAccount.tpl');
+    }
+
+    public function showUpdatePassword($isLoggedIn, $user){
+        $this->smarty->assign('is_logged_in', $isLoggedIn);
+        $this->smarty->assign('user', $user);
+        $this->smarty->display('updatePassword.tpl');
     }
 
 

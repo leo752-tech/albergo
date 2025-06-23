@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-22 12:27:56
+/* Smarty version 4.3.2, created on 2025-06-23 18:52:30
   from 'C:\xampp\htdocs\albergoPulito\smarty\templates\header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_6857daacb708e2_37557232',
+  'unifunc' => 'content_6859864e9eb4e9_04594673',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '668cbc610a91118df8a5a3177b391d63bfde7a69' => 
     array (
       0 => 'C:\\xampp\\htdocs\\albergoPulito\\smarty\\templates\\header.tpl',
-      1 => 1750587970,
+      1 => 1750693055,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6857daacb708e2_37557232 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6859864e9eb4e9_04594673 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="it">
 <head>
@@ -29,16 +29,16 @@ function content_6857daacb708e2_37557232 (Smarty_Internal_Template $_smarty_tpl)
     <title><?php echo '<?php'; ?>
  echo $pageTitle ?? 'Nome Hotel - Il Tuo Soggiorno Perfetto'; <?php echo '?>'; ?>
 </title>
-    <link rel="stylesheet" href="/~momok/assets/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    </head>
+    <link rel="stylesheet" href="/albergoPulito/public/assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
 <body>
     <header>
         <div class="container">
             <div class="logo">
                 <a href="/albergoPulito/public/"><h1>Nome Hotel</h1></a>
             </div>
-            <nav>
+            <nav class="desktop-nav">
                 <ul>
                     <li><a href="/albergoPulito/public/">Home</a></li>
                     <li><a href="/albergoPulito/public/Room/">Camere</a></li>
@@ -47,12 +47,62 @@ function content_6857daacb708e2_37557232 (Smarty_Internal_Template $_smarty_tpl)
                     <li><a href="recensioni.php">Recensioni</a></li>
                     <li><a href="contatti.php">Contatti</a></li>
                     <li><a href="/albergoPulito/public/Booking/showSpecialOffer">Offerte Speciali</a></li>
-                    <li><a href="/albergoPulito/public/User/showFormsLogin" class="btn btn-primary">Accedi/Registrati</a></li>
                 </ul>
             </nav>
-            <button class="mobile-menu-toggle">☰</button>
+            <button class="user-menu-toggle" id="userMenuToggle">
+                <i class="fas fa-user-circle"></i>
+            </button>
+            <button class="mobile-menu-toggle" id="mobileMenuHamburger">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <div id="mobile-nav-menu" class="mobile-nav-menu">
+            <ul>
+                <li><a href="/albergoPulito/public/">Home</a></li>
+                <li><a href="/albergoPulito/public/Room/">Camere</a></li>
+                <li><a href="servizi.php">Servizi</a></li>
+                <li><a href="/albergoPulito/public/Booking/selectDate">Prenota Ora</a></li>
+                <li><a href="recensioni.php">Recensioni</a></li>
+                <li><a href="contatti.php">Contatti</a></li>
+                <li><a href="/albergoPulito/public/Booking/showSpecialOffer">Offerte Speciali</a></li>
+            </ul>
+        </div>
+        <div id="user-actions-menu" class="user-actions-menu">
+            <ul>
+                <?php if ($_smarty_tpl->tpl_vars['is_logged_in']->value) {?>
+                                        <li>
+                        <a href="/albergoPulito/public/User/showAccountDetails" class="user-action-item">
+                            <i class="fas fa-user"></i> <span>Visualizza Account</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/albergoPulito/public/Booking/myBookings" class="user-action-item">
+                            <i class="fas fa-book-hotel"></i> <span>Le Mie Prenervazioni</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/albergoPulito/public/User/logout" class="user-action-item">
+                            <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
+                        </a>
+                    </li>
+                <?php } else { ?>
+                                        <li>
+                        <a href="/albergoPulito/public/User/showFormsLogin" class="user-action-item">
+                            <i class="fas fa-sign-in-alt"></i> <span>Accedi</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/albergoPulito/public/User/showFormsLogin" class="user-action-item">
+                            <i class="fas fa-user-plus"></i> <span>Registrati</span>
+                        </a>
+                    </li>
+                <?php }?>
+            </ul>
         </div>
     </header>
+
     <main>
-    <?php }
+    
+<?php }
 }

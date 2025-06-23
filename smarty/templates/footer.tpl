@@ -29,6 +29,6 @@
                 </div>
             </div>
         </footer>
-        <script src="assets/js/script.js"></script>
+        <script src="/albergoPulito/public/assets/js/script.js"></script>
         </body>
 </html>
