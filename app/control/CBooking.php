@@ -26,8 +26,17 @@ class CBooking {
 
         $view = new VBooking();
         $isLoggedIn = CUser::isLogged();
+        USession::getInstance();
+        if(USession::isSetSessionElement('searchedRoomImages')){
+            USession::unsetSessionElement('searchedRoomImages');
+        }
+        if(USession::isSetSessionElement('period')){
+            USession::unsetSessionElement('period');
+        }
         $requestedCheckIn = UHTTP::post('data_check_in');
         $requestedCheckOut = UHTTP::post('data_check_out');
+        $period = array($requestedCheckIn, $requestedCheckOut);
+        USession::setSessionElement('period', $period);
         $requestedBeds = UHTTP::post('num_adulti');
 
         $availableRooms = array();
@@ -81,7 +90,7 @@ class CBooking {
 
         }
         
-        USession::getInstance()->setSessionElement('searchedRoomImages', $allImagesForAvailableRooms);
+        USession::setSessionElement('searchedRoomImages', $allImagesForAvailableRooms);
         
         $view->showAvailableRooms($isLoggedIn, $roomsImages);
     }
@@ -167,62 +176,105 @@ class CBooking {
         if($isLoggedIn){
             $view = new VBooking();
             $room = FPersistentManager::getInstance()->getObject('ERoom', $idRoom);
+            $services = FPersistentManager::getInstance()->getAllExtraServices();
+            $servObj = array();
+            foreach($services as $queryRes){
+                $servObj[] = new EExtraService($queryRes["idExtraService"], $queryRes["name"], $queryRes["description"], $queryRes["price"]);
+            }
             $allImages = USession::getInstance()->getSessionElement('searchedRoomImages');
             $images = array();
             foreach($allImages as $image){
-                if($image->getId() == $idRoom){
+                if($image->getIdRoom() == $idRoom){
                     $images[] = $image;
                 }
             }
-            $view->showDetailBooking($isLoggedIn, $room, $images);
+            $view->showDetailBooking($isLoggedIn, $room, $images, $servObj);
         }else{
             header('Location: /albergoPulito/public/Admin/manageRooms');
             exit;
         }
     }
 
-    public static function showSummary($booking){
-        if(CUser::isLogged()){
+    public static function showSummary($idRoom){
+        $isLoggedIn = CUser::isLogged();
+        if($isLoggedIn){
             $view = new VBooking();
+            USession::getInstance();
+            if(USession::isSetSessionElement('booking')){USession::unsetSessionElement('booking');}
+            if(USession::isSetSessionElement('selectedServices')){USession::unsetSessionElement('selectedServices');}
+            $user = USession::getSessionElement('user');
+            $user = unserialize($user);
+            $period = USession::getSessionElement('period');
+            $room = FPersistentManager::getInstance()->getObject('ERoom',$idRoom);
+
+            
+            $selectedServices = UHTTP::post('selectedServices');
+            
+            $servObj = array();
+            if(isset($selectedServices)){
+                foreach($selectedServices as $id){
+                    $servObj[] = FPersistentManager::getInstance()->getObject('EExtraService',$id);
+                }
+            }
+            USession::setSessionElement('selectedServices', $servObj);
+            $totalPrice = self::calculatePrice(new DateTime($period[0]), new DateTime($period[1]), $room->getPrice(), $servObj, null);
+            $booking = new EBooking(null, $user->getIdRegisteredUser(), new DateTime($period[0]), new DateTime( $period[1]), $idRoom, $totalPrice, null, null, null);
+            USession::setSessionElement('booking', serialize($booking));
+            $view->showSummary($isLoggedIn, $room, $booking, $servObj);
 
 
             
         }
+        else{
+            header('Location: /albergoPulito/public/Admin/manageRooms');
+            exit;
+        }
+    }
+
+    public static function showPayment($idBooking, $totalPrice){
+        $isLoggedIn = CUser::isLogged();
+        if($isLoggedIn){
+            $view = new VBooking();
+
+            $view->showPayment($isLoggedIn, $idBooking, $totalPrice);
+        }else{
+            header('Location: /albergoPulito/public/Admin/manageRooms');
+            exit;
+        }
     }
 
     public static function makeBooking(){
-        if(CUser::isLogged()){
-            $totalPrice = self::calculatePrice(new DateTime(UHTTP::post('checkIn')), new DateTime(UHTTP::post('checkOut')), $price, $idExtraService, $idSpecialOffer);
-            if($idSpecialOffer!= null){
-                $booking = new EBooking(null, USession::getSessionElement("idUser"), new DateTime(UHTTP::post("checkIn")), new DateTime(UHTTP::post("checkOut")), UHTTP::post("idRoom"), $totalPrice, null, $idSpecialOffer);
-                $idBooking = FPersistentManager::getInstance()->saveObject($booking);
+        $isLoggedIn = CUser::isLogged();
+        if($isLoggedIn){
+            USession::getInstance();
+            $bookingU = USession::getSessionElement('booking');
+            $booking = unserialize($bookingU);
+            echo 'class' . gettype($booking);
+            $services = USession::getSessionElement('selectedServices');
+            $result = FPersistentManager::getInstance()->saveObject('EBooking', $booking);
+            foreach($services as $serv){
+                $result = FPersistentManager::getInstance()->setBookingsExtraServices($booking->getId(), $serv->getId());
             }
-            elseif($idExtraService)
-            $booking = new EBooking(null, USession::getSessionElement("idUser"), new DateTime(UHTTP::post("checkIn")), new DateTime(UHTTP::post("checkOut")), UHTTP::post("idRoom"), $totalPrice, null, null);
-            $idBooking = FPersistentManager::getInstance()->saveObject($booking);
-            if(UHTTP::post("idExtraService")!=null){
-                $result1 = FPersistentManager::getInstance()->setBookingsExtraService($idBooking, UHTTP::post("idExtraService"));        
-            }
+            $digits = UHTTP::post('cardNumber');
+            $digits = 'XXXX-XXXX-XXXX-' . substr($digits, -4);
+            $payment = new EPayment(null, $booking->getId(), $booking->getTotalPrice(), null, $digits, UHTTP::post('cardName'));
+            $result = FPersistentManager::getInstance()->saveObject('EPayment', $payment);
+            header('Location: /albergoPulito/public/User/home');
+            exit;
         }else{
             setcookie('redirectSelectedRoom', UHTTP::getReferer(), time() + 900,  "/"); //15 minuti
-            header('Location: /~momok/User/showFormLogin');
+            header('Location: /albergoPulito/public/User/showFormLogin');
             exit();
         }
-
-        
-
     }
 
-    private static function calculatePrice(DateTime $checkIn, DateTime $checkOut, float $price, ?int $idExtraService = null, ?int $idSpecialOffer = null){
-        if($idSpecialOffer!=null){
-            //CALCOLARE IN BASE ALL'OFFERTA 
-        }elseif($idExtraService!=null){
-            $extraService = FPersistentManager::getInstance()->getObject();
-            $price +=  $extraService->getPrice();
+    private static function calculatePrice(DateTime $checkIn, DateTime $checkOut, float $price, $extraService, ?int $idSpecialOffer = null){
+        if(isset($extraService)){
+            foreach($extraService as $serv){
+                $price += $serv->getPrice();
+            }
         }
-        
-        
-        
+
         $length = $checkIn->diff($checkOut);
         $length = $length->days;
         $totalPrice = $length * $price;

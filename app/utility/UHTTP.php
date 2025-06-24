@@ -4,8 +4,10 @@
 class UHTTP{
 
     
-  public static function post($parametro){
-        return $_POST[$parametro];
+    public static function post($parametro){
+        if(isset($_POST[$parametro])){
+            return $_POST[$parametro];
+        }
     }
        /* public static function post(string $key): ?string {
         // Usa l'operatore di coalescenza ?? per restituire null se la chiave non esiste

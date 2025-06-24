@@ -13,7 +13,7 @@ class VBooking{
     }
 
     public function showAvailableRooms($isLoggedIn, $roomsImages){
-        $this->smarty->assign('isLoggedIn', $isLoggedIn);
+        $this->smarty->assign('is_logged_in', $isLoggedIn);
         $this->smarty->assign('rooms', $roomsImages);
         $this->smarty->display('availableRooms.tpl');
     }
@@ -24,11 +24,27 @@ class VBooking{
         $this->smarty->display('manageSpecialOffer.tpl');
     }
 
-    public function showDetailBooking($isLoggedIn, $room, $images){
-        $this->smarty->assign('isLoggedIn', $isLoggedIn);
+    public function showDetailBooking($isLoggedIn, $room, $images, $services){
+        $this->smarty->assign('is_logged_in', $isLoggedIn);
         $this->smarty->assign('room', $room);
         $this->smarty->assign('images', $images);
+        $this->smarty->assign('extraServices', $services);
         $this->smarty->display('detailRoom.tpl');
+    }
+
+    public function showSummary($isLoggedIn, $room, $booking, $servObj){
+        $this->smarty->assign('is_logged_in', $isLoggedIn);
+        $this->smarty->assign('room', $room);
+        $this->smarty->assign('booking', $booking);
+        $this->smarty->assign('selectedExtraServices', $servObj);
+        $this->smarty->display('summaryBooking.tpl');
+    }
+
+    public function showPayment($isLoggedIn, $idBooking, $totalPrice){
+        $this->smarty->assign('is_logged_in', $isLoggedIn);
+        $this->smarty->assign('idBooking', $idBooking);
+        $this->smarty->assign('totalPrice', $totalPrice);
+        $this->smarty->display('payment.tpl');
     }
 
 }

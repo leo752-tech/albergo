@@ -5,3 +5,86 @@ serve un template per l'aggiornamento delle camere, dove si visualizzano le imma
 inserimento prenotazioni da sostituire con quelo per gli utenti
 
 /albergoPulito/public/User/showFormsLogin
+
+{if $errorMessage}
+        <div class="alert alert-danger" role="alert">
+            {$errorMessage}
+        </div>
+    {/if}
+    {if $successMessage}
+        <div class="alert alert-success" role="alert">
+            {$successMessage}
+        </div>
+    {/if}
+
+
+
+
+<div class="form-group full-width">
+            <label>Servizi Extra (opzionale):</label>
+            <div class="checkbox-group">
+                <input type="checkbox" id="service-colazione" name="servizi_extra[]" value="1">
+                <label for="service-colazione">Colazione in Camera (€15)</label><br>
+                
+                <input type="checkbox" id="service-spa" name="servizi_extra[]" value="2">
+                <label for="service-spa">Accesso SPA (€30/persona)</label><br>
+
+                <input type="checkbox" id="service-transfer" name="servizi_extra[]" value="3">
+                <label for="service-transfer">Transfer Aeroportuale (€50)</label><br>
+                </div>
+        </div>
+
+
+
+
+
+<div class="room-search-form card mb-5">
+        <div class="card-body">
+            <h3>Cerca Disponibilità</h3>
+            <form action="{$base_url}rooms.php" method="GET">
+                <div class="form-grid-search">
+                    <div class="form-group">
+                        <label for="check_in_date">Check-in:</label>
+                        <input type="date" class="form-control" id="check_in_date" name="check_in_date" 
+                               value="{$searchData.check_in_date|default:''}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="check_out_date">Check-out:</label>
+                        <input type="date" class="form-control" id="check_out_date" name="check_out_date" 
+                               value="{$searchData.check_out_date|default:''}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="beds">Ospiti:</label>
+                        <input type="number" class="form-control" id="beds" name="beds" 
+                               value="{$searchData.beds|default:'1'}" min="1" required>
+                    </div>
+                    <div class="form-group form-group-button">
+                        <button type="submit" class="btn btn-primary btn-block">Cerca Camere</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+
+{if isset($room)}
+                        <div class="detail-item">
+                            <strong>Camera Prenotata:</strong> 
+                            <span>{$room->getName()|escape:'html'} (ID: {$booking->getIdRoom()})</span>
+                        </div>
+                        <div class="detail-item">
+                            <strong>Tipo Camera:</strong> 
+                            <span>{$room->getType()|escape:'html'}</span>
+                        </div>
+                        <div class="detail-item">
+                            <strong>Posti Letto:</strong> 
+                            <span>{$room->getBeds()}</span>
+                        </div>
+                    {else}
+                        <div class="detail-item">
+                            <strong>ID Camera:</strong> 
+                            <span>{$booking->getIdRoom()}</span>
+                        </div>
+                    {/if}

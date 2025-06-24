@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-23 21:31:45
+/* Smarty version 4.3.2, created on 2025-06-24 18:48:44
   from 'C:\xampp\htdocs\albergoPulito\smarty\templates\manageAccountDetail.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_6859aba154afa7_35447183',
+  'unifunc' => 'content_685ad6ec842a99_65579321',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_6859aba154afa7_35447183 (Smarty_Internal_Template $_smarty_tpl) {
+function content_685ad6ec842a99_65579321 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender('file:header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('pageTitle'=>'Il Mio Profilo'), 0, false);
 ?>
 

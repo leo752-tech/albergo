@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-23 21:21:03
+/* Smarty version 4.3.2, created on 2025-06-24 13:09:04
   from 'C:\xampp\htdocs\albergoPulito\smarty\templates\footer_admin.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_6859a91fe1c359_44720470',
+  'unifunc' => 'content_685a87504c3050_21672575',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6859a91fe1c359_44720470 (Smarty_Internal_Template $_smarty_tpl) {
+function content_685a87504c3050_21672575 (Smarty_Internal_Template $_smarty_tpl) {
 ?></div> </main>
     <footer class="admin-footer">
         <div class="container-fluid">
