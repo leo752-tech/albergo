@@ -4,16 +4,16 @@ class FDataMapper {
 
     private static $instance;
 
-    /*private static $db;
+    private static $db;
     private $name = "hotel_db";
     private $host = "localhost";
     private $user = "root";
-    private $password = "";*/
-    private static $db;
+    private $password = "";
+    /*private static $db;
     private $name = "my_provahotelprova";
     private $host = "localhost";
     private $user = "provahotelprova";
-    private $password = "";
+    private $password = "";*/
 
     // SINGLETON PATTERN
     private function __construct(){
@@ -101,13 +101,13 @@ class FDataMapper {
         }
     }
 
-    public static function saveBookingsExtraServices($booking, $extraService)
+    public static function saveBookingsExtraServices($idBooking, $idExtraService)
     {
         try {
             $query = "INSERT INTO " . "booking_extraservice" . " VALUES " . "(NULL,:idBooking,:idExtraService)";
             $stmt = self::$db->prepare($query);
-            $stmt->bindValue("idBooking", $booking->getId(), PDO::PARAM_INT);
-            $stmt->bindValue("idExtraService", $extraService->getId(), PDO::PARAM_INT);    
+            $stmt->bindValue("idBooking", $idBooking, PDO::PARAM_INT);
+            $stmt->bindValue("idExtraService", $idExtraService, PDO::PARAM_INT);    
             $stmt->execute();
             $id = self::$db->lastInsertId();
             return $id;

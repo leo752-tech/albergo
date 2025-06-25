@@ -507,6 +507,224 @@ footer {
     margin-right: 15px;
 }
 
+/* Stili per il contenitore della galleria */
+.room-gallery {
+    margin-bottom: 20px; /* Spazio sotto la galleria */
+    display: flex; /* Utilizziamo flexbox per allineare l'immagine principale e le miniature */
+    flex-direction: column; /* Le immagini saranno una sopra l'altra per impostazione predefinita */
+    gap: 15px; /* Spazio tra l'immagine principale e le miniature */
+}
+
+/* Stili per il contenitore dell'immagine principale */
+.main-image-container {
+    width: 100%; /* Occupa tutta la larghezza disponibile */
+    max-height: 450px; /* Limita l'altezza massima */
+    overflow: hidden; /* Nasconde ciò che eccede l'altezza */
+    border-radius: 8px; /* Angoli arrotondati */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Piccola ombra */
+}
+
+/* Stili per l'immagine principale */
+.main-room-image {
+    width: 100%; /* L'immagine si adatta alla larghezza del contenitore */
+    height: auto; /* Mantiene le proporzioni */
+    display: block; /* Rimuove lo spazio extra sotto l'immagine */
+    object-fit: cover; /* Assicura che l'immagine copra l'area senza distorcersi */
+}
+
+/* Stili per la galleria di miniature */
+.thumbnail-gallery {
+    display: flex; /* Utilizziamo flexbox per le miniature */
+    flex-wrap: wrap; /* Le miniature vanno a capo se non c'è spazio */
+    gap: 10px; /* Spazio tra le miniature */
+    justify-content: center; /* Centra le miniature se ce ne sono poche */
+}
+
+/* Stili per le singole miniature */
+.thumbnail-image {
+    width: 100px; /* Larghezza fissa per le miniature */
+    height: 75px; /* Altezza fissa per le miniature */
+    object-fit: cover; /* Taglia le immagini per adattarle mantenendo le proporzioni */
+    border: 2px solid #ddd; /* Bordo leggero */
+    border-radius: 5px; /* Angoli arrotondati */
+    cursor: pointer; /* Indica che sono cliccabili */
+    transition: transform 0.2s ease, border-color 0.2s ease; /* Transizione per effetto hover */
+}
+
+.thumbnail-image:hover {
+    transform: translateY(-3px); /* Leggero sollevamento all'hover */
+    border-color: #007bff; /* Cambia colore del bordo all'hover */
+}
+
+/* Stili per la responsività (opzionale ma consigliato) */
+@media (min-width: 768px) {
+    .room-gallery {
+        flex-direction: row; /* Su schermi più grandi, affianca l'immagine principale e le miniature */
+        align-items: flex-start; /* Allinea in alto */
+    }
+    .main-image-container {
+        width: 65%; /* L'immagine principale occupa 65% della larghezza */
+        max-height: 500px; /* Aumenta l'altezza massima per desktop */
+    }
+    .thumbnail-gallery {
+        width: 30%; /* Le miniature occupano il 30% */
+        flex-direction: column; /* Le miniature verticalmente */
+        justify-content: flex-start; /* Le miniature dall'alto */
+    }
+    .thumbnail-image {
+        width: 100%; /* Le miniature occupano tutta la larghezza del loro contenitore */
+        height: 100px; /* Altezza maggiore per le miniature su desktop */
+    }
+}
+
+/* booking-summary.css */
+.booking-summary-page {
+    padding: 40px 0;
+    background-color: #f8f9fa;
+}
+
+.booking-summary-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 30px;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.booking-summary-card .card-title {
+    color: #333;
+    font-size: 2.2rem;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.summary-details .detail-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px dashed #eee;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.summary-details .detail-item:last-child {
+    border-bottom: none;
+}
+
+.summary-details .detail-item strong {
+    color: #333;
+    font-weight: 600;
+}
+
+.summary-details .detail-item.total-price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    border-top: 2px solid #007bff;
+    padding-top: 20px;
+    margin-top: 20px;
+    color: #007bff;
+}
+
+.summary-details .detail-item.total-price .price {
+    color: #dc3545; /* Un colore più accattivante per il prezzo */
+    font-size: 1.8rem;
+}
+
+.summary-details .detail-item.highlighted {
+    background-color: #e9f7ee; /* Sfondo leggero per evidenziare */
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin: 10px 0;
+    border: 1px solid #28a745;
+    color: #28a745;
+}
+
+.booking-actions .btn {
+    margin: 10px;
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    border-radius: 5px;
+}
+
+.alert-warning {
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+    color: #856404;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+/* Stili per la pagina di pagamento */
+.payment-page {
+    background-color: #f8f9fa; /* Sfondo leggero */
+}
+
+.payment-card {
+    max-width: 500px; /* Limita la larghezza della card */
+    margin: 50px auto; /* Centra la card */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.payment-card .card-title {
+    color: #343a40;
+    font-weight: 600;
+}
+
+.payment-card .form-label {
+    font-weight: 500;
+    color: #495057;
+}
+
+.payment-card .form-control,
+.payment-card .form-select {
+    border-radius: 5px;
+    padding: 10px 15px;
+    border: 1px solid #ced4da;
+}
+
+.payment-card .form-control:focus,
+.payment-card .form-select:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.payment-card .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    border-radius: 5px;
+}
+
+.payment-card .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+.payment-card .btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    border-radius: 5px;
+}
+
+.payment-card .btn-secondary:hover {
+    background-color: #5a6268;
+    border-color: #5a6268;
+}
+
 /* L'overlay non è strettamente necessario per questo tipo di menu a discesa */
 /* Se lo vuoi comunque per oscurare la pagina, i suoi stili sarebbero: */
 /*
