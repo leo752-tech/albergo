@@ -35,13 +35,13 @@ class FImage{
         return self::$values;
     }
 
-    // creates an ERoom object
+    // creates an object
     public static function createObject($queryRes){
         $image = new EImage($queryRes["idImage"], $queryRes["idRoom"], $queryRes["name"], $queryRes["filePath"], $queryRes["mimeType"]);
         return $image;
     }
 
-    // retrieves an ERoom object by its id
+    // retrieves an object by its id
     public static function getObject($id){
         $result = FDataMapper::getInstance()->retrieveObject(self::$table, self::$key, $id);
         if($result != false && $result != null){
@@ -52,7 +52,7 @@ class FImage{
         }
     }
 
-    // saves the room object if it doesn't exist, otherwise updates it
+    // saves the object if it doesn't exist, otherwise updates it
     public static function saveObject($image, $fields = null){
         if($fields === null){
             FDataMapper::getInstance()->getDb()->beginTransaction();
@@ -90,7 +90,7 @@ class FImage{
                 FDataMapper::getInstance()->getDb()->commit();
                 return true;
             } else {
-                echo "Room does not exist";
+                echo "Image does not exist";
                 return false;
             }
         } catch(PDOException $e){
