@@ -109,7 +109,7 @@ CREATE TABLE `Review` (
   `rating` INT(11) NOT NULL CHECK (`rating` >= 1 AND `rating` <= 5), -- E.g., from 1 to 5 stars
   `description` TEXT,
   `date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `idRegisteredUser` INT(11) NOT NULL -- FK to the registered user who left the review
+  `idRegisteredUser` INT(11) NOT NULL, -- FK to the registered user who left the review
   PRIMARY KEY (`idReview`),
   CONSTRAINT `fk_review_registered_user` FOREIGN KEY (`idRegisteredUser`) REFERENCES `RegisteredUser` (`idRegisteredUser`) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -133,16 +133,16 @@ CREATE TABLE `SpecialOffer`(
 -- Table structure for 'Image'
 
 CREATE TABLE `image` (
-    `idImage` INT AUTO_INCREMENT PRIMARY KEY,
-    `idRoom` INT NOT NULL,
+    `idImage` INT(11) AUTO_INCREMENT,
+    `idRoom` INT(11) NOT NULL,
     `name` VARCHAR(255) NOT NULL,
     `filePath` VARCHAR(512) NOT NULL, -- Stored as a path, can be longer
     `mimeType` VARCHAR(100) NOT NULL,
-
+    PRIMARY KEY (`idImage`),
+    
     -- Foreign key constraint (assuming you have a 'rooms' table)
-    CONSTRAINT fk_idRoom
-        FOREIGN KEY (idRoom)
-        REFERENCES rooms(idRoom)
-        ON DELETE CASCADE    -- If a room is deleted, delete its images
-        ON UPDATE CASCADE    -- If a room's ID changes, update image references
-);
+    CONSTRAINT `fk_image_room`
+    FOREIGN KEY (`idRoom`) REFERENCES `Room` (`idRoom`) 
+    ON DELETE CASCADE   -- If a room is deleted, delete its images
+    ON UPDATE CASCADE   -- If a room's ID changes, update image references
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
