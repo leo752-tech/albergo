@@ -1,8 +1,12 @@
 UTENTI ok
 
-serve un template per l'aggiornamento delle camere, dove si visualizzano le immagini e si possono selezionare, modificandole o eliminandole
+ADMIN
+aggiornamento dati nella dashboard
+aggiunta inserimento prenotazione manuale
+visualizzazione e aggiunta dei servizi_extra
 
-inserimento prenotazioni da sostituire con quelo per gli utenti
+User
+
 
 /albergoPulito/public/User/showFormsLogin
 

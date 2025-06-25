@@ -65,7 +65,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/albergoPulito/public/User/showFormsLogin" class="user-action-item">
+                        <a href="/albergoPulito/public/User/showFormsRegistration" class="user-action-item">
                             <i class="fas fa-user-plus"></i> <span>Registrati</span>
                         </a>
                     </li>

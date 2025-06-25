@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-24 13:09:04
+/* Smarty version 4.3.2, created on 2025-06-25 17:50:36
   from 'C:\xampp\htdocs\albergoPulito\smarty\templates\header_admin.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_685a87503d8770_77394366',
+  'unifunc' => 'content_685c1accd9c541_43172675',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ac90197b9fb1586ec2c38f3b11cfe5fffd674290' => 
     array (
       0 => 'C:\\xampp\\htdocs\\albergoPulito\\smarty\\templates\\header_admin.tpl',
-      1 => 1750610768,
+      1 => 1750866634,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_685a87503d8770_77394366 (Smarty_Internal_Template $_smarty_tpl) {
+function content_685c1accd9c541_43172675 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="it">
 <head>
@@ -45,7 +45,7 @@ function content_685a87503d8770_77394366 (Smarty_Internal_Template $_smarty_tpl)
                     <li><a href="/albergoPulito/public/Admin/manageSpecialOffer"><i class="fas fa-concierge-bell"></i> Offerte Speciali</a></li>
 
                     <?php if ($_smarty_tpl->tpl_vars['admin_logged_in']->value) {?>
-                    <li><a href="/albergoPulito/public/Admin/logout.php" class="btn btn-danger btn-sm"><i class="fas fa-sign-out-alt"></i> Logout (<?php echo (($tmp = $_smarty_tpl->tpl_vars['admin_username']->value ?? null)===null||$tmp==='' ? 'Admin' ?? null : $tmp);?>
+                    <li><a href="/albergoPulito/public/User/logout" class="btn btn-danger btn-sm"><i class="fas fa-sign-out-alt"></i> Logout (<?php echo (($tmp = $_smarty_tpl->tpl_vars['admin_username']->value ?? null)===null||$tmp==='' ? 'Admin' ?? null : $tmp);?>
 )</a></li>
                     <?php }?>
                 </ul>
