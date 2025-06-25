@@ -13,9 +13,9 @@ class FExtraService {
     public function __construct(){}
 
     public static function bind($stmt, $extraService) {
-        $stmt->bindValue("name", $extraService->getName(), PDO::PARAM_STR);
-        $stmt->bindValue("description", $extraService->getDescription(), PDO::PARAM_STR);    
-        $stmt->bindValue("price", $extraService->getPrice(), PDO::PARAM_STR);
+        $stmt->bindValue(":name", $extraService->getName(), PDO::PARAM_STR);
+        $stmt->bindValue(":description", $extraService->getDescription(), PDO::PARAM_STR);    
+        $stmt->bindValue(":price", $extraService->getPrice(), PDO::PARAM_STR);
     }
 
     public static function getKey(){
