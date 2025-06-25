@@ -127,3 +127,22 @@ CREATE TABLE `SpecialOffer`(
   PRIMARY KEY(`idSpecialOffer`) 
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ------------------------------------------------------------
+
+-- Table structure for 'Image'
+
+CREATE TABLE `image` (
+    `idImage` INT AUTO_INCREMENT PRIMARY KEY,
+    `idRoom` INT NOT NULL,
+    `name` VARCHAR(255) NOT NULL,
+    `filePath` VARCHAR(512) NOT NULL, -- Stored as a path, can be longer
+    `mimeType` VARCHAR(100) NOT NULL,
+
+    -- Foreign key constraint (assuming you have a 'rooms' table)
+    CONSTRAINT fk_idRoom
+        FOREIGN KEY (idRoom)
+        REFERENCES rooms(idRoom)
+        ON DELETE CASCADE    -- If a room is deleted, delete its images
+        ON UPDATE CASCADE    -- If a room's ID changes, update image references
+);

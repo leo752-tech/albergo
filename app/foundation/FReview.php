@@ -38,7 +38,7 @@ class FReview {
 
     // Creates an EReview object
     public static function createReview($queryRes){
-        $review = new EReview($queryRes["idReview"], $queryRes["title"], $queryRes["rating"], $queryRes["description"], new dateTime($queryRes["date"]), $queryRes["idRegisteredUser"]);
+        $review = new EReview($queryRes["idReview"], $queryRes["title"], $queryRes["rating"], $queryRes["description"], new DateTime($queryRes["date"]), $queryRes["idRegisteredUser"]);
         return $review;
     }
 
@@ -117,6 +117,25 @@ class FReview {
         }
     }
 
+    public static function getReviewsByUser(int $idRegisteredUser): array {
+        try {
+            $rawReviews = FDataMapper::getInstance()->select('review','idRegisteredUser',$idRegisteredUser);
+
+            $reviews = [];
+            if (!empty($rawReviews)) {
+                
+                foreach ($rawReviews as $queryRes){
+                    
+                    $review = new EReview($queryRes["idReview"], $queryRes["title"], $queryRes["rating"], $queryRes["description"], new DateTime($queryRes["date"]), $queryRes["idRegisteredUser"]);
+                    $reviews[] = $review;
+                }
+            }
+            return $reviews; 
+            
+        } catch(PDOException $e){
+            echo "ERROR: " . $e->getMessage();
+        }
+    }
 
 
 }

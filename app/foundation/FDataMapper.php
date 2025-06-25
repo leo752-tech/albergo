@@ -104,7 +104,7 @@ class FDataMapper {
     public static function saveBookingsExtraServices($idBooking, $idExtraService)
     {
         try {
-            $query = "INSERT INTO " . "booking_extraservice" . " VALUES " . "(NULL,:idBooking,:idExtraService)";
+            $query = "INSERT INTO " . "booking_extraservice" . " VALUES " . "(:idBooking,:idExtraService)";
             $stmt = self::$db->prepare($query);
             $stmt->bindValue("idBooking", $idBooking, PDO::PARAM_INT);
             $stmt->bindValue("idExtraService", $idExtraService, PDO::PARAM_INT);    

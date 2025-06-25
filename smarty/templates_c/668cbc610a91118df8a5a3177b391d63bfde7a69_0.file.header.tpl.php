@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-24 12:51:41
+/* Smarty version 4.3.2, created on 2025-06-25 16:14:38
   from 'C:\xampp\htdocs\albergoPulito\smarty\templates\header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_685a833d485b89_14434342',
+  'unifunc' => 'content_685c044e5936a0_38047058',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '668cbc610a91118df8a5a3177b391d63bfde7a69' => 
     array (
       0 => 'C:\\xampp\\htdocs\\albergoPulito\\smarty\\templates\\header.tpl',
-      1 => 1750707172,
+      1 => 1750860250,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_685a833d485b89_14434342 (Smarty_Internal_Template $_smarty_tpl) {
+function content_685c044e5936a0_38047058 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="it">
 <head>
@@ -44,7 +44,7 @@ function content_685a833d485b89_14434342 (Smarty_Internal_Template $_smarty_tpl)
                     <li><a href="/albergoPulito/public/Room/">Camere</a></li>
                     <li><a href="servizi.php">Servizi</a></li>
                     <li><a href="/albergoPulito/public/Booking/selectDate">Prenota Ora</a></li>
-                    <li><a href="recensioni.php">Recensioni</a></li>
+                    <li><a href="/albergoPulito/public/User/showAllReviews">Recensioni</a></li>
                     <li><a href="contatti.php">Contatti</a></li>
                     <li><a href="/albergoPulito/public/Booking/showSpecialOffer">Offerte Speciali</a></li>
                 </ul>

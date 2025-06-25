@@ -144,7 +144,7 @@ class FBooking {
         } catch(PDOException $e){
             echo "ERROR: " . $e->getMessage();
         }
-        }
+    }
     
 
 

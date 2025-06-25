@@ -70,6 +70,22 @@ class VUser{
         $this->smarty->display('myBookings.tpl');
     }
 
+    public function showMyReviews($isLoggedIn, $reviews){
+        $this->smarty->assign('isLoggedIn', $isLoggedIn);
+        $this->smarty->assign('reviews', $reviews);
+        $this->smarty->display('myReview.tpl');
+    }
+
+    public function showSetReview($isLoggedIn){
+        $this->smarty->assign('isLoggedIn', $isLoggedIn);
+        $this->smarty->display('setReview.tpl');
+    }
+
+    public function showAllReviews($isLoggedIn, $allReview){
+        $this->smarty->assign('isLoggedIn', $isLoggedIn);
+        $this->smarty->assign('allReviews', $allReview);
+        $this->smarty->display('allReview.tpl');
+    }
 
 
 }

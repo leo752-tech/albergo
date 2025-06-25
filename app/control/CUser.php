@@ -121,7 +121,7 @@ class CUser{
         $isLoggedIn = self::isLogged();
         if($isLoggedIn){
             $view = new VUser();
-            $user = USession::getInstance()->getSessionElement('idUser');
+            $idUser = USession::getInstance()->getSessionElement('idUser');
             $user = FPersistentManager::getInstance()->getObject('ERegisteredUser',$idUser);
             $view->showUpdateAccount($isLoggedIn, $user);
 
@@ -201,15 +201,87 @@ class CUser{
         $isLoggedIn = self::isLogged();
         if($isLoggedIn){
             $view = new VUser();
-            $user = USession::getInstance()->getSessionElement('user');
-            $user = unserialize($user);
-            $bookings = FPersistentManager::getInstance()->getBookingsByUser($user->getIdRegisteredUser());
+            $idUser = USession::getInstance()->getSessionElement('idUser');
+            $bookings = FPersistentManager::getInstance()->getBookingsByUser($idUser);
+            $user = FPersistentManager::getInstance()->getObject('ERegisteredUser', $idUser);
             $view->showMyBookings($isLoggedIn, $user, $bookings);
 
         }else{
             header('Location: /albergoPulito/public/');
             exit;
         }
+    }
+
+    public static function showMyReview(){
+        $isLoggedIn = self::isLogged();
+        if($isLoggedIn){
+            $view = new VUser();
+            $idUser = USession::getInstance()->getSessionElement('idUser');
+            $reviews = FPersistentManager::getInstance()->getReviewsByUser($idUser);
+            $user = FPersistentManager::getInstance()->getObject('ERegisteredUser',$idUser);
+            $view->showMyReviews($isLoggedIn, $reviews);
+
+        }else{
+            header('Location: /albergoPulito/public/');
+            exit;
+        }
+    }
+
+    public static function showSetReview(){
+        $isLoggedIn = self::isLogged();
+        if($isLoggedIn){
+            $view = new VUser();
+            $view->showSetReview($isLoggedIn);
+        }else{
+            header('Location: /albergoPulito/public/');
+            exit;
+        }
+    }
+
+    private static function hasBooking($idUser){
+        $result = FPersistentManager::getInstance()->getBookingsByUser($idUser);
+        if(count($result)>0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public static function setReview(){
+        $isLoggedIn = self::isLogged();
+        if($isLoggedIn){
+            $idUser = USession::getInstance()->getSessionElement('idUser');
+            if(self::hasBooking($idUser)){
+                $view = new VUser();
+                $review = new EReview(null, UHTTP::post('title'), UHTTP::post('rating'), UHTTP::post('description'), new DateTime(), $idUser);
+                $result = FPersistentManager::getInstance()->saveObject($review);
+                header('Location: /albergoPulito/public/User/showAccountDetails');
+                exit;
+            }else{
+                echo 'NESSUNA PRENOTAZIONE EFFETTUATA, NON PUOI LASCIARE UNA RECENSIONE';
+            }
+        }else{
+            header('Location: /albergoPulito/public/');
+            exit;
+        }
+    }
+
+    public static function showAllReviews(){
+        $isLoggedIn = self::isLogged();
+        $view = new VUser();
+        $reviewUser = array();
+        $reviews = FPersistentManager::getInstance()->getAllReview();
+        $revObj = array();
+        foreach($reviews as $queryRes){
+            $revObj[] = new EReview($queryRes["idReview"], $queryRes["title"], $queryRes["rating"], $queryRes["description"], new DateTime($queryRes["date"]), $queryRes["idRegisteredUser"]);
+        }
+        foreach($revObj as $rev){
+            $user = FPersistentManager::getInstance()->getObject('ERegisteredUser',$rev->getIdRegisteredUser());
+            $fullName = $user->getFirstName() . ' ' . $user->getLastName();
+            $reviewUser[] = [$rev, $fullName];
+        }
+        $view->showAllReviews($isLoggedIn, $reviewUser);
+
     }
 
     

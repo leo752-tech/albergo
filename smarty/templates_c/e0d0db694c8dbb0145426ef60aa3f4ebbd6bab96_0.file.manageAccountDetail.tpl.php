@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-24 18:48:44
+/* Smarty version 4.3.2, created on 2025-06-25 15:11:59
   from 'C:\xampp\htdocs\albergoPulito\smarty\templates\manageAccountDetail.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_685ad6ec842a99_65579321',
+  'unifunc' => 'content_685bf59fe83d92_71428589',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e0d0db694c8dbb0145426ef60aa3f4ebbd6bab96' => 
     array (
       0 => 'C:\\xampp\\htdocs\\albergoPulito\\smarty\\templates\\manageAccountDetail.tpl',
-      1 => 1750707098,
+      1 => 1750857117,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_685ad6ec842a99_65579321 (Smarty_Internal_Template $_smarty_tpl) {
+function content_685bf59fe83d92_71428589 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender('file:header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('pageTitle'=>'Il Mio Profilo'), 0, false);
 ?>
 
@@ -64,6 +64,7 @@ $_smarty_tpl->_subTemplateRender('file:header.tpl', $_smarty_tpl->cache_id, $_sm
             <a href="/albergoPulito/public/User/showUpdateAccount" class="btn btn-primary">Modifica Profilo</a>
             <a href="/albergoPulito/public/User/showUpdatePassword" class="btn btn-secondary">Cambia Password</a>
             <a href="/albergoPulito/public/User/showMyBookings" class="btn btn-primary">Le Mie Prenotazioni</a>
+            <a href="/albergoPulito/public/User/showMyReview" class="btn btn-primary">Le Mie Recensioni</a>
         </div>
     </div>
 </main>

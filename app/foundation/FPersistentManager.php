@@ -127,6 +127,11 @@ class FPersistentManager {
         return $reviews;
     }
 
+    public static function getReviewsByUser($idUser){
+        $reviews = FReview::getReviewsByUser($idUser);
+        return $reviews;
+    }
+
     public static function getAllSpecialOffer(){
         $specialOffer = FSpecialOffer::getAll();
         return $specialOffer;

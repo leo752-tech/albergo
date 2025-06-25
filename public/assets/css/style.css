@@ -725,6 +725,179 @@ footer {
     border-color: #5a6268;
 }
 
+.form-group {
+    margin-bottom: 15px;
+}
+.form-control {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Per includere padding e border nella larghezza totale */
+}
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+.text-danger {
+    color: red;
+    font-size: 0.85em;
+    margin-top: 5px;
+}
+
+.review-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.review-header h3 {
+    margin: 0;
+    color: #333;
+}
+.review-date {
+    color: #777;
+    font-size: 0.9em;
+}
+.review-rating {
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #555;
+}
+.review-description p {
+    line-height: 1.6;
+    color: #666;
+}
+.review-actions {
+    margin-top: 15px;
+    text-align: right;
+}
+.btn {
+    display: inline-block;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    margin-left: 10px;
+}
+.btn-edit {
+    background-color: #007bff;
+}
+.btn-delete {
+    background-color: #dc3545;
+}
+.btn-edit:hover {
+    background-color: #0056b3;
+}
+.btn-delete:hover {
+    background-color: #c82333;
+}
+.star {
+    color: orange; /* Colore delle stelle */
+}
+
+    /* Stili CSS di base */
+.review-card {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease-in-out;
+}
+.review-card:hover {
+    transform: translateY(-3px);
+}
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 10px;
+}
+.review-header h3 {
+    margin: 0;
+    color: #2c3e50;
+    font-size: 1.5em;
+}
+.review-date {
+    color: #7f8c8d;
+    font-size: 0.9em;
+}
+.review-meta {
+    margin-bottom: 15px;
+}
+.review-meta p {
+    margin: 0 0 5px 0;
+    color: #34495e;
+    font-size: 1em;
+}
+.review-meta strong {
+    color: #2980b9;
+}
+.rating-display {
+    font-weight: bold;
+    color: #e67e22;
+}
+.star {
+    color: #f39c12; /* Colore delle stelle */
+}
+.review-description p {
+    line-height: 1.6;
+    color: #34495e;
+    margin: 0;
+}
+/* Stili per i bottoni di amministrazione (se uncommentati) */
+.review-admin-actions {
+    margin-top: 20px;
+    text-align: right;
+}
+.btn {
+    display: inline-block;
+    padding: 9px 18px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    margin-left: 10px;
+    font-size: 0.9em;
+    transition: background-color 0.2s ease;
+}
+.btn-admin-edit {
+    background-color: #3498db;
+}
+.btn-admin-edit:hover {
+    background-color: #2980b9;
+}
+.btn-admin-hide {
+    background-color: #f39c12;
+}
+.btn-admin-hide:hover {
+    background-color: #e67e22;
+}
+.btn-admin-delete {
+    background-color: #e74c3c;
+}
+.btn-admin-delete:hover {
+    background-color: #c0392b;
+}
+
 /* L'overlay non è strettamente necessario per questo tipo di menu a discesa */
 /* Se lo vuoi comunque per oscurare la pagina, i suoi stili sarebbero: */
 /*

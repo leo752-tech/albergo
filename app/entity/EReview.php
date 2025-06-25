@@ -6,15 +6,15 @@ class EReview{
 	private string $title;
 	private int $rating;
 	private string $description;
-	private DateTime $date;
+	private ?DateTime $date;
 	private int $idRegisteredUser;
 
-	public function __construct(?int $idReview = null, string $title, int $rating, string $description, DateTime $date, int $idRegisteredUser){
+	public function __construct(?int $idReview = null, string $title, int $rating, string $description, ?DateTime $date = null, int $idRegisteredUser){
 		$this->idReview = $idReview;
 		$this->title = $title;
 		$this->rating = $rating;
 		$this->description = $description;
-		$this->date = $date;
+		$this->date = $date ?? new DateTime();
 		$this->idRegisteredUser = $idRegisteredUser;
 	}
 

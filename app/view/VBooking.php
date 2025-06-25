@@ -47,4 +47,5 @@ class VBooking{
         $this->smarty->display('payment.tpl');
     }
 
+
 }

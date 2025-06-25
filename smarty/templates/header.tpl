@@ -19,7 +19,7 @@
                     <li><a href="/albergoPulito/public/Room/">Camere</a></li>
                     <li><a href="servizi.php">Servizi</a></li>
                     <li><a href="/albergoPulito/public/Booking/selectDate">Prenota Ora</a></li>
-                    <li><a href="recensioni.php">Recensioni</a></li>
+                    <li><a href="/albergoPulito/public/User/showAllReviews">Recensioni</a></li>
                     <li><a href="contatti.php">Contatti</a></li>
                     <li><a href="/albergoPulito/public/Booking/showSpecialOffer">Offerte Speciali</a></li>
                 </ul>
