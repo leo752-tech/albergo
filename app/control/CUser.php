@@ -41,10 +41,13 @@ class CUser{
         }
     }
 
-    public static function showFormsLogin(){
+    public static function showFormsRegistration(){
         $view = new VUser();
-        $view->showFormsLogin();
+        $isLoggedIn = self::isLogged();
+        $view->showFormsRegistration($isLoggedIn);
     }
+
+    
     
     //TESTATO
     public static function login(){

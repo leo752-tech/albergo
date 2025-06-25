@@ -23,6 +23,11 @@ class VUser{
         $this->smarty->display('login.tpl');
     }
 
+    public function showFormsRegistration($isLoggedIn){
+        $this->smarty->assign('is_logged_in', $isLoggedIn);
+        $this->smarty->display('registration.tpl');
+    }
+
     public function showUsers($users){
         $this->smarty->assign('users', $users);
         $this->smarty->display();

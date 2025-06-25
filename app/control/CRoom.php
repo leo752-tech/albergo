@@ -45,7 +45,7 @@ class CRoom{
         echo 'CAMERE: ' . count($rooms);
         $view->showRooms($rooms);
         echo 'HERE';
-    }
+    }  
 
     
 }
