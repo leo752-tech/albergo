@@ -13,7 +13,7 @@ class CUser{
                 USession::getInstance();
             }
         }
-        if(USession::getInstance()->isSetSessionElement("user")){
+        if(USession::getInstance()->isSetSessionElement("idUser")){
             $logged = true;
         }
         
@@ -63,7 +63,7 @@ class CUser{
             $registeredUser = FPersistentManager::getInstance()->retrieveUser($email);
             if(password_verify($password, $registeredUser->getPassword())){
                 USession::getInstance();
-                USession::setSessionElement("user", serialize($registeredUser));
+                USession::setSessionElement("idUser", $registeredUser->getIdRegisteredUser());
                 if(UCOOKIE::isSet('redirectSelectedRoom')){
                     $redirect = UCOOKIE::getElement('redirectSelectedRoom');
                     setcookie('redirectSelectedRoom', '', time() - 3600, '/');
@@ -106,8 +106,8 @@ class CUser{
         $isLoggedIn = self::isLogged();
         if($isLoggedIn){
             $view = new VUser();
-            $user = USession::getInstance()->getSessionElement('user');
-            $user = unserialize($user);
+            $idUser = USession::getInstance()->getSessionElement('idUser');
+            $user = FPersistentManager::getInstance()->getObject('ERegisteredUser',$idUser);
             $birthDate = $user->getBirthDate();
             $birthDate = $birthDate->format('d-m-Y');
             $view->showAccountDetail($isLoggedIn, $user, $birthDate);
@@ -121,8 +121,8 @@ class CUser{
         $isLoggedIn = self::isLogged();
         if($isLoggedIn){
             $view = new VUser();
-            $user = USession::getInstance()->getSessionElement('user');
-            $user = unserialize($user);
+            $user = USession::getInstance()->getSessionElement('idUser');
+            $user = FPersistentManager::getInstance()->getObject('ERegisteredUser',$idUser);
             $view->showUpdateAccount($isLoggedIn, $user);
 
         }else{
@@ -135,8 +135,8 @@ class CUser{
         $isLoggedIn = self::isLogged();
         if($isLoggedIn){
             $view = new VUser();
-            $user = USession::getInstance()->getSessionElement('user');
-            $user = unserialize($user);
+            $user = USession::getInstance()->getSessionElement('idUser');
+            $user = FPersistentManager::getInstance()->getObject('ERegisteredUser',$idUser);
             $view->showUpdatePassword($isLoggedIn, $user);
 
         }else{
@@ -147,8 +147,9 @@ class CUser{
 
     public static function updateAccount(){
         
-        $registeredUser = USession::getInstance()->getSessionElement('user');
-        $registeredUser = unserialize($registeredUser);
+        USession::getInstance();
+        $idUser = USession::getSessionElement('idUser');
+        $registeredUser = FPersistentManager::getInstance()->getObject('ERegisteredUser',$idUser);
         $mod = array();
         if( UHTTP::post("firstName") != ''){$mod[] = ['firstName', UHTTP::post("firstName")];}
         if( UHTTP::post("lastName") != ''){$mod[] = ['lastName', UHTTP::post("lastName")];}

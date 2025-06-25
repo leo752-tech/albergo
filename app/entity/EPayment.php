@@ -4,7 +4,7 @@ class EPayment {
     private ?int $idPayment;       // ID univoco del pagamento (se salvato nel DB)
     private int $idBooking;        // ID della prenotazione a cui si riferisce il pagamento
     private float $amount;         // Importo del pagamento
-    private string $paymentDate;   // Data e ora del pagamento (stringa o DateTime)
+    private DateTime $paymentDate;   // Data e ora del pagamento (stringa o DateTime)
     private string $lastFourDigits;// Ultime 4 cifre del numero della carta (per riferimento)
     private string $cardHolderName;// Nome titolare della carta (per riferimento)
 
@@ -12,7 +12,7 @@ class EPayment {
         $this->idPayment = $idPayment;
         $this->idBooking = $idBooking;
         $this->amount = $amount;
-        $this->paymentDate = $paymentDate ?? date('Y-m-d H:i:s');
+        $this->paymentDate = $paymentDate ?? new DateTime();
         $this->lastFourDigits = $lastFourDigits;
         $this->cardHolderName = $cardHolderName;
     }

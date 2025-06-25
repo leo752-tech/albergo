@@ -76,10 +76,10 @@ class FExtraService {
         }
     }
 
-    public static function saveBookingsExtraServices($booking, $extraService){
+    public static function saveBookingsExtraServices($idBooking, $idExtraService){
         try{
             FDataMapper::getInstance()->getDb()->beginTransaction();
-            $id = FDataMapper::getInstance()->saveBookingsExtraServices($booking, $extraService);
+            $id = FDataMapper::getInstance()->saveBookingsExtraServices($idBooking, $idExtraService);
             FDataMapper::getInstance()->getDb()->commit();
             if($id !== null){
                 return $id;
