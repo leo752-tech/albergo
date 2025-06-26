@@ -60,7 +60,7 @@
                 {else}
                     {* Utente non loggato: Accedi, Registrati *}
                     <li>
-                        <a href="/albergoPulito/public/User/showFormsLogin" class="user-action-item">
+                        <a href="/albergoPulito/public/User/showLoginForm" class="user-action-item">
                             <i class="fas fa-sign-in-alt"></i> <span>Accedi</span>
                         </a>
                     </li>

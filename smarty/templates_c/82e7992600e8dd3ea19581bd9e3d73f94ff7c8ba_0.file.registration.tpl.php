@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-25 17:58:32
+/* Smarty version 4.3.2, created on 2025-06-26 10:25:25
   from 'C:\xampp\htdocs\albergoPulito\smarty\templates\registration.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_685c1ca830b7e7_28494656',
+  'unifunc' => 'content_685d03f5ebbba1_68473571',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '82e7992600e8dd3ea19581bd9e3d73f94ff7c8ba' => 
     array (
       0 => 'C:\\xampp\\htdocs\\albergoPulito\\smarty\\templates\\registration.tpl',
-      1 => 1750866990,
+      1 => 1750867149,
       2 => 'file',
     ),
   ),
@@ -22,12 +22,12 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_685c1ca830b7e7_28494656 (Smarty_Internal_Template $_smarty_tpl) {
+function content_685d03f5ebbba1_68473571 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender('file:header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 <section id="auth-forms" class="container section-padding">
     <h2 class="mt-5">Nuovo Utente? Registrati</h2>
-    <form action="albergoPulito/public/User/registration" method="POST" class="auth-form">
+    <form action="/albergoPulito/public/User/registration" method="POST" class="auth-form">
         <div class="form-group">
             <label for="reg-nome">Nome:</label>
             <input type="text" id="reg-nome" name="nome" required>

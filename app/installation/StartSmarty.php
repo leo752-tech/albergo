@@ -17,6 +17,7 @@ class StartSmarty{
         // altre dir non strettamente necessarie per un uso basico di Smarty
         $smarty->setCacheDir( $path . '/cache');
         $smarty->setConfigDir( $path . '/configs');	
+        $smarty->registerPlugin('modifier', 'json_encode', 'json_encode');
         
         return $smarty;
     }

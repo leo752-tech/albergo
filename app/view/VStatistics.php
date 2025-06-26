@@ -1,48 +1,22 @@
 <?php
-class VStatistics{
+
+class VStatistics {
 
     private $smarty;
 
-    public function __construct(){
+    public function __construct() {
         $this->smarty = StartSmarty::configuration();
     }
 
-    public function roomOccupancyRate($occupied, $total){
-        $this->smarty->assign('occupied', $occupied);
-        $this->smarty->assign('total', $total);
-        $this->smarty->display();
-    }
+    public function showDashboard($stats) {
+		$this->smarty->assign('admin_logged_in', true);
+        $this->smarty->assign('roomStats', $stats['roomStats'] ?? []);
+        $this->smarty->assign('avgStay', $stats['avgStay'] ?? 0);
+        $this->smarty->assign('cancelRate', $stats['cancelRate'] ?? 0);
+        $this->smarty->assign('extraServiceRevenue', $stats['extraServiceRevenue'] ?? 0);
+        $this->smarty->assign('reviewRatings', $stats['reviewRatings'] ?? [0, 0, 0, 0, 0]);
+        $this->smarty->assign('frequentKeywords', $stats['frequentKeywords'] ?? []);
 
-    public function nightsPerStay($occupied, $bookings){
-        $this->smarty->assign('occupied', $occupied);
-        $this->smarty->assign('bookings', $bookings);
-        $this->smarty->display();
+        $this->smarty->display('statistics_dashboard.tpl');  
     }
-
-    public function cancellationRate($cancellation, $bookings){
-        $this->smarty->assign('occupied', $cancellation);
-        $this->smarty->assign('bookings', $bookings);
-        $this->smarty->display();
-    }
-
-    public function roomRevenue($totalRevenue){
-        $this->smarty->assign('totalRevenue', $totalRevenue);
-        $this->smarty->display();
-    }
-
-    public function extraServiceRevenue($totalRevenue){
-        $this->smarty->assign('totalRevenue', $totalRevenue);
-        $this->smarty->display();
-    }
-
-    public function reviewRating($rating){
-        $this->smarty->assign('rating', $rating);
-        $this->smarty->display();
-    }
-
-    public function frequentKeyword($frequentKeyword){
-        $this->smarty->assign('frequentKeyword', $frequentKeyword);
-        $this->smarty->display();
-    }
-
 }

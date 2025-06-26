@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-25 17:58:28
+/* Smarty version 4.3.2, created on 2025-06-26 10:28:09
   from 'C:\xampp\htdocs\albergoPulito\smarty\templates\header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_685c1ca48c8a83_95281126',
+  'unifunc' => 'content_685d049942c9e1_13703055',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '668cbc610a91118df8a5a3177b391d63bfde7a69' => 
     array (
       0 => 'C:\\xampp\\htdocs\\albergoPulito\\smarty\\templates\\header.tpl',
-      1 => 1750867105,
+      1 => 1750926474,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_685c1ca48c8a83_95281126 (Smarty_Internal_Template $_smarty_tpl) {
+function content_685d049942c9e1_13703055 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="it">
 <head>
@@ -83,7 +83,7 @@ function content_685c1ca48c8a83_95281126 (Smarty_Internal_Template $_smarty_tpl)
                     </li>
                 <?php } else { ?>
                                         <li>
-                        <a href="/albergoPulito/public/User/showFormsLogin" class="user-action-item">
+                        <a href="/albergoPulito/public/User/showLoginForm" class="user-action-item">
                             <i class="fas fa-sign-in-alt"></i> <span>Accedi</span>
                         </a>
                     </li>

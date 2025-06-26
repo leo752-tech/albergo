@@ -383,4 +383,23 @@ class CAdmin{
             header('Location: /albergoPulito/public/Admin/manageSpecialOffer');
         }
     }  
+
+//---------------------------STATISTICS------------------------------------ù
+
+    public static function showStatistics(){
+
+		$admin_logged_in = self::isAdminLogged();
+
+		$rooms = FPersistentManager::getInstance()->getAllRooms();
+		$bookings = FPersistentManager::getInstance()->getAllBookings();
+		$extraServices = FPersistentManager::getInstance()->getAllExtraServices();
+		$reviews = FPersistentManager::getInstance()->getAllReview();
+
+
+		$stats = UStatistiche::calculateStats($rooms, $bookings, $extraServices, $reviews);
+
+		$view = new VStatistics();
+		$view->showDashboard($stats);
+	}
+
 }
