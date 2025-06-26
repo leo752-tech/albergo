@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-24 12:53:15
+/* Smarty version 4.3.2, created on 2025-06-26 23:21:10
   from 'C:\xampp\htdocs\albergoPulito\smarty\templates\selectDate.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_685a839b3dc281_95774286',
+  'unifunc' => 'content_685db9c633db07_95268020',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'bc54763cedd46c1f2605c8966979dd8386a8fc3d' => 
     array (
       0 => 'C:\\xampp\\htdocs\\albergoPulito\\smarty\\templates\\selectDate.tpl',
-      1 => 1750707371,
+      1 => 1750972859,
       2 => 'file',
     ),
   ),
@@ -22,13 +22,14 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_685a839b3dc281_95774286 (Smarty_Internal_Template $_smarty_tpl) {
+function content_685db9c633db07_95268020 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender('file:header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
 <section id="booking-form" class="container section-padding">
     <h2>Prenota il Tuo Soggiorno</h2>
-    <form action="/albergoPulito/public/Booking/getAvailableRooms" method="POST" class="form-grid">
+    <form action="<?php if ($_smarty_tpl->tpl_vars['idOffer']->value !== null) {?>/albergoPulito/public/Booking/getAvailableRoomsBySpecialOffer/<?php echo $_smarty_tpl->tpl_vars['idOffer']->value;
+} else { ?>/albergoPulito/public/Booking/getAvailableRooms<?php }?>" method="POST" class="form-grid">
         <div class="form-group">
             <label for="check-in">Data Check-in:</label>
             <input type="date" id="check-in" name="data_check_in" required>

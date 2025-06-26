@@ -81,6 +81,7 @@ CREATE TABLE `ExtraService` (
   `name` VARCHAR(100) NOT NULL UNIQUE,
   `description` TEXT,
   `price` DECIMAL(10, 2) NOT NULL,
+  `pathImage` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`idExtraService`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 

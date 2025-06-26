@@ -16,10 +16,10 @@
             <nav class="desktop-nav">
                 <ul>
                     <li><a href="/albergoPulito/public/">Home</a></li>
-                    <li><a href="servizi.php">Servizi</a></li>
+                    <li><a href="/albergoPulito/public/User/showService">Servizi</a></li>
                     <li><a href="/albergoPulito/public/Booking/selectDate">Prenota Ora</a></li>
                     <li><a href="/albergoPulito/public/User/showAllReviews">Recensioni</a></li>
-                    <li><a href="/albergoPulito/public/Booking/showSpecialOffer">Offerte Speciali</a></li>
+                    <li><a href="/albergoPulito/public/User/showSpecialOffer">Offerte Speciali</a></li>
                 </ul>
             </nav>
             <button class="user-menu-toggle" id="userMenuToggle">
@@ -33,7 +33,7 @@
         <div id="mobile-nav-menu" class="mobile-nav-menu">
             <ul>
                 <li><a href="/albergoPulito/public/">Home</a></li>
-                <li><a href="servizi.php">Servizi</a></li>
+                <li><a href="/albergoPulito/public/User/showService">Servizi</a></li>
                 <li><a href="/albergoPulito/public/Booking/selectDate">Prenota Ora</a></li>
                 <li><a href="recensioni.php">Recensioni</a></li>
                 <li><a href="/albergoPulito/public/Booking/showSpecialOffer">Offerte Speciali</a></li>

@@ -8,7 +8,8 @@ class VBooking{
         $this->smarty = StartSmarty::configuration();
     }
 
-    public function showSelect(){
+    public function showSelect($idOffer){
+        $this->smarty->assign('idOffer', $idOffer);
         $this->smarty->display('selectDate.tpl');
     }
 

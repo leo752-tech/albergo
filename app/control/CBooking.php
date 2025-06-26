@@ -2,9 +2,12 @@
 
 class CBooking {
 
-    public static function selectDate(){
+    public static function selectDate(?int $idOffer = null){
         $view = new VBooking();
-        $view->showSelect();
+        if($idOffer != null){
+            USession::getInstance()->setSessionElement('idOffer', $idOffer);
+        }
+        $view->showSelect($idOffer);
     }
 
     public static function showSpecialOffer(){
@@ -22,11 +25,12 @@ class CBooking {
 
     //PER LE PRENOTAZIONI STANDARD
     public static function getAvailableRooms(?int $comeBack = null) {
-        //echo 'GEEEEEEMMMMMMMMMMIIIIIIIIIINNNNNNNNNIIIIIIIIIII' . '<br>';
-
+        USession::getInstance();
+        
+        
         $view = new VBooking();
         $isLoggedIn = CUser::isLogged();
-        USession::getInstance();
+    
         if($comeBack != null){
             $roomsImages = USession::getSessionElement('roomsImages');
             $view->showAvailableRooms($isLoggedIn, $roomsImages);  
@@ -50,13 +54,13 @@ class CBooking {
 
         foreach ($rooms as $room) {
             $isRoomCurrentlyAvailable = true; 
-         
+        
             $bookingsForThisRoom = FPersistentManager::getInstance()->getBookingsByRoom($room->getId());
 
-         
+        
             if (!empty($bookingsForThisRoom)) { 
                 foreach ($bookingsForThisRoom as $book) {
-                   
+                
                     $occupiedCheckIn  = $book["checkInDate"];
                     $occupiedCheckOut = $book["checkOutDate"];
 
@@ -86,21 +90,26 @@ class CBooking {
             $images = FPersistentManager::getInstance()->getImagesByRoom($room->getId());
             $roomsImages[] = array($room, $images);
             $allImagesForAvailableRooms = array_merge($allImagesForAvailableRooms, $images);
- 
+
 
         }
         
         USession::setSessionElement('searchedRoomImages', $allImagesForAvailableRooms);
         USession::setSessionElement('roomsImages', $roomsImages);
         $view->showAvailableRooms($isLoggedIn, $roomsImages);
+    
+
+        
     }
 
     public static function isRightLength($reqCheckIn, $reqCheckOut, $reqLength){
         $reqCheckIn = new DateTime($reqCheckIn);
         $reqCheckOut = new DateTime($reqCheckOut);
         $length = $reqCheckIn->diff($reqCheckOut)->days;
+        
         if($length != $reqLength){
-            //mostra popup
+            
+            return false;
         }else{
             return true;
         }
@@ -122,27 +131,24 @@ class CBooking {
 
     public static function showDetailRoom($idRoom){
         $isLoggedIn = CUser::isLogged();
-        if($isLoggedIn){
-            $view = new VBooking();
-            USession::getInstance()->setSessionElement('idRoom', $idRoom);
-            $room = FPersistentManager::getInstance()->getObject('ERoom', $idRoom);
-            $services = FPersistentManager::getInstance()->getAllExtraServices();
-            $servObj = array();
-            foreach($services as $queryRes){
-                $servObj[] = new EExtraService($queryRes["idExtraService"], $queryRes["name"], $queryRes["description"], $queryRes["price"]);
-            }
-            $allImages = USession::getInstance()->getSessionElement('searchedRoomImages');
-            $images = array();
-            foreach($allImages as $image){
-                if($image->getIdRoom() == $idRoom){
-                    $images[] = $image;
-                }
-            }
-            $view->showDetailBooking($isLoggedIn, $room, $images, $servObj);
-        }else{
-            header('Location: /albergoPulito/public/Admin/manageRooms');
-            exit;
+        
+        $view = new VBooking();
+        USession::getInstance()->setSessionElement('idRoom', $idRoom);
+        $room = FPersistentManager::getInstance()->getObject('ERoom', $idRoom);
+        $services = FPersistentManager::getInstance()->getAllExtraServices();
+        $servObj = array();
+        foreach($services as $queryRes){
+            $servObj[] = new EExtraService($queryRes["idExtraService"], $queryRes["name"], $queryRes["description"], $queryRes["price"], $queryRes['pathImage']);
         }
+        $allImages = USession::getInstance()->getSessionElement('searchedRoomImages');
+        $images = array();
+        foreach($allImages as $image){
+            if($image->getIdRoom() == $idRoom){
+                $images[] = $image;
+            }
+        }
+        $view->showDetailBooking($isLoggedIn, $room, $images, $servObj);
+        
     }
 
     public static function showDetailRoomWB($idRoom){
@@ -160,7 +166,7 @@ class CBooking {
             }
             $view->showDetailBookingWB($isLoggedIn, $room, $images);
         }else{
-            header('Location: /albergoPulito/public/Admin/manageRooms');
+            header('Location: /albergoPulito/public/Admin/showLoginForm ');
             exit;
         }
     }
@@ -173,6 +179,10 @@ class CBooking {
             $idUser = USession::getSessionElement('idUser');
             $period = USession::getSessionElement('period');
             $room = FPersistentManager::getInstance()->getObject('ERoom',$idRoom);
+            $idOffer = null;
+            if(USession::isSetSessionElement('idOffer')){
+                $idOffer = USession::getSessionElement('idOffer');
+            }
 
             
             $selectedServices = UHTTP::post('selectedServices');
@@ -184,12 +194,11 @@ class CBooking {
                 }
             }
             
-            $totalPrice = self::calculatePrice(new DateTime($period[0]), new DateTime($period[1]), $room->getPrice(), $servObj, null);
+            $totalPrice = self::calculatePrice(new DateTime($period[0]), new DateTime($period[1]), $room->getPrice(), $servObj, $idOffer);
             USession::setSessionElement('totalPrice', $totalPrice);
 
-            $idSpecialOffer = USession::getSessionElement('idSpecialOffer', $idSpecialOffer);
-            $specialOffer = FPersistentManager::getInstance()->getObject('ESpecialOffer', $idSpecialOffer);
-            $booking = new EBooking(null, $idUser, new DateTime($period[0]), new DateTime( $period[1]), $idRoom, $totalPrice, null, $idSpecialOffer, null);
+            $specialOffer = FPersistentManager::getInstance()->getObject('ESpecialOffer', $idOffer);
+            $booking = new EBooking(null, $idUser, new DateTime($period[0]), new DateTime( $period[1]), $idRoom, $totalPrice, null, $idOffer, null);
             
             $view->showSummary($isLoggedIn, $room, $booking, $servObj, $specialOffer);
 
@@ -197,7 +206,7 @@ class CBooking {
             
         }
         else{
-            header('Location: /albergoPulito/public/Admin/manageRooms');
+            header('Location: /albergoPulito/public/User/login');
             exit;
         }
     }
@@ -223,7 +232,11 @@ class CBooking {
             $idRoom = USession::getSessionElement('idRoom');
             $totalPrice = USession::getSessionElement('totalPrice');
             $services = USession::getSessionElement('selectedServices');
-            $booking = new EBooking(null, $idUser, new DateTime($period[0]), new DateTime( $period[1]), $idRoom, $totalPrice, null, null, null);
+            $idOffer = null;
+            if(USession::isSetSessionElement('idOffer')){
+                $idOffer = USession::getSessionElement('idOffer');
+            }
+            $booking = new EBooking(null, $idUser, new DateTime($period[0]), new DateTime( $period[1]), $idRoom, $totalPrice, null, $idOffer, null);
             $result = FPersistentManager::getInstance()->saveObject($booking);  
             foreach($services as $serv){
                 $result = FPersistentManager::getInstance()->setBookingsExtraServices($booking->getId(), $serv);
@@ -247,6 +260,11 @@ class CBooking {
                 $price += $serv->getPrice();
             }
         }
+        if($idSpecialOffer != null){
+            $offer = FPersistentManager::getInstance()->getObject('ESpecialOffer',$idSpecialOffer);
+            $totalPrice = $offer->getSpecialPrice();
+            return $totalPrice;
+        }
 
         $length = $checkIn->diff($checkOut);
         $length = $length->days;
@@ -265,9 +283,8 @@ class CBooking {
         $requestedCheckOut = UHTTP::post('data_check_out');
         $period = array($requestedCheckIn, $requestedCheckOut);
         USession::setSessionElement('period', $period);
-        USession::setSessionElement('idSpecialOffer', $idSpecialOffer);
 
-        $specialOffer = FPPersistentManager::getInstance()->getObject('SpacialOffer', $idSpecialOffer);
+        $specialOffer = FPersistentManager::getInstance()->getObject('ESpecialOffer', $idSpecialOffer);
         $requestedBeds = $specialOffer->getBeds();
 
         $availableRooms = array();
@@ -290,10 +307,15 @@ class CBooking {
                    
                     $occupiedCheckIn  = $book["checkInDate"];
                     $occupiedCheckOut = $book["checkOutDate"];
-                    $requestedLength = $occupiedCheckIn->diff($occupiedCheckOut)->days;
+                    $requestedLength = (new DateTime($requestedCheckIn))->diff(new DateTime($requestedCheckOut))->days;
+                    
 
-                    $isLength = self::isRightLength($occupiedCheckIn, $occupiedCheckOut, $requestedLength);                    
-                    if (!self::isAvailableRoom($requestedCheckIn, $requestedCheckOut, $occupiedCheckIn, $occupiedCheckOut) || !$isLength) {
+                    $isLength = self::isRightLength($occupiedCheckIn, $occupiedCheckOut, $requestedLength);
+                    if(!$isLength){
+                        $isRoomCurrentlyAvailable = false;
+                        break;
+                    }                    
+                    if (!self::isAvailableRoom($requestedCheckIn, $requestedCheckOut, $occupiedCheckIn, $occupiedCheckOut)) {
                         
                         $isRoomCurrentlyAvailable = false;
                         

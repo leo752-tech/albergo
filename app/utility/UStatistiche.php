@@ -4,7 +4,7 @@
 
 class UStatistiche {
 
-    public static function calculateStats($rooms, $bookings, $extraServices, $bookedServices, $reviews = []) {
+    public static function calculateStats($rooms, $bookings, $extraServices, $bookedServices, $reviews) {
         $now = new DateTime();
         $roomStats = [];
         $roomRevenue = [];
@@ -74,13 +74,26 @@ class UStatistiche {
         $totalExtraRevenue = array_sum($extraRevenue);
 
         //----------------------------DISTRIBUZIONE VOTI RECENSIONI----------------------------------------------------
-        $reviewRatings = [1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0];
-        foreach ($reviews as $r) {
-            $rating = (int) ($r['rating'] ?? 0);
-            if (isset($reviewRatings[$rating])) {
-                $reviewRatings[$rating]++;
+        $rating = [0,0,0,0,0];
+        foreach($reviews as $review){
+            switch($review["rating"]){
+                case 1:
+                    $rating[0] += 1;
+                    break;
+                case 2:
+                    $rating[1] += 1;
+                    break;
+                case 3:
+                    $rating[2] += 1;
+                    break;
+                case 4:
+                    $rating[3] += 1;
+                    break;
+                case 5:
+                    $rating[4] += 1;
+                    break;
             }
-        }
+        } 
 
         //--------------------------------------PAROLE FREQUENTI NELLE DESCRIZIONI------------------------------------------
         $frequentWords = [];

@@ -362,6 +362,7 @@ class CAdmin{
 
 //--------------------------------------------------SPECIALOFFER----------------------------------------------------------
 
+    
     public static function manageSpecialOffer(){
         $view = new VAdmin();
         $offers = FPersistentManager::getInstance()->getAllSpecialOffer();
@@ -414,10 +415,12 @@ class CAdmin{
 		$rooms = FPersistentManager::getInstance()->getAllRooms();
 		$bookings = FPersistentManager::getInstance()->getAllBookings();
 		$extraServices = FPersistentManager::getInstance()->getAllExtraServices();
+        
 		$reviews = FPersistentManager::getInstance()->getAllReview();
+        echo count($reviews);
 
 
-		$stats = UStatistiche::calculateStats($rooms, $bookings, $extraServices, $reviews);
+		$stats = UStatistiche::calculateStats($rooms, $bookings, $extraServices, $bookedServices, $reviews);
 
 		$view = new VStatistics();
 		$view->showDashboard($stats);

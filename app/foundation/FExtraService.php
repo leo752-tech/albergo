@@ -8,7 +8,7 @@ class FExtraService {
     
     private static $table = "extraservice";
     
-    private static $values = "(NULL,:name,:description,:price)";
+    private static $values = "(NULL,:name,:description,:price,:pathImage)";
     
     public function __construct(){}
 
@@ -16,6 +16,7 @@ class FExtraService {
         $stmt->bindValue(":name", $extraService->getName(), PDO::PARAM_STR);
         $stmt->bindValue(":description", $extraService->getDescription(), PDO::PARAM_STR);    
         $stmt->bindValue(":price", $extraService->getPrice(), PDO::PARAM_STR);
+        $stmt->bindValue(":pathImage", $extraService->getPathImage(), PDO::PARAM_STR);
     }
 
     public static function getKey(){
@@ -35,7 +36,7 @@ class FExtraService {
     }
 
     public static function createObject($queryRes){
-        $extraService = new EExtraService($queryRes["idExtraService"], $queryRes["name"], $queryRes["description"], $queryRes["price"]);
+        $extraService = new EExtraService($queryRes["idExtraService"], $queryRes["name"], $queryRes["description"], $queryRes["price"], $queryRes["pathImage"]);
         return $extraService;
     }
 

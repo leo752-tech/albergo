@@ -92,5 +92,17 @@ class VUser{
         $this->smarty->display('allReview.tpl');
     }
 
+    public function showSpecialOffer($isLoggedIn, $specialOffer){
+        $this->smarty->assign('isLoggedIn', $isLoggedIn);
+        $this->smarty->assign('specialOffer', $specialOffer);
+        $this->smarty->display('showOffer.tpl');
+    }
+
+    public function showService($isLoggedIn, $services){
+        $this->smarty->assign('isLoggedIn', $isLoggedIn);
+        $this->smarty->assign('services', $services);
+        $this->smarty->display('showExtraService.tpl');
+    }
+
 
 }

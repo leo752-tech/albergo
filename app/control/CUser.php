@@ -216,8 +216,9 @@ class CUser{
             $view = new VUser();
             $idUser = USession::getInstance()->getSessionElement('idUser');
             $bookings = FPersistentManager::getInstance()->getBookingsByUser($idUser);
+            echo gettype($bookings[0]);
             $user = FPersistentManager::getInstance()->getObject('ERegisteredUser', $idUser);
-            $view->showMyBookings($isLoggedIn, $user, $bookings);
+            $view->showMyBookings($isLoggedIn, $bookings);
 
         }else{
             header('Location: /albergoPulito/public/');
@@ -295,6 +296,30 @@ class CUser{
         }
         $view->showAllReviews($isLoggedIn, $reviewUser);
 
+    }
+
+    public static function showSpecialOffer(){
+        $isLoggedIn = self::isLogged();
+        $view = new VUser();
+        $offers = FPersistentManager::getInstance()->getAllSpecialOffer();
+        $offersObj = array();
+        foreach($offers as $queryRes){
+            $specialOffer = new ESpecialOffer($queryRes["idSpecialOffer"], $queryRes["title"], $queryRes["description"], $queryRes["beds"], $queryRes["length"], $queryRes["specialPrice"], $queryRes["pathImage"]);
+            $offersObj[] = $specialOffer;
+        }
+        $view->showSpecialOffer($isLoggedIn, $offersObj);
+    }
+
+    public static function showService(){
+        $isLoggedIn = self::isLogged();
+        $view = new VUser();
+        $services = FPersistentManager::getInstance()->getAllExtraServices();
+        $servicesObj = array();
+        foreach($services as $queryRes){
+            $extraService = new EExtraService($queryRes["idExtraService"], $queryRes["name"], $queryRes["description"], $queryRes["price"], $queryRes["pathImage"]);
+            $servicesObj[] = $extraService;
+        }
+        $view->showService($isLoggedIn, $servicesObj);
     }
 
 

@@ -5,12 +5,14 @@ class EExtraService{
 	private string $name;
 	private string $description;
 	private float $price;
+	private string $pathImage;
 
-	public function __construct(?int $idExtraService = null, string $name, string $description, float $price){
+	public function __construct(?int $idExtraService = null, string $name, string $description, float $price, string $pathImage){
 		$this->idExtraService = $idExtraService;
 		$this->name = $name;
 		$this->description = $description;
 		$this->price = $price;
+		$this->pathImage = $pathImage;
 	}
 
 	public function setId(int $id){
@@ -39,6 +41,13 @@ class EExtraService{
 	}
 	public function getPrice(): float{
 		return $this->price;
+	}
+
+	public function setPathImage(string $pathImage){
+		$this->pathImage = $pathImage;
+	}
+	public function getPathImage(): string{
+		return $this->pathImage;
 	}
 }
 

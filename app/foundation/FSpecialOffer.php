@@ -39,7 +39,7 @@ class FSpecialOffer{
     }
 
     public static function createObject($queryRes){
-        $specialOffer = new ESpecialOffer($queryRes["idSpecialOffer"], $queryRes["title"], $queryRes["description"], $queryRes["beds"], $queryRes["length"], $queryRes["SpecialPrice"], $queryRes["pathImage"]);
+        $specialOffer = new ESpecialOffer($queryRes["idSpecialOffer"], $queryRes["title"], $queryRes["description"], $queryRes["beds"], $queryRes["length"], $queryRes["specialPrice"], $queryRes["pathImage"]);
         return $specialOffer;
     }
 
