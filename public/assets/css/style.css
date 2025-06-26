@@ -898,6 +898,115 @@ footer {
     background-color: #c0392b;
 }
 
+/*----------ERROR----------------------------------*/
+/* ... il tuo CSS esistente ... */
+
+/* AGGIUNTE/MODIFICHE PER IL MESSAGGIO DI ERRORE DINAMICO */
+
+/* Stile per il contenitore principale del messaggio di errore */
+/* Rimuovo la classe .error-container specifica e uso .container e .mt-4 */
+/* Ho riadattato il .container globale per non avere clash, e aggiunto mt-4 per il margine top */
+.main-error-section { /* Ho aggiunto una nuova classe specifica per il main dell'errore */
+    margin-top: 40px; /* Spazio dal contenuto superiore, puoi regolare */
+    margin-bottom: 40px; /* Spazio dal contenuto inferiore */
+    display: flex; /* Centra il contenuto orizzontalmente */
+    justify-content: center;
+    align-items: center; /* Centra il contenuto verticalmente se il container ha un'altezza definita */
+    min-height: 200px; /* Altezza minima per l'area di errore */
+}
+
+/* Stili specifici per l'alert di errore */
+/* Ho riutilizzato e potenziato il tuo .alert-danger esistente */
+.alert { /* Stile base per tutti gli alert, se ne avrai altri oltre al danger */
+    padding: 20px 25px;
+    border-radius: 8px; /* Angoli più arrotondati come il resto del tuo design */
+    margin: 0 auto; /* Centra l'alert all'interno del suo contenitore se più piccolo */
+    max-width: 600px; /* Larghezza massima per l'alert */
+    width: 100%; /* Assicura che l'alert occupi la larghezza disponibile */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Ombra più pronunciata */
+    text-align: left; /* Il testo all'interno dell'alert è allineato a sinistra */
+}
+
+.alert-danger {
+    background-color: #fcebeb; /* Un rosso molto chiaro per lo sfondo */
+    border: 1px solid #e0b4b8; /* Bordo rosso più scuro */
+    color: #a94442; /* Testo rosso scuro, visibile */
+}
+
+/* Titolo dell'alert */
+.alert-heading {
+    font-size: 1.8rem; /* Dimensione del titolo più grande */
+    margin-bottom: 15px;
+    color: #a94442; /* Colore coordinato con il testo dell'alert */
+    font-weight: 700; /* Grassetto più pronunciato */
+}
+
+/* Paragrafo del messaggio di errore */
+.alert p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 15px; /* Spazio tra i paragrafi e la riga orizzontale */
+    color: #721c24; /* Un rosso scuro per il testo */
+}
+
+/* Rimuovi il margin-bottom dall'ultimo paragrafo */
+.alert p:last-of-type {
+    margin-bottom: 0;
+}
+
+
+/* Riga orizzontale */
+.alert hr {
+    border: none; /* Rimuove il bordo predefinito */
+    border-top: 1px solid rgba(0, 0, 0, 0.1); /* Una linea sottile e discreta */
+    margin: 20px 0; /* Spazio sopra e sotto la linea */
+}
+
+/* Testo del piè di pagina dell'alert */
+.alert .mb-0 {
+    margin-bottom: 0 !important;
+    font-size: 0.95em;
+    color: #888; /* Un grigio più tenue per il testo di supporto */
+}
+
+/* Media Query per la responsività dell'alert (opzionale ma utile) */
+@media (max-width: 768px) {
+    .alert {
+        padding: 20px; /* Meno padding sui dispositivi più piccoli */
+        border-radius: 5px; /* Angoli leggermente meno arrotondati */
+    }
+    .alert-heading {
+        font-size: 1.5rem; /* Riduci la dimensione del titolo */
+    }
+}
+.error-icon {
+    color: #dc3545;
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+h1 {
+    color: #dc3545; /* Rosso per il titolo */
+    margin-bottom: 15px;
+}
+p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+.back-button {
+    background-color: #007bff; /* Blu per il pulsante */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+.back-button:hover {
+    background-color: #0056b3;
+}
+
 /* L'overlay non è strettamente necessario per questo tipo di menu a discesa */
 /* Se lo vuoi comunque per oscurare la pagina, i suoi stili sarebbero: */
 /*

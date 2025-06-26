@@ -77,12 +77,22 @@ class CUser{
                     exit();
                 }
 
-            }else{echo "WRONG PASSWORD";
-                return false;}
+            }else{
+                $message = 'password errata';
+                header("Location: /albergoPulito/public/User/error/{$message}");
+                exit();    
+            }
         }else{
             echo "USER NON-EXISTENT";
             return false;
         }
+    }
+
+    public static function error($message){
+        $view = new VError();
+        $isLoggedIn = self::isLogged();
+        $messageDecoded = urldecode($message);
+        $view->showError($isLoggedIn, $messageDecoded);
     }
 
     public static function logout(){
