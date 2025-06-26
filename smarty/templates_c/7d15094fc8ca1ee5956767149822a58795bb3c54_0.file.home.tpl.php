@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-24 12:53:10
+/* Smarty version 4.3.2, created on 2025-06-26 16:04:40
   from 'C:\xampp\htdocs\albergoPulito\smarty\templates\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_685a8396f04a79_22068175',
+  'unifunc' => 'content_685d5378214340_07475453',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7d15094fc8ca1ee5956767149822a58795bb3c54' => 
     array (
       0 => 'C:\\xampp\\htdocs\\albergoPulito\\smarty\\templates\\home.tpl',
-      1 => 1750361236,
+      1 => 1750946675,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_685a8396f04a79_22068175 (Smarty_Internal_Template $_smarty_tpl) {
+function content_685d5378214340_07475453 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender('file:header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('pageTitle'=>'Pagina Iniziale'), 0, false);
 ?>
 
@@ -70,16 +70,22 @@ $_smarty_tpl->_subTemplateRender('file:header.tpl', $_smarty_tpl->cache_id, $_sm
     <h2>Le Nostre Camere in Evidenza</h2>
     <div class="room-gallery">
         <div class="room-card">
-            <img src="https://www.hotelnoventa.com/wp-content/uploads/2016/08/800_1673.jpg" alt="Camera Doppia">
-            <h3>Camera Doppia Deluxe</h3>
-            <p>Spaziosa e confortevole, ideale per coppie.</p>
-            <a href="camere.php#doppia" class="btn btn-secondary">Scopri di più</a>
+            <img src="/albergoPulito/public/assets/img/camera15.jpg" alt="Camera Doppia">
+            <h3>Camera Family Room</h3>
+            <p>Ampia camera pensata per le famiglie, dotata di più letti e tanto spazio.</p>
+            <a href="/albergoPulito/public/Booking/showDetailRoomWB/5" class="btn btn-secondary">Scopri di più</a>
         </div>
         <div class="room-card">
-            <img src="https://cdn-ickbl.nitrocdn.com/FnMGClZYPwbblKSNarxZTkAfIpQLXrDo/assets/images/optimized/rev-ad6dafa/www.gruppo5.it/wp-content/uploads/2018/07/suite-i-love-you-1.jpg" alt="Suite Lusso">
-            <h3>Suite Presidenziale</h3>
-            <p>Il massimo del lusso con vista panoramica.</p>
-            <a href="camere.php#suite" class="btn btn-secondary">Scopri di più</a>
+            <img src="/albergoPulito/public/assets/img/camera21.jpg" alt="Suite Lusso">
+            <h3>Camera Double</h3>
+            <p>Elegante camera doppia con vista mozzafiato sul mare dalla finestra.</p>
+            <a href="/albergoPulito/public/Booking/showDetailRoomWB/7" class="btn btn-secondary">Scopri di più</a>
+        </div>
+        <div class="room-card">
+            <img src="/albergoPulito/public/assets/img/camera24.jpg" alt="Suite Lusso">
+            <h3>Camera Presidential Suite</h3>
+            <p>La nostra suite più esclusiva, che offre un lusso ineguagliabile, più stanze e comfort di prima qualità.</p>
+            <a href="/albergoPulito/public/Booking/showDetailRoomWB/8" class="btn btn-secondary">Scopri di più</a>
         </div>
     </div>
     <div class="text-center">

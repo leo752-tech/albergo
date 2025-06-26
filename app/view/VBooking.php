@@ -32,6 +32,13 @@ class VBooking{
         $this->smarty->display('detailRoom.tpl');
     }
 
+    public function showDetailBookingWB($isLoggedIn, $room, $images){
+        $this->smarty->assign('is_logged_in', $isLoggedIn);
+        $this->smarty->assign('room', $room);
+        $this->smarty->assign('images', $images);
+        $this->smarty->display('detailRoomWB.tpl');
+    }
+
     public function showSummary($isLoggedIn, $room, $booking, $servObj){
         $this->smarty->assign('is_logged_in', $isLoggedIn);
         $this->smarty->assign('room', $room);

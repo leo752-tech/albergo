@@ -9,7 +9,7 @@
 
     <div class="form-grid">
         {* IMPORTANTE: Aggiungere enctype="multipart/form-data" per l'upload di file *}
-        <form action="/albergoPulito/public/Admin/insertRoom" method="POST" enctype="multipart/form-data">
+        <form action="/albergoPulito/public/Admin/insertOffer" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="name">Nome Camera:</label>
                 <input type="text" class="form-control" id="name" name="name" value="{$formData.name|default:''}" required>
@@ -35,26 +35,22 @@
                 <textarea class="form-control" id="description" name="description" rows="5">{$formData.description|default:''}</textarea>
             </div>
 
-           <div class="form-group full-width">
-    <label for="room_images">Immagini Camera (Seleziona più file):</label>
-
-    <input type="file" class="form-control-file" id="room_images" name="room_images[]" accept="image/*" multiple>
-
-    <small class="form-text text-muted">Carica una o più immagini per la camera. Puoi visualizzarle e rimuoverle prima di salvare.</small>
-
-    <hr>
-    <div id="image_preview_container" class="image-preview-grid">
-        </div>
-</div> <link rel="stylesheet" href="/albergoPulito/public/assets/css/manageFile.css">
-
-<script src="/albergoPulito/public/assets/js/manageFile.js" defer></script>
-
             <div class="form-group full-width">
-                <button type="submit" class="btn btn-success">Crea Camera</button>
-                <a href="/albergoPulito/public/Admin/manageRooms" class="btn btn-secondary">Annulla</a>
+                <label for="room_image">Immagine Camera:</label>
+
+                <input type="file" class="form-control-file" id="room_image" name="room_image" accept="image/*">
+                <small class="form-text text-muted">Carica un'immagine per la camera. Puoi visualizzarla e rimuoverla prima di salvare.</small>
+
+                <hr>
+                <div id="image_preview_container" class="image-preview-grid">
+                    </div>
+            </div>
+            <div class="form-group full-width">
+                <button type="submit" class="btn btn-success">Crea Offerta</button>
+                <a href="/albergoPulito/public/Admin/manageSpecialOffer" class="btn btn-secondary">Annulla</a>
             </div>
         </form>
     </div>
 </div>
 
-{include file='footer_admin.tpl'}
+{include file='footer_admin.tpl'}  

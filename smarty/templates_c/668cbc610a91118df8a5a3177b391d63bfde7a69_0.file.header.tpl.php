@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-26 10:28:09
+/* Smarty version 4.3.2, created on 2025-06-26 16:15:55
   from 'C:\xampp\htdocs\albergoPulito\smarty\templates\header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_685d049942c9e1_13703055',
+  'unifunc' => 'content_685d561b484327_12901237',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '668cbc610a91118df8a5a3177b391d63bfde7a69' => 
     array (
       0 => 'C:\\xampp\\htdocs\\albergoPulito\\smarty\\templates\\header.tpl',
-      1 => 1750926474,
+      1 => 1750947351,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_685d049942c9e1_13703055 (Smarty_Internal_Template $_smarty_tpl) {
+function content_685d561b484327_12901237 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="it">
 <head>
@@ -41,11 +41,9 @@ function content_685d049942c9e1_13703055 (Smarty_Internal_Template $_smarty_tpl)
             <nav class="desktop-nav">
                 <ul>
                     <li><a href="/albergoPulito/public/">Home</a></li>
-                    <li><a href="/albergoPulito/public/Room/">Camere</a></li>
                     <li><a href="servizi.php">Servizi</a></li>
                     <li><a href="/albergoPulito/public/Booking/selectDate">Prenota Ora</a></li>
                     <li><a href="/albergoPulito/public/User/showAllReviews">Recensioni</a></li>
-                    <li><a href="contatti.php">Contatti</a></li>
                     <li><a href="/albergoPulito/public/Booking/showSpecialOffer">Offerte Speciali</a></li>
                 </ul>
             </nav>
@@ -60,11 +58,9 @@ function content_685d049942c9e1_13703055 (Smarty_Internal_Template $_smarty_tpl)
         <div id="mobile-nav-menu" class="mobile-nav-menu">
             <ul>
                 <li><a href="/albergoPulito/public/">Home</a></li>
-                <li><a href="/albergoPulito/public/Room/">Camere</a></li>
                 <li><a href="servizi.php">Servizi</a></li>
                 <li><a href="/albergoPulito/public/Booking/selectDate">Prenota Ora</a></li>
                 <li><a href="recensioni.php">Recensioni</a></li>
-                <li><a href="contatti.php">Contatti</a></li>
                 <li><a href="/albergoPulito/public/Booking/showSpecialOffer">Offerte Speciali</a></li>
             </ul>
         </div>

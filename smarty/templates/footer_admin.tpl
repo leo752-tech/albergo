@@ -5,5 +5,6 @@
         </div>
     </footer>
     <script src="/albergoPulito/public/assets/js/admin.js"></script>
+    <script src="/albergoPulito/public/assets/js/manageFile.js" defer></script> 
 </body>
 </html>

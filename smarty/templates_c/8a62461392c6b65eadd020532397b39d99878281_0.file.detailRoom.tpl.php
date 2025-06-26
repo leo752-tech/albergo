@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-24 15:15:21
+/* Smarty version 4.3.2, created on 2025-06-26 16:15:20
   from 'C:\xampp\htdocs\albergoPulito\smarty\templates\detailRoom.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_685aa4e92e4ce2_59747793',
+  'unifunc' => 'content_685d55f806f285_08347995',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '8a62461392c6b65eadd020532397b39d99878281' => 
     array (
       0 => 'C:\\xampp\\htdocs\\albergoPulito\\smarty\\templates\\detailRoom.tpl',
-      1 => 1750770766,
+      1 => 1750947316,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_685aa4e92e4ce2_59747793 (Smarty_Internal_Template $_smarty_tpl) {
+function content_685d55f806f285_08347995 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\xampp\\htdocs\\albergoPulito\\smarty\\libs\\plugins\\modifier.number_format.php','function'=>'smarty_modifier_number_format',),));
 $_smarty_tpl->_subTemplateRender('file:header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
@@ -165,7 +165,7 @@ echo smarty_modifier_number_format($_smarty_tpl->tpl_vars['room']->value->getPri
 
                         <div class="room-actions">
                             <button type="submit" class="btn btn-primary">Procedi con la Prenotazione</button>
-                            <a href="/albergoPulito/public/Booking/showAvailableRooms" class="btn btn-secondary">Torna alle Camere</a>
+                            <a href="/albergoPulito/public/Booking/getAvailableRooms/1" class="btn btn-secondary">Torna alle Camere</a>
                         </div>
                     </form>
                     

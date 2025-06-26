@@ -8,14 +8,16 @@ class ESpecialOffer{
     private int $beds;
     private int $length;
     private float $specialPrice;
+    private string $pathImage;
 
-    public function __construct(?int $idSpecialOffer = null, string $title, string $description, int $beds, int $length, float $specialPrice){
+    public function __construct(?int $idSpecialOffer = null, string $title, string $description, int $beds, int $length, float $specialPrice, string $pathImage){
         $this->idSpecialOffer = $idSpecialOffer;
         $this->title = $title;
         $this->description = $description;
         $this->beds = $beds;
         $this->length = $length;
         $this->specialPrice = $specialPrice;
+        $this->pathImage = $pathImage;
     }
 
     public function setIdSpecialOffer(?int $id){
@@ -58,6 +60,13 @@ class ESpecialOffer{
     }
     public function getSpecialPrice(): float{
         return $this->specialPrice;
+    }
+
+    public function setPathImage(string $pathImage){
+        $this->pathImage = $pathImage;
+    }
+    public function getPathImage(): string{
+        return $this->pathImage;
     }
 
 

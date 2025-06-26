@@ -102,7 +102,7 @@
 
                         <div class="room-actions">
                             <button type="submit" class="btn btn-primary">Procedi con la Prenotazione</button>
-                            <a href="/albergoPulito/public/Booking/showAvailableRooms" class="btn btn-secondary">Torna alle Camere</a>
+                            <a href="/albergoPulito/public/Booking/getAvailableRooms/1" class="btn btn-secondary">Torna alle Camere</a>
                         </div>
                     </form>
                     {* Fine Form *}

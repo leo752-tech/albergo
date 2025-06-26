@@ -19,6 +19,12 @@ class UHTTP{
         return $_SERVER['HTTP_REFERER'];
     }
 
+    public static function file($file){
+        if(isset($_FILES[$file])){
+            return $_FILES[$file];
+        }
+    }
+
     public static function files($file){
         $uploadedFiles = [];
 

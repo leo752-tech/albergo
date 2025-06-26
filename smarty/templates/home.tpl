@@ -45,16 +45,22 @@
     <h2>Le Nostre Camere in Evidenza</h2>
     <div class="room-gallery">
         <div class="room-card">
-            <img src="https://www.hotelnoventa.com/wp-content/uploads/2016/08/800_1673.jpg" alt="Camera Doppia">
-            <h3>Camera Doppia Deluxe</h3>
-            <p>Spaziosa e confortevole, ideale per coppie.</p>
-            <a href="camere.php#doppia" class="btn btn-secondary">Scopri di più</a>
+            <img src="/albergoPulito/public/assets/img/camera15.jpg" alt="Camera Doppia">
+            <h3>Camera Family Room</h3>
+            <p>Ampia camera pensata per le famiglie, dotata di più letti e tanto spazio.</p>
+            <a href="/albergoPulito/public/Booking/showDetailRoomWB/5" class="btn btn-secondary">Scopri di più</a>
         </div>
         <div class="room-card">
-            <img src="https://cdn-ickbl.nitrocdn.com/FnMGClZYPwbblKSNarxZTkAfIpQLXrDo/assets/images/optimized/rev-ad6dafa/www.gruppo5.it/wp-content/uploads/2018/07/suite-i-love-you-1.jpg" alt="Suite Lusso">
-            <h3>Suite Presidenziale</h3>
-            <p>Il massimo del lusso con vista panoramica.</p>
-            <a href="camere.php#suite" class="btn btn-secondary">Scopri di più</a>
+            <img src="/albergoPulito/public/assets/img/camera21.jpg" alt="Suite Lusso">
+            <h3>Camera Double</h3>
+            <p>Elegante camera doppia con vista mozzafiato sul mare dalla finestra.</p>
+            <a href="/albergoPulito/public/Booking/showDetailRoomWB/7" class="btn btn-secondary">Scopri di più</a>
+        </div>
+        <div class="room-card">
+            <img src="/albergoPulito/public/assets/img/camera24.jpg" alt="Suite Lusso">
+            <h3>Camera Presidential Suite</h3>
+            <p>La nostra suite più esclusiva, che offre un lusso ineguagliabile, più stanze e comfort di prima qualità.</p>
+            <a href="/albergoPulito/public/Booking/showDetailRoomWB/8" class="btn btn-secondary">Scopri di più</a>
         </div>
     </div>
     <div class="text-center">

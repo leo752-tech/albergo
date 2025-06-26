@@ -21,18 +21,18 @@ class CBooking {
 
 
     //PER LE PRENOTAZIONI STANDARD
-    public static function getAvailableRooms() {
+    public static function getAvailableRooms(?int $comeBack = null) {
         //echo 'GEEEEEEMMMMMMMMMMIIIIIIIIIINNNNNNNNNIIIIIIIIIII' . '<br>';
 
         $view = new VBooking();
         $isLoggedIn = CUser::isLogged();
         USession::getInstance();
-        if(USession::isSetSessionElement('searchedRoomImages')){
-            USession::unsetSessionElement('searchedRoomImages');
+        if($comeBack != null){
+            $roomsImages = USession::getSessionElement('roomsImages');
+            $view->showAvailableRooms($isLoggedIn, $roomsImages);  
+            exit;  
         }
-        if(USession::isSetSessionElement('period')){
-            USession::unsetSessionElement('period');
-        }
+        
         $requestedCheckIn = UHTTP::post('data_check_in');
         $requestedCheckOut = UHTTP::post('data_check_out');
         $period = array($requestedCheckIn, $requestedCheckOut);
@@ -91,7 +91,7 @@ class CBooking {
         }
         
         USession::setSessionElement('searchedRoomImages', $allImagesForAvailableRooms);
-        
+        USession::setSessionElement('roomsImages', $roomsImages);
         $view->showAvailableRooms($isLoggedIn, $roomsImages);
     }
 
@@ -145,6 +145,26 @@ class CBooking {
         }
     }
 
+    public static function showDetailRoomWB($idRoom){
+        $isLoggedIn = CUser::isLogged();
+        if($isLoggedIn){
+            $view = new VBooking();
+            USession::getInstance()->setSessionElement('idRoom', $idRoom);
+            $room = FPersistentManager::getInstance()->getObject('ERoom', $idRoom);
+            $allImages = USession::getInstance()->getSessionElement('searchedRoomImages');
+            $images = array();
+            foreach($allImages as $image){
+                if($image->getIdRoom() == $idRoom){
+                    $images[] = $image;
+                }
+            }
+            $view->showDetailBookingWB($isLoggedIn, $room, $images);
+        }else{
+            header('Location: /albergoPulito/public/Admin/manageRooms');
+            exit;
+        }
+    }
+
     public static function showSummary($idRoom){
         $isLoggedIn = CUser::isLogged();
         if($isLoggedIn){
@@ -166,9 +186,12 @@ class CBooking {
             
             $totalPrice = self::calculatePrice(new DateTime($period[0]), new DateTime($period[1]), $room->getPrice(), $servObj, null);
             USession::setSessionElement('totalPrice', $totalPrice);
-            $booking = new EBooking(null, $idUser, new DateTime($period[0]), new DateTime( $period[1]), $idRoom, $totalPrice, null, null, null);
+
+            $idSpecialOffer = USession::getSessionElement('idSpecialOffer', $idSpecialOffer);
+            $specialOffer = FPersistentManager::getInstance()->getObject('ESpecialOffer', $idSpecialOffer);
+            $booking = new EBooking(null, $idUser, new DateTime($period[0]), new DateTime( $period[1]), $idRoom, $totalPrice, null, $idSpecialOffer, null);
             
-            $view->showSummary($isLoggedIn, $room, $booking, $servObj);
+            $view->showSummary($isLoggedIn, $room, $booking, $servObj, $specialOffer);
 
 
             
@@ -233,8 +256,16 @@ class CBooking {
 
     //PER LE PRENOTAZIONI CON LE SPECIAL OOFFER
     public static function getAvailableRoomsBySpecialOffer($idSpecialOffer) {
+        $view = new VBooking();
+        $isLoggedIn = CUser::isLogged();
+        USession::getInstance();
+        
+
         $requestedCheckIn = UHTTP::post('data_check_in');
         $requestedCheckOut = UHTTP::post('data_check_out');
+        $period = array($requestedCheckIn, $requestedCheckOut);
+        USession::setSessionElement('period', $period);
+        USession::setSessionElement('idSpecialOffer', $idSpecialOffer);
 
         $specialOffer = FPPersistentManager::getInstance()->getObject('SpacialOffer', $idSpecialOffer);
         $requestedBeds = $specialOffer->getBeds();
@@ -280,7 +311,19 @@ class CBooking {
         if (empty($availableRooms)) {
             echo "NESSUNA CAMERA DISPONIBILE PER LE DATE SELEZIONATE";
         }
-        print_r($availableRooms);
-        return $availableRooms; 
+                $roomsImages = array();
+        $allImagesForAvailableRooms = array();
+        foreach($availableRooms as $room){
+            $images = FPersistentManager::getInstance()->getImagesByRoom($room->getId());
+            $roomsImages[] = array($room, $images);
+            $allImagesForAvailableRooms = array_merge($allImagesForAvailableRooms, $images);
+ 
+
+        }
+        
+        USession::setSessionElement('searchedRoomImages', $allImagesForAvailableRooms);
+        USession::setSessionElement('roomsImages', $roomsImages);
+        $view->showAvailableRooms($isLoggedIn, $roomsImages);
+     
     }
 }

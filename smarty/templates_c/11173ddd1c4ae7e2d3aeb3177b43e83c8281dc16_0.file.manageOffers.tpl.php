@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-24 13:09:58
+/* Smarty version 4.3.2, created on 2025-06-26 17:57:33
   from 'C:\xampp\htdocs\albergoPulito\smarty\templates\manageOffers.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_685a878662e259_93767615',
+  'unifunc' => 'content_685d6ded1ac0e3_36658606',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '11173ddd1c4ae7e2d3aeb3177b43e83c8281dc16' => 
     array (
       0 => 'C:\\xampp\\htdocs\\albergoPulito\\smarty\\templates\\manageOffers.tpl',
-      1 => 1750633160,
+      1 => 1750953448,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer_admin.tpl' => 1,
   ),
 ),false)) {
-function content_685a878662e259_93767615 (Smarty_Internal_Template $_smarty_tpl) {
+function content_685d6ded1ac0e3_36658606 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
 <?php $_smarty_tpl->_subTemplateRender('file:header_admin.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
@@ -33,35 +33,9 @@ function content_685a878662e259_93767615 (Smarty_Internal_Template $_smarty_tpl)
 
     
 
-    <h3>Aggiungi Nuova Politica di Prezzo / Offerta</h3>
-    <div class="form-grid mb-4">
-        <form action="/albergoPulito/public/Admin/insertOffer" method="POST">
-            <div class="form-group">
-                <label for="policyName">Nome Politica/Offerta:</label>
-                <input type="text" class="form-control" id="policyName" name="title" value="<?php echo (($tmp = $_smarty_tpl->tpl_vars['formData']->value['policyName'] ?? null)===null||$tmp==='' ? '' ?? null : $tmp);?>
-" required>
-            </div>
-            <div class="form-group">
-                <label for="Description">Descrizione:</label>
-                <input type="text" class="form-control" id="Descrizione" name="description" required>
-            </div>
-            <div class="form-group">
-                <label for="minNights">Numero di posti letto:</label>
-                <input type="number" class="form-control" id="beds" name="beds" min="0">
-            </div>
-            <div class="form-group">
-                <label for="minNights">Notti Minime (Opzionale):</label>
-                <input type="number" class="form-control" id="length" name="length" min="0">
-            </div>
-            <div class="form-group full-width">
-                <label for="price">Prezzo:</label>
-                <input type="number" class="form-control" id="specialPrice" name="specialPrice" min="0">
-            </div>
-            <div class="form-group full-width">
-                <button type="submit" class="btn btn-success">Aggiungi Politica</button>
-            </div>
-        </form>
-    </div>
+    <a href="/albergoPulito/public/Admin/showInsertOffer" class="btn btn-primary">
+    Aggiungi Nuova Politica di Prezzo
+    </a>
 
     <h3>Politiche di Prezzo Esistenti</h3>
     <div class="table-responsive">

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-26 10:57:52
+/* Smarty version 4.3.2, created on 2025-06-26 18:23:30
   from 'C:\xampp\htdocs\albergoPulito\smarty\templates\header_admin.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_685d0b902935e4_78544903',
+  'unifunc' => 'content_685d74026e3d83_11732799',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ac90197b9fb1586ec2c38f3b11cfe5fffd674290' => 
     array (
       0 => 'C:\\xampp\\htdocs\\albergoPulito\\smarty\\templates\\header_admin.tpl',
-      1 => 1750928110,
+      1 => 1750954814,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_685d0b902935e4_78544903 (Smarty_Internal_Template $_smarty_tpl) {
+function content_685d74026e3d83_11732799 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="it">
 <head>
@@ -29,6 +29,7 @@ function content_685d0b902935e4_78544903 (Smarty_Internal_Template $_smarty_tpl)
     <title><?php echo (($tmp = $_smarty_tpl->tpl_vars['pageTitle']->value ?? null)===null||$tmp==='' ? 'Admin Panel' ?? null : $tmp);?>
 </title>
     <link rel="stylesheet" href="/albergoPulito/public/assets/css/admincss.css">
+    <link rel="stylesheet" href="/albergoPulito/public/assets/css/manageFile.css"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>

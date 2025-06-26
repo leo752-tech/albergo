@@ -367,18 +367,39 @@ class CAdmin{
         $offers = FPersistentManager::getInstance()->getAllSpecialOffer();
         $offersObj = array();
         foreach($offers as $queryRes){
-            $offersObj[] = new ESpecialOffer($queryRes["idSpecialOffer"], $queryRes["title"], $queryRes["description"], $queryRes["beds"], $queryRes["length"], $queryRes["specialPrice"]);
+            $offersObj[] = new ESpecialOffer($queryRes["idSpecialOffer"], $queryRes["title"], $queryRes["description"], $queryRes["beds"], $queryRes["length"], $queryRes["specialPrice"], $queryRes['pathImage']);
         }
        
         $admin_logged_in = CAdmin::isAdminLogged();
         $view->manageOffers($admin_logged_in, $offersObj);
     }
 
+    public static function showInsertOffer(){
+        $view = new VAdmin();
+        $admin_logged_in = CAdmin::isAdminLogged();
+        $view->showInsertOffer($admin_logged_in);
+    }
+
     public static function insertOffer(){
-        $offer = new ESpecialOffer(null, UHTTP::post('title'), UHTTP::post('description'), UHTTP::post('beds'), UHTTP::post('length'), UHTTP::post('specialPrice'));
+        
+        $image = UHTTP::file('room_image');
+        $uploadDir = __DIR__ . '/../../public/assets/img/';
+        if(isset($image) && $image['error'] === UPLOAD_ERR_OK){
+            echo 'qui' . $image['name'];
+            $destPath = $uploadDir . $image['name'];
+            if(move_uploaded_file($image['tmp_name'], $destPath)){
+                $uploadPath = '/albergoPulito/public/assets/img/' . $image['name'];
+            }else{
+                echo 'ERRORI NELLO SPOSTAMENTO';
+            }
+        }else{
+            echo 'ERRORE NEL CARICAMENTO';
+        }
+        $offer = new ESpecialOffer(null, UHTTP::post('title'), UHTTP::post('description'), UHTTP::post('beds'), UHTTP::post('length'), UHTTP::post('specialPrice'), $uploadPath);
         $result = FPersistentManager::getInstance()->saveObject($offer);
+        
         if($result == false){
-            echo 'UTENTE GIA ESISTENTE';
+            echo 'OFFERTA GIA ESISTENTE';
         }else{
             header('Location: /albergoPulito/public/Admin/manageSpecialOffer');
         }

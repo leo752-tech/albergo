@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-24 13:09:04
+/* Smarty version 4.3.2, created on 2025-06-26 18:23:30
   from 'C:\xampp\htdocs\albergoPulito\smarty\templates\footer_admin.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_685a87504c3050_21672575',
+  'unifunc' => 'content_685d74027f1d68_19754737',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '4b554d5fa800f1e95b17874e989fc5e55b52179d' => 
     array (
       0 => 'C:\\xampp\\htdocs\\albergoPulito\\smarty\\templates\\footer_admin.tpl',
-      1 => 1750588151,
+      1 => 1750954848,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_685a87504c3050_21672575 (Smarty_Internal_Template $_smarty_tpl) {
+function content_685d74027f1d68_19754737 (Smarty_Internal_Template $_smarty_tpl) {
 ?></div> </main>
     <footer class="admin-footer">
         <div class="container-fluid">
@@ -31,6 +31,9 @@ function content_685a87504c3050_21672575 (Smarty_Internal_Template $_smarty_tpl)
     <?php echo '<script'; ?>
  src="/albergoPulito/public/assets/js/admin.js"><?php echo '</script'; ?>
 >
+    <?php echo '<script'; ?>
+ src="/albergoPulito/public/assets/js/manageFile.js" defer><?php echo '</script'; ?>
+> 
 </body>
 </html><?php }
 }

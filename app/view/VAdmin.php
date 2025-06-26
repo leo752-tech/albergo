@@ -97,6 +97,11 @@ class VAdmin {
         $this->smarty->display('manageOffers.tpl');
     }
 
+    public function showInsertOffer($admin_logged_in) {
+        $this->smarty->assign('admin_logged_in', $admin_logged_in);
+        $this->smarty->display('insertOffer.tpl');
+    }
+
 
 
     
