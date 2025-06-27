@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-27 16:31:20
+/* Smarty version 4.3.2, created on 2025-06-27 21:37:05
   from 'C:\xampp\htdocs\albergoPulito\smarty\templates\footer.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_685eab38bd4904_59894612',
+  'unifunc' => 'content_685ef2e15a0117_03362634',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_685eab38bd4904_59894612 (Smarty_Internal_Template $_smarty_tpl) {
+function content_685ef2e15a0117_03362634 (Smarty_Internal_Template $_smarty_tpl) {
 ?></main>
         <footer>
             <div class="container">

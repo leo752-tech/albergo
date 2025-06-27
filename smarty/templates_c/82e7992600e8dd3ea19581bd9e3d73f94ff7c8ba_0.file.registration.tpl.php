@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-26 10:25:25
+/* Smarty version 4.3.2, created on 2025-06-27 21:37:05
   from 'C:\xampp\htdocs\albergoPulito\smarty\templates\registration.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_685d03f5ebbba1_68473571',
+  'unifunc' => 'content_685ef2e12c8107_85192748',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '82e7992600e8dd3ea19581bd9e3d73f94ff7c8ba' => 
     array (
       0 => 'C:\\xampp\\htdocs\\albergoPulito\\smarty\\templates\\registration.tpl',
-      1 => 1750867149,
+      1 => 1751053007,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_685d03f5ebbba1_68473571 (Smarty_Internal_Template $_smarty_tpl) {
+function content_685ef2e12c8107_85192748 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender('file:header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 <section id="auth-forms" class="container section-padding">
@@ -30,11 +30,11 @@ $_smarty_tpl->_subTemplateRender('file:header.tpl', $_smarty_tpl->cache_id, $_sm
     <form action="/albergoPulito/public/User/registration" method="POST" class="auth-form">
         <div class="form-group">
             <label for="reg-nome">Nome:</label>
-            <input type="text" id="reg-nome" name="nome" required>
+            <input type="text" id="reg-nome" name="firstName" required>
         </div>
         <div class="form-group">
             <label for="reg-cognome">Cognome:</label>
-            <input type="text" id="reg-cognome" name="cognome" required>
+            <input type="text" id="reg-cognome" name="lastName" required>
         </div>
         <div class="form-group">
             <label for="reg-email">Email:</label>
@@ -46,11 +46,11 @@ $_smarty_tpl->_subTemplateRender('file:header.tpl', $_smarty_tpl->cache_id, $_sm
         </div>
         <div class="form-group">
             <label for="reg-dataNascita">Data di Nascita:</label>
-            <input type="date" id="reg-dataNascita" name="data_nascita" required>
+            <input type="date" id="reg-dataNascita" name="birthDate" required>
         </div>
         <div class="form-group">
             <label for="reg-comuneNascita">Comune di Nascita:</label>
-            <input type="text" id="reg-comuneNascita" name="comune_nascita" required>
+            <input type="text" id="reg-comuneNascita" name="birthPlace" required>
         </div>
         <button type="submit" class="btn btn-secondary full-width">Registrati</button>
     </form>
