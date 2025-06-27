@@ -3,11 +3,13 @@
 class CBooking {
 
     public static function selectDate(?int $idOffer = null){
+        $isLoggedIn = CUser::isLogged();
         $view = new VBooking();
+        
         if($idOffer != null){
             USession::getInstance()->setSessionElement('idOffer', $idOffer);
         }
-        $view->showSelect($idOffer);
+        $view->showSelect($isLoggedIn, $idOffer);
     }
 
     public static function showSpecialOffer(){
@@ -153,22 +155,12 @@ class CBooking {
 
     public static function showDetailRoomWB($idRoom){
         $isLoggedIn = CUser::isLogged();
-        if($isLoggedIn){
-            $view = new VBooking();
-            USession::getInstance()->setSessionElement('idRoom', $idRoom);
-            $room = FPersistentManager::getInstance()->getObject('ERoom', $idRoom);
-            $allImages = USession::getInstance()->getSessionElement('searchedRoomImages');
-            $images = array();
-            foreach($allImages as $image){
-                if($image->getIdRoom() == $idRoom){
-                    $images[] = $image;
-                }
-            }
-            $view->showDetailBookingWB($isLoggedIn, $room, $images);
-        }else{
-            header('Location: /albergoPulito/public/Admin/showLoginForm ');
-            exit;
-        }
+        
+        $view = new VBooking();
+        $room = FPersistentManager::getInstance()->getObject('ERoom', $idRoom);
+        $images = FPersistentManager::getInstance()->getImagesByRoom($idRoom);
+        $view->showDetailBookingWB($isLoggedIn, $room, $images);
+    
     }
 
     public static function showSummary($idRoom){
@@ -196,8 +188,11 @@ class CBooking {
             
             $totalPrice = self::calculatePrice(new DateTime($period[0]), new DateTime($period[1]), $room->getPrice(), $servObj, $idOffer);
             USession::setSessionElement('totalPrice', $totalPrice);
-
-            $specialOffer = FPersistentManager::getInstance()->getObject('ESpecialOffer', $idOffer);
+            $specialOffer = null;
+            if(isset($idOffer)){
+                $specialOffer = FPersistentManager::getInstance()->getObject('ESpecialOffer', $idOffer);
+            }
+            
             $booking = new EBooking(null, $idUser, new DateTime($period[0]), new DateTime( $period[1]), $idRoom, $totalPrice, null, $idOffer, null);
             
             $view->showSummary($isLoggedIn, $room, $booking, $servObj, $specialOffer);

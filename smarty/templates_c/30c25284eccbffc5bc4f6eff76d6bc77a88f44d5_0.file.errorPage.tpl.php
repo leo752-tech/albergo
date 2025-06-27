@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-26 11:59:14
+/* Smarty version 4.3.2, created on 2025-06-27 12:56:58
   from 'C:\xampp\htdocs\albergoPulito\smarty\templates\errorPage.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_685d19f2a3a364_96763048',
+  'unifunc' => 'content_685e78fa287bd1_54129402',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '30c25284eccbffc5bc4f6eff76d6bc77a88f44d5' => 
     array (
       0 => 'C:\\xampp\\htdocs\\albergoPulito\\smarty\\templates\\errorPage.tpl',
-      1 => 1750931949,
+      1 => 1751021620,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_685d19f2a3a364_96763048 (Smarty_Internal_Template $_smarty_tpl) {
+function content_685e78fa287bd1_54129402 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="it">
 <head>
@@ -42,11 +42,10 @@ function content_685d19f2a3a364_96763048 (Smarty_Internal_Template $_smarty_tpl)
             <nav class="desktop-nav">
                 <ul>
                     <li><a href="/albergoPulito/public/">Home</a></li>
-                    <li><a href="/albergoPulito/public/Room/">Camere</a></li>
-                    <li><a href="servizi.php">Servizi</a></li>
+                    <li><a href="/albergoPulito/public/User/showAllRooms">Camere</a></li>
+                    <li><a href="albergoPulito/public/User/showService">Servizi</a></li>
                     <li><a href="/albergoPulito/public/Booking/selectDate">Prenota Ora</a></li>
                     <li><a href="/albergoPulito/public/User/showAllReviews">Recensioni</a></li>
-                    <li><a href="contatti.php">Contatti</a></li>
                     <li><a href="/albergoPulito/public/Booking/showSpecialOffer">Offerte Speciali</a></li>
                 </ul>
             </nav>
@@ -61,11 +60,10 @@ function content_685d19f2a3a364_96763048 (Smarty_Internal_Template $_smarty_tpl)
         <div id="mobile-nav-menu" class="mobile-nav-menu">
             <ul>
                 <li><a href="/albergoPulito/public/">Home</a></li>
-                <li><a href="/albergoPulito/public/Room/">Camere</a></li>
-                <li><a href="servizi.php">Servizi</a></li>
+                <li><a href="/albergoPulito/public/User/showAllRooms">Camere</a></li>
+                <li><a href="/albergoPulito/public/User/showService">Servizi</a></li>
                 <li><a href="/albergoPulito/public/Booking/selectDate">Prenota Ora</a></li>
-                <li><a href="recensioni.php">Recensioni</a></li>
-                <li><a href="contatti.php">Contatti</a></li>
+                <li><a href="albergoPulito/public/User/showAllReviews">Recensioni</a></li>
                 <li><a href="/albergoPulito/public/Booking/showSpecialOffer">Offerte Speciali</a></li>
             </ul>
         </div>
@@ -109,6 +107,10 @@ function content_685d19f2a3a364_96763048 (Smarty_Internal_Template $_smarty_tpl)
         <?php }?>
         <hr>
         <p class="mb-0">Se il problema persiste, contatta il supporto tecnico.</p>
+    </div>
+    <div class="text-center">
+        <a href="<?php echo $_smarty_tpl->tpl_vars['pathUrl']->value;?>
+" class="btn btn-primary">Torna indietro</a>
     </div>
     </main>
 <?php $_smarty_tpl->_subTemplateRender('file:footer.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);

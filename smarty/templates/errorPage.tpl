@@ -16,11 +16,10 @@
             <nav class="desktop-nav">
                 <ul>
                     <li><a href="/albergoPulito/public/">Home</a></li>
-                    <li><a href="/albergoPulito/public/Room/">Camere</a></li>
-                    <li><a href="servizi.php">Servizi</a></li>
+                    <li><a href="/albergoPulito/public/User/showAllRooms">Camere</a></li>
+                    <li><a href="albergoPulito/public/User/showService">Servizi</a></li>
                     <li><a href="/albergoPulito/public/Booking/selectDate">Prenota Ora</a></li>
                     <li><a href="/albergoPulito/public/User/showAllReviews">Recensioni</a></li>
-                    <li><a href="contatti.php">Contatti</a></li>
                     <li><a href="/albergoPulito/public/Booking/showSpecialOffer">Offerte Speciali</a></li>
                 </ul>
             </nav>
@@ -35,11 +34,10 @@
         <div id="mobile-nav-menu" class="mobile-nav-menu">
             <ul>
                 <li><a href="/albergoPulito/public/">Home</a></li>
-                <li><a href="/albergoPulito/public/Room/">Camere</a></li>
-                <li><a href="servizi.php">Servizi</a></li>
+                <li><a href="/albergoPulito/public/User/showAllRooms">Camere</a></li>
+                <li><a href="/albergoPulito/public/User/showService">Servizi</a></li>
                 <li><a href="/albergoPulito/public/Booking/selectDate">Prenota Ora</a></li>
-                <li><a href="recensioni.php">Recensioni</a></li>
-                <li><a href="contatti.php">Contatti</a></li>
+                <li><a href="albergoPulito/public/User/showAllReviews">Recensioni</a></li>
                 <li><a href="/albergoPulito/public/Booking/showSpecialOffer">Offerte Speciali</a></li>
             </ul>
         </div>
@@ -84,6 +82,9 @@
         {/if}
         <hr>
         <p class="mb-0">Se il problema persiste, contatta il supporto tecnico.</p>
+    </div>
+    <div class="text-center">
+        <a href="{$pathUrl}" class="btn btn-primary">Torna indietro</a>
     </div>
     </main>
 {include file='footer.tpl'}     

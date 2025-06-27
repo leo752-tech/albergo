@@ -52,11 +52,11 @@
                     <th>NOME</th>
                     <th>COGNOME</th>
                     <th>EMAIL</th>
+                    <th>STATO</th> {* <-- NUOVA COLONNA *}
                     <th>AZIONI</th>
                 </tr>
             </thead>
-            <tbody>
-                {* Presuppone che $users sia un array di oggetti/array con i dettagli utente e un campo 'numBookings' *}
+            <tbody>  
                 {if !empty($registeredUsers)}
                     {foreach $registeredUsers as $user}
                         <tr>
@@ -64,18 +64,28 @@
                             <td>{$user->getFirstName()|default:$user.firstName}</td>
                             <td>{$user->getLastName()|default:$user.lastName}</td>
                             <td>{$user->getEmail()|default:$user.email}</td>
+                            <td> {* <-- NUOVA CELLE CON LO STATO *}
+                                {if $user->getIsBanned()}
+                                    <span class="status-banned">Bannato</span>
+                                {else}
+                                    <span class="status-active">Attivo</span>
+                                {/if}
+                            </td>
                             <td>
                                 <a href="/albergoPulito/public/Admin/showUpdateRegisteredUser/{$user->getIdRegisteredUser()}" class="btn btn-primary btn-sm">Modifica</a>
-                                <form action="/albergoPulito/public/Admin/banRegisteredUser/{$user->getIdRegisteredUser()}" method="POST" style="display:inline-block;">
-                                    <input type="hidden" name="idUser">
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Sei sicuro di voler eliminare questo utente? Tutte le sue prenotazioni saranno cancellate.');">Banna</button>
+                                {* Modifica il form per il ban/unban *}
+                                <form action="/albergoPulito/public/Admin/{if $user->getIsBanned()}unBanRegisteredUser{else}banRegisteredUser{/if}/{$user->getIdRegisteredUser()}" method="POST" style="display:inline-block;">
+                                    <input type="hidden" name="idUser" value="{$user->getIdRegisteredUser()}"> {* Assicurati che l'ID sia passato *}
+                                    <button type="submit" class="btn {if $user->getIsBanned()}btn-secondary{else}btn-danger{/if} btn-sm" onclick="return confirm('Sei sicuro di voler {if $user->getIsBanned()}sbloccare{else}bannare{/if} questo utente?');">
+                                        {if $user->getIsBanned()}Sblocca{else}Banna{/if}
+                                    </button>
                                 </form>
                             </td>
                         </tr>
                     {/foreach}
                 {else}
                     <tr>
-                        <td colspan="6" class="text-center">Nessun utente registrato trovato o nessun utente con prenotazioni.</td>
+                        <td colspan="6" class="text-center">Nessun utente registrato trovato.</td> {* Aggiornata colspan *}
                     </tr>
                 {/if}
             </tbody>

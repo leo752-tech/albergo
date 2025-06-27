@@ -71,7 +71,7 @@ class CStatistics{
         $totalRevenue = $nServices*$price;
         $view->extraServiceRevenue($totalRevenue);
         return $totalRevenue;
-
+  
     }
 
     public static function occupancyByPriceRange($price1, $price2){

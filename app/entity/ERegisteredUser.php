@@ -5,15 +5,16 @@ class ERegisteredUser extends EUser{
 	private ?int $idRegisteredUser;
 	private string $email;
 	private string $password;
-	private bool $isBanned = false;
+	private ?bool $isBanned;
 
-	public function __construct(?int $idRegisteredUser = null, ?int $userId = null, string $email, string $password, string $firstName, string $lastName, DateTime $birthDate, string $birthPlace){
+	public function __construct(?int $idRegisteredUser = null, ?int $userId = null, string $email, string $password, string $firstName, string $lastName, DateTime $birthDate, string $birthPlace, ?bool $isBanned = false){
 		parent::__construct($userId, $firstName, $lastName, $birthDate, $birthPlace);
 
 		$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 		$this->idRegisteredUser = $idRegisteredUser;
 		$this->email = $email;
 		$this->password = $hashedPassword;
+		$this->isBanned = $isBanned;
 	}
 
 	public function setIdRegisteredUser(?int $id){

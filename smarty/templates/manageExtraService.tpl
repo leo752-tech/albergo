@@ -6,26 +6,8 @@
     <h2>Gestione Servizi</h2>
 
 
-    <h3>Aggiungi Nuovo Servizio</h3>
-    <div class="form-grid mb-4">
-        <form action="/albergoPulito/public/Admin/insertService" method="POST">
-            <div class="form-group">
-                <label for="name">Nome Servizio:</label>
-                <input type="text" class="form-control" id="name" name="name" required>
-            </div>
-            <div class="form-group">
-                <label for="description">Descrizione:</label>
-                <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
-            </div>
-            <div class="form-group">
-                <label for="price">Prezzo (€):</label>
-                <input type="number" step="0.01" class="form-control" id="price" name="price"  min="0">
-            </div>
-            <div class="form-group full-width">
-                <button type="submit" class="btn btn-success">Aggiungi Servizio</button>
-            </div>
-        </form>
-    </div>
+    <a href="/albergoPulito/public/Admin/showInsertService" class="btn btn-success mb-3"><i class="fas fa-plus"></i> Aggiungi Nuovo Servizio</a>
+
 
     <h3>Servizi Esistenti</h3>
     <div class="table-responsive">

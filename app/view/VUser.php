@@ -19,7 +19,8 @@ class VUser{
         $this->smarty->display('home.tpl');
     }
 
-    public function showFormsLogin(){
+    public function showFormsLogin($isLoggedIn){
+        $this->smarty->assign('is_logged_in', $isLoggedIn);
         $this->smarty->display('login.tpl');
     }
 
@@ -102,6 +103,12 @@ class VUser{
         $this->smarty->assign('isLoggedIn', $isLoggedIn);
         $this->smarty->assign('services', $services);
         $this->smarty->display('showExtraService.tpl');
+    }
+
+    public function showAllRooms($isLoggedIn, $roomsImages){
+        $this->smarty->assign('isLoggedIn', $isLoggedIn);
+        $this->smarty->assign('rooms', $roomsImages);
+        $this->smarty->display('allRooms.tpl');
     }
 
 

@@ -20,8 +20,14 @@ class CAdmin{
         $view = new VAdmin();
         $users = FPersistentManager::getInstance()->getAllUsers();
         $totUsers = count($users);
+        $rooms = FPersistentManager::getInstance()->getAllRooms();
+        $totRooms = count($rooms);
+        $bookings = FPersistentManager::getInstance()->getAllBookings();
+        $totBookings = count($bookings);
+        $services = FPersistentManager::getInstance()->getAllExtraServices();
+        $totServices = count($services);
         $admin_logged_in = CAdmin::isAdminLogged();
-        $view->dashboard($admin_logged_in, $totUsers);
+        $view->dashboard($admin_logged_in, $totUsers, $totRooms, $totBookings, $totServices);
     }
 
 //-----------------------USER--------------------------------------------------------------------------------
@@ -38,7 +44,7 @@ class CAdmin{
         }
 
         foreach($regUsersQuery as $queryRes){
-            $regUsers[] = new ERegisteredUser($queryRes["idRegisteredUser"], $queryRes["idUser"], $queryRes["email"], $queryRes["password"], $queryRes["firstName"], $queryRes["lastName"], new dateTime($queryRes["birthDate"]), $queryRes["birthPlace"]);
+            $regUsers[] = new ERegisteredUser($queryRes["idRegisteredUser"], $queryRes["idUser"], $queryRes["email"], $queryRes["password"], $queryRes["firstName"], $queryRes["lastName"], new dateTime($queryRes["birthDate"]), $queryRes["birthPlace"], $queryRes["isBanned"]);
         }
 
         $admin_logged_in = CAdmin::isAdminLogged();
@@ -82,7 +88,7 @@ class CAdmin{
         $view = new VUser();
         $user = new EUser(null, UHTTP::post("firstName"), UHTTP::post("lastName"), new DateTime(UHTTP::post("birthDate")), UHTTP::post("birthPlace"));
         $idUser = FPersistentManager::getInstance()->saveObject($user);
-        $regUser = new ERegisteredUser(null, $idUser, UHTTP::post("email"), UHTTP::post("password"), UHTTP::post("firstName"), UHTTP::post("lastName"), new DateTime(UHTTP::post("birthDate")), UHTTP::post("birthPlace"), UHTTP::post("email"));
+        $regUser = new ERegisteredUser(null, $idUser, UHTTP::post("email"), UHTTP::post("password"), UHTTP::post("firstName"), UHTTP::post("lastName"), new DateTime(UHTTP::post("birthDate")), UHTTP::post("birthPlace"), UHTTP::post("email"), false);
         $result = FPersistentManager::getInstance()->saveObject($regUser);
         if($result == false){
             echo 'UTENTE GIA ESISTENTE';
@@ -99,13 +105,22 @@ class CAdmin{
         
     }
 
+    public static function unBanRegisteredUser($idUser){
+        $regUser = FPersistentManager::getInstance()->getObject('ERegisteredUser', $idUser);
+        $mod = array(['isBanned', false]);
+        $result = FPersistentManager::getInstance()->updateObject($regUser, $mod);
+        if($result){header('Location: /albergoPulito/public/Admin/manageUsers'); exit();}
+        
+    }
+
     public static function showUpdateUser($idUser){
         $view = new VAdmin();
         
         USession::getInstance()->setSessionElement('idUserModified', $idUser);
+        $user = FPersistentManager::getInstance()->getObject('EUser', $idUser);
 
         $admin_logged_in = CAdmin::isAdminLogged();
-        $view->showUpdateUser($admin_logged_in);
+        $view->showUpdateUser($admin_logged_in, $user);
     }
 
     public static function updateUser(){
@@ -128,8 +143,9 @@ class CAdmin{
         
         USession::getInstance()->setSessionElement('idRegisteredUserModified', $idUser);
 
+        $user = FPersistentManager::getInstance()->getObject('ERegisteredUser', $idUser);
         $admin_logged_in = CAdmin::isAdminLogged();
-        $view->showUpdateRegisteredUser($admin_logged_in);
+        $view->showUpdateRegisteredUser($admin_logged_in, $user);
     }
 
     public static function updateRegisteredUser(){
@@ -306,20 +322,32 @@ class CAdmin{
 
 //----------------------------------------------EXTRASERVICE--------------------------------------------------------
 
-    public static function manageExtraService(){
+    public static function manageExtraServices(){
         $view = new VAdmin();
         $services = FPersistentManager::getInstance()->getAllExtraServices();
         $servicesObj = array();
         foreach($services as $queryRes){
-            $servicesObj[] = new EExtraService($queryRes["idExtraService"], $queryRes["name"], $queryRes["description"], $queryRes["price"]);
+            $servicesObj[] = new EExtraService($queryRes["idExtraService"], $queryRes["name"], $queryRes["description"], $queryRes["price"], $queryRes['pathImage']);
         }
        
         $admin_logged_in = CAdmin::isAdminLogged();
         $view->manageExtraServices($admin_logged_in, $servicesObj);
     }
 
+    public static function showInsertService(){
+        $admin_logged_in = self::isAdminLogged();
+        if($admin_logged_in){
+            $view = new VAdmin();
+            $view->showInsertService($admin_logged_in);
+
+        }else{
+            header('Location: /albergoPulito/public/');
+            exit;
+        }
+    }
+
     public static function insertService(){
-        $extraService = new EExtraService(null, UHTTP::post('name'), UHTTP::post('description'), UHTTP::post('price'));
+        $extraService = new EExtraService(null, UHTTP::post('name'), UHTTP::post('description'), UHTTP::post('price'), UHTTP::file('pathImage'));
         $result = FPersistentManager::getInstance()->saveObject($extraService);
         if($result == false){
             echo 'UTENTE GIA ESISTENTE';
@@ -346,6 +374,7 @@ class CAdmin{
         if( UHTTP::post("name") != ''){$mod[] = ['name', UHTTP::post("name")];}
         if( UHTTP::post("description") != ''){$mod[] = ['description', UHTTP::post("description")];}
         if( UHTTP::post("price") != null){$mod[] = ['price', UHTTP::post("price")];}
+        if( UHTTP::file('pathImage') != null){$mod[] = ['pathImage', UHTTP::file('pathImage')];}
         $result = FPersistentManager::getInstance()->updateObject($service, $mod);
         
         
@@ -418,12 +447,30 @@ class CAdmin{
         
 		$reviews = FPersistentManager::getInstance()->getAllReview();
         echo count($reviews);
-
-
+  
+        $bookedServices = FPersistentManager::getInstance()->getAllBookingsExtraServices();
+        
 		$stats = UStatistiche::calculateStats($rooms, $bookings, $extraServices, $bookedServices, $reviews);
 
 		$view = new VStatistics();
 		$view->showDashboard($stats);
 	}
+
+    public static function showStat(){
+        $admin_logged_in = self::isAdminLogged();
+
+		$rooms = FPersistentManager::getInstance()->getAllRooms();
+		$bookings = FPersistentManager::getInstance()->getAllBookings();
+		$extraServices = FPersistentManager::getInstance()->getAllExtraServices();
+        
+		$reviews = FPersistentManager::getInstance()->getAllReview();
+        echo count($reviews);
+  
+        
+		$stats = UStatistiche::calculateStats($rooms, $bookings, $extraServices, $bookedServices, $reviews);
+
+		$view = new VStatistics();
+		$view->showDashboard($stats);
+    }
 
 }

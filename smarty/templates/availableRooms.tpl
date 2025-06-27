@@ -32,7 +32,7 @@
                     
                   
                   
-                    <a href="/albergoPulito/public/Booking/showDetailRoom/{$room[0]->getId()}" class="btn btn-success btn-block mt-3">Prenota Ora</a>
+                    <a href="/albergoPulito/public/Booking/showDetailRoom/{$room[0]->getId()}" class="btn btn-primary">Prenota Ora</a>
                     
                 </div>
             {/foreach}

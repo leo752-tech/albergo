@@ -8,9 +8,12 @@ class VAdmin {
     }
 
     // Home amministratore
-    public function dashboard($admin_is_logged, $totalUsers) {
+    public function dashboard($admin_is_logged, $totalUsers, $rooms, $bookings, $services) {
         $this->smarty->assign('admin_logged_in', $admin_is_logged);
         $this->smarty->assign('totalUsers', $totalUsers);
+        $this->smarty->assign('availableRooms', $rooms);
+        $this->smarty->assign('activeBookings', $bookings);
+        $this->smarty->assign('totalServices', $services);
         $this->smarty->display('dashboardAdmin.tpl');
     }
 //-----------------------------USER----------------------------------------------
@@ -31,13 +34,15 @@ class VAdmin {
         $this->smarty->display('insertRegisteredUser.tpl');
     }
 
-    public function showUpdateUser($admin_logged_in){
+    public function showUpdateUser($admin_logged_in, $user){
         $this->smarty->assign('admin_logged_in', $admin_logged_in);
+        $this->smarty->assign('user', $user);
         $this->smarty->display('updateUser.tpl');
     }
 
-    public function showUpdateRegisteredUser($admin_logged_in){
+    public function showUpdateRegisteredUser($admin_logged_in, $user){
         $this->smarty->assign('admin_logged_in', $admin_logged_in);
+        $this->smarty->assign('user', $user);
         $this->smarty->display('updateRegisteredUser.tpl');
     }
     
@@ -100,6 +105,11 @@ class VAdmin {
     public function showInsertOffer($admin_logged_in) {
         $this->smarty->assign('admin_logged_in', $admin_logged_in);
         $this->smarty->display('insertOffer.tpl');
+    }
+
+    public function showInsertService($admin_logged_in) {
+        $this->smarty->assign('admin_logged_in', $admin_logged_in);
+        $this->smarty->display('insertService.tpl');
     }
 
 

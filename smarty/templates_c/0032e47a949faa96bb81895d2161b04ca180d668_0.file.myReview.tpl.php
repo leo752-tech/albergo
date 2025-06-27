@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-25 15:32:27
+/* Smarty version 4.3.2, created on 2025-06-27 14:05:22
   from 'C:\xampp\htdocs\albergoPulito\smarty\templates\myReview.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_685bfa6b82dd48_76178879',
+  'unifunc' => 'content_685e8902e1a5b3_43480279',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0032e47a949faa96bb81895d2161b04ca180d668' => 
     array (
       0 => 'C:\\xampp\\htdocs\\albergoPulito\\smarty\\templates\\myReview.tpl',
-      1 => 1750858340,
+      1 => 1751025916,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_685bfa6b82dd48_76178879 (Smarty_Internal_Template $_smarty_tpl) {
+function content_685e8902e1a5b3_43480279 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender('file:header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
@@ -49,7 +49,8 @@ $_smarty_tpl->tpl_vars['review']->do_else = false;
 </p>
             </div>
             <div class="review-actions">
-                                <a href="/albergoPulito/public/User/deleteReview" class="btn btn-delete" onclick="return confirm('Sei sicuro di voler eliminare questa recensione?');">Elimina</a>
+                                <a href="/albergoPulito/public/User/deleteReview/<?php echo $_smarty_tpl->tpl_vars['review']->value->getId();?>
+" class="btn btn-delete" onclick="return confirm('Sei sicuro di voler eliminare questa recensione?');">Elimina</a>
             </div>
         </div>
     <?php

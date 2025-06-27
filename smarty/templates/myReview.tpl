@@ -26,7 +26,7 @@
             </div>
             <div class="review-actions">
                 {* Queste azioni porterebbero a pagine di modifica o eliminazione gestite dal controller *}
-                <a href="/albergoPulito/public/User/deleteReview" class="btn btn-delete" onclick="return confirm('Sei sicuro di voler eliminare questa recensione?');">Elimina</a>
+                <a href="/albergoPulito/public/User/deleteReview/{$review->getId()}" class="btn btn-delete" onclick="return confirm('Sei sicuro di voler eliminare questa recensione?');">Elimina</a>
             </div>
         </div>
     {/foreach}
