@@ -83,8 +83,9 @@
         <hr>
         <p class="mb-0">Se il problema persiste, contatta il supporto tecnico.</p>
     </div>
+    </main>
     <div class="text-center">
         <a href="{$pathUrl}" class="btn btn-primary">Torna indietro</a>
     </div>
-    </main>
+    
 {include file='footer.tpl'}     

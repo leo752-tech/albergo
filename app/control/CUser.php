@@ -89,7 +89,9 @@ class CUser{
                 exit();    
             }
         }else{
-            echo "USER NON-EXISTENT";
+            $view = new VError();
+            $isLoggedIn = self::isLogged();
+            $view->showError($isLoggedIn, "USER NON-EXISTENT", 'javascript:history.back()');
             return false;
         }
         }
