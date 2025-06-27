@@ -54,9 +54,10 @@ class VAdmin {
         $this->smarty->display('manageRooms.tpl');
     }
 
-    public function showUpdateRoom($admin_logged_in) {
+    public function showUpdateRoom($admin_logged_in, $room) {
         $this->smarty->assign('admin_logged_in', $admin_logged_in);
-        $this->smarty->display('updateRoom.tpl');
+        $this->smarty->assign('room', $room);
+        $this->smarty->display('showUpdateRoom.tpl');
     }
 
     public function showInsertRoom($admin_logged_in){

@@ -24,14 +24,14 @@ class CUser{
     public static function registration(){
         $view = new VUser();
         if(!FPersistentManager::userExists(UHTTP::post("email"))){
-
-            $user= new EUser(null,UHTTP::post('firstName'), UHTTP::post('lastName'), new DateTime(UHTTP::post('birthDate')), UHTTP::post('birthPlace'));
+            echo 'Name '. UHTTP::post('firstName');
+            $user= new EUser(null, UHTTP::post('firstName'), UHTTP::post('lastName'), new DateTime(UHTTP::post('birthDate')), UHTTP::post('birthPlace'));
             $id=FPersistentManager::getInstance()->saveObject($user);
             $registeredUser = new ERegisteredUser(null,$id,UHTTP::post('email'), UHTTP::post('password'),UHTTP::post('firstName'), UHTTP::post('lastName'),new dateTime(UHTTP::post('birthDate')),UHTTP::post('birthPlace'), false);
             $result = FPersistentManager::getInstance()->saveObject($registeredUser);
             //echo "OPERATION SUCCESSFUL";
 
-            header('Location: /albergoPulito/public/User/showFormsLogin');
+            header('Location: /albergoPulito/public/User/showLoginForm');
             return $result;
 
         }else{

@@ -188,9 +188,10 @@ class CAdmin{
         $view = new VAdmin();
         
         USession::getInstance()->setSessionElement('idRoomModified', $idRoom);
+        $room = FPersistentManager::getInstance()->getObject('ERoom', $idRoom);
 
         $admin_logged_in = CAdmin::isAdminLogged();
-        $view->showUpdateRoom($admin_logged_in);
+        $view->showUpdateRoom($admin_logged_in, $room);
     }
 
     public static function showInsertRoom(){
@@ -249,6 +250,34 @@ class CAdmin{
         if( UHTTP::post("description") != ''){$mod[] = ['description', UHTTP::post("description")];}
 
         $result = FPersistentManager::getInstance()->updateObject($room, $mod);
+
+        $toDeleteImages = FPersistentManager::getInstance()->getImagesByRoom($idRoom);
+        $baseUploadDir = __DIR__ . '/../../public/assets/img/';
+        foreach($toDeleteImages as $image){
+            $toDeletePath = $baseUploadDir . $image->getName();
+            unlink($toDeletePath);
+            FPersistentManager::getInstance()->deleteObject('EImage', $image->getId());
+        }
+        $images = UHTTP::files('room_images');
+        $uploadDir = __DIR__ . '/../../public/assets/img/';
+        if(isset($images)){
+            foreach($images as $queryRes){
+                $destPath = $uploadDir . $queryRes['name'];
+                if(move_uploaded_file($queryRes['tmp_name'], $destPath)){
+                    
+                    $uploadPath = '/albergoPulito/public/assets/img/' . $queryRes['name'];
+                    $image = new EImage(null, $idRoom, $queryRes["name"], $uploadPath, $queryRes["type"]);
+
+                    $result = FPersistentManager::getInstance()->saveObject($image);
+                }else{
+                    echo 'ERRORI NELLO SPOSTAMENTO';
+                }
+            }
+
+
+        }else{
+            echo 'ERRORE NEL CARICAMENTO';
+        }
         
         header('Location: /albergoPulito/public/Admin/manageRooms');
         exit;
