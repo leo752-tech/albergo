@@ -8,10 +8,9 @@ class VError{
         $this->smarty = StartSmarty::configuration();
     }
 
-    public function showError($isLoggedIn, $message, $pathUrl){
-        $this->smarty->assign('is_logges_in', $isLoggedIn);
+    public function showError($isLoggedIn, $message){
+        $this->smarty->assign('is_logged_in', $isLoggedIn);
         $this->smarty->assign('errorMessage', $message);
-        $this->smarty->assign('pathUrl', $pathUrl);
         $this->smarty->display('errorPage.tpl');
     }
 }

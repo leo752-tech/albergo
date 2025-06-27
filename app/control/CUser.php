@@ -83,25 +83,34 @@ class CUser{
                         exit();
                     }
 
-            }else{
-                $message = 'password errata';
-                header("Location: /albergoPulito/public/User/error/{$message}/{$pathUrl}");
-                exit();    
+                }else{
+                    $message = 'password errata';
+                    $view = new VError();
+                    $isLoggedIn = self::isLogged();
+                    $view->showError($isLoggedIn, $message);
+                    return false;
+                   
+                }
+            }else{  
+                
+                $view = new VError();
+                $isLoggedIn = self::isLogged();
+                $view->showError($isLoggedIn, "USER BANNED");
+                return false;
             }
         }else{
             $view = new VError();
             $isLoggedIn = self::isLogged();
-            $view->showError($isLoggedIn, "USER NON-EXISTENT", 'javascript:history.back()');
+            $view->showError($isLoggedIn, "USER NON-EXISTENT");
             return false;
-        }
         }
     }
 
-    public static function error($message, $pathUrl){
+    public static function error($message){
         $view = new VError();
         $isLoggedIn = self::isLogged();
         $messageDecoded = urldecode($message);
-        $view->showError($isLoggedIn, $messageDecoded, $pathUrl);
+        $view->showError($isLoggedIn, $messageDecoded);
     }
 
     public static function logout(){
