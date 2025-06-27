@@ -8,7 +8,7 @@ USE `hotel_db`;
 -- Table structure for `User` (Guests / Persons)
 -- Represents any person, whether registered or just a guest.
 --
-CREATE TABLE `User` (
+CREATE TABLE `user` (
   `idUser` INT(11) NOT NULL AUTO_INCREMENT,
   `firstName` VARCHAR(100) NOT NULL,
   `lastName` VARCHAR(100) NOT NULL,
@@ -23,7 +23,7 @@ CREATE TABLE `User` (
 -- Table structure for `RegisteredUser` (User Accounts)
 -- Represents an account with login credentials, linked to a person in `User`.
 --
-CREATE TABLE `RegisteredUser` (
+CREATE TABLE `registereduser` (
   `idRegisteredUser` INT(11) NOT NULL AUTO_INCREMENT,
   `idUser` INT(11) NOT NULL, -- FK to User.idUser
   `email` VARCHAR(255) NOT NULL UNIQUE,
@@ -34,7 +34,7 @@ CREATE TABLE `RegisteredUser` (
   `birthPlace` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`idRegisteredUser`),
   UNIQUE KEY `idx_unique_idUser` (`idUser`), -- Ensures 1 account per person
-  CONSTRAINT `fk_registered_user_user` FOREIGN KEY (`idUser`) REFERENCES `User` (`idUser`) ON DELETE RESTRICT ON UPDATE CASCADE
+  CONSTRAINT `fk_registered_user_user` FOREIGN KEY (`idUser`) REFERENCES `user` (`idUser`) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -42,7 +42,7 @@ CREATE TABLE `RegisteredUser` (
 --
 -- Table structure for `Room`
 --
-CREATE TABLE `Room` (
+CREATE TABLE `room` (
   `idRoom` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(100) NOT NULL UNIQUE,
   `beds` INT(11) NOT NULL,
@@ -56,7 +56,7 @@ CREATE TABLE `Room` (
 --
 -- Table structure for `Booking`
 --
-CREATE TABLE `Booking` (
+CREATE TABLE `booking` (
   `idBooking` INT(11) NOT NULL AUTO_INCREMENT,
   `idRegisteredUser` INT(11) NOT NULL, -- FK to the user who made the booking
   `idRoom` INT(11) NOT NULL,            -- FK to the booked room
@@ -67,8 +67,8 @@ CREATE TABLE `Booking` (
   `cancellation` BOOLEAN NOT NULL DEFAULT FALSE, -- Flag for soft delete
   `idSpecialOffer` INT(11),
   PRIMARY KEY (`idBooking`),
-  CONSTRAINT `fk_booking_registered_user` FOREIGN KEY (`idRegisteredUser`) REFERENCES `RegisteredUser` (`idRegisteredUser`) ON DELETE RESTRICT ON UPDATE CASCADE,
-  CONSTRAINT `fk_booking_room` FOREIGN KEY (`idRoom`) REFERENCES `Room` (`idRoom`) ON DELETE RESTRICT ON UPDATE CASCADE
+  CONSTRAINT `fk_booking_registered_user` FOREIGN KEY (`idRegisteredUser`) REFERENCES `registereduser` (`idRegisteredUser`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `fk_booking_room` FOREIGN KEY (`idRoom`) REFERENCES `room` (`idRoom`) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -76,7 +76,7 @@ CREATE TABLE `Booking` (
 --
 -- Table structure for `ExtraService`
 --
-CREATE TABLE `ExtraService` (
+CREATE TABLE `extraservice` (
   `idExtraService` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(100) NOT NULL UNIQUE,
   `description` TEXT,
@@ -91,12 +91,12 @@ CREATE TABLE `ExtraService` (
 -- Linking table structure `Booking_ExtraService`
 -- Many-to-Many relationship between Booking and ExtraService.
 --
-CREATE TABLE `Booking_ExtraService` (
+CREATE TABLE `booking_extraservice` (
   `idBooking` INT(11) NOT NULL,
   `idExtraService` INT(11) NOT NULL,
   PRIMARY KEY (`idBooking`, `idExtraService`), -- Composite key
-  CONSTRAINT `fk_be_booking` FOREIGN KEY (`idBooking`) REFERENCES `Booking` (`idBooking`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_be_extra_service` FOREIGN KEY (`idExtraService`) REFERENCES `ExtraService` (`idExtraService`) ON DELETE RESTRICT ON UPDATE CASCADE
+  CONSTRAINT `fk_be_booking` FOREIGN KEY (`idBooking`) REFERENCES `booking` (`idBooking`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_be_extra_service` FOREIGN KEY (`idExtraService`) REFERENCES `extraservice` (`idExtraService`) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -104,7 +104,7 @@ CREATE TABLE `Booking_ExtraService` (
 --
 -- Table structure for `Review`
 --
-CREATE TABLE `Review` (
+CREATE TABLE `review` (
   `idReview` INT(11) NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(255) NOT NULL,
   `rating` INT(11) NOT NULL CHECK (`rating` >= 1 AND `rating` <= 5), -- E.g., from 1 to 5 stars
@@ -112,14 +112,14 @@ CREATE TABLE `Review` (
   `date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `idRegisteredUser` INT(11) NOT NULL, -- FK to the registered user who left the review
   PRIMARY KEY (`idReview`),
-  CONSTRAINT `fk_review_registered_user` FOREIGN KEY (`idRegisteredUser`) REFERENCES `RegisteredUser` (`idRegisteredUser`) ON DELETE RESTRICT ON UPDATE CASCADE
+  CONSTRAINT `fk_review_registered_user` FOREIGN KEY (`idRegisteredUser`) REFERENCES `registereduser` (`idRegisteredUser`) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- -------------------------------------------------------------
 
 -- Table structure for 'SpecialOffer'
 
-CREATE TABLE `SpecialOffer`(
+CREATE TABLE `specialoffer`(
   `idSpecialOffer` INT(11) NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(255) NOT NULL,
   `description` TEXT NOT NULL,
@@ -144,7 +144,7 @@ CREATE TABLE `image` (
     
     -- Foreign key constraint (assuming you have a 'rooms' table)
     CONSTRAINT `fk_image_room`
-    FOREIGN KEY (`idRoom`) REFERENCES `Room` (`idRoom`) 
+    FOREIGN KEY (`idRoom`) REFERENCES `room` (`idRoom`) 
     ON DELETE CASCADE   -- If a room is deleted, delete its images
     ON UPDATE CASCADE   -- If a room's ID changes, update image references
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
