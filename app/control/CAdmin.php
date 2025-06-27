@@ -214,12 +214,15 @@ class CAdmin{
 
                     $result = FPersistentManager::getInstance()->saveObject($image);
                 }else{
-                echo 'ERRORI NELLO SPOSTAMENTO';
+                    $view = new VError();
+                    $isLoggedIn = self::isLogged();
+                    $view->showError($isLoggedIn, "ERRORI NELLO SPOSTAMENTO", 'javascript:history.back()');
                 }
             }
 
 
         }else{
+            
             echo 'ERRORE NEL CARICAMENTO';
         }
         header('Location: /albergoPulito/public/Admin/manageRooms');

@@ -35,8 +35,9 @@ class CUser{
             return $result;
 
         }else{
-            //visualizzazione schermata di errore
-            echo "USER ALREADY EXISTS";
+            $view= new VError();
+            $isLoggedIn = self::isLogged();
+            $view->showError($isLoggedIn, "USER ALREADY EXISTS", 'javascript:history.back()');
             return false;
         }
     }
@@ -60,8 +61,12 @@ class CUser{
                 header("Location: /albergoPulito/public/Admin/dashboard");
                 exit;
                 
-            }else{echo "WRONG PASSWORD";
-                return false;}
+            }else
+            {$view = new VError();
+                $isLoggedIn = self::isLogged();
+                $view->showError($isLoggedIn, "WRONG PASSWORD", 'javascript:history.back()');
+                return false;
+            }
         }elseif(FPersistentManager::getInstance()->userExists($email)){
             $registeredUser = FPersistentManager::getInstance()->retrieveUser($email);
             if(password_verify($password, $registeredUser->getPassword())){
@@ -83,7 +88,10 @@ class CUser{
                 exit();    
             }
         }else{
-            echo "USER NON-EXISTENT";
+            
+            $view = new VError();
+            $isLoggedIn = self::isLogged();
+            $view->showError($isLoggedIn, "USER NON-EXISTENT", 'javascript:history.back()');
             return false;
         }
     }
@@ -211,10 +219,14 @@ class CUser{
                     USession::getInstance()->setSessionElement('user', serialize($registeredUser));
                     header('Location: /albergoPulito/public/User/showAccountDetails');
                 }else{
-                    echo 'PAASWORD NON COMBACIANO';
+                    $view = new VError();
+                    $isLoggedIn = self::isLogged();
+                    $view->showError($isLoggedIn, "MISMATCHED PASSWORDS", 'javascript:history.back()');
                 }
             }else{
-                echo 'PASSWORD ERRATA';
+                $view = new VError();
+                $isLoggedIn = self::isLogged();
+                $view->showError($isLoggedIn, "WRONG PASSWORD", 'javascript:history.back()');
             }
         }else{
             header('Location: /albergoPulito/public/');
@@ -283,7 +295,10 @@ class CUser{
                 header('Location: /albergoPulito/public/User/showAccountDetails');
                 exit;
             }else{
-                echo 'NESSUNA PRENOTAZIONE EFFETTUATA, NON PUOI LASCIARE UNA RECENSIONE';
+                
+                $view = new VError();
+                $isLoggedIn = self::isLogged();
+                $view->showError($isLoggedIn, "NO BOOKINGS MADE, YOU CANNOT LEAVE A REVIEW", 'javascript:history.back()');
             }
         }else{
             header('Location: /albergoPulito/public/');
