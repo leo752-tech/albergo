@@ -137,6 +137,11 @@ class FRegisteredUser {
         $users = FDataMapper::getInstance()->selectAll(self::$table);
         return $users;
     }
+    public static function isBanned($id){
+        $user = self::getObject($id);
+        $isBanned = $user->getIsBanned();
+        return $isBanned;
+    }
 
 
 }

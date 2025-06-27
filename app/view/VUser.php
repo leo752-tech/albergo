@@ -29,28 +29,6 @@ class VUser{
         $this->smarty->display('registration.tpl');
     }
 
-    public function showUsers($users){
-        $this->smarty->assign('users', $users);
-        $this->smarty->display();
-    }
-
-    public function insertUser($user){
-        $this->smarty->assign('user', $user);
-        $this->smarty->display();
-    }
-
-    public function showUserProfile(EUser $user, array $bookings = [], array $reviews = []){
-        $this->smarty->assign('user', $user);
-        $this->smarty->assign('bookings', $bookings);
-        $this->smarty->assign('reviews', $reviews);
-        $this->smarty->display(''); 
-    }
-
-    public function manageUsers($users){
-        $this->smarty->assign('users', $users);
-        $this->smarty->display();
-    }
-
     public function showAccountDetail($isLoggedIn, $user, $birthDate){
         $this->smarty->assign('birthDate', $birthDate);
         $this->smarty->assign('is_logged_in', $isLoggedIn);
@@ -77,36 +55,36 @@ class VUser{
     }
 
     public function showMyReviews($isLoggedIn, $reviews){
-        $this->smarty->assign('isLoggedIn', $isLoggedIn);
+        $this->smarty->assign('is_logged_in', $isLoggedIn);
         $this->smarty->assign('reviews', $reviews);
         $this->smarty->display('myReview.tpl');
     }
 
     public function showSetReview($isLoggedIn){
-        $this->smarty->assign('isLoggedIn', $isLoggedIn);
+        $this->smarty->assign('is_logged_in', $isLoggedIn);
         $this->smarty->display('setReview.tpl');
     }
 
     public function showAllReviews($isLoggedIn, $allReview){
-        $this->smarty->assign('isLoggedIn', $isLoggedIn);
+        $this->smarty->assign('is_logged_in', $isLoggedIn);
         $this->smarty->assign('allReviews', $allReview);
         $this->smarty->display('allReview.tpl');
     }
 
     public function showSpecialOffer($isLoggedIn, $specialOffer){
-        $this->smarty->assign('isLoggedIn', $isLoggedIn);
+        $this->smarty->assign('is_logged_in', $isLoggedIn);
         $this->smarty->assign('specialOffer', $specialOffer);
         $this->smarty->display('showOffer.tpl');
     }
 
     public function showService($isLoggedIn, $services){
-        $this->smarty->assign('isLoggedIn', $isLoggedIn);
+        $this->smarty->assign('is_logged_in', $isLoggedIn);
         $this->smarty->assign('services', $services);
         $this->smarty->display('showExtraService.tpl');
     }
 
     public function showAllRooms($isLoggedIn, $roomsImages){
-        $this->smarty->assign('isLoggedIn', $isLoggedIn);
+        $this->smarty->assign('is_logged_in', $isLoggedIn);
         $this->smarty->assign('rooms', $roomsImages);
         $this->smarty->display('allRooms.tpl');
     }

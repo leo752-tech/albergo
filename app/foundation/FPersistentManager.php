@@ -59,6 +59,14 @@ class FPersistentManager {
         }
     }
 
+    public static function userIsBanned($id){
+        if(FRegisteredUser::isBanned($id)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public static function retrieveUser($email){
         $user = FRegisteredUser::getUserByEmail($email);
         return $user;

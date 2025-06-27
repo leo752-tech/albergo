@@ -68,27 +68,29 @@ class CUser{
                 return false;}
         }elseif(FPersistentManager::getInstance()->userExists($email)){
             $registeredUser = FPersistentManager::getInstance()->retrieveUser($email);
-            if(password_verify($password, $registeredUser->getPassword())){
-                USession::getInstance();
-                USession::setSessionElement("idUser", $registeredUser->getIdRegisteredUser());
-                if(UCOOKIE::isSet('redirectSelectedRoom')){
-                    $redirect = UCOOKIE::getElement('redirectSelectedRoom');
-                    setcookie('redirectSelectedRoom', '', time() - 3600, '/');
-                    header('Location: ' . $redirect);
-                    exit(); 
-                }else{
-                    header("Location: /albergoPulito/public/User/home");
-                    exit();
-                }
+            if(!FPersistentManager::getInstance()->userIsBanned($registeredUser->getIdRegisteredUser())){
+                if(password_verify($password, $registeredUser->getPassword())){
+                    USession::getInstance();
+                    USession::setSessionElement("idUser", $registeredUser->getIdRegisteredUser());
+                    if(UCOOKIE::isSet('redirectSelectedRoom')){
+                        $redirect = UCOOKIE::getElement('redirectSelectedRoom');
+                        setcookie('redirectSelectedRoom', '', time() - 3600, '/');
+                        header('Location: ' . $redirect);
+                        exit(); 
+                    }else{
+                        header("Location: /albergoPulito/public/User/home");
+                        exit();
+                    }
 
+                }else{
+                    $message = 'password errata';
+                    header("Location: /albergoPulito/public/User/error/{$message}/{$pathUrl}");
+                    exit();    
+                }
             }else{
-                $message = 'password errata';
-                header("Location: /albergoPulito/public/User/error/{$message}/{$pathUrl}");
-                exit();    
+                echo "USER NON-EXISTENT";
+                return false;
             }
-        }else{
-            echo "USER NON-EXISTENT";
-            return false;
         }
     }
 
@@ -114,6 +116,7 @@ class CUser{
     public static function home(){
         $view = new VUser();
         $isLoggedIn = self::isLogged();
+        
         $view->home($isLoggedIn);  
         
     }
