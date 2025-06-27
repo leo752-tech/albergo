@@ -92,6 +92,7 @@ class CUser{
             echo "USER NON-EXISTENT";
             return false;
         }
+        }
     }
 
     public static function error($message, $pathUrl){
