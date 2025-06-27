@@ -1,11 +1,15 @@
 UTENTI ok
+controllare il loggedIn sia in user che in Admin
 
 ADMIN
 aggiornamento dati nella dashboard
 aggiunta inserimento prenotazione manuale
 visualizzazione e aggiunta dei servizi_extra
+visualizzazione e aggiunta delle offerte
 
 User
+
+
 
 
 /albergoPulito/public/User/showFormsLogin

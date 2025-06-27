@@ -1,14 +1,9 @@
-
-
 {include file='header_admin.tpl'}
 
 <div class="container">
     <h2>Aggiungi Nuova Camera</h2>
 
-   
-
     <div class="form-grid">
-        {* IMPORTANTE: Aggiungere enctype="multipart/form-data" per l'upload di file *}
         <form action="/albergoPulito/public/Admin/insertOffer" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="name">Nome Camera:</label>
@@ -26,8 +21,8 @@
             </div>
             
             <div class="form-group">
-                <label for="name">Tipo:</label>
-                <input type="text" class="form-control" id="name" name="type" value="{$formData.type|default:''}" required>
+                <label for="type">Tipo:</label> {* Ho corretto l'ID da 'name' a 'type' per coerenza *}
+                <input type="text" class="form-control" id="type" name="type" value="{$formData.type|default:''}" required>
             </div>
 
             <div class="form-group full-width">
@@ -36,14 +31,14 @@
             </div>
 
             <div class="form-group full-width">
-                <label for="room_image">Immagine Camera:</label>
-
-                <input type="file" class="form-control-file" id="room_image" name="room_image" accept="image/*">
-                <small class="form-text text-muted">Carica un'immagine per la camera. Puoi visualizzarla e rimuoverla prima di salvare.</small>
-
+                <label for="room_images">Immagini Camera:</label> 
+                <input type="file" class="form-control-file" id="room_images" name="room_images[]" accept="image/*" multiple>
+                <small class="form-text text-muted">Carica una o più immagini per la camera. Puoi visualizzarle e rimuoverle prima di salvare.</small>
+                
                 <hr>
                 <div id="image_preview_container" class="image-preview-grid">
-                    </div>
+                    
+                </div>
             </div>
             <div class="form-group full-width">
                 <button type="submit" class="btn btn-success">Crea Offerta</button>
@@ -53,4 +48,4 @@
     </div>
 </div>
 
-{include file='footer_admin.tpl'}  
+{include file='footer_admin.tpl'}

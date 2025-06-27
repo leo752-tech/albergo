@@ -30,5 +30,6 @@
             </div>
         </footer>
         <script src="/albergoPulito/public/assets/js/script.js"></script>
+        <script src="/albergoPulito/public/assets/js/calendar.js" defer></script>
         </body>
 </html>

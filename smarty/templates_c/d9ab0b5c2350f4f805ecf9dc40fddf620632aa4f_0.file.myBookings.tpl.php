@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-26 23:34:14
+/* Smarty version 4.3.2, created on 2025-06-27 12:52:18
   from 'C:\xampp\htdocs\albergoPulito\smarty\templates\myBookings.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_685dbcd6cc8973_76356185',
+  'unifunc' => 'content_685e77e23a8c55_31305459',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd9ab0b5c2350f4f805ecf9dc40fddf620632aa4f' => 
     array (
       0 => 'C:\\xampp\\htdocs\\albergoPulito\\smarty\\templates\\myBookings.tpl',
-      1 => 1750973640,
+      1 => 1751021528,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_685dbcd6cc8973_76356185 (Smarty_Internal_Template $_smarty_tpl) {
+function content_685e77e23a8c55_31305459 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\xampp\\htdocs\\albergoPulito\\smarty\\libs\\plugins\\modifier.date_format.php','function'=>'smarty_modifier_date_format',),));
 ?>
 
@@ -79,7 +79,7 @@ $_smarty_tpl->tpl_vars['booking']->do_else = false;
                             </td>
                             <td>
                                 <?php if (!(($tmp = $_smarty_tpl->tpl_vars['booking']->value->getCancellation() ?? null)===null||$tmp==='' ? $_smarty_tpl->tpl_vars['booking']->value['cancelled'] ?? null : $tmp) && $_smarty_tpl->tpl_vars['booking']->value->getCheckInDate() > smarty_modifier_date_format(time(),"%Y-%m-%d")) {?>
-                                                                        <form action="albergoPulito/public/User/deleteBooking/<?php echo $_smarty_tpl->tpl_vars['booking']->value->getId();?>
+                                                                        <form action="/albergoPulito/public/User/deleteBooking/<?php echo $_smarty_tpl->tpl_vars['booking']->value->getId();?>
 " method="POST" style="display:inline-block;">
                                         <input type="hidden" name="idBooking" value="<?php echo (($tmp = $_smarty_tpl->tpl_vars['booking']->value->getId() ?? null)===null||$tmp==='' ? $_smarty_tpl->tpl_vars['booking']->value['idBooking'] ?? null : $tmp);?>
 ">

@@ -114,11 +114,34 @@ class FPersistentManager {
     public static function getBookingsExtraServices($idExtraService){
         $result = FExtraService::getExtraServiceByUsed($idExtraService);
         return $result;
-    }
+    }  
     
     public static function setBookingsExtraServices($idBooking, $idExtraService){
         $result = FExtraService::saveBookingsExtraServices($idBooking, $idExtraService);
         return $result;
+    }
+
+    public static function deleteBookingsExtraServices($idBooking){
+        $result = FExtraService::deleteBookingsExtraServices($idBooking);
+        return $result;
+    }
+
+    public static function getAllBookingsExtraServices(){
+        $services = FExtraService::getAllServiceBooked();
+        $servId = array();
+        foreach($services as $queryRes){
+            $servId[] = $queryRes['idExtraService'];
+        }
+
+        $allServices = self::getAllExtraServices();
+        $bookedServ = array();
+        foreach($allServices as $queryRes){
+            if(in_array($queryRes['idExtraService'], $servId)){
+                $bookedServ[] = $queryRes;
+            }
+        }
+
+        return $bookedServ;
     }
 
 //-------------------REVIEW METHODS-----------------------------------

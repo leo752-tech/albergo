@@ -64,7 +64,7 @@
         </div>
     </div>
     <div class="text-center">
-        <a href="camere.php" class="btn btn-primary">Vedi tutte le Camere</a>
+        <a href="/albergoPulito/public/User/showAllRooms" class="btn btn-primary">Vedi tutte le Camere</a>
     </div>
 </section>
 
@@ -81,7 +81,7 @@
         </div>
     </div>
     <div class="text-center">
-        <a href="recensioni.php" class="btn btn-primary">Leggi tutte le Recensioni</a>
+        <a href="/albergoPulito/public/User/showAllReviews" class="btn btn-primary">Leggi tutte le Recensioni</a>
     </div>
 </section>
 

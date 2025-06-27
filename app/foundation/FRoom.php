@@ -113,7 +113,6 @@ class FRoom{
                 $availableRooms[] = $room;
             }
         }
-        echo "M: " . count($availableRooms);
         return $availableRooms;
     }
 }

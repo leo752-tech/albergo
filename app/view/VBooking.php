@@ -8,7 +8,8 @@ class VBooking{
         $this->smarty = StartSmarty::configuration();
     }
 
-    public function showSelect($idOffer){
+    public function showSelect($isLoggedIn, $idOffer){
+        $this->smarty->assign('is_logged_in', $isLoggedIn);
         $this->smarty->assign('idOffer', $idOffer);
         $this->smarty->display('selectDate.tpl');
     }

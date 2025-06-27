@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-24 13:10:06
+/* Smarty version 4.3.2, created on 2025-06-27 16:03:45
   from 'C:\xampp\htdocs\albergoPulito\smarty\templates\manageUsers.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_685a878e7a9aa1_06087498',
+  'unifunc' => 'content_685ea4c1a99879_02982526',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c7e5e73a3756c4504540d3c7176a69bb3096b5d5' => 
     array (
       0 => 'C:\\xampp\\htdocs\\albergoPulito\\smarty\\templates\\manageUsers.tpl',
-      1 => 1750621005,
+      1 => 1751033016,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer_admin.tpl' => 1,
   ),
 ),false)) {
-function content_685a878e7a9aa1_06087498 (Smarty_Internal_Template $_smarty_tpl) {
+function content_685ea4c1a99879_02982526 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender('file:header_admin.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('pageTitle'=>'Gestione Utenti'), 0, false);
 ?>
 
@@ -94,11 +94,11 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                     <th>NOME</th>
                     <th>COGNOME</th>
                     <th>EMAIL</th>
-                    <th>AZIONI</th>
+                    <th>STATO</th>                     <th>AZIONI</th>
                 </tr>
             </thead>
-            <tbody>
-                                <?php if (!empty($_smarty_tpl->tpl_vars['registeredUsers']->value)) {?>
+            <tbody>  
+                <?php if (!empty($_smarty_tpl->tpl_vars['registeredUsers']->value)) {?>
                     <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['registeredUsers']->value, 'user');
 $_smarty_tpl->tpl_vars['user']->do_else = true;
@@ -114,13 +114,21 @@ $_smarty_tpl->tpl_vars['user']->do_else = false;
 </td>
                             <td><?php echo (($tmp = $_smarty_tpl->tpl_vars['user']->value->getEmail() ?? null)===null||$tmp==='' ? $_smarty_tpl->tpl_vars['user']->value['email'] ?? null : $tmp);?>
 </td>
+                            <td>                                 <?php if ($_smarty_tpl->tpl_vars['user']->value->getIsBanned()) {?>
+                                    <span class="status-banned">Bannato</span>
+                                <?php } else { ?>
+                                    <span class="status-active">Attivo</span>
+                                <?php }?>
+                            </td>
                             <td>
                                 <a href="/albergoPulito/public/Admin/showUpdateRegisteredUser/<?php echo $_smarty_tpl->tpl_vars['user']->value->getIdRegisteredUser();?>
 " class="btn btn-primary btn-sm">Modifica</a>
-                                <form action="/albergoPulito/public/Admin/banRegisteredUser/<?php echo $_smarty_tpl->tpl_vars['user']->value->getIdRegisteredUser();?>
+                                                                <form action="/albergoPulito/public/Admin/<?php if ($_smarty_tpl->tpl_vars['user']->value->getIsBanned()) {?>unBanRegisteredUser<?php } else { ?>banRegisteredUser<?php }?>/<?php echo $_smarty_tpl->tpl_vars['user']->value->getIdRegisteredUser();?>
 " method="POST" style="display:inline-block;">
-                                    <input type="hidden" name="idUser">
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Sei sicuro di voler eliminare questo utente? Tutte le sue prenotazioni saranno cancellate.');">Banna</button>
+                                    <input type="hidden" name="idUser" value="<?php echo $_smarty_tpl->tpl_vars['user']->value->getIdRegisteredUser();?>
+">                                     <button type="submit" class="btn <?php if ($_smarty_tpl->tpl_vars['user']->value->getIsBanned()) {?>btn-secondary<?php } else { ?>btn-danger<?php }?> btn-sm" onclick="return confirm('Sei sicuro di voler <?php if ($_smarty_tpl->tpl_vars['user']->value->getIsBanned()) {?>sbloccare<?php } else { ?>bannare<?php }?> questo utente?');">
+                                        <?php if ($_smarty_tpl->tpl_vars['user']->value->getIsBanned()) {?>Sblocca<?php } else { ?>Banna<?php }?>
+                                    </button>
                                 </form>
                             </td>
                         </tr>
@@ -129,8 +137,7 @@ $_smarty_tpl->tpl_vars['user']->do_else = false;
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                 <?php } else { ?>
                     <tr>
-                        <td colspan="6" class="text-center">Nessun utente registrato trovato o nessun utente con prenotazioni.</td>
-                    </tr>
+                        <td colspan="6" class="text-center">Nessun utente registrato trovato.</td>                     </tr>
                 <?php }?>
             </tbody>
         </table>

@@ -27,7 +27,7 @@ class CUser{
 
             $user= new EUser(null,UHTTP::post('firstName'), UHTTP::post('lastName'), new DateTime(UHTTP::post('birthDate')), UHTTP::post('birthPlace'));
             $id=FPersistentManager::getInstance()->saveObject($user);
-            $registeredUser = new ERegisteredUser(null,$id,UHTTP::post('email'), UHTTP::post('password'),UHTTP::post('firstName'), UHTTP::post('lastName'),new dateTime(UHTTP::post('birthDate')),UHTTP::post('birthPlace'));
+            $registeredUser = new ERegisteredUser(null,$id,UHTTP::post('email'), UHTTP::post('password'),UHTTP::post('firstName'), UHTTP::post('lastName'),new dateTime(UHTTP::post('birthDate')),UHTTP::post('birthPlace'), false);
             $result = FPersistentManager::getInstance()->saveObject($registeredUser);
             //echo "OPERATION SUCCESSFUL";
 
@@ -79,7 +79,7 @@ class CUser{
 
             }else{
                 $message = 'password errata';
-                header("Location: /albergoPulito/public/User/error/{$message}");
+                header("Location: /albergoPulito/public/User/error/{$message}/{$pathUrl}");
                 exit();    
             }
         }else{
@@ -88,18 +88,22 @@ class CUser{
         }
     }
 
-    public static function error($message){
+    public static function error($message, $pathUrl){
         $view = new VError();
         $isLoggedIn = self::isLogged();
         $messageDecoded = urldecode($message);
-        $view->showError($isLoggedIn, $messageDecoded);
+        $view->showError($isLoggedIn, $messageDecoded, $pathUrl);
     }
 
     public static function logout(){
-        USession::getInstance();
-        USession::unsetSession();
-        USession::destroySession();
-        header('Location: /albergoPulito/public/User/home');
+        $isLoggedIn = self::isLogged();
+        if($isLoggedIn){
+            USession::getInstance();
+            USession::unsetSession();
+            USession::destroySession();
+            header('Location: /albergoPulito/public/User/home');
+        }
+        
     }
 
     //DA VEDERE
@@ -111,7 +115,8 @@ class CUser{
     }
     public static function showLoginForm(){
         $view = new VUser();
-        $view->showFormsLogin(); 
+        $isLoggedIn = self::isLogged();
+        $view->showFormsLogin($isLoggedIn); 
     }
 
     
@@ -148,7 +153,7 @@ class CUser{
         $isLoggedIn = self::isLogged();
         if($isLoggedIn){
             $view = new VUser();
-            $user = USession::getInstance()->getSessionElement('idUser');
+            $idUser = USession::getInstance()->getSessionElement('idUser');
             $user = FPersistentManager::getInstance()->getObject('ERegisteredUser',$idUser);
             $view->showUpdatePassword($isLoggedIn, $user);
 
@@ -159,27 +164,34 @@ class CUser{
     }
 
     public static function updateAccount(){
-        
-        USession::getInstance();
-        $idUser = USession::getSessionElement('idUser');
-        $registeredUser = FPersistentManager::getInstance()->getObject('ERegisteredUser',$idUser);
-        $mod = array();
-        if( UHTTP::post("firstName") != ''){$mod[] = ['firstName', UHTTP::post("firstName")];}
-        if( UHTTP::post("lastName") != ''){$mod[] = ['lastName', UHTTP::post("lastName")];}
-        if( UHTTP::post("birthDate") != null){$mod[] = ['birthDate', new DateTime(UHTTP::post("birthDate"))];}
-        if( UHTTP::post("birthPlace") != ''){$mod[] = ['birthPlace', UHTTP::post("birthPlace")];}
-        if( UHTTP::post("email") != ''){$mod[] = ['email', UHTTP::post("email")];}
-        $result = FPersistentManager::getInstance()->updateObject($registeredUser, $mod);
-        $registeredUser = FPersistentManager::getInstance()->getObject('ERegisteredUser', $registeredUser->getIdRegisteredUser());
-        $idUser = $registeredUser->getIdUser();
-        $user = FPersistentManager::getInstance()->getObject('EUser', $idUser);
-        $mod = array(['firstName', UHTTP::post("firstName")], ['lastName', UHTTP::post("lastName")], ['birthDate', new DateTime(UHTTP::post("birthDate"))], ['birthPlace', UHTTP::post("birthPlace")]);
-        $result = FPersistentManager::getInstance()->updateObject($user, $mod);
-        USession::getInstance()->unsetSessionElement('user');
-        USession::getInstance()->setSessionElement('user', serialize($registeredUser));
+        $isLoggedIn = self::isLogged();
+        if($isLoggedIn){
+            USession::getInstance();
+            $idUser = USession::getSessionElement('idUser');
+            $registeredUser = FPersistentManager::getInstance()->getObject('ERegisteredUser',$idUser);
+            $mod = array();
+            if( UHTTP::post("firstName") != ''){$mod[] = ['firstName', UHTTP::post("firstName")];}
+            if( UHTTP::post("lastName") != ''){$mod[] = ['lastName', UHTTP::post("lastName")];}
+            if( UHTTP::post("birthDate") != null){$mod[] = ['birthDate', new DateTime(UHTTP::post("birthDate"))];}
+            if( UHTTP::post("birthPlace") != ''){$mod[] = ['birthPlace', UHTTP::post("birthPlace")];}
+            if( UHTTP::post("email") != ''){$mod[] = ['email', UHTTP::post("email")];}
+            $result = FPersistentManager::getInstance()->updateObject($registeredUser, $mod);
+            $registeredUser = FPersistentManager::getInstance()->getObject('ERegisteredUser', $registeredUser->getIdRegisteredUser());
+            $idUser = $registeredUser->getIdUser();
+            $user = FPersistentManager::getInstance()->getObject('EUser', $idUser);
+            $mod = array(['firstName', UHTTP::post("firstName")], ['lastName', UHTTP::post("lastName")], ['birthDate', new DateTime(UHTTP::post("birthDate"))], ['birthPlace', UHTTP::post("birthPlace")]);
+            $result = FPersistentManager::getInstance()->updateObject($user, $mod);
+            USession::getInstance()->unsetSessionElement('user');
+            USession::getInstance()->setSessionElement('user', serialize($registeredUser));
 
-        header('Location: /albergoPulito/public/User/showAccountDetails');
-        exit;
+            header('Location: /albergoPulito/public/User/showAccountDetails');
+            exit;
+        }else{
+            header('Location: /albergoPulito/public/');
+            exit;
+        }
+        
+        
 
     }
 
@@ -216,7 +228,6 @@ class CUser{
             $view = new VUser();
             $idUser = USession::getInstance()->getSessionElement('idUser');
             $bookings = FPersistentManager::getInstance()->getBookingsByUser($idUser);
-            echo gettype($bookings[0]);
             $user = FPersistentManager::getInstance()->getObject('ERegisteredUser', $idUser);
             $view->showMyBookings($isLoggedIn, $bookings);
 
@@ -320,6 +331,62 @@ class CUser{
             $servicesObj[] = $extraService;
         }
         $view->showService($isLoggedIn, $servicesObj);
+    }
+
+    public static function showAllRooms(){
+        $isLoggedIn = self::isLogged();
+        $view = new VUser();
+        $rooms = $images = FPersistentManager::getInstance()->getAllRooms();
+        $roomsObj = array();
+        foreach($rooms as $queryRes){
+            $roomsObj[] = new ERoom($queryRes["idRoom"], $queryRes["name"], $queryRes["beds"], $queryRes["price"], $queryRes["type"], $queryRes["description"]);
+        }
+        $allImagesForAvailableRooms = array();
+        foreach($roomsObj as $r){
+            $images = FPersistentManager::getInstance()->getImagesByRoom($r->getId());
+            $roomsImages[] = array($r, $images);
+            $allImagesForAvailableRooms = array_merge($allImagesForAvailableRooms, $images);
+        }
+        USession::setSessionElement('searchedRoomImages', $allImagesForAvailableRooms);
+        USession::setSessionElement('roomsImages', $roomsImages);
+        
+        $view->showAllRooms($isLoggedIn, $roomsImages);
+    }
+
+    public static function deleteBooking($idBooking){
+        $isLoggedIn = self::isLogged();
+        if($isLoggedIn){
+            $booking = FPersistentManager::getInstance()->getObject('EBooking', $idBooking);
+            $currentDate = new DateTime();
+            $checkInDate = $booking->getCheckInDate();
+            $condition = $currentDate->diff($checkInDate)->days;
+
+            if($condition>=10){
+                $mod = array(array('cancellation', 1));
+                $result = FPersistentManager::getInstance()->updateObject($booking, $mod);
+                header('Location: /albergoPulito/public/User/showMyBookings');
+                exit;
+            }else{
+                $view = new VError();
+                $message = "E' scaduto il limite di 10 giorni entro i quali è possibile annullare la prenotazione";
+                $pathUrl = '/albergoPulito/public/User/showMyBookings';
+                $view->showError($isLoggedIn, $message, $pathUrl);
+            }
+        }else{
+            header('Location: /albergoPulito/public/');
+            exit;
+        }
+    }
+
+    public static function deleteReview($idReview){
+        $isLoggedIn = self::isLogged();
+        if($isLoggedIn){
+            $result = FPersistentManager::getInstance()->deleteObject('EReview', $idReview);
+            header('Location: /albergoPulito/public/User/showAccountDetails');
+        }else{
+            header('Location: /albergoPulito/public/');
+            exit;
+        }
     }
 
 
