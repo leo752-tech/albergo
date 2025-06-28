@@ -42,3 +42,4 @@ class Installation{
         }
     }
 }
+Installation::install();
