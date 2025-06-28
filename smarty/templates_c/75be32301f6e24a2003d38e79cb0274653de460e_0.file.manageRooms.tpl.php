@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-28 10:42:47
+/* Smarty version 4.3.2, created on 2025-06-28 12:33:02
   from 'C:\xampp\htdocs\albergoPulito\smarty\templates\manageRooms.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_685fab07d331b5_43739660',
+  'unifunc' => 'content_685fc4de6c4146_35916301',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '75be32301f6e24a2003d38e79cb0274653de460e' => 
     array (
       0 => 'C:\\xampp\\htdocs\\albergoPulito\\smarty\\templates\\manageRooms.tpl',
-      1 => 1750623449,
+      1 => 1751106746,
       2 => 'file',
     ),
   ),
@@ -22,8 +22,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer_admin.tpl' => 1,
   ),
 ),false)) {
-function content_685fab07d331b5_43739660 (Smarty_Internal_Template $_smarty_tpl) {
-$_smarty_tpl->_subTemplateRender('file:header_admin.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+function content_685fc4de6c4146_35916301 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->_subTemplateRender('file:header_admin.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('pageTitle'=>'manage Rooms'), 0, false);
 ?>
 
 <h2>Gestione Camere</h2>

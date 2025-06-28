@@ -341,7 +341,7 @@ class CUser{
         $offers = FPersistentManager::getInstance()->getAllSpecialOffer();
         $offersObj = array();
         foreach($offers as $queryRes){
-            $specialOffer = new ESpecialOffer($queryRes["idSpecialOffer"], $queryRes["title"], $queryRes["description"], $queryRes["beds"], $queryRes["length"], $queryRes["specialPrice"], $queryRes["pathImage"]);
+            $specialOffer = new ESpecialOffer($queryRes["idSpecialOffer"], $queryRes["title"], $queryRes["description"], $queryRes["length"], $queryRes["specialPrice"], $queryRes["pathImage"]);
             $offersObj[] = $specialOffer;
         }
         $view->showSpecialOffer($isLoggedIn, $offersObj);

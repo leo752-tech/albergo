@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-27 21:37:05
+/* Smarty version 4.3.2, created on 2025-06-28 14:26:27
   from 'C:\xampp\htdocs\albergoPulito\smarty\templates\registration.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_685ef2e12c8107_85192748',
+  'unifunc' => 'content_685fdf7352ce00_51917395',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '82e7992600e8dd3ea19581bd9e3d73f94ff7c8ba' => 
     array (
       0 => 'C:\\xampp\\htdocs\\albergoPulito\\smarty\\templates\\registration.tpl',
-      1 => 1751053007,
+      1 => 1751106746,
       2 => 'file',
     ),
   ),
@@ -22,8 +22,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_685ef2e12c8107_85192748 (Smarty_Internal_Template $_smarty_tpl) {
-$_smarty_tpl->_subTemplateRender('file:header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+function content_685fdf7352ce00_51917395 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->_subTemplateRender('file:header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('pageTitle'=>'registration'), 0, false);
 ?>
 <section id="auth-forms" class="container section-padding">
     <h2 class="mt-5">Nuovo Utente? Registrati</h2>

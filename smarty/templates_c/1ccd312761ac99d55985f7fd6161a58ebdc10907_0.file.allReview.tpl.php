@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-27 22:09:54
+/* Smarty version 4.3.2, created on 2025-06-28 14:21:23
   from 'C:\xampp\htdocs\albergoPulito\smarty\templates\allReview.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_685efa92225901_57300427',
+  'unifunc' => 'content_685fde430b9a70_21215240',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1ccd312761ac99d55985f7fd6161a58ebdc10907' => 
     array (
       0 => 'C:\\xampp\\htdocs\\albergoPulito\\smarty\\templates\\allReview.tpl',
-      1 => 1750860707,
+      1 => 1751106746,
       2 => 'file',
     ),
   ),
@@ -22,8 +22,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_685efa92225901_57300427 (Smarty_Internal_Template $_smarty_tpl) {
-$_smarty_tpl->_subTemplateRender('file:header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+function content_685fde430b9a70_21215240 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->_subTemplateRender('file:header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('pageTitle'=>'all Review'), 0, false);
 ?>
 
 <h2>Tutte le Recensioni dei Clienti</h2>

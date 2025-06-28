@@ -17,7 +17,6 @@
                                 <p>{$offerta->getDescription()}</p>
                                 <div class="offer-details">
                                     <p>Durata Soggiorno: <strong>{$offerta->getLength()} notti</strong></p>
-                                    <p>Posti Letto: <strong>{$offerta->getBeds()}</strong></p>
                                 </div>
                                 <div class="room-price">
                                     Prezzo Speciale: <span class="offer-price">€{$offerta->getSpecialPrice()|string_format:"%.2f"}</span>

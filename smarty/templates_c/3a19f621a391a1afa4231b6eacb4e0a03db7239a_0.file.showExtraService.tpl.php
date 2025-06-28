@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-27 21:58:57
+/* Smarty version 4.3.2, created on 2025-06-28 14:25:48
   from 'C:\xampp\htdocs\albergoPulito\smarty\templates\showExtraService.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_685ef8011df403_43878006',
+  'unifunc' => 'content_685fdf4c6bbbf9_08651807',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '3a19f621a391a1afa4231b6eacb4e0a03db7239a' => 
     array (
       0 => 'C:\\xampp\\htdocs\\albergoPulito\\smarty\\templates\\showExtraService.tpl',
-      1 => 1750970471,
+      1 => 1751106746,
       2 => 'file',
     ),
   ),
@@ -22,8 +22,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_685ef8011df403_43878006 (Smarty_Internal_Template $_smarty_tpl) {
-$_smarty_tpl->_subTemplateRender('file:header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+function content_685fdf4c6bbbf9_08651807 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->_subTemplateRender('file:header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('pageTitle'=>'show extraservice'), 0, false);
 ?>
 
 

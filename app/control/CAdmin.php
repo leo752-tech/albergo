@@ -306,7 +306,7 @@ class CAdmin{
 
 //--------------------------------------BOOKING-----------------------------------------------------------------
 
-    public static function manageBookings(){
+    public static function manageBookingsVecchio(){
         $view = new VAdmin();
         $books = FPersistentManager::getInstance()->getAllBookings();
         $booksObj = array();
@@ -317,6 +317,37 @@ class CAdmin{
         $admin_logged_in = CAdmin::isAdminLogged();
         $view->manageBookings();
     }
+
+	public static function manageBookings() {
+		$view = new VAdmin();
+		$books = FPersistentManager::getInstance()->getAllBookings();
+
+		$booksObj = array();      
+		$booksArray = array();     
+
+		foreach($books as $queryRes){
+			$booking = new EBooking(
+				$queryRes["idBooking"],
+				$queryRes["idRegisteredUser"],
+				new DateTime($queryRes["checkInDate"]),
+				new DateTime($queryRes["checkOutDate"]),
+				$queryRes["idRoom"],
+				$queryRes["totalPrice"],
+				new DateTime($queryRes["bookingDate"]),
+				$queryRes["idSpecialOffer"]
+			);
+
+			$booksObj[] = $booking;
+
+			$booksArray[] = [
+				'checkIn' => $booking->getCheckInDate()->format('Y-m-d'),
+				'checkOut' => $booking->getCheckOutDate()->format('Y-m-d')
+			];
+		}
+
+		$admin_logged_in = CAdmin::isAdminLogged();
+		$view->manageBookings($admin_logged_in, $booksObj);
+	}    
 
     public static function showInsertBooking(){
 
@@ -469,7 +500,7 @@ class CAdmin{
         $offers = FPersistentManager::getInstance()->getAllSpecialOffer();
         $offersObj = array();
         foreach($offers as $queryRes){
-            $offersObj[] = new ESpecialOffer($queryRes["idSpecialOffer"], $queryRes["title"], $queryRes["description"], $queryRes["beds"], $queryRes["length"], $queryRes["specialPrice"], $queryRes['pathImage']);
+            $offersObj[] = new ESpecialOffer($queryRes["idSpecialOffer"], $queryRes["title"], $queryRes["description"], $queryRes["length"], $queryRes["specialPrice"], $queryRes['pathImage']);
         }
        
         $admin_logged_in = CAdmin::isAdminLogged();
@@ -497,7 +528,7 @@ class CAdmin{
         }else{
             echo 'ERRORE NEL CARICAMENTO';
         }
-        $offer = new ESpecialOffer(null, UHTTP::post('title'), UHTTP::post('description'), UHTTP::post('beds'), UHTTP::post('length'), UHTTP::post('specialPrice'), $uploadPath);
+        $offer = new ESpecialOffer(null, UHTTP::post('title'), UHTTP::post('description'), UHTTP::post('length'), UHTTP::post('specialPrice'), $uploadPath);
         $result = FPersistentManager::getInstance()->saveObject($offer);
         
         if($result == false){
@@ -522,7 +553,6 @@ class CAdmin{
         $mod = array();
         if( UHTTP::post("title") != ''){$mod[] = ['title', UHTTP::post("title")];}
         if( UHTTP::post("description") != ''){$mod[] = ['description', UHTTP::post("description")];}
-        if( UHTTP::post("beds") != null){$mod[] = ['beds', UHTTP::post("beds")];}
         if( UHTTP::post("length") != null){$mod[] = ['length', UHTTP::post("length")];}
         if( UHTTP::post("specialPrice") != ''){$mod[] = ['specialPrice', UHTTP::post("specialPrice")];}
 
@@ -569,7 +599,7 @@ class CAdmin{
 		$extraServices = FPersistentManager::getInstance()->getAllExtraServices();
         
 		$reviews = FPersistentManager::getInstance()->getAllReview();
-        echo count($reviews);
+        
   
         $bookedServices = FPersistentManager::getInstance()->getAllBookingsExtraServices();
         

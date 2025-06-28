@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-27 22:03:47
+/* Smarty version 4.3.2, created on 2025-06-28 13:03:18
   from 'C:\xampp\htdocs\albergoPulito\smarty\templates\showOffer.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_685ef923a1cbb1_97809481',
+  'unifunc' => 'content_685fcbf6c92eb2_07278535',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '51da3df59a13631518dabe7ee72e1c8dbadb4312' => 
     array (
       0 => 'C:\\xampp\\htdocs\\albergoPulito\\smarty\\templates\\showOffer.tpl',
-      1 => 1750964669,
+      1 => 1751108527,
       2 => 'file',
     ),
   ),
@@ -22,8 +22,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_685ef923a1cbb1_97809481 (Smarty_Internal_Template $_smarty_tpl) {
-$_smarty_tpl->_subTemplateRender('file:header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+function content_685fcbf6c92eb2_07278535 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->_subTemplateRender('file:header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('pageTitle'=>'show offer'), 0, false);
 ?>
         <section class="section-padding">
             <div class="container">
@@ -52,8 +52,6 @@ $_smarty_tpl->tpl_vars['offerta']->do_else = false;
                                 <div class="offer-details">
                                     <p>Durata Soggiorno: <strong><?php echo $_smarty_tpl->tpl_vars['offerta']->value->getLength();?>
  notti</strong></p>
-                                    <p>Posti Letto: <strong><?php echo $_smarty_tpl->tpl_vars['offerta']->value->getBeds();?>
-</strong></p>
                                 </div>
                                 <div class="room-price">
                                     Prezzo Speciale: <span class="offer-price">€<?php echo sprintf("%.2f",$_smarty_tpl->tpl_vars['offerta']->value->getSpecialPrice());?>

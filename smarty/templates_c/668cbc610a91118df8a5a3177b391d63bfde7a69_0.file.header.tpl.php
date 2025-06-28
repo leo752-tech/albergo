@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-28 10:47:29
+/* Smarty version 4.3.2, created on 2025-06-28 14:23:29
   from 'C:\xampp\htdocs\albergoPulito\smarty\templates\header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_685fac2194e257_66429242',
+  'unifunc' => 'content_685fdec1606854_96708067',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '668cbc610a91118df8a5a3177b391d63bfde7a69' => 
     array (
       0 => 'C:\\xampp\\htdocs\\albergoPulito\\smarty\\templates\\header.tpl',
-      1 => 1751100411,
+      1 => 1751113403,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_685fac2194e257_66429242 (Smarty_Internal_Template $_smarty_tpl) {
+function content_685fdec1606854_96708067 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="it">
 <head>  
@@ -30,7 +30,7 @@ function content_685fac2194e257_66429242 (Smarty_Internal_Template $_smarty_tpl)
 </title>
     <link rel="stylesheet" href="/albergoPulito/public/assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
+</head>  
 <body>
     <header>
         <div class="container">

@@ -5,16 +5,14 @@ class ESpecialOffer{
     private ?int $idSpecialOffer;
     private string $title;
     private string $description;
-    private int $beds;
     private int $length;
     private float $specialPrice;
     private string $pathImage;
 
-    public function __construct(?int $idSpecialOffer = null, string $title, string $description, int $beds, int $length, float $specialPrice, string $pathImage){
+    public function __construct(?int $idSpecialOffer = null, string $title, string $description, int $length, float $specialPrice, string $pathImage){
         $this->idSpecialOffer = $idSpecialOffer;
         $this->title = $title;
         $this->description = $description;
-        $this->beds = $beds;
         $this->length = $length;
         $this->specialPrice = $specialPrice;
         $this->pathImage = $pathImage;
@@ -39,13 +37,6 @@ class ESpecialOffer{
     }
     public function getDescription(): string{
         return $this->description;
-    }
-
-    public function setBeds(int $beds){
-        $this->beds = $beds;
-    }
-    public function getBeds(): int{
-        return $this->beds;
     }
 
     public function setLength(int $length){

@@ -11,12 +11,11 @@ class FSpecialOffer{
     
     public function __construct(){}
 
-    private static $values = "(NULL, :title, :description, :beds, :length, :specialPrice, :pathImage)";
+    private static $values = "(NULL, :title, :description, :length, :specialPrice, :pathImage)";
 
     public static function bind($stmt, $specialOffer) {
         $stmt->bindValue(":title", $specialOffer->getTitle(), PDO::PARAM_STR);
         $stmt->bindValue(":description", $specialOffer->getDescription(), PDO::PARAM_STR);
-        $stmt->bindValue(":beds", $specialOffer->getBeds(), PDO::PARAM_INT);
         $stmt->bindValue(":length", $specialOffer->getLength(), PDO::PARAM_INT);
         $stmt->bindValue(":specialPrice", $specialOffer->getSpecialPrice(), PDO::PARAM_STR);
         $stmt->bindValue(":pathImage", $specialOffer->getPathImage(), PDO::PARAM_STR);
@@ -39,7 +38,7 @@ class FSpecialOffer{
     }
 
     public static function createObject($queryRes){
-        $specialOffer = new ESpecialOffer($queryRes["idSpecialOffer"], $queryRes["title"], $queryRes["description"], $queryRes["beds"], $queryRes["length"], $queryRes["specialPrice"], $queryRes["pathImage"]);
+        $specialOffer = new ESpecialOffer($queryRes["idSpecialOffer"], $queryRes["title"], $queryRes["description"], $queryRes["length"], $queryRes["specialPrice"], $queryRes["pathImage"]);
         return $specialOffer;
     }
 

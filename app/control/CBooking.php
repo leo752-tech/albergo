@@ -104,17 +104,12 @@ class CBooking {
         
     }
 
-    public static function isRightLength($reqCheckIn, $reqCheckOut, $reqLength){
+    public static function isRightLength($reqCheckIn, $reqCheckOut, $offerLength){
         $reqCheckIn = new DateTime($reqCheckIn);
         $reqCheckOut = new DateTime($reqCheckOut);
-        $length = $reqCheckIn->diff($reqCheckOut)->days;
+        $reqLength = $reqCheckIn->diff($reqCheckOut)->days;
         
-        if($length != $reqLength){
-            
-            return false;
-        }else{
-            return true;
-        }
+        return $reqLength == $offerLength;
     }
 
     
@@ -238,6 +233,7 @@ class CBooking {
             }
             $digits = UHTTP::post('cardNumber');
             $digits = 'XXXX-XXXX-XXXX-' . substr($digits, -4);
+            echo $digits;
             $payment = new EPayment(null, $booking->getId(), $booking->getTotalPrice(), null, $digits, UHTTP::post('cardName'));
             $result = FPersistentManager::getInstance()->saveObject($payment);
             header('Location: /albergoPulito/public/User/home');
@@ -276,71 +272,75 @@ class CBooking {
 
         $requestedCheckIn = UHTTP::post('data_check_in');
         $requestedCheckOut = UHTTP::post('data_check_out');
-        $period = array($requestedCheckIn, $requestedCheckOut);
-        USession::setSessionElement('period', $period);
-
+        $requestedBeds = UHTTP::post('num_adulti');
         $specialOffer = FPersistentManager::getInstance()->getObject('ESpecialOffer', $idSpecialOffer);
-        $requestedBeds = $specialOffer->getBeds();
+        $offerLength = $specialOffer->getLength();
+        $isLength = self::isRightLength($requestedCheckIn, $requestedCheckOut, $offerLength);
+        if($isLength){
+            $period = array($requestedCheckIn, $requestedCheckOut);
+            USession::setSessionElement('period', $period);
 
-        $availableRooms = array();
-        
-        $rooms = FPersistentManager::getInstance()->getRoomsByBeds($requestedBeds);
+            
 
-        if (empty($rooms)) { 
-            echo "THERE IS NO ROOM WITH BEDS SELECTED";
-            return $availableRooms; 
-        }
+            $availableRooms = array();
+            
+            $rooms = FPersistentManager::getInstance()->getRoomsByBeds($requestedBeds);
 
-        foreach ($rooms as $room) {
-            $isRoomCurrentlyAvailable = true; 
-         
-            $bookingsForThisRoom = FPersistentManager::getInstance()->getBookingsByRoom($room->getId());
+            if (empty($rooms)) { 
+                echo "THERE IS NO ROOM WITH BEDS SELECTED";
+                return $availableRooms; 
+            }
 
-         
-            if (!empty($bookingsForThisRoom)) { 
-                foreach ($bookingsForThisRoom as $book) {
-                   
-                    $occupiedCheckIn  = $book["checkInDate"];
-                    $occupiedCheckOut = $book["checkOutDate"];
-                    $requestedLength = (new DateTime($requestedCheckIn))->diff(new DateTime($requestedCheckOut))->days;
+            foreach ($rooms as $room) {
+                $isRoomCurrentlyAvailable = true; 
+            
+                $bookingsForThisRoom = FPersistentManager::getInstance()->getBookingsByRoom($room->getId());
+
+            
+                if (!empty($bookingsForThisRoom)) { 
+                    foreach ($bookingsForThisRoom as $book) {
                     
-
-                    $isLength = self::isRightLength($occupiedCheckIn, $occupiedCheckOut, $requestedLength);
-                    if(!$isLength){
-                        $isRoomCurrentlyAvailable = false;
-                        break;
-                    }                    
-                    if (!self::isAvailableRoom($requestedCheckIn, $requestedCheckOut, $occupiedCheckIn, $occupiedCheckOut)) {
-                        
-                        $isRoomCurrentlyAvailable = false;
-                        
-                        break; 
+                        $occupiedCheckIn  = $book["checkInDate"];
+                        $occupiedCheckOut = $book["checkOutDate"];
+                                        
+                        if (!self::isAvailableRoom($requestedCheckIn, $requestedCheckOut, $occupiedCheckIn, $occupiedCheckOut)) {
+                            
+                            $isRoomCurrentlyAvailable = false;
+                            
+                            break; 
+                        }
                     }
+                }
+
+                if ($isRoomCurrentlyAvailable) {
+                    $availableRooms[] = $room; 
                 }
             }
 
-            if ($isRoomCurrentlyAvailable) {
-                $availableRooms[] = $room; 
+            
+            if (empty($availableRooms)) {
+                echo "NESSUNA CAMERA DISPONIBILE PER LE DATE SELEZIONATE";
             }
-        }
+                    $roomsImages = array();
+            $allImagesForAvailableRooms = array();
+            foreach($availableRooms as $room){
+                $images = FPersistentManager::getInstance()->getImagesByRoom($room->getId());
+                $roomsImages[] = array($room, $images);
+                $allImagesForAvailableRooms = array_merge($allImagesForAvailableRooms, $images);
+    
 
-        
-        if (empty($availableRooms)) {
-            echo "NESSUNA CAMERA DISPONIBILE PER LE DATE SELEZIONATE";
-        }
-                $roomsImages = array();
-        $allImagesForAvailableRooms = array();
-        foreach($availableRooms as $room){
-            $images = FPersistentManager::getInstance()->getImagesByRoom($room->getId());
-            $roomsImages[] = array($room, $images);
-            $allImagesForAvailableRooms = array_merge($allImagesForAvailableRooms, $images);
- 
-
+            }
+            
+            USession::setSessionElement('searchedRoomImages', $allImagesForAvailableRooms);
+            USession::setSessionElement('roomsImages', $roomsImages);
+            $view->showAvailableRooms($isLoggedIn, $roomsImages);
+        }else{
+            $error = new VError();
+            $message = "Seleziona un periodo che abbia un numero di notti pari a quello definito nell'offerta";
+            $error->showError($isLoggedIn, $message);
+            exit;
         }
         
-        USession::setSessionElement('searchedRoomImages', $allImagesForAvailableRooms);
-        USession::setSessionElement('roomsImages', $roomsImages);
-        $view->showAvailableRooms($isLoggedIn, $roomsImages);
      
     }
 }

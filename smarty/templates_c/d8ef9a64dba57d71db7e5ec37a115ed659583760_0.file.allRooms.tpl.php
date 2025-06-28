@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-28 10:54:21
+/* Smarty version 4.3.2, created on 2025-06-28 14:21:11
   from 'C:\xampp\htdocs\albergoPulito\smarty\templates\allRooms.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_685fadbdd9a590_84767878',
+  'unifunc' => 'content_685fde371b8e35_58657091',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd8ef9a64dba57d71db7e5ec37a115ed659583760' => 
     array (
       0 => 'C:\\xampp\\htdocs\\albergoPulito\\smarty\\templates\\allRooms.tpl',
-      1 => 1751019348,
+      1 => 1751106746,
       2 => 'file',
     ),
   ),
@@ -22,8 +22,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_685fadbdd9a590_84767878 (Smarty_Internal_Template $_smarty_tpl) {
-$_smarty_tpl->_subTemplateRender('file:header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+function content_685fde371b8e35_58657091 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->_subTemplateRender('file:header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('pageTitle'=>'all Rooms'), 0, false);
 ?>
 <section id="all-rooms" class="container section-padding">
     <h2>Tutte le Camere Disponibili</h2>

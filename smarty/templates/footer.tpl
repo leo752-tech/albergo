@@ -10,11 +10,10 @@
                         <h3>Link Utili</h3>
                         <ul>
                             <li><a href="/albergoPulito/public/">Home</a></li>
-                            <li><a href="camere.php">Camere</a></li>
-                            <li><a href="servizi.php">Servizi</a></li>
-                            <li><a href="prenota.php">Prenota Ora</a></li>
-                            <li><a href="recensioni.php">Recensioni</a></li>
-                            <li><a href="contatti.php">Contatti</a></li>
+                            <li><a href="albergoPulito/public/User/showAllRooms">Camere</a></li>
+                            <li><a href="/albergoPulito/public/User/showService">Servizi</a></li>
+                            <li><a href="/albergoPulito/public/Booking/selectDate">Prenota Ora</a></li>
+                            <li><a href="/albergoPulito/public/User/showAllReviews">Recensioni</a></li>
                         </ul>
                     </div>
                     <div class="footer-section contact">

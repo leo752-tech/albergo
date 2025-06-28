@@ -12,10 +12,6 @@
             <input type="text" class="form-control" id="description" name="description" required>
         </div>
         <div class="form-group">
-            <label for="beds">Numero di posti letto:</label>
-            <input type="number" class="form-control" id="beds" name="beds" min="0">
-        </div>
-        <div class="form-group">
             <label for="length">Notti Minime (Opzionale):</label>
             <input type="number" class="form-control" id="length" name="length" min="0">
         </div>

@@ -67,11 +67,23 @@ class VAdmin {
     
 //------------------------BOOKING-------------------------------------------------
 
-    public function manageBookings() {
+    public function manageBookingsqq() {
         //$this->smarty->assign('admin_logged_in', $admin_logged_in);
         //$this->smarty->assign('bookings', $books);
         $this->smarty->display('calendar.tpl');
     }
+
+    public function manageBookings($admin_logged_in, $books) {
+		$this->smarty->assign('admin_logged_in', $admin_logged_in);
+		$this->smarty->assign('bookings', $books);
+		$this->smarty->assign('bookingsArray', array_map(function($b) {
+			return [
+				'checkIn' => $b->getCheckInDate()->format('Y-m-d'),
+				'checkOut' => $b->getCheckOutDate()->format('Y-m-d')
+			];
+		}, $books));
+		$this->smarty->display('calendar.tpl');
+	}
     
     public function showBookingDetail( $bookings, $date){
         $this->smarty->assign('readableDate', $date);
