@@ -17,6 +17,10 @@ class EPayment {
         $this->cardHolderName = $cardHolderName;
     }
 
+    public function setId(int $id){
+        $this->idPayment = $id;
+    }
+
     // --- Metodi Getters ---
     public function getId(): ?int {
         return $this->idPayment;
