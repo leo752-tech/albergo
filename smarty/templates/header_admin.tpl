@@ -24,7 +24,7 @@
 
 
                     {if $admin_logged_in}
-                    <li><a href="/albergoPulito/public/User/logout" class="btn btn-danger btn-sm"><i class="fas fa-sign-out-alt"></i> Logout ({$admin_username|default:'Admin'})</a></li>
+                    <li><a href="/albergoPulito/public/Admin/logout" class="btn btn-danger btn-sm"><i class="fas fa-sign-out-alt"></i> Logout ({$admin_username|default:'Admin'})</a></li>
                     {/if}
                 </ul>
             </nav>

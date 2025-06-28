@@ -4,7 +4,7 @@
     <h2>Aggiungi Nuova Camera</h2>
 
     <div class="form-grid">
-        <form action="/albergoPulito/public/Admin/insertOffer" method="POST" enctype="multipart/form-data">
+        <form action="/albergoPulito/public/Admin/insertRoom" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="name">Nome Camera:</label>
                 <input type="text" class="form-control" id="name" name="name" value="{$formData.name|default:''}" required>
@@ -26,7 +26,7 @@
             </div>
 
             <div class="form-group full-width">
-                <label for="description">Descrizione (Opzionale):</label>
+                <label for="description">Descrizione:</label>
                 <textarea class="form-control" id="description" name="description" rows="5">{$formData.description|default:''}</textarea>
             </div>
 
@@ -41,8 +41,8 @@
                 </div>
             </div>
             <div class="form-group full-width">
-                <button type="submit" class="btn btn-success">Crea Offerta</button>
-                <a href="/albergoPulito/public/Admin/manageSpecialOffer" class="btn btn-secondary">Annulla</a>
+                <button type="submit" class="btn btn-success">Crea Camera</button>
+                <a href="/albergoPulito/public/Admin/manageRooms" class="btn btn-secondary">Annulla</a>
             </div>
         </form>
     </div>

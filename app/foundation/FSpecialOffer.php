@@ -74,7 +74,7 @@ class FSpecialOffer{
                     if ($fieldValue instanceof DateTime) {
                         $fieldValue = $fieldValue->format("Y-m-d"); 
                     }
-                    FDataMapper::getInstance()->updateObject(self::$table, $fieldName, $fieldValue, self::$key, $object->getId());
+                    FDataMapper::getInstance()->updateObject(self::$table, $fieldName, $fieldValue, self::$key, $object->getIdSpecialOffer());
                 }
                 FDataMapper::getInstance()->getDb()->commit();
                 return true;

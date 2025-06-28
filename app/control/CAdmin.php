@@ -16,6 +16,17 @@ class CAdmin{
         
     }
 
+    public static function logout(){
+        $isLoggedIn = self::isAdminLogged();
+        if($isLoggedIn){
+            USession::getInstance();
+            USession::unsetSession();
+            USession::destroySession();
+            header('Location: /albergoPulito/public/User/home');
+        }
+        
+    }
+
     public static function dashboard(){
         $view = new VAdmin();
         $users = FPersistentManager::getInstance()->getAllUsers();
@@ -213,7 +224,7 @@ class CAdmin{
                 $destPath = $uploadDir . $queryRes['name'];
                 if(move_uploaded_file($queryRes['tmp_name'], $destPath)){
                 
-                    $uploadPath = 'albergoPulito/public/assets/img/' . $queryRes['name'];
+                    $uploadPath = '/albergoPulito/public/assets/img/' . $queryRes['name'];
                     $image = new EImage(null, $idRoom, $queryRes["name"], $uploadPath, $queryRes["type"]);
 
                     $result = FPersistentManager::getInstance()->saveObject($image);
@@ -395,9 +406,10 @@ class CAdmin{
         $view = new VAdmin();
         
         USession::getInstance()->setSessionElement('idServiceModified', $idService);
+        $service = FPersistentManager::getInstance()->getObject('EExtraService', $idService);
 
         $admin_logged_in = CAdmin::isAdminLogged();
-        $view->showUpdateService($admin_logged_in);
+        $view->showUpdateService($admin_logged_in, $service);
     }
 
     public static function updateService(){
@@ -409,11 +421,36 @@ class CAdmin{
         if( UHTTP::post("name") != ''){$mod[] = ['name', UHTTP::post("name")];}
         if( UHTTP::post("description") != ''){$mod[] = ['description', UHTTP::post("description")];}
         if( UHTTP::post("price") != null){$mod[] = ['price', UHTTP::post("price")];}
-        if( UHTTP::file('pathImage') != null){$mod[] = ['pathImage', UHTTP::file('pathImage')];}
+        $file = UHTTP::file('pathImage');
+        if( isset($file)){
+            echo 'JJJJ';
+            $name = $file['name'];
+            $uploadPath = '/albergoPulito/public/assets/img/' . $name;
+            $mod[] = ['pathImage', $uploadPath];
+        }
         $result = FPersistentManager::getInstance()->updateObject($service, $mod);
+        $s = FPersistentManager::getInstance()->getObject('EExtraService', $idService);        
+        
+        $baseUploadDir = __DIR__ . '/../../public/assets/img/';
         
         
-        header('Location: /albergoPulito/public/Admin/manageExtraService');
+        $image = UHTTP::file('pathImage');
+        $uploadDir = __DIR__ . '/../../public/assets/img/';
+        if(isset($image)){
+            
+            $destPath = $uploadDir . $image['name'];
+            if(move_uploaded_file($image['tmp_name'], $destPath)){
+                $uploadPath = '/albergoPulito/public/assets/img/' . $image['name'];
+            }else{
+                echo 'ERRORI NELLO SPOSTAMENTO';
+            }
+        }else{
+            echo 'ERRORE NEL CARICAMENTO';
+        }
+        
+        
+        
+        header('Location: /albergoPulito/public/Admin/manageExtraServices');
         exit;
 
     }
@@ -447,7 +484,7 @@ class CAdmin{
 
     public static function insertOffer(){
         
-        $image = UHTTP::file('room_image');
+        $image = UHTTP::file('pathImage');
         $uploadDir = __DIR__ . '/../../public/assets/img/';
         if(isset($image) && $image['error'] === UPLOAD_ERR_OK){
             echo 'qui' . $image['name'];
@@ -469,6 +506,57 @@ class CAdmin{
             header('Location: /albergoPulito/public/Admin/manageSpecialOffer');
         }
     }  
+
+    public static function showUpdateOffer($id){
+        $view = new VAdmin();
+        USession::getInstance()->setSessionElement('idOfferModified',$id);
+        $admin_logged_in = CAdmin::isAdminLogged();
+        $view->showUpdateOffer($admin_logged_in);
+    }
+
+    public static function updateOffer(){
+        $view = new VAdmin();
+        
+        $idOffer = USession::getInstance()->getSessionElement('idOfferModified');
+        $offer = FPersistentManager::getInstance()->getObject('ESpecialOffer', $idOffer);
+        $mod = array();
+        if( UHTTP::post("title") != ''){$mod[] = ['title', UHTTP::post("title")];}
+        if( UHTTP::post("description") != ''){$mod[] = ['description', UHTTP::post("description")];}
+        if( UHTTP::post("beds") != null){$mod[] = ['beds', UHTTP::post("beds")];}
+        if( UHTTP::post("length") != null){$mod[] = ['length', UHTTP::post("length")];}
+        if( UHTTP::post("specialPrice") != ''){$mod[] = ['specialPrice', UHTTP::post("specialPrice")];}
+
+        $file = UHTTP::file("pathImage");
+        if( isset($file)){
+            $name = $file['name'];
+            $uploadPath = '/albergoPulito/public/assets/img/' . $name;
+            $mod[] = ['pathImage', $uploadPath];
+        }
+        $result = FPersistentManager::getInstance()->updateObject($offer, $mod);
+
+        $baseUploadDir = __DIR__ . '/../../public/assets/img/';
+        
+        
+        $image = UHTTP::file('pathImage');
+        $uploadDir = __DIR__ . '/../../public/assets/img/';
+        if(isset($image)){
+            
+            $destPath = $uploadDir . $image['name'];
+            if(move_uploaded_file($image['tmp_name'], $destPath)){
+                $uploadPath = '/albergoPulito/public/assets/img/' . $image['name'];
+            }else{
+                echo 'ERRORI NELLO SPOSTAMENTO';
+            }
+        }else{
+            echo 'ERRORE NEL CARICAMENTO';
+        }
+        
+        
+        
+        header('Location: /albergoPulito/public/Admin/manageSpecialOffer');
+        exit;
+
+    }
 
 //---------------------------STATISTICS------------------------------------ù
 

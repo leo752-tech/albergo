@@ -92,8 +92,9 @@ class VAdmin {
         $this->smarty->display('manageExtraService.tpl');
     }
 
-    public function showUpdateService($admin_logged_in) {
+    public function showUpdateService($admin_logged_in, $service) {
         $this->smarty->assign('admin_logged_in', $admin_logged_in);
+        $this->smarty->assign('service', $service);
         $this->smarty->display('updateService.tpl');
     }
 
@@ -111,6 +112,11 @@ class VAdmin {
     public function showInsertService($admin_logged_in) {
         $this->smarty->assign('admin_logged_in', $admin_logged_in);
         $this->smarty->display('insertService.tpl');
+    }
+
+    public function showUpdateOffer($admin_logged_in) {
+        $this->smarty->assign('admin_logged_in', $admin_logged_in);
+        $this->smarty->display('updateOffer.tpl');
     }
 
 
