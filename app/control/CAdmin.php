@@ -306,18 +306,6 @@ class CAdmin{
 
 //--------------------------------------BOOKING-----------------------------------------------------------------
 
-    public static function manageBookingsVecchio(){
-        $view = new VAdmin();
-        $books = FPersistentManager::getInstance()->getAllBookings();
-        $booksObj = array();
-        foreach($books as $queryRes){
-            $booksObj[] = new EBooking($queryRes["idBooking"], $queryRes["idRegisteredUser"], new DateTime($queryRes["checkInDate"]), new DateTime( $queryRes["checkOutDate"]), $queryRes["idRoom"], $queryRes["totalPrice"], new DateTime($queryRes["bookingDate"]), $queryRes["idSpecialOffer"]);
-        }
-       
-        $admin_logged_in = CAdmin::isAdminLogged();
-        $view->manageBookings();
-    }
-
 	public static function manageBookings() {
 		$view = new VAdmin();
 		$books = FPersistentManager::getInstance()->getAllBookings();
@@ -347,15 +335,57 @@ class CAdmin{
 
 		$admin_logged_in = CAdmin::isAdminLogged();
 		$view->manageBookings($admin_logged_in, $booksObj);
-	}    
+	}
+		public static function insertBooking() {
+		$checkIn = new DateTime(UHTTP::post('checkInDate'));
+		$checkOut = new DateTime(UHTTP::post('checkOutDate'));
+		$today = new DateTime();
+		$today->setTime(0, 0); 
 
-    public static function showInsertBooking(){
+		
+		if ($checkIn < $today) {
+			echo "Errore: la data di check-in non può essere nel passato.";
+			exit;
+		}
 
-        $view = new VAdmin();
-        $users = FPersistentManager::getInstance()->getAllUsers();
-        $admin_logged_in = CAdmin::isAdminLogged();
-        $view->showInsertBooking($admin_logged_in);
-    }
+		if ($checkOut <= $checkIn) {
+			echo "Errore: la data di check-out deve essere successiva al check-in.";
+			exit;
+		}
+
+		
+		$booking = new EBooking(
+			null,
+			UHTTP::post('idRegisteredUser'),
+			$checkIn,
+			$checkOut,
+			UHTTP::post('idRoom'),
+			UHTTP::post('totalPrice'),
+			new DateTime(), 
+			UHTTP::post('idSpecialOffer') 
+		);
+
+		
+		$result = FPersistentManager::getInstance()->saveObject($booking);
+		if (!$result) {
+			echo "Errore durante il salvataggio della prenotazione.";
+		} else {
+			header('Location: /albergoPulito/public/Admin/manageBookings');
+			exit;
+		}
+	}
+
+
+
+	public static function showInsertBooking(){
+		$view = new VAdmin();
+		$users = FPersistentManager::getInstance()->getgetAllUsers(); 
+		$rooms = FPersistentManager::getInstance()->getAllRooms();
+		$offers = FPersistentManager::getInstance()->getAllSpecialOffer();
+
+		$admin_logged_in = CAdmin::isAdminLogged();
+		$view->showInsertBooking($admin_logged_in, $users, $rooms, $offers);
+	}
 
     public static function showBookingDetail($date){
 

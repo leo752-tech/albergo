@@ -57,11 +57,20 @@ function renderCalendar() {
         const formattedDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}`;
         dayBox.href = `/albergoPulito/public/Admin/showBookingDetail/${formattedDate}`;
 
-        if (isDateBooked(formattedDate)) {
-            dayBox.classList.add('booked');
-        } else {
-            dayBox.classList.add('available');
-        }
+     const today = new Date();
+     today.setHours(0, 0, 0, 0); // Rimuove ora/minuti per confronto pulito
+     const currentDay = new Date(year, month, i);
+
+    if (currentDay < today) {
+        dayBox.classList.add('past');
+        dayBox.classList.remove('available', 'booked');
+        dayBox.style.pointerEvents = 'none'; // Rende non cliccabile
+        dayBox.style.opacity = '0.5'; // Visivamente disabilitato
+    } else if (isDateBooked(formattedDate)) {
+    dayBox.classList.add('booked');
+    } else {
+    dayBox.classList.add('available');
+    }
 
         calendarGrid.appendChild(dayBox);
     }
