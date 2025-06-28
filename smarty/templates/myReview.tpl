@@ -1,4 +1,4 @@
-{include file='header.tpl'}
+{include file='header.tpl' pageTitle='my review'}
 
 {if !empty($reviews)}
     {foreach $reviews as $review}

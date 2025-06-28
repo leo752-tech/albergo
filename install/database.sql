@@ -32,6 +32,7 @@ CREATE TABLE `registereduser` (
   `lastName` VARCHAR(100) NOT NULL,
   `birthDate` DATE NOT NULL,
   `birthPlace` VARCHAR(100) NOT NULL,
+  `isBanned` BOOLEAN NOT NULL DEFAULT FALSE,
   PRIMARY KEY (`idRegisteredUser`),
   UNIQUE KEY `idx_unique_idUser` (`idUser`), -- Ensures 1 account per person
   CONSTRAINT `fk_registered_user_user` FOREIGN KEY (`idUser`) REFERENCES `user` (`idUser`) ON DELETE RESTRICT ON UPDATE CASCADE
@@ -48,6 +49,7 @@ CREATE TABLE `room` (
   `beds` INT(11) NOT NULL,
   `price` DECIMAL(10, 2) NOT NULL, -- Price per one night
   `type` VARCHAR(50) NOT NULL, -- E.g., 'Single', 'Double', 'Suite'
+  `description` text DEFAULT '',
   PRIMARY KEY (`idRoom`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -123,6 +125,7 @@ CREATE TABLE `specialoffer`(
   `idSpecialOffer` INT(11) NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(255) NOT NULL,
   `description` TEXT NOT NULL,
+  `beds` int(11) DEFAULT 0,
   `length` INT(11) NOT NULL,
   `specialPrice` DECIMAL(10, 2) NOT NULL,
   `pathImage` VARCHAR(255) NOT NULL,

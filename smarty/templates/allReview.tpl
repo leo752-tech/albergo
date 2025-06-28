@@ -1,4 +1,4 @@
-{include file='header.tpl'}
+{include file='header.tpl'  pageTitle='all Review'}
 
 <h2>Tutte le Recensioni dei Clienti</h2>
 

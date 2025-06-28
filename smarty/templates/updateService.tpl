@@ -1,4 +1,4 @@
-{include file='header_admin.tpl'}
+{include file='header_admin.tpl' pageTitle='update service'}
 <h3>Aggiungi Nuovo Servizio</h3>
     <div class="form-grid mb-4">
         <form action="/albergoPulito/public/Admin/updateService" method="POST">

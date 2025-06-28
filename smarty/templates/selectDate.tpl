@@ -1,4 +1,4 @@
-{include file='header.tpl'}
+{include file='header.tpl' pageTitle='select date'}
 
 <section id="booking-form" class="container section-padding">
     <h2>Prenota il Tuo Soggiorno</h2>

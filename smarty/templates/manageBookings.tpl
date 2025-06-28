@@ -1,4 +1,4 @@
-{include file='header_admin.tpl'}
+{include file='header_admin.tpl' pageTitle='manage Bookings'}
 
 <h2>Gestione Prenotazioni</h2>
 

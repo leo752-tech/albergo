@@ -1,4 +1,4 @@
-{include file='header.tpl'}
+{include file='header.tpl'  pageTitle='show offer'}
         <section class="section-padding">
             <div class="container">
                 <h2 style="text-align: center; margin-bottom: 40px; color: #007bff;">Le Nostre Offerte Speciali</h2>

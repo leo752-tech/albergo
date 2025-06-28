@@ -14,44 +14,42 @@ INSERT INTO `user` (`firstName`, `lastName`, `birthDate`, `birthPlace`) VALUES
 ('Jack', 'Sparrow', '1975-06-25', 'Sydney');
 
 -- Populating `RegisteredUser` table
-INSERT INTO `registereduser` (`idUser`, `email`, `password`, `firstName`, `lastName`, `birthDate`, `birthPlace`) VALUES
-(1, 'alice.smith@example.com', 'hashedpass1', 'Alice', 'Smith', '1985-03-15', 'London'),
-(2, 'bob.johnson@example.com', 'hashedpass2', 'Bob', 'Johnson', '1990-07-22', 'New York'),
-(3, 'charlie.brown@example.com', 'hashedpass3', 'Charlie', 'Brown', '1978-11-01', 'Paris'),
-(4, 'diana.p@example.com', 'hashedpass4', 'Diana', 'Prince', '1992-01-20', 'Rome'),
-(5, 'e.hunt@example.com', 'hashedpass5', 'Ethan', 'Hunt', '1980-05-30', 'Berlin'),
-(6, 'fiona.g@example.com', 'hashedpass6', 'Fiona', 'Gallagher', '1995-09-10', 'Dublin'),
-(7, 'george.c@example.com', 'hashedpass7', 'George', 'Costanza', '1970-02-28', 'Madrid'),
-(8, 'hannah.m@example.com', 'hashedpass8', 'Hannah', 'Montana', '2000-04-05', 'Tokyo'),
-(9, 'ivy.q@example.com', 'hashedpass9', 'Ivy', 'Queen', '1983-12-12', 'Mexico City'),
-(10, 'jack.s@example.com', 'hashedpass10', 'Jack', 'Sparrow', '1975-06-25', 'Sydney');
+INSERT INTO `registereduser` (`idUser`, `email`, `password`, `firstName`, `lastName`, `birthDate`, `birthPlace`,`isBanned` ) VALUES
+(1, 'alice.smith@example.com', 'hashedpass1', 'Alice', 'Smith', '1985-03-15', 'London', FALSE),
+(2, 'bob.johnson@example.com', 'hashedpass2', 'Bob', 'Johnson', '1990-07-22', 'New York', FALSE),
+(3, 'charlie.brown@example.com', 'hashedpass3', 'Charlie', 'Brown', '1978-11-01', 'Paris', FALSE),
+(4, 'diana.p@example.com', 'hashedpass4', 'Diana', 'Prince', '1992-01-20', 'Rome', FALSE),
+(5, 'e.hunt@example.com', 'hashedpass5', 'Ethan', 'Hunt', '1980-05-30', 'Berlin', FALSE),
+(6, 'fiona.g@example.com', 'hashedpass6', 'Fiona', 'Gallagher', '1995-09-10', 'Dublin', FALSE),
+(7, 'george.c@example.com', 'hashedpass7', 'George', 'Costanza', '1970-02-28', 'Madrid', FALSE),
+(8, 'hannah.m@example.com', 'hashedpass8', 'Hannah', 'Montana', '2000-04-05', 'Tokyo', FALSE),
+(9, 'ivy.q@example.com', 'hashedpass9', 'Ivy', 'Queen', '1983-12-12', 'Mexico City', FALSE),
+(10, 'jack.s@example.com', 'hashedpass10', 'Jack', 'Sparrow', '1975-06-25', 'Sydney', FALSE);
 
 -- Populating `Room` table
-INSERT INTO `room` (`name`, `beds`, `price`, `type`) VALUES
-('Single Economy', 1, 50.00, 'Single'),
-('Double Standard', 2, 80.00, 'Double'),
-('Suite Deluxe', 3, 150.00, 'Suite'),
-('Twin Room', 2, 70.00, 'Twin'),
-('Family Room', 4, 120.00, 'Family'),
-('Single with Balcony', 1, 65.00, 'Single'),
-('Double with Sea View', 2, 100.00, 'Double'),
-('Presidential Suite', 4, 300.00, 'Suite'),
-('Studio Apartment', 2, 90.00, 'Studio'),
-('Accessible Room', 2, 85.00, 'Double');
+INSERT INTO `room` (`idRoom`, `name`, `beds`, `price`, `type`, `description`) VALUES
+(1, 'Single Economy', 1, 50.00, 'Single', 'Camera singola economica con servizi essenziali, ideale per brevi soggiorni.'),
+(2, 'Double Standard', 2, 80.00, 'Double', 'Camera doppia standard adatta a coppie o amici, con arredi moderni.'),
+(3, 'Suite Deluxe', 3, 150.00, 'Suite', ''),
+(4, 'Twin Room', 2, 70.00, 'Twin', ''),
+(5, 'Family Room', 4, 120.00, 'Family', 'Camera familiare con più letti e spazio extra, pensata per gruppi o famiglie.'),
+(6, 'Single with Balcony', 1, 65.00, 'Single', ''),
+(7, 'Double with Sea View', 2, 100.00, 'Double', ''),
+(8, 'Presidential Suite', 4, 300.00, 'Suite', ''),
+(9, 'Studio Apartment', 2, 90.00, 'Studio', ''),
+(10, 'Accessible Room', 2, 85.00, 'Double', '');
 
 -- Populating `SpecialOffer` table
-INSERT INTO `specialoffer` (`title`, `description`, `length`, `specialPrice`, `pathImage`) VALUES
-('Summer Getaway', '10% off all bookings for 3+ nights in July and August.', 3, 0.10, '/albergoPulito/public/assets/img/offer1.jpg'),
-('Winter Wonderland', 'Stay 2 nights, get 1 free in December.', 3, 0.00, '/albergoPulito/public/assets/img/offer2.jpg'),
-('Early Bird Discount', 'Book 60 days in advance and save 15%.', 60, 0.15, '/albergoPulito/public/assets/img/offer3.jpg'),
-('Last Minute Deal', '20% off for bookings made within 24 hours of check-in.', 1, 0.20, '/albergoPulito/public/assets/img/offer4.jpg'),
-('Honeymoon Package', 'Romantic package including breakfast and late checkout.', 2, 0.00, '/albergoPulito/public/assets/img/offer5.jpg'),
-('Business Traveler', 'Complimentary breakfast and high-speed Wi-Fi.', 1, 0.00, '/albergoPulito/public/assets/img/offer6.jpg'),
-('Weekend Escape', 'Special rates for Friday to Sunday stays.', 2, 0.00, '/albergoPulito/public/assets/img/offer7.jpg'),
-('Long Stay Discount', '25% off for stays longer than 7 nights.', 7, 0.25, '/albergoPulito/public/assets/img/offer8.jpg'),
-('Family Fun Package', 'Kids stay free and receive a welcome gift.', 0, 0.00, '/albergoPulito/public/assets/img/offer9.jpg'),
-('Loyalty Program Offer', 'Exclusive discount for returning guests.', 0, 0.00, '/albergoPulito/public/assets/img/offer1.jpg');
-
+INSERT INTO `specialoffer` (`title`, `description`, `beds`, `length`, `specialPrice`, `pathImage`) VALUES
+('Summer Getaway', '10% off all bookings for 3+ nights in July and August.', 3, 1, 0.10, '/albergoPulito/public/assets/img/offer1.jpg'),
+('Winter Wonderland', 'Stay 2 nights, get 1 free in December.', 3, 1, 0.00, '/albergoPulito/public/assets/img/offer1.jpg'),
+('Early Bird Discount', 'Book 60 days in advance and save 15%.', 60, 1, 0.15, '/albergoPulito/public/assets/img/offer2.jpg'),
+('Last Minute Deal', '20% off for bookings made within 24 hours of check-in.', 1, 1, 0.20, '/albergoPulito/public/assets/img/offer3.jpg'),
+('Honeymoon Package', 'Romantic package including breakfast and late checkout.', 2, 1, 0.00, '/albergoPulito/public/assets/img/offer4.jpg'),
+('Business Traveler', 'Complimentary breakfast and high-speed Wi-Fi.', 1, 1, 0.00, '/albergoPulito/public/assets/img/offer5.jpg'),
+('Weekend Escape', 'Special rates for Friday to Sunday stays.', 2, 1, 0.00, '/albergoPulito/public/assets/img/offer6.jpg'),
+('Long Stay Discount', '25% off for stays longer than 7 nights.', 7, 1, 0.25, '/albergoPulito/public/assets/img/offer7.jpg'),
+('Family Fun Package', 'Kids stay free and receive a welcome gift.', 0, 1, 0.00, '/albergoPulito/public/assets/img/offer8.jpg');
 
 -- Populating `Booking` table (example entries, assume `idSpecialOffer` can be NULL initially or link to an offer)
 INSERT INTO `booking` (`idRegisteredUser`, `idRoom`, `checkInDate`, `checkOutDate`, `totalPrice`, `bookingDate`, `cancellation`, `idSpecialOffer`) VALUES
@@ -67,17 +65,17 @@ INSERT INTO `booking` (`idRegisteredUser`, `idRoom`, `checkInDate`, `checkOutDat
 (10, 10, '2026-04-01', '2026-04-05', 340.00, '2025-06-28 17:00:00', FALSE, NULL); -- Jack, Accessible Room
 
 -- Populating `ExtraService` table
-INSERT INTO `extraservice` (`name`, `description`, `price`, `pathImage`) VALUES
+INSERT INTO `extraservice` (`name`, `description`,`price`, `pathImage`) VALUES
 ('Breakfast Buffet', 'All-you-can-eat breakfast with hot and cold options.', 15.00, '/albergoPulito/public/assets/img/service1.jpg'),
 ('Airport Transfer', 'Private car transfer to and from the airport.', 50.00, '/albergoPulito/public/assets/img/service2.jpg'),
 ('Spa Access', 'Full-day access to the hotel spa facilities.', 30.00, '/albergoPulito/public/assets/img/service3.jpg'),
 ('Late Check-out', 'Extend your check-out time until 4:00 PM.', 25.00, '/albergoPulito/public/assets/img/service4.jpg'),
 ('Pet Friendly Fee', 'Fee for bringing a pet to the hotel.', 20.00, '/albergoPulito/public/assets/img/service1.jpg'),
 ('Valet Parking', 'Convenient valet parking service.', 10.00, '/albergoPulito/public/assets/img/service6.jpg'),
-('Room Service', '24-hour in-room dining service.', 0.00, '/albergoPulito/public/assets/img/service2.jpg'), -- Price might vary per order
-('Laundry Service', 'Professional laundry and dry cleaning service.', 0.00, '/albergoPulito/public/assets/img/service3.jpg'), -- Price might vary per item
-('Babysitting Service', 'On-demand babysitting service for children.', 40.00, '/albergoPulito/public/assets/img/service4.jpg'),
-('City Tour', 'Guided tour of local attractions.', 35.00, '/albergoPulito/public/assets/img/service6.jpg');
+('Room Service', '24-hour in-room dining service.', 0.00, '/albergoPulito/public/assets/img/service7.jpg'), -- Price might vary per order
+('Laundry Service', 'Professional laundry and dry cleaning service.', 0.00, '/albergoPulito/public/assets/img/laundry.jpg'), -- Price might vary per item
+('Babysitting Service', 'On-demand babysitting service for children.', 40.00, '/albergoPulito/public/assets/img/babysitting.jpg'),
+('City Tour', 'Guided tour of local attractions.', 35.00, '/albergoPulito/public/assets/img/city.jpg');
 
 -- Populating `Booking_ExtraService` linking table
 INSERT INTO `booking_extraservice` (`idBooking`, `idExtraService`) VALUES

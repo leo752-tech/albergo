@@ -1,4 +1,4 @@
-{include file='header.tpl'}
+{include file='header.tpl' pageTitle='all Rooms'}
 <section id="all-rooms" class="container section-padding">
     <h2>Tutte le Camere Disponibili</h2>
     <div class="rooms-grid">
