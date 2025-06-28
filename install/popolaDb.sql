@@ -46,7 +46,7 @@ INSERT INTO `specialoffer` (`title`, `description`, `length`, `specialPrice`, `p
 ('Early Bird Discount', 'Book 60 days in advance and save 15%.', 60, 0.15, '/albergoPulito/public/assets/img/offer2.jpg'),
 ('Honeymoon Package', 'Romantic package including breakfast and late checkout.', 2, 1.00, '/albergoPulito/public/assets/img/offer4.jpg'),
 ('Business Traveler', 'Complimentary breakfast and high-speed Wi-Fi.', 1, 1.00, '/albergoPulito/public/assets/img/offer5.jpg'),
-('Long Stay Discount', '25% off for stays of 7 nights.', 7, 0.25, '/albergoPulito/public/assets/img/offer7.jpg'),
+('Long Stay Discount', '25% off for stays of 7 nights.', 7, 0.25, '/albergoPulito/public/assets/img/offer7.jpg');
 
 -- Populating `Booking` table (example entries, assume `idSpecialOffer` can be NULL initially or link to an offer)
 INSERT INTO `booking` (`idRegisteredUser`, `idRoom`, `checkInDate`, `checkOutDate`, `totalPrice`, `bookingDate`, `cancellation`, `idSpecialOffer`) VALUES
