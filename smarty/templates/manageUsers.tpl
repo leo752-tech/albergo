@@ -28,7 +28,6 @@
             <td>{$user->getBirthPlace()}</td>
             <td>
                 <a href="/albergoPulito/public/Admin/showUpdateUser/{$user->getIdUser()}" class="btn btn-sm btn-primary">Modifica</a>
-                <a href="/albergoPulito/public/Admin/deleteUser/{$user->getIdUser()}" class="btn btn-sm btn-danger">Elimina</a>
             </td>
         </tr>
         {foreachelse}

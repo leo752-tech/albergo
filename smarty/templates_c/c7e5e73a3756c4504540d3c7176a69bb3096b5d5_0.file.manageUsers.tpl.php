@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-27 23:30:06
+/* Smarty version 4.3.2, created on 2025-06-28 10:11:34
   from 'C:\xampp\htdocs\albergoPulito\smarty\templates\manageUsers.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_685f0d5ebd2b82_58788136',
+  'unifunc' => 'content_685fa3b6c67930_44818500',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c7e5e73a3756c4504540d3c7176a69bb3096b5d5' => 
     array (
       0 => 'C:\\xampp\\htdocs\\albergoPulito\\smarty\\templates\\manageUsers.tpl',
-      1 => 1751033016,
+      1 => 1751098281,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer_admin.tpl' => 1,
   ),
 ),false)) {
-function content_685f0d5ebd2b82_58788136 (Smarty_Internal_Template $_smarty_tpl) {
+function content_685fa3b6c67930_44818500 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender('file:header_admin.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('pageTitle'=>'Gestione Utenti'), 0, false);
 ?>
 
@@ -64,8 +64,6 @@ $_smarty_tpl->tpl_vars['user']->do_else = false;
             <td>
                 <a href="/albergoPulito/public/Admin/showUpdateUser/<?php echo $_smarty_tpl->tpl_vars['user']->value->getIdUser();?>
 " class="btn btn-sm btn-primary">Modifica</a>
-                <a href="/albergoPulito/public/Admin/deleteUser/<?php echo $_smarty_tpl->tpl_vars['user']->value->getIdUser();?>
-" class="btn btn-sm btn-danger">Elimina</a>
             </td>
         </tr>
         <?php

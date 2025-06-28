@@ -23,7 +23,7 @@
             <input type="text" class="form-control" id="birthPlace" name="birthPlace" value="{$birthPlace|default:''}" required>
         </div>
         <button type="submit" class="btn btn-primary">Aggiungi Utente</button>
-        <a href="users.php" class="btn btn-secondary">Annulla</a>
+        <a href="/albergoPulito/public/Admin/manageUsers" class="btn btn-secondary">Annulla</a>
     </form>
 </div>
 

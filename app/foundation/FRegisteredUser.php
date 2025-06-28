@@ -60,6 +60,16 @@ class FRegisteredUser {
         }
     }
 
+    public static function getRegisteredUserByIdUder($id){
+        $result = FDataMapper::getInstance()->retrieveUserObject(self::$table, 'idUser', $id);
+        if($result != false && $result != null){
+            $user = self::createObject($result);
+            return $user;
+        } else {
+            return null;
+        }
+    }
+
     // Retrieves an EUser object by its email
     public static function getUserByEmail($email){
         $result = FDataMapper::getInstance()->retrieveObject(self::$table, "email", $email);

@@ -88,7 +88,7 @@ class CAdmin{
         $view = new VUser();
         $user = new EUser(null, UHTTP::post("firstName"), UHTTP::post("lastName"), new DateTime(UHTTP::post("birthDate")), UHTTP::post("birthPlace"));
         $idUser = FPersistentManager::getInstance()->saveObject($user);
-        $regUser = new ERegisteredUser(null, $idUser, UHTTP::post("email"), UHTTP::post("password"), UHTTP::post("firstName"), UHTTP::post("lastName"), new DateTime(UHTTP::post("birthDate")), UHTTP::post("birthPlace"), UHTTP::post("email"), false);
+        $regUser = new ERegisteredUser(null, $idUser, UHTTP::post("email"), UHTTP::post("password"), UHTTP::post("firstName"), UHTTP::post("lastName"), new DateTime(UHTTP::post("birthDate")), UHTTP::post("birthPlace"), false);
         $result = FPersistentManager::getInstance()->saveObject($regUser);
         if($result == false){
             echo 'UTENTE GIA ESISTENTE';
@@ -133,6 +133,9 @@ class CAdmin{
         if( UHTTP::post("birthDate") != null){$mod[] = ['birthDate', new DateTime(UHTTP::post("birthDate"))];}
         if( UHTTP::post("birthPlace") != ''){$mod[] = ['birthPlace', UHTTP::post("birthPlace")];}
         $result = FPersistentManager::getInstance()->updateObject($user, $mod);
+        $regUser = FPersistentManager::getInstance()->retrieveRegisteredUser($user->getIdUser());
+        echo $user->getIdUser();
+        $result = FPersistentManager::getInstance()->updateObject($regUser, $mod);
         header('Location: /albergoPulito/public/Admin/manageUsers');
         exit;
 

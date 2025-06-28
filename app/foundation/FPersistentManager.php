@@ -72,7 +72,10 @@ class FPersistentManager {
         return $user;
     }
 
-    
+    public static function retrieveRegisteredUser($id){
+        $user = FRegisteredUser::getRegisteredUserByIdUder($id);
+        return $user;
+    }
 
     public static function getAllUsers(){
         $users = FUser::getAll();

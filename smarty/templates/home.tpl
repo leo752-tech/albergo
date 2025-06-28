@@ -1,6 +1,6 @@
 {* Include l'header *}
 {include file='header.tpl' pageTitle='Pagina Iniziale'}
-
+  
 <section id="hero">
     <div class="hero-content">
         <h2>Benvenuti al Nome Hotel</h2>

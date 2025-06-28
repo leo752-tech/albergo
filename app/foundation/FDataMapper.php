@@ -73,6 +73,25 @@ class FDataMapper {
         }
     }
 
+    public static function retrieveUserObject($table, $field ,$value){
+        try {
+            if(self::exists($table, $field, $value)){
+                $query = "SELECT * FROM " . $table . " WHERE " . $field . " = '" . $value . "';";
+                $stmt = self::$db->prepare($query);
+                $stmt->execute();
+                $object = $stmt->fetch(PDO::FETCH_ASSOC);           
+                return $object;
+            } else {
+                echo "OBJECT DOES NOT EXIST";
+                return null;
+            }
+            
+        } catch(PDOException $e){
+            echo "ERROR: " . $e->getMessage();
+            return null;
+        }
+    }
+
     public static function updateObject($table, $field, $fieldValue, $condition, $conditionValue){
         
         try {
