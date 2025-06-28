@@ -3,10 +3,10 @@
 //Database Connection
 
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'hotel_db');
-define('DB_USER', 'root');
+define('DB_NAME', 'my_hotelreservation');
+define('DB_USER', 'hotelreservation');
 define('DB_PASS', '');
-
+//root
 
 //session coockie expiration
 define('COOKIE_EXP_TIME', 1800); // 30 minutes in seconds
