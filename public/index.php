@@ -11,12 +11,12 @@ try {
 // Verifica se il database esiste
     $stmt = $pdo->query("SHOW DATABASES LIKE '" . DB_NAME . "'");
     if ($stmt->rowCount() === 0) {
-        header('Location: /albergoPulito/public/Install/installation.php');
+        header('Location: /albergoPulito/Install/installation.php');
         exit();
     }
 } catch (PDOException $e) {
 // Connessione al database fallita
-    header('Location: /albergoPulito/public/Install/installation.php');
+    header('Location: /albergoPulito/Install/installation.php');
     exit();
 }
 
