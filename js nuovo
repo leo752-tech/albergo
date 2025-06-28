@@ -83,5 +83,5 @@ nextYearBtn.addEventListener('click', () => {
     currentDate.setFullYear(currentDate.getFullYear() + 1);
     renderCalendar();
 });
-
+console.log("Dati prenotazioni ricevuti:", bookings);
 renderCalendar();
