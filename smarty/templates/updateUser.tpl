@@ -1,5 +1,5 @@
 
-{include file='header_admin.tpl'}
+{include file='header_admin.tpl' pageTitle='update user'}
 
 <div class="container">
     <h2>Aggiorna i dati dell'utente</h2>

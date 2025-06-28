@@ -1,4 +1,4 @@
-{include file='header_admin.tpl'}
+{include file='header_admin.tpl' pageTitle='manage Rooms'}
 
 <h2>Gestione Camere</h2>
 

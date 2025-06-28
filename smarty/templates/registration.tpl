@@ -1,4 +1,4 @@
-{include file='header.tpl'}
+{include file='header.tpl' pageTitle='registration'}
 <section id="auth-forms" class="container section-padding">
     <h2 class="mt-5">Nuovo Utente? Registrati</h2>
     <form action="/albergoPulito/public/User/registration" method="POST" class="auth-form">

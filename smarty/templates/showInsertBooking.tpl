@@ -1,4 +1,4 @@
-{include file='header_admin.tpl'}
+{include file='header_admin.tpl' pageTitle='show insert booking'}
 
 <div class="container">
     <h2>Aggiungi Nuova Prenotazione</h2>

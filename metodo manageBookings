@@ -1,0 +1,30 @@
+	public static function manageBookings() {
+		$view = new VAdmin();
+		$books = FPersistentManager::getInstance()->getAllBookings();
+
+		$booksObj = array();      
+		$booksArray = array();     
+
+		foreach($books as $queryRes){
+			$booking = new EBooking(
+				$queryRes["idBooking"],
+				$queryRes["idRegisteredUser"],
+				new DateTime($queryRes["checkInDate"]),
+				new DateTime($queryRes["checkOutDate"]),
+				$queryRes["idRoom"],
+				$queryRes["totalPrice"],
+				new DateTime($queryRes["bookingDate"]),
+				$queryRes["idSpecialOffer"]
+			);
+
+			$booksObj[] = $booking;
+
+			$booksArray[] = [
+				'checkIn' => $booking->getCheckInDate()->format('Y-m-d'),
+				'checkOut' => $booking->getCheckOutDate()->format('Y-m-d')
+			];
+		}
+
+		$admin_logged_in = CAdmin::isAdminLogged();
+		$view->manageBookings($admin_logged_in, $booksObj);
+	}

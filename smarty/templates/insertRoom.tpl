@@ -1,4 +1,4 @@
-{include file='header_admin.tpl'}
+{include file='header_admin.tpl' pageTitle='insert Room'}
 
 <div class="container">
     <h2>Aggiungi Nuova Camera</h2>

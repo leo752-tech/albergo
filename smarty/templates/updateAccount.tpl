@@ -1,4 +1,4 @@
-{include file='header.tpl'}
+{include file='header.tpl' pageTitle='update account'}
         
     <section id="user-profile" class="container section-padding">
 

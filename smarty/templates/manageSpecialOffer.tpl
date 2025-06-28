@@ -1,4 +1,4 @@
-{include file='header_admin.tpl'}
+{include file='header_admin.tpl', pageTitle='manage specialoffer'}
 
 <h2>Gestione OfferteSpeciali</h2>
 

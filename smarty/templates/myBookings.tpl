@@ -1,6 +1,6 @@
 
 
-{include file='header.tpl'}
+{include file='header.tpl' pageTitle='my bookings'}
 
 <section id="my-bookings" class="container section-padding">
     <h2>Le Tue Prenotazioni</h2>

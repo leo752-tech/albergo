@@ -1,4 +1,4 @@
-{include file='header.tpl'}
+{include file='header.tpl' pageTitle='payment'}
 
 <section class="section-padding payment-page">
     <div class="container">

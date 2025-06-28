@@ -1,6 +1,6 @@
 
 
-{include file='header_admin.tpl'}
+{include file='header_admin.tpl'  pageTitle='manage Offers'}
 
 <div class="container">
     <h2>Gestione Politiche di Prezzo</h2>

@@ -1,4 +1,4 @@
-{include file='header.tpl'}
+{include file='header.tpl'  pageTitle='Detail Room'}
     <section class="section-padding room-detail-page">
         <div class="container">
             <div class="room-detail-card card">

@@ -1,6 +1,6 @@
 
 
-{include file='header_admin.tpl'}
+{include file='header_admin.tpl' pageTitle='manage extraservice'}
 
 <div class="container">
     <h2>Gestione Servizi</h2>

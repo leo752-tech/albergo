@@ -1,4 +1,4 @@
-{include file='header.tpl'}
+{include file='header.tpl' pageTitle='set review'}
 
 <form action="/albergoPulito/public/User/setReview" method="POST">
     <div class="form-group">

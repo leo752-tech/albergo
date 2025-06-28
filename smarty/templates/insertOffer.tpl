@@ -1,4 +1,4 @@
-{include file='header_admin.tpl'}
+{include file='header_admin.tpl' pageTitle='insert Offer'}
 
 <h3>Aggiungi Nuova Politica di Prezzo / Offerta</h3>
 <div class="form-grid mb-4">

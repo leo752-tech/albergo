@@ -81,3 +81,12 @@
             background-color: #f9f9f9;
             transform: none;
         }
+        .day-box.booked {
+            background-color: #ffcccc; 
+            border: 2px solid red;
+        }
+
+        .day-box.available {
+            background-color: #ccffcc; 
+            border: 2px solid green;
+        }

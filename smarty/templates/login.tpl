@@ -1,4 +1,4 @@
-{include file='header.tpl'}
+{include file='header.tpl' pageTitle='login'}
     
 <section id="auth-forms" class="container section-padding">
     <h2>Accedi al Tuo Account</h2>
