@@ -50,7 +50,9 @@ class CBooking {
         $rooms = FPersistentManager::getInstance()->getRoomsByBeds($requestedBeds);
 
         if (empty($rooms)) { 
-            echo "THERE IS NO ROOM WITH BEDS SELECTED";
+            $view = new VError();
+            $isLoggedIn = self::isLogged();
+            $view->showError($isLoggedIn, "THERE IS NO ROOM WITH BEDS SELECTED");
             return $availableRooms; 
         }
 
@@ -83,7 +85,9 @@ class CBooking {
 
         
         if (empty($availableRooms)) {
-            echo "NESSUNA CAMERA DISPONIBILE PER LE DATE SELEZIONATE";
+            $view = new VError();
+            $isLoggedIn = self::isLogged();
+            $view->showError($isLoggedIn, "NESSUNA CAMERA DISPONIBILE PER LE DATE SELEZIONATE");
         }
 
         $roomsImages = array();
@@ -286,10 +290,10 @@ class CBooking {
             
             $rooms = FPersistentManager::getInstance()->getRoomsByBeds($requestedBeds);
 
-            if (empty($rooms)) { 
-                echo "THERE IS NO ROOM WITH BEDS SELECTED";
-                return $availableRooms; 
-            }
+        if (empty($rooms)) { 
+            echo "THERE IS NO ROOM WITH BEDS SELECTED";
+            return $availableRooms; 
+        }
 
             foreach ($rooms as $room) {
                 $isRoomCurrentlyAvailable = true; 
@@ -317,17 +321,17 @@ class CBooking {
                 }
             }
 
-            
-            if (empty($availableRooms)) {
-                echo "NESSUNA CAMERA DISPONIBILE PER LE DATE SELEZIONATE";
-            }
-                    $roomsImages = array();
-            $allImagesForAvailableRooms = array();
-            foreach($availableRooms as $room){
-                $images = FPersistentManager::getInstance()->getImagesByRoom($room->getId());
-                $roomsImages[] = array($room, $images);
-                $allImagesForAvailableRooms = array_merge($allImagesForAvailableRooms, $images);
-    
+        
+        if (empty($availableRooms)) {
+            echo "NESSUNA CAMERA DISPONIBILE PER LE DATE SELEZIONATE";
+        }
+                $roomsImages = array();
+        $allImagesForAvailableRooms = array();
+        foreach($availableRooms as $room){
+            $images = FPersistentManager::getInstance()->getImagesByRoom($room->getId());
+            $roomsImages[] = array($room, $images);
+            $allImagesForAvailableRooms = array_merge($allImagesForAvailableRooms, $images);
+ 
 
             }
             

@@ -73,8 +73,8 @@ class CUser{
                 if(password_verify($password, $registeredUser->getPassword())){
                     USession::getInstance();
                     USession::setSessionElement("idUser", $registeredUser->getIdRegisteredUser());
-                    if(UCOOKIE::isSet('redirectSelectedRoom')){
-                        $redirect = UCOOKIE::getElement('redirectSelectedRoom');
+                    if(UCookie::isSet('redirectSelectedRoom')){
+                        $redirect = UCookie::getElement('redirectSelectedRoom');
                         setcookie('redirectSelectedRoom', '', time() - 3600, '/');
                         header('Location: ' . $redirect);
                         exit(); 
