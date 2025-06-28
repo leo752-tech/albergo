@@ -67,13 +67,7 @@ class VAdmin {
     
 //------------------------BOOKING-------------------------------------------------
 
-    public function manageBookingsqq() {
-        //$this->smarty->assign('admin_logged_in', $admin_logged_in);
-        //$this->smarty->assign('bookings', $books);
-        $this->smarty->display('calendar.tpl');
-    }
-
-    public function manageBookings($admin_logged_in, $books) {
+       public function manageBookings($admin_logged_in, $books) {
 		$this->smarty->assign('admin_logged_in', $admin_logged_in);
 		$this->smarty->assign('bookings', $books);
 		$this->smarty->assign('bookingsArray', array_map(function($b) {
@@ -85,16 +79,19 @@ class VAdmin {
 		$this->smarty->display('calendar.tpl');
 	}
     
-    public function showBookingDetail( $bookings, $date){
+       public function showBookingDetail( $bookings, $date){
         $this->smarty->assign('readableDate', $date);
         $this->smarty->assign('bookings', $bookings);
         $this->smarty->display('detailBooking.tpl');
     }
   
-    public function showInsertBooking($admin_logged_in){
-        $this->smarty->assign('admin_logged_in', $admin_logged_in);
-        $this->smarty->display('showInsertBooking.tpl');
-    }
+	public function showInsertBooking($admin_logged_in, $users, $rooms, $offers = []) {
+		$this->smarty->assign('admin_logged_in', $admin_logged_in);
+		$this->smarty->assign('users', $users);
+		$this->smarty->assign('rooms', $rooms);
+		$this->smarty->assign('offers', $offers); 
+		$this->smarty->display('showInsertBooking.tpl');
+	}
 
 //---------------------------------SERVICE------------------------------------------------
 
