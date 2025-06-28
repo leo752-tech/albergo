@@ -90,3 +90,8 @@
             background-color: #ccffcc; 
             border: 2px solid green;
         }
+        .past {
+            background-color: #e0e0e0;
+            border: 2px dashed #aaa;
+            cursor: not-allowed;
+       }
