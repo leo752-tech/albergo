@@ -19,7 +19,7 @@
     </div>
 
     <script>
-		const bookings = {$bookings|@json_encode nofilter};
+		const bookings = {$bookingsArray|@json_encode nofilter};
 	</script>
     <script src="/albergoPulito/public/assets/js/calendar.js" defer></script>
 </body>
