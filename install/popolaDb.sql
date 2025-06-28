@@ -1,7 +1,7 @@
 USE `hotel_db`;
 
 -- Populating `User` table
-INSERT INTO `User` (`firstName`, `lastName`, `birthDate`, `birthPlace`) VALUES
+INSERT INTO `user` (`firstName`, `lastName`, `birthDate`, `birthPlace`) VALUES
 ('Alice', 'Smith', '1985-03-15', 'London'),
 ('Bob', 'Johnson', '1990-07-22', 'New York'),
 ('Charlie', 'Brown', '1978-11-01', 'Paris'),
@@ -14,7 +14,7 @@ INSERT INTO `User` (`firstName`, `lastName`, `birthDate`, `birthPlace`) VALUES
 ('Jack', 'Sparrow', '1975-06-25', 'Sydney');
 
 -- Populating `RegisteredUser` table
-INSERT INTO `RegisteredUser` (`idUser`, `email`, `password`, `firstName`, `lastName`, `birthDate`, `birthPlace`) VALUES
+INSERT INTO `registereduser` (`idUser`, `email`, `password`, `firstName`, `lastName`, `birthDate`, `birthPlace`) VALUES
 (1, 'alice.smith@example.com', 'hashedpass1', 'Alice', 'Smith', '1985-03-15', 'London'),
 (2, 'bob.johnson@example.com', 'hashedpass2', 'Bob', 'Johnson', '1990-07-22', 'New York'),
 (3, 'charlie.brown@example.com', 'hashedpass3', 'Charlie', 'Brown', '1978-11-01', 'Paris'),
@@ -27,7 +27,7 @@ INSERT INTO `RegisteredUser` (`idUser`, `email`, `password`, `firstName`, `lastN
 (10, 'jack.s@example.com', 'hashedpass10', 'Jack', 'Sparrow', '1975-06-25', 'Sydney');
 
 -- Populating `Room` table
-INSERT INTO `Room` (`name`, `beds`, `price`, `type`) VALUES
+INSERT INTO `room` (`name`, `beds`, `price`, `type`) VALUES
 ('Single Economy', 1, 50.00, 'Single'),
 ('Double Standard', 2, 80.00, 'Double'),
 ('Suite Deluxe', 3, 150.00, 'Suite'),
@@ -40,21 +40,21 @@ INSERT INTO `Room` (`name`, `beds`, `price`, `type`) VALUES
 ('Accessible Room', 2, 85.00, 'Double');
 
 -- Populating `SpecialOffer` table
-INSERT INTO `SpecialOffer` (`title`, `description`, `length`, `specialPrice`) VALUES
-('Summer Getaway', '10% off all bookings for 3+ nights in July and August.', 3, 0.10),
-('Winter Wonderland', 'Stay 2 nights, get 1 free in December.', 3, 0.00),
-('Early Bird Discount', 'Book 60 days in advance and save 15%.', 60, 0.15),
-('Last Minute Deal', '20% off for bookings made within 24 hours of check-in.', 1, 0.20),
-('Honeymoon Package', 'Romantic package including breakfast and late checkout.', 2, 0.00),
-('Business Traveler', 'Complimentary breakfast and high-speed Wi-Fi.', 1, 0.00),
-('Weekend Escape', 'Special rates for Friday to Sunday stays.', 2, 0.00),
-('Long Stay Discount', '25% off for stays longer than 7 nights.', 7, 0.25),
-('Family Fun Package', 'Kids stay free and receive a welcome gift.', 0, 0.00),
-('Loyalty Program Offer', 'Exclusive discount for returning guests.', 0, 0.00);
+INSERT INTO `specialoffer` (`title`, `description`, `length`, `specialPrice`, `pathImage`) VALUES
+('Summer Getaway', '10% off all bookings for 3+ nights in July and August.', 3, 0.10, '/albergoPulito/public/assets/img/offer1.jpg'),
+('Winter Wonderland', 'Stay 2 nights, get 1 free in December.', 3, 0.00, '/albergoPulito/public/assets/img/offer2.jpg'),
+('Early Bird Discount', 'Book 60 days in advance and save 15%.', 60, 0.15, '/albergoPulito/public/assets/img/offer3.jpg'),
+('Last Minute Deal', '20% off for bookings made within 24 hours of check-in.', 1, 0.20, '/albergoPulito/public/assets/img/offer4.jpg'),
+('Honeymoon Package', 'Romantic package including breakfast and late checkout.', 2, 0.00, '/albergoPulito/public/assets/img/offer5.jpg'),
+('Business Traveler', 'Complimentary breakfast and high-speed Wi-Fi.', 1, 0.00, '/albergoPulito/public/assets/img/offer6.jpg'),
+('Weekend Escape', 'Special rates for Friday to Sunday stays.', 2, 0.00, '/albergoPulito/public/assets/img/offer7.jpg'),
+('Long Stay Discount', '25% off for stays longer than 7 nights.', 7, 0.25, '/albergoPulito/public/assets/img/offer8.jpg'),
+('Family Fun Package', 'Kids stay free and receive a welcome gift.', 0, 0.00, '/albergoPulito/public/assets/img/offer9.jpg'),
+('Loyalty Program Offer', 'Exclusive discount for returning guests.', 0, 0.00, '/albergoPulito/public/assets/img/offer1.jpg');
 
 
 -- Populating `Booking` table (example entries, assume `idSpecialOffer` can be NULL initially or link to an offer)
-INSERT INTO `Booking` (`idRegisteredUser`, `idRoom`, `checkInDate`, `checkOutDate`, `totalPrice`, `bookingDate`, `cancellation`, `idSpecialOffer`) VALUES
+INSERT INTO `booking` (`idRegisteredUser`, `idRoom`, `checkInDate`, `checkOutDate`, `totalPrice`, `bookingDate`, `cancellation`, `idSpecialOffer`) VALUES
 (1, 2, '2025-07-10', '2025-07-15', 400.00, '2025-06-01 10:00:00', FALSE, 1), -- Alice, Double Standard, Summer Getaway
 (2, 4, '2025-08-01', '2025-08-03', 140.00, '2025-06-05 11:30:00', FALSE, NULL), -- Bob, Twin Room
 (3, 1, '2025-09-01', '2025-09-02', 50.00, '2025-06-10 14:00:00', FALSE, NULL), -- Charlie, Single Economy
@@ -67,20 +67,20 @@ INSERT INTO `Booking` (`idRegisteredUser`, `idRoom`, `checkInDate`, `checkOutDat
 (10, 10, '2026-04-01', '2026-04-05', 340.00, '2025-06-28 17:00:00', FALSE, NULL); -- Jack, Accessible Room
 
 -- Populating `ExtraService` table
-INSERT INTO `ExtraService` (`name`, `description`, `price`) VALUES
-('Breakfast Buffet', 'All-you-can-eat breakfast with hot and cold options.', 15.00),
-('Airport Transfer', 'Private car transfer to and from the airport.', 50.00),
-('Spa Access', 'Full-day access to the hotel spa facilities.', 30.00),
-('Late Check-out', 'Extend your check-out time until 4:00 PM.', 25.00),
-('Pet Friendly Fee', 'Fee for bringing a pet to the hotel.', 20.00),
-('Valet Parking', 'Convenient valet parking service.', 10.00),
-('Room Service', '24-hour in-room dining service.', 0.00), -- Price might vary per order
-('Laundry Service', 'Professional laundry and dry cleaning service.', 0.00), -- Price might vary per item
-('Babysitting Service', 'On-demand babysitting service for children.', 40.00),
-('City Tour', 'Guided tour of local attractions.', 35.00);
+INSERT INTO `extraservice` (`name`, `description`, `price`, `pathImage`) VALUES
+('Breakfast Buffet', 'All-you-can-eat breakfast with hot and cold options.', 15.00, '/albergoPulito/public/assets/img/service1.jpg'),
+('Airport Transfer', 'Private car transfer to and from the airport.', 50.00, '/albergoPulito/public/assets/img/service2.jpg'),
+('Spa Access', 'Full-day access to the hotel spa facilities.', 30.00, '/albergoPulito/public/assets/img/service3.jpg'),
+('Late Check-out', 'Extend your check-out time until 4:00 PM.', 25.00, '/albergoPulito/public/assets/img/service4.jpg'),
+('Pet Friendly Fee', 'Fee for bringing a pet to the hotel.', 20.00, '/albergoPulito/public/assets/img/service1.jpg'),
+('Valet Parking', 'Convenient valet parking service.', 10.00, '/albergoPulito/public/assets/img/service6.jpg'),
+('Room Service', '24-hour in-room dining service.', 0.00, '/albergoPulito/public/assets/img/service2.jpg'), -- Price might vary per order
+('Laundry Service', 'Professional laundry and dry cleaning service.', 0.00, '/albergoPulito/public/assets/img/service3.jpg'), -- Price might vary per item
+('Babysitting Service', 'On-demand babysitting service for children.', 40.00, '/albergoPulito/public/assets/img/service4.jpg'),
+('City Tour', 'Guided tour of local attractions.', 35.00, '/albergoPulito/public/assets/img/service6.jpg');
 
 -- Populating `Booking_ExtraService` linking table
-INSERT INTO `Booking_ExtraService` (`idBooking`, `idExtraService`) VALUES
+INSERT INTO `booking_extraservice` (`idBooking`, `idExtraService`) VALUES
 (1, 1), -- Booking 1 (Alice) with Breakfast Buffet
 (1, 2), -- Booking 1 (Alice) with Airport Transfer
 (2, 1), -- Booking 2 (Bob) with Breakfast Buffet
@@ -95,7 +95,7 @@ INSERT INTO `Booking_ExtraService` (`idBooking`, `idExtraService`) VALUES
 (10, 4); -- Booking 10 (Jack) with Late Check-out
 
 -- Populating `Review` table
-INSERT INTO `Review` (`title`, `rating`, `description`, `date`, `idRegisteredUser`) VALUES
+INSERT INTO `review` (`title`, `rating`, `description`, `date`, `idRegisteredUser`) VALUES
 ('Excellent Stay!', 5, 'Had a wonderful time, staff was very friendly and helpful.', '2025-07-16 10:00:00', 1),
 ('Good Experience', 4, 'Nice hotel, clean rooms. Breakfast was good.', '2025-08-04 14:30:00', 2),
 ('Cozy and Comfortable', 5, 'Perfect for a solo traveler, very quiet.', '2025-09-03 09:00:00', 3),
@@ -139,4 +139,4 @@ INSERT INTO `image` (`idImage`, `idRoom`, `name`, `filePath`, `mimeType`) VALUES
 (NULL, 9, 'camera29.jpg', '/albergoPulito/public/assets/img/camera29.jpg', 'image/jpeg'),
 (NULL, 10, 'camera30.jpg', '/albergoPulito/public/assets/img/camera30.jpg', 'image/jpeg'),
 (NULL, 10, 'camera31.jpg', '/albergoPulito/public/assets/img/camera31.jpg', 'image/jpeg'),
-(NULL, 10, 'camera32.jpg', '/albergoPulito/public/assets/img/camera32.jpg', 'image/jpeg'),
+(NULL, 10, 'camera32.jpg', '/albergoPulito/public/assets/img/camera32.jpg', 'image/jpeg');
