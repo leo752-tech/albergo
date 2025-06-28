@@ -50,7 +50,9 @@ class CBooking {
         $rooms = FPersistentManager::getInstance()->getRoomsByBeds($requestedBeds);
 
         if (empty($rooms)) { 
-            echo "THERE IS NO ROOM WITH BEDS SELECTED";
+            $view = new VError();
+            $isLoggedIn = self::isLogged();
+            $view->showError($isLoggedIn, "THERE IS NO ROOM WITH BEDS SELECTED");
             return $availableRooms; 
         }
 
@@ -83,7 +85,9 @@ class CBooking {
 
         
         if (empty($availableRooms)) {
-            echo "NESSUNA CAMERA DISPONIBILE PER LE DATE SELEZIONATE";
+            $view = new VError();
+            $isLoggedIn = self::isLogged();
+            $view->showError($isLoggedIn, "NESSUNA CAMERA DISPONIBILE PER LE DATE SELEZIONATE");
         }
 
         $roomsImages = array();
@@ -287,7 +291,10 @@ class CBooking {
         $rooms = FPersistentManager::getInstance()->getRoomsByBeds($requestedBeds);
 
         if (empty($rooms)) { 
-            echo "THERE IS NO ROOM WITH BEDS SELECTED";
+            
+            $view = new VError();
+            $isLoggedIn = self::isLogged();
+            $view->showError($isLoggedIn, "THERE IS NO ROOM WITH BEDS SELECTED");
             return $availableRooms; 
         }
 
@@ -326,7 +333,9 @@ class CBooking {
 
         
         if (empty($availableRooms)) {
-            echo "NESSUNA CAMERA DISPONIBILE PER LE DATE SELEZIONATE";
+            $view = new VError();
+            $isLoggedIn = self::isLogged();
+            $view->showError($isLoggedIn, "NESSUNA CAMERA DISPONIBILE PER LE DATE SELEZIONATE");
         }
                 $roomsImages = array();
         $allImagesForAvailableRooms = array();
