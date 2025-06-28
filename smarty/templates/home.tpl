@@ -5,7 +5,6 @@
     <div class="hero-content">
         <h2>Benvenuti al Nome Hotel</h2>
         <p>Dove l'eleganza incontra il comfort. Prenota la tua esperienza indimenticabile oggi!</p>
-        <a href="prenota.php" class="btn btn-large">Prenota Ora</a>
     </div>
 </section>
 
