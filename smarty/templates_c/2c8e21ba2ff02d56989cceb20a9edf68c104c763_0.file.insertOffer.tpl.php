@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-28 11:59:58
+/* Smarty version 4.3.2, created on 2025-06-28 15:40:44
   from 'C:\xampp\htdocs\albergoPulito\smarty\templates\insertOffer.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_685fbd1e9ec718_78457126',
+  'unifunc' => 'content_685ff0dc6e6049_34881148',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2c8e21ba2ff02d56989cceb20a9edf68c104c763' => 
     array (
       0 => 'C:\\xampp\\htdocs\\albergoPulito\\smarty\\templates\\insertOffer.tpl',
-      1 => 1751039624,
+      1 => 1751108306,
       2 => 'file',
     ),
   ),
@@ -22,8 +22,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer_admin.tpl' => 1,
   ),
 ),false)) {
-function content_685fbd1e9ec718_78457126 (Smarty_Internal_Template $_smarty_tpl) {
-$_smarty_tpl->_subTemplateRender('file:header_admin.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+function content_685ff0dc6e6049_34881148 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->_subTemplateRender('file:header_admin.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('pageTitle'=>'insert Offer'), 0, false);
 ?>
 
 <h3>Aggiungi Nuova Politica di Prezzo / Offerta</h3>
@@ -36,10 +36,6 @@ $_smarty_tpl->_subTemplateRender('file:header_admin.tpl', $_smarty_tpl->cache_id
         </div>
         <div class="form-group">
             <label for="description">Descrizione:</label>             <input type="text" class="form-control" id="description" name="description" required>
-        </div>
-        <div class="form-group">
-            <label for="beds">Numero di posti letto:</label>
-            <input type="number" class="form-control" id="beds" name="beds" min="0">
         </div>
         <div class="form-group">
             <label for="length">Notti Minime (Opzionale):</label>

@@ -17,7 +17,7 @@
             <tr>
                 <td>{$specialOffer->getIdSpecialOffer()}</td>           <td>{$specialOffer->getTitle()}</td>         <td>{$specialOffer->getDescription()}</td>           <td>{$specialOffer->getBeds()}</td>       <td>{$specialOffer->getLength()}</td>        <td>{$specialOffer->getSpecialPrice()|string_format:"%.2f"} €</td>          <td>
                     <a href="/albergoPulito/public/Admin/showUpdateOffer/{$specialOffer->getIdSpecialOffer()}" class="btn btn-sm btn-primary">Vai</a>
-                    <a href="/albergoPulito/public/Admin/deleteRoom/{$specialOffer->getIdSpecialOffer()}" class="btn btn-sm btn-danger">Elimina</a>
+                    <a href="/albergoPulito/public/Admin/deleteOffer/{$specialOffer->getIdSpecialOffer()}" class="btn btn-sm btn-danger">Elimina</a>
                 </td>
             </tr>
             {/foreach}

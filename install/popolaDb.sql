@@ -40,16 +40,13 @@ INSERT INTO `room` (`idRoom`, `name`, `beds`, `price`, `type`, `description`) VA
 (10, 'Accessible Room', 2, 85.00, 'Double', '');
 
 -- Populating `SpecialOffer` table
-INSERT INTO `specialoffer` (`title`, `description`, `beds`, `length`, `specialPrice`, `pathImage`) VALUES
-('Summer Getaway', '10% off all bookings for 3+ nights in July and August.', 3, 1, 0.10, '/albergoPulito/public/assets/img/offer1.jpg'),
-('Winter Wonderland', 'Stay 2 nights, get 1 free in December.', 3, 1, 0.00, '/albergoPulito/public/assets/img/offer1.jpg'),
-('Early Bird Discount', 'Book 60 days in advance and save 15%.', 60, 1, 0.15, '/albergoPulito/public/assets/img/offer2.jpg'),
-('Last Minute Deal', '20% off for bookings made within 24 hours of check-in.', 1, 1, 0.20, '/albergoPulito/public/assets/img/offer3.jpg'),
-('Honeymoon Package', 'Romantic package including breakfast and late checkout.', 2, 1, 0.00, '/albergoPulito/public/assets/img/offer4.jpg'),
-('Business Traveler', 'Complimentary breakfast and high-speed Wi-Fi.', 1, 1, 0.00, '/albergoPulito/public/assets/img/offer5.jpg'),
-('Weekend Escape', 'Special rates for Friday to Sunday stays.', 2, 1, 0.00, '/albergoPulito/public/assets/img/offer6.jpg'),
-('Long Stay Discount', '25% off for stays longer than 7 nights.', 7, 1, 0.25, '/albergoPulito/public/assets/img/offer7.jpg'),
-('Family Fun Package', 'Kids stay free and receive a welcome gift.', 0, 1, 0.00, '/albergoPulito/public/assets/img/offer8.jpg');
+INSERT INTO `specialoffer` (`title`, `description`, `length`, `specialPrice`, `pathImage`) VALUES
+('Summer Getaway', '10% off all bookings for 3+ nights in July and August.', 3, 0.10, '/albergoPulito/public/assets/img/offer1.jpg'),
+('Winter Wonderland', 'Stay 2 nights, get 1 free in December.', 2, 0.50, '/albergoPulito/public/assets/img/offer1.jpg'),
+('Early Bird Discount', 'Book 60 days in advance and save 15%.', 60, 0.15, '/albergoPulito/public/assets/img/offer2.jpg'),
+('Honeymoon Package', 'Romantic package including breakfast and late checkout.', 2, 1.00, '/albergoPulito/public/assets/img/offer4.jpg'),
+('Business Traveler', 'Complimentary breakfast and high-speed Wi-Fi.', 1, 1.00, '/albergoPulito/public/assets/img/offer5.jpg'),
+('Long Stay Discount', '25% off for stays of 7 nights.', 7, 0.25, '/albergoPulito/public/assets/img/offer7.jpg'),
 
 -- Populating `Booking` table (example entries, assume `idSpecialOffer` can be NULL initially or link to an offer)
 INSERT INTO `booking` (`idRegisteredUser`, `idRoom`, `checkInDate`, `checkOutDate`, `totalPrice`, `bookingDate`, `cancellation`, `idSpecialOffer`) VALUES

@@ -257,8 +257,8 @@ class CBooking {
         }
         if($idSpecialOffer != null){
             $offer = FPersistentManager::getInstance()->getObject('ESpecialOffer',$idSpecialOffer);
-            $totalPrice = $offer->getSpecialPrice();
-            return $totalPrice;
+            $discount = $offer->getSpecialPrice();
+            $price = $price*$discount; 
         }
 
         $length = $checkIn->diff($checkOut);

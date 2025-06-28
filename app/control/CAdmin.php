@@ -453,13 +453,27 @@ class CAdmin{
         }
     }
 
-    public static function insertService(){
-        $extraService = new EExtraService(null, UHTTP::post('name'), UHTTP::post('description'), UHTTP::post('price'), UHTTP::file('pathImage'));
+    public static function insertService(){        
+        $image = UHTTP::file('pathImage');
+        $uploadDir = __DIR__ . '/../../public/assets/img/';
+        if(isset($image) && $image['error'] === UPLOAD_ERR_OK){
+            $destPath = $uploadDir . $image['name'];
+            if(move_uploaded_file($image['tmp_name'], $destPath)){
+                $uploadPath = '/albergoPulito/public/assets/img/' . $image['name'];
+            }else{
+                echo 'ERRORI NELLO SPOSTAMENTO';
+            }
+        }else{
+            echo 'ERRORE NEL CARICAMENTO';
+        }
+        
+        $extraService = new EExtraService(null, UHTTP::post('name'), UHTTP::post('description'), UHTTP::post('price'), $uploadPath);
         $result = FPersistentManager::getInstance()->saveObject($extraService);
         if($result == false){
             echo 'UTENTE GIA ESISTENTE';
         }else{
-            header('Location: /albergoPulito/public/Admin/manageExtraService');
+            header('Location: /albergoPulito/public/Admin/manageExtraServices');
+            exit;
         }
     }
 
@@ -518,7 +532,7 @@ class CAdmin{
 
     public static function deleteService($idService){
         $result = FPersistentManager::getInstance()->deleteObject('EExtraService', $idService);
-        header('Location: /albergoPulito/public/Admin/manageExtraService');
+        header('Location: /albergoPulito/public/Admin/manageExtraServices');
         exit;
     }
 
@@ -616,6 +630,12 @@ class CAdmin{
         header('Location: /albergoPulito/public/Admin/manageSpecialOffer');
         exit;
 
+    }
+
+    public static function deleteOffer($id){
+        $result = FPersistentManager::getInstance()->deleteObject('ESpecialOffer', $id);
+        header('Location: /albergoPulito/public/Admin/manageSpecialOffer');
+        exit;
     }
 
 //---------------------------STATISTICS------------------------------------ù

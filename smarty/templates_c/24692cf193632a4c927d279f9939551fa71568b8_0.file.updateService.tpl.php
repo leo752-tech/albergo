@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-28 12:26:56
+/* Smarty version 4.3.2, created on 2025-06-28 15:46:24
   from 'C:\xampp\htdocs\albergoPulito\smarty\templates\updateService.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_685fc370b1bd90_54325474',
+  'unifunc' => 'content_685ff23082d520_76755277',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '24692cf193632a4c927d279f9939551fa71568b8' => 
     array (
       0 => 'C:\\xampp\\htdocs\\albergoPulito\\smarty\\templates\\updateService.tpl',
-      1 => 1751106375,
+      1 => 1751106766,
       2 => 'file',
     ),
   ),
@@ -22,10 +22,10 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer_admin.tpl' => 1,
   ),
 ),false)) {
-function content_685fc370b1bd90_54325474 (Smarty_Internal_Template $_smarty_tpl) {
+function content_685ff23082d520_76755277 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender('file:header_admin.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
-<h3>Modifica Servizio</h3>
+<h3>Aggiungi Nuovo Servizio</h3>
     <div class="form-grid mb-4">
         <form action="/albergoPulito/public/Admin/updateService" method="POST" enctype="multipart/form-data">
             <div class="form-group">

@@ -42,7 +42,7 @@
                            <td>{$policy->getLength()|default:$policy.length|default:'N/A'}</td>
                             <td>
                                 <a href="/albergoPulito/public/Admin/showUpdateOffer/{$policy->getIdSpecialOffer()}" class="btn btn-primary btn-sm">Modifica</a>
-                                <form action="/albergoPulito/public/Admin/deleteOffer" method="POST" style="display:inline-block;">
+                                <form action="/albergoPulito/public/Admin/deleteOffer/{$policy->getIdSpecialOffer()}" method="POST" style="display:inline-block;">
                                     <input type="hidden" name="idPolicy" value="{$policy->getIdSpecialOffer()}">
                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Sei sicuro di voler eliminare questa politica di prezzo?');">Elimina</button>
                                 </form>

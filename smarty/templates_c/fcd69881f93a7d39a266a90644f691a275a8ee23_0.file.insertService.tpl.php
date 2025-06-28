@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-28 11:05:33
+/* Smarty version 4.3.2, created on 2025-06-28 15:40:54
   from 'C:\xampp\htdocs\albergoPulito\smarty\templates\insertService.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_685fb05d05c3f9_30837737',
+  'unifunc' => 'content_685ff0e60ade27_81800208',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'fcd69881f93a7d39a266a90644f691a275a8ee23' => 
     array (
       0 => 'C:\\xampp\\htdocs\\albergoPulito\\smarty\\templates\\insertService.tpl',
-      1 => 1751039413,
+      1 => 1751106746,
       2 => 'file',
     ),
   ),
@@ -22,8 +22,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer_admin.tpl' => 1,
   ),
 ),false)) {
-function content_685fb05d05c3f9_30837737 (Smarty_Internal_Template $_smarty_tpl) {
-$_smarty_tpl->_subTemplateRender('file:header_admin.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+function content_685ff0e60ade27_81800208 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->_subTemplateRender('file:header_admin.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('pageTitle'=>'insert Service'), 0, false);
 ?>
 
 <h3>Aggiungi Nuovo Servizio</h3>

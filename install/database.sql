@@ -125,7 +125,6 @@ CREATE TABLE `specialoffer`(
   `idSpecialOffer` INT(11) NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(255) NOT NULL,
   `description` TEXT NOT NULL,
-  `beds` int(11) DEFAULT 0,
   `length` INT(11) NOT NULL,
   `specialPrice` DECIMAL(10, 2) NOT NULL,
   `pathImage` VARCHAR(255) NOT NULL,
