@@ -55,40 +55,72 @@ class FBooking {
         }
     }
 
-    public static function saveObject($object, $fields = null){
-        if($fields === null){
-            FDataMapper::getInstance()->getDb()->beginTransaction();
-            $id = FDataMapper::getInstance()->saveObject(self::$class, $object);
-            FDataMapper::getInstance()->getDb()->commit();
-            if($id !== null){
-                $object->setId($id);
-                return $id;
-            } else {
-                return false;
-            }
-        } else {
-            try {
-                FDataMapper::getInstance()->getDb()->beginTransaction();
-                foreach($fields as $f){
-                    $fieldName = $f[0];   
-                    $fieldValue = $f[1];  
+	public static function saveObject($object, $fields = null) {
+		$pdo = FDataMapper::getInstance()->getDb();
 
-                if ($fieldValue instanceof DateTime) {
-                    $fieldValue = $fieldValue->format("Y-m-d"); 
-                }
-                    FDataMapper::getInstance()->updateObject(self::$table, $fieldName, $fieldValue, self::$key, $object->getId());
-                }
-                FDataMapper::getInstance()->getDb()->commit();
-                return true;
-            } catch(PDOException $e){
-                echo "ERROR " . $e->getMessage();
-                FDataMapper::getInstance()->getDb()->rollBack();
-                return false;
-            } finally {
-                FDataMapper::getInstance()->closeConnection();
-            }
-        }
-    }
+		try {
+			$pdo->beginTransaction();
+
+			//CONTROLLO CONCORRENZA
+			$stmt = $pdo->prepare("
+				SELECT * FROM booking
+				WHERE idRoom = :roomId
+				  AND (
+						(checkInDate <= :checkOut AND checkOutDate >= :checkIn)
+					 )
+				FOR UPDATE
+			");
+			$stmt->execute([
+				':roomId' => $object->getIdRoom(),
+				':checkIn' => $object->getCheckInDate()->format("Y-m-d"),
+				':checkOut' => $object->getCheckOutDate()->format("Y-m-d")
+			]);
+
+			if ($stmt->rowCount() > 0) {
+				$pdo->rollBack();
+				throw new Exception("La camera è già prenotata nelle date selezionate.");
+			}
+
+			// Salvataggio 
+			if ($fields === null) {
+				$id = FDataMapper::getInstance()->saveObject(self::$class, $object);
+				if ($id !== null) {
+					$object->setId($id);
+					$pdo->commit();
+					return $id;
+				} else {
+					$pdo->rollBack();
+					return false;
+				}
+			} else {
+				foreach ($fields as $f) {
+					$fieldName = $f[0];   
+					$fieldValue = $f[1];  
+
+					if ($fieldValue instanceof DateTime) {
+						$fieldValue = $fieldValue->format("Y-m-d"); 
+					}
+
+					FDataMapper::getInstance()->updateObject(
+						self::$table, $fieldName, $fieldValue, self::$key, $object->getId()
+					);
+				}
+				$pdo->commit();
+				return true;
+			}
+
+		} catch (PDOException $e) {
+			$pdo->rollBack();
+			echo "ERRORE DB: " . $e->getMessage();
+			return false;
+		} catch (Exception $e) {
+			$pdo->rollBack();
+			echo "ERRORE: " . $e->getMessage();
+			return false;
+		} finally {
+			FDataMapper::getInstance()->closeConnection();
+		}
+	}
 
     public static function deleteObject($id){
         try {
