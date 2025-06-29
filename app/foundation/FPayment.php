@@ -4,7 +4,7 @@ class FPayment{
 
     private static $key = "idPayment";
 
-    private static $class = "FPayment";
+    private static $class = "FPayment";  
     
     private static $table = "payment";
     
@@ -13,7 +13,7 @@ class FPayment{
     public function __construct(){}
 
     public static function bind($stmt,$payment) {
-        $stmt->bindValue(":idBooking", $payment->getId(), PDO::PARAM_INT);
+        $stmt->bindValue(":idBooking", $payment->getIdBooking(), PDO::PARAM_INT);
         $stmt->bindValue(":amount", $payment->getAmount(), PDO::PARAM_STR);
         $stmt->bindValue(":paymentDate", $payment->getPaymentDate()->format('Y-m-d'), PDO::PARAM_STR);
         $stmt->bindValue(":lastFourDigits", $payment->getLastFourDigits(), PDO::PARAM_STR);

@@ -5,15 +5,11 @@ class FDataMapper {
     private static $instance;
 
     private static $db;
-    private $name = "hotel_db";
-    private $host = "localhost";
-    private $user = "root";
-    private $password = "";
-    /*private static $db;
-    private $name = "my_provahotelprova";
-    private $host = "localhost";
-    private $user = "provahotelprova";
-    private $password = "";*/
+    private $name = DB_NAME;
+    private $host = DB_HOST;
+    private $user = DB_USER;
+    private $password = DB_PASSWORD;  
+    
 
     // SINGLETON PATTERN
     private function __construct(){

@@ -236,8 +236,8 @@ class CBooking {
                 $result = FPersistentManager::getInstance()->setBookingsExtraServices($booking->getId(), $serv);
             }
             $digits = UHTTP::post('cardNumber');
-            $digits = 'XXXX-XXXX-XXXX-' . substr($digits, -4);
-            echo $digits;
+            $digits = substr($digits, -4);
+            
             $payment = new EPayment(null, $booking->getId(), $booking->getTotalPrice(), null, $digits, UHTTP::post('cardName'));
             $result = FPersistentManager::getInstance()->saveObject($payment);
             header('Location: /albergoPulito/public/User/home');

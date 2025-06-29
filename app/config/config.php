@@ -5,7 +5,7 @@
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'hotel_db');
 define('DB_USER', 'root');
-define('DB_PASS', '');
+define('DB_PASSWORD', '');
 //root
 
 //session coockie expiration
