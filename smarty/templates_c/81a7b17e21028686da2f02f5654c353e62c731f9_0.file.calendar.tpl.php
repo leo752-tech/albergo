@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-28 12:33:04
+/* Smarty version 4.3.2, created on 2025-06-29 13:04:42
   from 'C:\xampp\htdocs\albergoPulito\smarty\templates\calendar.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_685fc4e064d496_70924736',
+  'unifunc' => 'content_68611dcac86d77_13605237',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '81a7b17e21028686da2f02f5654c353e62c731f9' => 
     array (
       0 => 'C:\\xampp\\htdocs\\albergoPulito\\smarty\\templates\\calendar.tpl',
-      1 => 1751106746,
+      1 => 1751195069,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_685fc4e064d496_70924736 (Smarty_Internal_Template $_smarty_tpl) {
+function content_68611dcac86d77_13605237 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="it">
 <head>
@@ -40,17 +40,22 @@ function content_685fc4e064d496_70924736 (Smarty_Internal_Template $_smarty_tpl)
         </div>
         <div class="calendar-grid" id="calendarGrid"></div>
     </div>
+    
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="/albergoPulito/public/Admin/dashboard">
+            <button>Vai alla Dashboard Admin</button>
+        </a>
+    </div>
 
     <?php echo '<script'; ?>
 >
-		const bookings = <?php echo call_user_func_array($_smarty_tpl->registered_plugins[ 'modifier' ][ 'json_encode' ][ 0 ], array( $_smarty_tpl->tpl_vars['bookingsArray']->value ));?>
+        const bookings = <?php echo call_user_func_array($_smarty_tpl->registered_plugins[ 'modifier' ][ 'json_encode' ][ 0 ], array( $_smarty_tpl->tpl_vars['bookingsArray']->value ));?>
 ;
-	<?php echo '</script'; ?>
+    <?php echo '</script'; ?>
 >
     <?php echo '<script'; ?>
  src="/albergoPulito/public/assets/js/calendar.js" defer><?php echo '</script'; ?>
 >
 </body>
-</html>
-<?php }
+</html><?php }
 }

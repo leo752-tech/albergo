@@ -17,10 +17,16 @@
         </div>
         <div class="calendar-grid" id="calendarGrid"></div>
     </div>
+    
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="/albergoPulito/public/Admin/dashboard">
+            <button>Vai alla Dashboard Admin</button>
+        </a>
+    </div>
 
     <script>
-		const bookings = {$bookingsArray|@json_encode nofilter};
-	</script>
+        const bookings = {$bookingsArray|@json_encode nofilter};
+    </script>
     <script src="/albergoPulito/public/assets/js/calendar.js" defer></script>
 </body>
 </html>

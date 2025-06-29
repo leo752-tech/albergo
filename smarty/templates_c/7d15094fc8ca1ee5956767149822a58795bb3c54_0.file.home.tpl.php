@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-28 10:47:29
+/* Smarty version 4.3.2, created on 2025-06-29 12:28:02
   from 'C:\xampp\htdocs\albergoPulito\smarty\templates\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_685fac217a3d10_99291008',
+  'unifunc' => 'content_68611532818ed0_96039408',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7d15094fc8ca1ee5956767149822a58795bb3c54' => 
     array (
       0 => 'C:\\xampp\\htdocs\\albergoPulito\\smarty\\templates\\home.tpl',
-      1 => 1751100445,
+      1 => 1751140249,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_685fac217a3d10_99291008 (Smarty_Internal_Template $_smarty_tpl) {
+function content_68611532818ed0_96039408 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender('file:header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('pageTitle'=>'Pagina Iniziale'), 0, false);
 ?>
   
@@ -30,7 +30,6 @@ $_smarty_tpl->_subTemplateRender('file:header.tpl', $_smarty_tpl->cache_id, $_sm
     <div class="hero-content">
         <h2>Benvenuti al Nome Hotel</h2>
         <p>Dove l'eleganza incontra il comfort. Prenota la tua esperienza indimenticabile oggi!</p>
-        <a href="prenota.php" class="btn btn-large">Prenota Ora</a>
     </div>
 </section>
 

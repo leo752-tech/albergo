@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-27 23:30:02
+/* Smarty version 4.3.2, created on 2025-06-29 12:59:49
   from 'C:\xampp\htdocs\albergoPulito\smarty\templates\dashboardAdmin.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_685f0d5a470983_01497621',
+  'unifunc' => 'content_68611ca5147be5_81901581',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a08e2993f9d06854533c2936c93c9a09e7e097ae' => 
     array (
       0 => 'C:\\xampp\\htdocs\\albergoPulito\\smarty\\templates\\dashboardAdmin.tpl',
-      1 => 1751030721,
+      1 => 1751194785,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer_admin.tpl' => 1,
   ),
 ),false)) {
-function content_685f0d5a470983_01497621 (Smarty_Internal_Template $_smarty_tpl) {
+function content_68611ca5147be5_81901581 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender('file:header_admin.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('pageTitle'=>'Dashboard Amministrazione'), 0, false);
 ?>
 
@@ -57,5 +57,5 @@ $_smarty_tpl->_subTemplateRender('file:header_admin.tpl', $_smarty_tpl->cache_id
     </div>
 
 <?php $_smarty_tpl->_subTemplateRender('file:footer_admin.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
-}
+?> <?php }
 }

@@ -57,8 +57,8 @@
             </table>
         </div>
     {else}
-        <div class="alert alert-info" role="alert">
-            Non hai ancora effettuato nessuna prenotazione. <a href="albergoPulito/public/User/showAccountDetails">Esplora le nostre camere!</a>
+        <div class="profile-actions" role="alert">
+            Non hai ancora effettuato nessuna prenotazione.<a href="/albergoPulito/public/User/showAccountDetails" class="btn btn-primary">Torna indietro</a>
         </div>
     {/if}
 </section>

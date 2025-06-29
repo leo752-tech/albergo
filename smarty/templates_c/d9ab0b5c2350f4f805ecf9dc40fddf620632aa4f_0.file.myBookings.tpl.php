@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-28 14:28:37
+/* Smarty version 4.3.2, created on 2025-06-29 12:34:29
   from 'C:\xampp\htdocs\albergoPulito\smarty\templates\myBookings.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_685fdff5b49b45_24295895',
+  'unifunc' => 'content_686116b58bd567_66171729',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd9ab0b5c2350f4f805ecf9dc40fddf620632aa4f' => 
     array (
       0 => 'C:\\xampp\\htdocs\\albergoPulito\\smarty\\templates\\myBookings.tpl',
-      1 => 1751106746,
+      1 => 1751193266,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_685fdff5b49b45_24295895 (Smarty_Internal_Template $_smarty_tpl) {
+function content_686116b58bd567_66171729 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\xampp\\htdocs\\albergoPulito\\smarty\\libs\\plugins\\modifier.date_format.php','function'=>'smarty_modifier_date_format',),));
 ?>
 
@@ -97,8 +97,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
             </table>
         </div>
     <?php } else { ?>
-        <div class="alert alert-info" role="alert">
-            Non hai ancora effettuato nessuna prenotazione. <a href="albergoPulito/public/User/showAccountDetails">Esplora le nostre camere!</a>
+        <div class="profile-actions" role="alert">
+            Non hai ancora effettuato nessuna prenotazione.<a href="/albergoPulito/public/User/showAccountDetails" class="btn btn-primary">Torna indietro</a>
         </div>
     <?php }?>
 </section>
