@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2025-06-29 12:34:29
+/* Smarty version 4.3.2, created on 2025-06-30 10:32:02
   from 'C:\xampp\htdocs\albergoPulito\smarty\templates\myBookings.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_686116b58bd567_66171729',
+  'unifunc' => 'content_68624b827540e6_38154078',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd9ab0b5c2350f4f805ecf9dc40fddf620632aa4f' => 
     array (
       0 => 'C:\\xampp\\htdocs\\albergoPulito\\smarty\\templates\\myBookings.tpl',
-      1 => 1751193266,
+      1 => 1751272317,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_686116b58bd567_66171729 (Smarty_Internal_Template $_smarty_tpl) {
+function content_68624b827540e6_38154078 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\xampp\\htdocs\\albergoPulito\\smarty\\libs\\plugins\\modifier.date_format.php','function'=>'smarty_modifier_date_format',),));
 ?>
 
@@ -83,7 +83,7 @@ $_smarty_tpl->tpl_vars['booking']->do_else = false;
 " method="POST" style="display:inline-block;">
                                         <input type="hidden" name="idBooking" value="<?php echo (($tmp = $_smarty_tpl->tpl_vars['booking']->value->getId() ?? null)===null||$tmp==='' ? $_smarty_tpl->tpl_vars['booking']->value['idBooking'] ?? null : $tmp);?>
 ">
-                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Sei sicuro di voler cancellare questa prenotazione?');">Cancella</button>
+                                        <button type="submit" class="btn btn-primary" onclick="return confirm('Sei sicuro di voler cancellare questa prenotazione?');">Cancella</button>
                                     </form>
                                 <?php } else { ?>
                                     Nessuna azione disponibile

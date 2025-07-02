@@ -289,7 +289,7 @@ class CUser{
     private static function hasBooking($idUser){
         $result = FPersistentManager::getInstance()->getBookingsByUser($idUser);
         if(count($result)>0){
-            return true;
+            return $result;
         }else{
             return false;
         }
@@ -299,7 +299,10 @@ class CUser{
         $isLoggedIn = self::isLogged();
         if($isLoggedIn){
             $idUser = USession::getInstance()->getSessionElement('idUser');
+            $hasBookings = self::hasBooking($idUser);
+
             if(self::hasBooking($idUser)){
+                
                 $view = new VUser();
                 $review = new EReview(null, UHTTP::post('title'), UHTTP::post('rating'), UHTTP::post('description'), new DateTime(), $idUser);
                 $result = FPersistentManager::getInstance()->saveObject($review);

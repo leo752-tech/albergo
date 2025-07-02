@@ -8,7 +8,7 @@ class FDataMapper {
     private $name = DB_NAME;
     private $host = DB_HOST;
     private $user = DB_USER;
-    private $password = DB_PASSWORD;  
+    private $password = '';  
     
 
     // SINGLETON PATTERN

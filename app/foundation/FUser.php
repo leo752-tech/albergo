@@ -111,6 +111,8 @@ class FUser {
         $users = FDataMapper::getInstance()->selectAll(self::$table);
         return $users;
     }
+
+    
 }
 
 ?>

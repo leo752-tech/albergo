@@ -45,7 +45,7 @@
                                     {* Permetti la cancellazione solo se la prenotazione non è cancellata e il check-in non è ancora passato *}
                                     <form action="/albergoPulito/public/User/deleteBooking/{$booking->getId()}" method="POST" style="display:inline-block;">
                                         <input type="hidden" name="idBooking" value="{$booking->getId()|default:$booking.idBooking}">
-                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Sei sicuro di voler cancellare questa prenotazione?');">Cancella</button>
+                                        <button type="submit" class="btn btn-primary" onclick="return confirm('Sei sicuro di voler cancellare questa prenotazione?');">Cancella</button>
                                     </form>
                                 {else}
                                     Nessuna azione disponibile

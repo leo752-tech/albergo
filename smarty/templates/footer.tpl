@@ -30,5 +30,17 @@
         </footer>
         <script src="/albergoPulito/public/assets/js/script.js"></script>
         <script src="/albergoPulito/public/assets/js/calendar.js" defer></script>
+        <script> // Aggiungi questo in un tag <script> in index.html o nel tuo file script.js
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js')
+      .then((registration) => {
+        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+      })
+      .catch((err) => {
+        console.log('ServiceWorker registration failed: ', err);
+      });
+  });
+} </script>
         </body>
 </html>

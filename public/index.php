@@ -4,6 +4,7 @@ require_once(__DIR__ . '/../app/config/config.php');
 require_once(__DIR__ . '/../app/installation/StartSmarty.php');
 
 // Controllo esistenza DB
+/*
 try {
     $pdo = new PDO('mysql:host=' . DB_HOST, DB_USER, DB_PASS);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -18,7 +19,7 @@ try {
 // Connessione al database fallita
     header('Location: /albergoPulito/Install/installation.php');
     exit();
-}
+}*/
 
 // Se tutto è ok, esegue il controller
 $fc = new CFrontController();
